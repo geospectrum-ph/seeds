@@ -1,0 +1,35 @@
+#seedsmap{
+  height: 700px;
+  z-index: 1;
+}.body{
+  width: 100vw;
+  height: 100vh;
+  background-color: #fffefe;
+}.infoHover {
+  padding: 6px 8px;
+  font: 16px/18px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  border-radius: 5px;
+  word-wrap: break-word;
+  width: 175px;
+  border: 1px solid #000000;
+}.infoHover h4 {
+  color: #000000;
+  z-index: 9999;
+  display: inline;
+}.hoverControl {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: cyan;
+  border-radius: 5px;
+}.hoverControl h4 {
+  color: #777;
+  z-index: 9999;
+}
+@import url('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css');
+@import url('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js');
+@import url('https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css');
+@import url('https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.css');
+
