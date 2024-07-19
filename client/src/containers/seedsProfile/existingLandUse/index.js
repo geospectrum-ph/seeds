@@ -126,14 +126,14 @@ export default function ExistingLandUse() {
 
   useEffect(()=>{
     const fetchData = async() => {
-      const res = await axios(`http://ec2-52-90-134-187.compute-1.amazonaws.com/landuse/brgy`, {
+      const res = await axios(`http://localhost:5000/landuse/brgy`, {
         params: {brgy_id: profileLoc}
       }); //ito yung gagamitin pag sa web yung server
       
       setBrgySelect(res.data) 
       setLandUseSelect(res.data)
 
-      const res_graph = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/landuse/graph', {
+      const res_graph = await axios('http://localhost:5000/landuse/graph', {
         params: {brgy_id: profileLoc}
       });
 

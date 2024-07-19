@@ -45,7 +45,7 @@ const philsysTable = async (user,password,database,host,connectionLimit,table) =
   return loop = new Promise(async (resolve, reject) => {
     pool.query(`SELECT * from ${table}`, (err,result, fields)=>{
       if (err){
-        return console.log(err);
+        // return console.log(err);
       } resolve()
       philsys.push(result)
     })

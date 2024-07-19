@@ -44,13 +44,13 @@ export default function TemporaryDrawer() {
     setSelectedIndex(5)
     try{
       const _id = JSON.parse(localStorage.getItem('user'))._id;
-      axios.get(`http://ec2-52-90-134-187.compute-1.amazonaws.com//usermaster/checkUserPrivilege/${_id}/61892c33219fea59d81938b3`).then(resp => {
+      axios.get(`http://localhost:5000/usermaster/checkUserPrivilege/${_id}/61892c33219fea59d81938b3`).then(resp => {
         setIsUserPrivilegeManageUsers(resp.data);
         setIsAuth(isUserPrivilegeManageUsers["is_Privilege"])
       });
     }
     catch(e){
-      console.log(e)
+      // /* console.log(e) */
     }
   }, [])
 

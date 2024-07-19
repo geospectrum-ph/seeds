@@ -319,7 +319,7 @@ router.route('/add').post(async (req, res) => {
 
 /* UPDATE persons listing. */
 //source: https://mongoosejs.com/docs/2.7.x/docs/updating-documents.html
-router.route('/update').post((req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/persons/update",
+router.route('/update').post((req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/persons/update",
                                       // eto yung ieexcute niya na function
   const query = {p_psn_number : req.body.p_psn_number};
   Person.findOneAndUpdate(query, req.body) // pwede ka maglagay ng query dito to further specify sorting methods

@@ -2,31 +2,40 @@
 // SEEDS Program
 // Server File
 
+
+
 // Packages Used
 const express = require('express'); // for HTTP requests
 const mongoose = require('mongoose'); // for Object Document Modelling
 const bodyParser = require('body-parser');
-const cors = require('cors');
+// const cors = require('cors');
 const path = require('path');
+
+var app = express();
+
+// ADD THIS
+var cors = require('cors');
+app.use(cors());
 
 const methodOverride = require('method-override');
 
 require('dotenv').config();
 
-const app = express();
-const port = process.env.PORT || 5000; // http://ec2-52-90-134-187.compute-1.amazonaws.com
+// const app = express();
+const port = process.env.PORT || 5000; // https://seeds-demo.geospectrum.com.ph
 
-app.use(express.json({limit: '200mb'}));
-app.use(express.urlencoded({limit: '200mb', extended: true}))
-app.use(bodyParser.urlencoded({limit: '200mb', extended: true, parameterLimit:200000}))
-app.use(bodyParser.json({limit: '200mb'}))
+app.use(express.json({limit: '1000mb'}));
+app.use(express.urlencoded({limit: '1000mb', extended: true}))
+app.use(bodyParser.urlencoded({limit: '1000mb', extended: true, parameterLimit:200000}))
+app.use(bodyParser.json({limit: '1000mb'}))
 
-app.use(cors()); // it enables all cors requests
+// app.use(cors()); // it enables all cors requests
 
 app.use(methodOverride('_method'));
 
 //MongoDB connection string
-const uri = "mongodb+srv://seeds:seeds@seeds.nm1d8.mongodb.net/seeds-db?retryWrites=true&w=majority"
+// const uri = "mongodb+srv://seeds:seeds@seeds.nm1d8.mongodb.net/seeds-db?retryWrites=true&w=majority"
+const uri = "mongodb://127.0.0.1:27017/seeds-db"
 
 mongoose.connect(process.env.MONGODB_URI || uri, { useNewUrlParser: true, useUnifiedTopology: true }).catch(error => console.log(error));
 
@@ -35,8 +44,8 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 
   // bodyParser deprecated? 8 Sept 2021
-  app.use(bodyParser.urlencoded({limit: '200mb', extended: true, parameterLimit:200000}))
-  app.use(bodyParser.json({limit: '200mb'}))
+  app.use(bodyParser.urlencoded({limit: '1000mb', extended: true, parameterLimit:200000}))
+  app.use(bodyParser.json({limit: '1000mb'}))
   
   // app.use(express.urlencoded({limit: '200mb', extended: true}))
   // app.use(express.json({limit: '100mb'}))

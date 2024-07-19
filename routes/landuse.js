@@ -13,7 +13,7 @@ Table.collection.createIndex({ "properties.mtd_id": "text" });
 Raster.collection.createIndex({ "properties.mtd_id": "text" });
 
 /* GET barangays listing. */
-router.route('/brgy').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/brgy').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   LandUse.find().then(async (items) => {
     var barangay = await Barangay.findOne({"properties.brgy_id": req.query.brgy_id})
@@ -43,7 +43,7 @@ router.route('/brgy').get(async (req, res) => { // bale pag pumunta ka sa "http:
 });
 
 /* GET barangays listing. */
-router.route('/brgy/all').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/brgy/all').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                                 // eto yung ieexcute niya na function
   var Landuses = await LandUse.find();
   Barangay.find().then(async (items) => {
@@ -73,7 +73,7 @@ router.route('/brgy/all').get(async (req, res) => { // bale pag pumunta ka sa "h
 });
 
 /* GET barangays listing. */
-router.route('/graph').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/graph').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   LandUse.find().then(async (items) => {
     var barangay = await Barangay.findOne({"properties.brgy_id": req.query.brgy_id})

@@ -9,11 +9,11 @@ export default function Domains() {
   const [domain, setDomain] = useState([])
   const getDomains = async () => {
     try{
-      const domains = await axios.get("http://ec2-52-90-134-187.compute-1.amazonaws.com/metadata/getdomainssocial");
+      const domains = await axios.get("http://localhost:5000/metadata/getdomainssocial");
       setDomain(domains.data);    
     }
     catch(e){
-      console.log(e)
+      /* console.log(e) */
     }
   }
   useEffect (() => {

@@ -136,7 +136,7 @@ export default function SignIn() {
   const onLogin = (e) => {
     e.preventDefault()
     const fetchData = async() => {
-      const res = await axios.post("http://ec2-52-90-134-187.compute-1.amazonaws.com/usermaster/signin", {
+      const res = await axios.post("http://localhost:5000/usermaster/signin", {
         "email": email, 
         "password": password
       }).then(function(res) {
@@ -144,16 +144,16 @@ export default function SignIn() {
           if (res.data.success === true) { 
             setLoginDetails(res.data.message)
             const fetch1 = async() =>{
-              const sessionData = await axios.get("http://ec2-52-90-134-187.compute-1.amazonaws.com/session/get?userId="
+              const sessionData = await axios.get("http://localhost:5000/session/get?userId="
                 + res.data.message._id); 
-              const fuke = await axios.get("http://ec2-52-90-134-187.compute-1.amazonaws.com/session/file/"
+              const fuke = await axios.get("http://localhost:5000/session/file/"
                 + res.data.message._id)
               if (sessionData !== null) {
                 setSessionData(sessionData.data)
                 setSessionFile(fuke.data)
               } else {
                 const create = async() => {
-                  const createSession = await axios.post("http://ec2-52-90-134-187.compute-1.amazonaws.com/session/create", {
+                  const createSession = await axios.post("http://localhost:5000/session/create", {
                     userId: res.data.message._id,
                     populate: {
                       mapName: '',
@@ -189,7 +189,9 @@ export default function SignIn() {
                     },
                     profile: '',
                     analytics: ''
-                  }).then(()=>console.log("success"))
+                  }).then(()=>{
+                    // console.log("success")
+                  })
                 }
                 create()
                 setSessionData({

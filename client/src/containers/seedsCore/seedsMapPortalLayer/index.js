@@ -63,6 +63,7 @@ export default function MapLayer() {
     map.current.flyToBounds(lgi.layerGroup.getBounds())
   }
 
+ 
   const handleOpacity = (val, lgi, i) => {
     val = val/100.0 // get percentage
 
@@ -79,11 +80,12 @@ export default function MapLayer() {
     const barangay = layer.barangay
     const lgi = layer.layerGroup
     const [checked, setChecked] = useState(false)
-    const [sliderVal, setSliderVal] = React.useState(lgi.fillOpacity*100)
-    const sliderValRef = React.useRef(lgi.fillOpacity*100)
+    const [sliderVal, setSliderVal] = lgi.fillOpacity ? React.useState(lgi.fillOpacity*100) : 0;
+    const sliderValRef = lgi.fillOpacity ? React.useState(lgi.fillOpacity*100) : 0;
     const deletionProcess = React.useRef(false)
     const [isLayerOn, setIsLayerOn] = React.useState(lgi.active)
     const isLayerOnRef = React.useRef(lgi.active)
+
 
     useEffect(() => {
       if(sliderVal!=lgi.fillOpacity*100){

@@ -1,6 +1,7 @@
 var router = require('express').Router();
 const path = require('path');
-var gdal = require('gdal-async'); // Package used to read shapefiles
+// var gdal = require('gdal-async'); // Package used to read shapefiles
+
 const fs = require("fs") // Package used for reading file directories
 const decompress = require('decompress'); // Package used for decompressing ZIP file
 const { promisify } = require('util')
@@ -39,6 +40,7 @@ let Household_Shape = require('../models/household-models/household.shape.js')
 let LandUse = require('../models/landuse.model');
 
 let Style = require('../models/style.model');
+const { response } = require('express');
 
 const tempFolder = path.join(__dirname, '../public/uploads')
 
@@ -103,16 +105,13 @@ function stringToArray(str) {
 
 // Empty directory by deleting files inside
 const emptyDir = async () => {
-  fs.readdir(tempFolder, (err, files) => {
-    if (err) throw err;
-  
-    for (const file of files) {
-      fs.unlink(path.join(tempFolder, file), err => {
-        if (err) throw err;
-      });
-    }
-    // fs.rmSync(tempFolder, {recursive: true, force: true})
-  });
+  let temp_path = path.join(__dirname, "..", "\\public\\uploads");
+
+  let files = fs.readdirSync(temp_path);
+
+  for (const file of files) {
+    fs.unlinkSync(path.join(temp_path, "\\", file));
+  }
 }
 
 // Function to convert CSV files into objects
@@ -200,6 +199,17 @@ function dd_mm_yyyy2yyyymmdd(dd_mm_yyyy){
   catch (err) { return ''}
 }
 
+function getColor(){ 
+  return "hsl(" + 360 * Math.random() + ',' +
+             (25 + 70 * Math.random()) + '%,' + 
+             (85 + 10 * Math.random()) + '%)'
+}
+
+hex_color = getColor();
+// console.log(hex_color);
+
+// console.log(inputLayer_)
+
 // Function to upload CSV: Catch All
 async function CSV_General_Upload(result, metadataID, res) {
 
@@ -225,7 +235,7 @@ async function CSV_General_Upload(result, metadataID, res) {
   })
   await bulk.execute().then(() => {
     emptyDir()
-    console.log('directory removed!')
+    // console.log('directory removed!')
   });
   res.status(200);
 }
@@ -251,7 +261,7 @@ async function CSV_Disease_Brgy(result, metadataID, res) {
   })
   await bulk.execute().then(() => {
     emptyDir()
-    console.log('directory removed!')
+    // console.log('directory removed!')
   });
   res.status(200).send("Updated Barangays");
 }
@@ -282,7 +292,7 @@ async function CSV_Disease_Points(result, metadataID, res) {
   }
   await dothis().then(() => {
     emptyDir()
-    console.log('directory removed!')
+    // console.log('directory removed!')
   })
   res.status(200).send("Updated Points"); // tapos na si post request
 }
@@ -306,7 +316,7 @@ async function CSV_Employment_Brgy(result, metadataID, res) {
   })
   await bulk.execute().then(() => {
     emptyDir()
-    console.log('directory removed!')
+    // console.log('directory removed!')
   })
   res.status(200).send("Updated Barangays");
 }
@@ -339,7 +349,7 @@ async function CSV_Employment_Points(result, metadataID, res) {
   }
   await dothis().then(() => {
     emptyDir()
-    console.log('directory removed!')
+    // console.log('directory removed!')
   })
   res.status(200).send("Updated Points");
 }
@@ -364,34 +374,53 @@ async function CSV_Household_Population(result, metadataID, res) {
   })
   await bulk.execute().then(() => {
     emptyDir()
-    console.log('directory removed!')
+    // console.log('directory removed!')
   });
   res.status(200).send("Updated Barangays");
 }
 
 // Function to upload SHP: Household [SAMUEL]
-async function SHP_Household(inputLayer, generatedID, sld_txt, res) {
+async function SHP_Household(inputLayer_, generatedID, sld_txt, res) {
   var bulk = Household_Shape.collection.initializeUnorderedBulkOp();
 
-  inputLayer.features.forEach((feature) => {
-    if (feature.getGeometry()){
-      var fields = feature.fields.toObject();
-      //for adjusting
-      var newItem = {
-          type: 'Feature',
-          properties: fields,
-          geometry: feature.getGeometry().toObject()
-      };
-      newItem.properties.sld_txt = sld_txt;
-      newItem.properties.mtd_id = generatedID;
-      bulk.insert(newItem);
-    } else { 
+  const properties_ = {
+    "sld_txt": sld_txt,
+    "mtd_id": generatedID
+  }
+  
+  "properties" in inputLayer_ ? inputLayer_.properties = { ...inputLayer_.properties, ...properties_ } : inputLayer_.properties = properties_;
+  
+  const style_ = {
+    "color" : "black",
+    "fillColor" : hex_color,
+    "fillOpacity": 1
+  }
 
-     }
-  })
+  "style" in inputLayer_ ? inputLayer_.style = { ...inputLayer_.style, ...style_ } : inputLayer_.style = style_;
+
+  bulk.insert(inputLayer_);
+
+  // console.log(inputLayer);
+
+  // inputLayer_.forEach((feature) => {
+  //   if (feature.getGeometry()){
+  //     var fields = feature.fields.toObject();
+  //     //for adjusting
+  //     var newItem = {
+  //         type: 'Feature',
+  //         properties: fields,
+  //         geometry: feature.getGeometry().toObject()
+  //     };
+  //     newItem.properties.sld_txt = sld_txt;
+  //     newItem.properties.mtd_id = generatedID;
+  //     bulk.insert(newItem);
+  //   } else { 
+
+  //    }
+  // })
   await bulk.execute().then(() => {
     emptyDir()
-    console.log('directory removed!')
+    // console.log('directory removed!')
   });
   res.json('Shapefile uploaded!').status(200);
 }
@@ -417,7 +446,7 @@ async function CSV_Commercial_Brgy(result, metadataID, res) {
   })
   await bulk.execute().then(() => {
     emptyDir()
-    console.log('directory removed!')
+    // console.log('directory removed!')
   });
   res.status(200).send("Updated Barangays");
 }
@@ -453,117 +482,194 @@ async function CSV_Commercial_Points(result, metadataID, res) {
   }
   await dothis().then(() => {
     emptyDir()
-    console.log('directory removed!')
+    // console.log('directory removed!')
   })
   res.status(200).send("Updated Points");
 }
 
-async function SHP_Barangay(inputLayer, generatedID, sld_txt, sld_legend, res) {
+async function SHP_Barangay(inputLayer_, generatedID, sld_txt, sld_legend, res) {
 
   // ibig sabihin, gagawin niya yung operation ng sabay-sabay/unordered para mas mabilis
   // however, if sobrang dami, matagal pa rin (approx 6-8 mins for 170k records)
   var bulk = Barangay.collection.initializeUnorderedBulkOp();
+  // console.log("inputLayer");
+  // console.log(inputLayer.features);
 
-  inputLayer.features.forEach((feature) => {
-    if (feature.getGeometry()){
-      var fields = feature.fields.toObject();
-      var newItem = {
-        type: 'Feature',
-        properties: {
-          brgy_city_id: fields.NAME_2,
-          brgy_id: fields.GID_3,
-          brgy_name: fields.NAME_3,
-          brgy_lat: fields.brgy_lat,
-          brgy_long: fields.brgy_long,
-          brgy_id_2: fields.GID_3
-        },
-        geometry: feature.getGeometry().toObject(),
-        style: sld_legend ? sld_legend.filter((x) => x.name === fields.NAME_3)[0] : null
-      };
+  // inputLayer_.forEach((feature) => {
+  //   if (feature.getGeometry()){
+  //     var fields = feature.fields.toObject();
+  //     var newItem = {
+  //       type: 'Feature',
+  //       properties: {
+  //         brgy_city_id: fields.NAME_2,
+  //         brgy_id: fields.GID_3,
+  //         brgy_name: fields.NAME_3,
+  //         brgy_lat: fields.brgy_lat,
+  //         brgy_long: fields.brgy_long,
+  //         brgy_id_2: fields.GID_3
+  //       },
+  //       geometry: feature.getGeometry().toObject(),
+  //       style: sld_legend ? sld_legend.filter((x) => x.name === fields.NAME_3)[0] : null
+  //     };
 
-      // Add sld_txt in the properties
-      newItem.properties.sld_txt = sld_txt; //if there's no sld file, this value is "na"
+  //     // Add sld_txt in the properties
+  //     newItem.properties.sld_txt = sld_txt; //if there's no sld file, this value is "na"
     
-      // add metadataID in the properties
-      newItem.properties.mtd_id = generatedID;
+  //     // add metadataID in the properties
+  //     newItem.properties.mtd_id = generatedID;
 
-      // isave sa bulk for executing
-      bulk.insert(newItem);
-    }
-  })
+  //     // isave sa bulk for executing
+  //     bulk.insert(newItem);
+  //   }
+  // })
+
+  const properties_ = {
+    "sld_txt": sld_txt,
+    "mtd_id": generatedID
+  }
+  
+  "properties" in inputLayer_ ? inputLayer_.properties = { ...inputLayer_.properties, ...properties_ } : inputLayer_.properties = properties_;
+  
+  const style_ = {
+    "color" : "black",
+    "fillColor" : hex_color,
+    "fillOpacity": 1
+  }
+
+  "style" in inputLayer_ ? inputLayer_.style = { ...inputLayer_.style, ...style_ } : inputLayer_.style = style_;
+
+  bulk.insert(inputLayer_);
+
   // perform operation
   await bulk.execute().then(() => {
     emptyDir()
-    console.log('directory removed!')
+    // console.log('directory removed!')
   });
   res.json('Shapefile uploaded!').status(200);
 }
 
 // Function to upload SHP: Land Use
-async function SHP_LandUse(inputLayer, generatedID, sld_txt, res) {
+async function SHP_LandUse(inputLayer_, generatedID, sld_txt, res) {
 
   // ibig sabihin, gagawin niya yung operation ng sabay-sabay/unordered para mas mabilis
   // however, if sobrang dami, matagal pa rin (approx 6-8 mins for 170k records)
   var bulk = LandUse.collection.initializeUnorderedBulkOp();
 
-  inputLayer.features.forEach((feature) => {
-    var fields = feature.fields.toObject();
-    var newItem = {  // gawa ng object (GeoJSON)
-        type: 'Feature',
-        properties: {
-          Landuse: fields.Landuse,
-          area: fields.Area,
-          date_start: fields.date_start,
-          date_end: fields.date_end
-        },
-        geometry: feature.getGeometry().toObject()
-    };
+  // console.log(inputLayer);
 
-    // Add sld_txt in the properties
-    newItem.properties.sld_txt = sld_txt; //if there's no sld file, this value is "na"
+  // inputLayer_.forEach((feature) => {
+  //   var fields = feature.fields.toObject();
+  //   var newItem = {  // gawa ng object (GeoJSON)
+  //       type: 'Feature',
+  //       properties: {
+  //         Landuse: fields.Landuse,
+  //         area: fields.Area,
+  //         date_start: fields.date_start,
+  //         date_end: fields.date_end
+  //       },
+  //       geometry: feature.getGeometry().toObject()
+  //   };
+
+  //   // Add sld_txt in the properties
+  //   newItem.properties.sld_txt = sld_txt; //if there's no sld file, this value is "na"
    
-    // add metadataID in the properties
-    newItem.properties.mtd_id = generatedID;
+  //   // add metadataID in the properties
+  //   newItem.properties.mtd_id = generatedID;
 
-    // isave sa bulk for executing
-    bulk.insert(newItem);
-  })
+  //   // isave sa bulk for executing
+  //   bulk.insert(newItem);
+  // })
+
+  const properties_ = {
+    "sld_txt": sld_txt,
+    "mtd_id": generatedID
+  }
+  
+  "properties" in inputLayer_ ? inputLayer_.properties = { ...inputLayer_.properties, ...properties_ } : inputLayer_.properties = properties_;
+  
+  const style_ = {
+    "color" : "black",
+    "fillColor" : hex_color,
+    "fillOpacity": 1
+  }
+
+  "style" in inputLayer_ ? inputLayer_.style = { ...inputLayer_.style, ...style_ } : inputLayer_.style = style_;
+
+  bulk.insert(inputLayer_);
 
   // perform operation
   await bulk.execute().then(() => {
     emptyDir()
-    console.log('directory removed!')
+    // console.log('directory removed!')
   });
   res.json('Shapefile uploaded!').status(200);
 }
 
 // Function to upload SHP: General Upload
-async function SHP_GeneralUpload(inputLayer, generatedID, sld_txt, res) {
-
+async function SHP_GeneralUpload(inputLayer_, generatedID, sld_txt, res) {
   // ibig sabihin, gagawin niya yung operation ng sabay-sabay/unordered para mas mabilis
   // however, if sobrang dami, matagal pa rin (approx 6-8 mins for 170k records)
-  var bulk = Shapefile.collection.initializeUnorderedBulkOp();
+  var bulk = Shapefile.collection.initializeOrderedBulkOp();
 
-  inputLayer.features.forEach((feature) => {
-    var newItem = {  // gawa ng object (GeoJSON)
-      type: 'Feature',
-      properties: feature.fields.toObject(),
-      geometry: feature.getGeometry() ? feature.getGeometry().toObject() : null
-    };
+  // Object.keys(inputLayer_).forEach((feature) => {
+  //   console.log(feature);
+  //   var newItem = {  // gawa ng object (GeoJSON)
+  //     type: 'Feature',
+  //     properties: {
+  //       ...feature.properties,
+  //       "sld_txt": sld_txt,
+  //       "mtd_id": generatedID
+  //     },
+  //     geometry: feature.geometry
+  //   };
 
-    // Add sld_txt in the properties
-    newItem.properties.sld_txt = sld_txt; //if there's no sld file, this value is "na"
+  //   // Add sld_txt in the properties
+  //   // console.log(sld_txt);
+  //   // newItem.properties.sld_txt = sld_txt; //if there's no sld file, this value is "na"
   
-    // add metadataID in the properties
-    newItem.properties.mtd_id = generatedID;
+  //   // // add metadataID in the properties
+  //   // console.log(generatedID);
+  //   // newItem.properties.mtd_id = generatedID;
 
-    // isave sa bulk for executing
-    bulk.insert(newItem);
-  })
+  //   // isave sa bulk for executing
+  //   console.log(newItem);
+  //   bulk.insert(newItem);
+  // })
+  //   console.log(feature);
+
+
+    // var newItem = {  // gawa ng object (GeoJSON)
+    //   type: inputLayer_.type,
+    //   properties: {
+    //     ...inputLayer_.properties,
+    //     "sld_txt": sld_txt,
+    //     "mtd_id": generatedID
+    //   },
+    //   geometry: inputLayer_.geometry
+    const properties_ = {
+      "sld_txt": sld_txt,
+      "mtd_id": generatedID
+    }
+    
+    "properties" in inputLayer_ ? inputLayer_.properties = { ...inputLayer_.properties, ...properties_ } : inputLayer_.properties = properties_;
+    
+    const style_ = {
+      "color" : "black",
+      "fillColor" : hex_color,
+      "fillOpacity": 1
+    }
+
+    "style" in inputLayer_ ? inputLayer_.style = { ...inputLayer_.style, ...style_ } : inputLayer_.style = style_;
+
+    // inputLayer_.properties.style = sld_legend ? sld_legend.filter((x) => x.name === fields.NAME_3)[0] : null;
+// console.log(inputLayer_)
+    // console.log(inputLayer_);
+    bulk.insert(inputLayer_);
+
   // perform operation
   await bulk.execute().then(() => {
-    emptyDir()
-    console.log('directory removed!')
+    emptyDir();
+    // console.log('directory removed!')
   });
   res.json('Shapefile uploaded!').status(200); 
 }
@@ -626,11 +732,84 @@ router.route('/shp').post(localupload.single("file"), async (req, res) => { // "
   var details = req.body.details || "";
 
   // use GDAL package to open the shapefile
-  var dataset = gdal.open(pathToObjectSHP);
-  var inputLayer = dataset.layers.get(0);
+  // var dataset = gdal.open(pathToObjectSHP);
+
+  // var shp = require('shpjs');
+
+// shp("shapefile").then(function(geojson){
+// console.log(geojson);
+// }).catch( (reason) => {
+// console.log('Handle rejected promise ('+reason+') here.');
+// });
+const initGdalJs = require('gdal3.js/node');
+
+const Gdal = await initGdalJs();
+
+  async function getFile(path_){
+    const opened = await Gdal.open([path_]); // https://gdal3.js.org/docs/module-f_open.html
+    const options = [ // https://gdal.org/programs/ogr2ogr.html#description
+      '-f', 'GeoJSON',
+      '-t_srs', 'EPSG:4326',
+     ];
+const converted = await Gdal.ogr2ogr(opened.datasets[0], options, "output"); 
+const dataByte =await Gdal.getFileBytes(converted);
+
+const jsonString = Buffer.from(dataByte).toString('utf8');
+const parsedData = JSON.parse(jsonString);
+
+    Gdal.close(opened);
+    return(parsedData);
+
+    // return string;
+
+    // (async() {
+      // Convert path to GeoJSON.
+      // let data = await ogr2ogr(path_)
+      // console.log(data)
+    
+      // // Convert GeoJSON object to ESRI Shapefile stream.
+      // let {stream} = await ogr2ogr(data, {format: 'ESRI Shapefile'})
+    
+      // // Convert ESRI Shapefile stream to KML text.
+      // let {text} = await ogr2ogr(stream, {format: 'KML'})
+      // console.log(text)
+    // })()
+    //   return(
+  //     await shapefile_.open(path_)
+  //   .then(source => {
+  //     return(
+  //     source.read()
+  //     .then((result) => {
+  //       return (result.value);
+  //     })
+  //     .catch(error => console.error(error.stack)))
+  //   })
+  //   .catch(error => console.error(error.stack))
+  // );
+    // let parse = path.split("\\").pop();
+    // console.log(parse);
+    // return (
+    //   await shp(path_)
+    //     .then(
+    //       (response) => { console.log(response); }
+    //     )
+    //     .catch(
+    //       (error) => { console.log(error); }
+    //     )
+    // );
+  }
+
+
+
+// console.log(pathToObjectSHP);
+// var dataset = null;
+// console.log(dataset);
+// var inputLayer = dataset.layers.get(0);
+
+var inputLayer = await getFile(pathToObjectSHP);
   
   // check how many items are in the metadata collection, also in preparation for metadataID generation
-  var generatedID = await generateMetadataID()
+  var generatedID = await generateMetadataID();
 
   var newMetadata = new Metadata({ 
     "name": mapName,
@@ -669,15 +848,18 @@ router.route('/shp').post(localupload.single("file"), async (req, res) => { // "
   // save in styles collection
   newStyle.save();
 
-  if (keywords.includes('barangay') && keywords.includes('boundary') && keywords.length === 2) 
-    SHP_Barangay(inputLayer, generatedID, sld_txt, sld_legend, res)
-  else if (keywords.includes('land use') && keywords.includes('boundary') && keywords.length === 2) 
-    SHP_LandUse(inputLayer, generatedID, sld_txt, res)
-  else if (keywords.includes('household') && keywords.includes('boundary') && keywords.length === 2) 
-    SHP_Household(inputLayer, generatedID, sld_txt, res)
-  else { 
-    SHP_GeneralUpload(inputLayer, generatedID, sld_txt, res) 
-  }
+  // if (keywords.includes('barangay') && keywords.includes('boundary') && keywords.length === 2) 
+  //   SHP_Barangay(inputLayer, generatedID, sld_txt, sld_legend, res)
+  // else if (keywords.includes('land use') && keywords.includes('boundary') && keywords.length === 2) 
+  //   SHP_LandUse(inputLayer, generatedID, sld_txt, res)
+  // else if (keywords.includes('household') && keywords.includes('boundary') && keywords.length === 2) 
+  //   SHP_Household(inputLayer, generatedID, sld_txt, res)
+  // else { 
+
+  // console.log(inputLayer);
+
+    SHP_GeneralUpload(inputLayer, generatedID, sld_txt, res)
+  // }
 });
 
 /* POST REQUEST - UPLOAD CSV DATA. (using gdal) */

@@ -15,7 +15,7 @@ Table.collection.createIndex({ "properties.mtd_id": "text" });
 Raster.collection.createIndex({ "properties.mtd_id": "text" });
 
 /* GET barangays listing. */
-router.route('/brgy/single').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/jobmapper/brgy/single",
+router.route('/brgy/single').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/jobmapper/brgy/single",
                                       // eto yung ieexcute niya na function (for mapping, and pie chart)
   const startdate = req.query.startdate || await getMin();
   const enddate = req.query.enddate || await getMax();
@@ -71,7 +71,7 @@ router.route('/brgy/single').get(async (req, res) => { // bale pag pumunta ka sa
 });
 
 /* GET barangays listing. */
-router.route('/graph').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/jobmapper/graph",
+router.route('/graph').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/jobmapper/graph",
                                       // eto yung ieexcute niya na function (for bar graph)
   const startdate = req.query.startdate || await getMin();
   const enddate = req.query.enddate || await getMax();
@@ -124,7 +124,7 @@ router.route('/graph').get(async (req, res) => { // bale pag pumunta ka sa "http
 });
 
 /* GET barangays listing. */
-router.route('/brgy/all').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/jobmapper/brgy/all",
+router.route('/brgy/all').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/jobmapper/brgy/all",
                                       // eto yung ieexcute niya na function (for table)
   const startdate = req.query.startdate || await getMin();
   const enddate = req.query.enddate || await getMax();
@@ -173,7 +173,7 @@ router.route('/brgy/all').get(async (req, res) => { // bale pag pumunta ka sa "h
 });
 
 /* GET barangays listing. */
-router.route('/allpoints').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/jobmapper/allpoints",
+router.route('/allpoints').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/jobmapper/allpoints",
                                       // eto yung ieexcute niya na function
   Employment_Points.find()
     .then(items => res.json(items))
@@ -181,7 +181,7 @@ router.route('/allpoints').get(async (req, res) => { // bale pag pumunta ka sa "
 });
 
 /* GET barangays listing. */
-router.route('/single/points').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/jobmapper/single/points,
+router.route('/single/points').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/jobmapper/single/points,
                                       // eto yung ieexcute niya na function
   const query = {
     "properties.brgy_id": req.query.brgy_id,

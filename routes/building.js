@@ -5,7 +5,7 @@ let Building = require('../models/building.model'); // access the model you are 
 Building.collection.createIndex({ bldg_id: "text" });
 
 /* GET Buildings listing. */
-router.route('/').get((req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/buildings/",
+router.route('/').get((req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/buildings/",
                                       // eto yung ieexcute niya na function
   const query = req.body;
   Building.find(query).limit(4000) // pwede ka maglagay ng query dito to further specify sorting methods
@@ -14,7 +14,7 @@ router.route('/').get((req, res) => { // bale pag pumunta ka sa "http://ec2-52-9
 });
 
 /* GET Buildings listing for rendering on viewport */
-router.route('/viewport').get((req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/buildings/viewport",
+router.route('/viewport').get((req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/buildings/viewport",
                                       // eto yung ieexcute niya na function
   const latitude = req.body.latitude;
   const longitude = req.body.latitude;

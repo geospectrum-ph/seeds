@@ -178,7 +178,7 @@ const setCurrentAvailableLayers = async (layersMapping) => {
 
 setCurrentAvailableLayers(layersMapping)
 /* GET layers listing. */
-router.route('/getlayers').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getlayers/,
+router.route('/getlayers').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getlayers/,
   // eto yung ieexcute niya na function
   await getAvailableLayersWithJsonType(layersMapping).then((data) => { 
     res.json(data);
@@ -405,7 +405,7 @@ const getSpecificSubcategory = async (layerKey, specific_subcategory) => {
     }
     catch (err){
       reject()
-      console.log('err', err)
+      // console.log('err', err)
     }
   })
   .then(() => {
@@ -470,7 +470,7 @@ const basicAnalysis = async (layerArray, subcateogories, locationArray, date_sta
           var selected_columns = [] // initialize selected columns
           var c2 = 0 // 2nd counter
           element.properties[key] = {} // initialize empty json for properties in current key in layerArray
-          subcateogories[index2].forEach(async (subcat, index3) => { // for the current subcategory referring to current element in layerArray
+          subcategories[index2].forEach(async (subcat, index3) => { // for the current subcategory referring to current element in layerArray
             var schematype = subcat.schematype; // get schematype
             var column_name = subcat.column_name; // get path (column name)
             var column_label = subcat.column_label; // get column_label (alias)

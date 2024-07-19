@@ -49,7 +49,7 @@ export default function CalendarsDateRangePicker() {
   
   const handleStartDateChange = (date) => {
     const fetchData = async() => {
-      const res = await axios(`http://ec2-52-90-134-187.compute-1.amazonaws.com/healthmapper/brgy/single`, {
+      const res = await axios(`http://localhost:5000/healthmapper/brgy/single`, {
         params: {
           brgy_id: profileLoc,
           startdate: parseDate(date),
@@ -59,7 +59,7 @@ export default function CalendarsDateRangePicker() {
 
       setHealthSelect(res.data)
 
-      const res_graph = await axios(`http://ec2-52-90-134-187.compute-1.amazonaws.com/healthmapper/graph`, {params: {brgy_id: profileLoc}} );
+      const res_graph = await axios(`http://localhost:5000/healthmapper/graph`, {params: {brgy_id: profileLoc}} );
       setDiseaseMapperGraph(res_graph.data)
     }
     fetchData();

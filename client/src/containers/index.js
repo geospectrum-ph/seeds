@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import axios from 'axios';
 
 import MainLanding from "./mainLanding";
@@ -27,7 +27,7 @@ function  App() {
   useEffect(()=>{
 
     const fetchData = async () => {
-      const names = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/barangays/',);
+      const names = await axios('http://localhost:5000/getdata/barangays/',);
       setBrgysList(names.data.values);
     };
 

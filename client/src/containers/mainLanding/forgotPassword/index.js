@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Grid, Dialog, DialogContent, TextField, Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
@@ -111,14 +111,14 @@ export default function SignIn() {
 
     const postEmail = async() => {
       setDisUp(true)
-      const res = await axios.post("http://ec2-52-90-134-187.compute-1.amazonaws.com/resetPasswordMaster/", {"email": email})
+      const res = await axios.post("http://localhost:5000/resetPasswordMaster/", {"email": email})
         .then(function(res) {
           setDisUp(false)
           alert("Password reset link sent to your email account!")
         }).catch((error) => {
           setDisUp(false)
           alert("Email not found")
-          console.log(error)
+          // console.log(error)
       })
     }
     postEmail();

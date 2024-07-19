@@ -107,7 +107,7 @@ const philsysTable = async (user,password,database,host,connectionLimit) => {
             q_table: table1
           }, (err,result, fields)=>{
             if (err){
-              return console.log(err);
+              // return console.log(err);
             } resolve()
             PhilSYS.push(result)
           })
@@ -178,7 +178,7 @@ const philsysTable = async (user,password,database,host,connectionLimit) => {
             q_table: table1
            }, (err,result, fields)=>{
             if (err){
-              return console.log(err);
+              // return console.log(err);
             } resolve()
             Employment.push(result)
           })
@@ -243,7 +243,7 @@ const philsysTable = async (user,password,database,host,connectionLimit) => {
           q_table: table1
         }, (err,result, fields)=>{
           if (err){
-            return console.log(err);
+            // return console.log(err);
           } resolve()
           DiseaseS.push(result)
         })

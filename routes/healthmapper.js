@@ -16,7 +16,7 @@ const formatDate = (date) => { // yyyymmdd => yyyy/mm/dd
 }
 
 /* GET barangays listing. */
-router.route('/brgy/single').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/brgy/single').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   const count = await Disease.collection.estimatedDocumentCount();
 
@@ -102,7 +102,7 @@ router.route('/brgy/single').get(async (req, res) => { // bale pag pumunta ka sa
 });
 
 /* GET barangays listing. */
-router.route('/graph').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/graph').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   const count = await Disease.collection.estimatedDocumentCount();
 
@@ -196,7 +196,7 @@ router.route('/graph').get(async (req, res) => { // bale pag pumunta ka sa "http
 });
 
 /* GET barangays listing. */
-router.route('/brgy/all').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/brgy/all').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   const count = await Disease.collection.estimatedDocumentCount();
 
@@ -290,7 +290,7 @@ router.route('/brgy/all').get(async (req, res) => { // bale pag pumunta ka sa "h
 });
 
 /* GET barangays listing. */
-router.route('/allpoints').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/allpoints').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   Disease.find({"properties.status": "Active"})
     .then(items => res.json(items))

@@ -97,7 +97,7 @@ export default function ResetPassword(props) {
 
   const onResetPassword = () => { 
     const postResetPassword = async() => {
-      const res = await axios.post(`http://ec2-52-90-134-187.compute-1.amazonaws.com/resetPasswordMaster/`+
+      const res = await axios.post(`http://localhost:5000/resetPasswordMaster/`+
         props.match.params.id+"/"+props.match.params.token+"", {
           password: resetPassword,  
           password_confirmation: confirmResetPassword,
@@ -107,7 +107,7 @@ export default function ResetPassword(props) {
             alert('Password Reset successfully!')
         }
       }).catch((error) => {
-        console.log(error)
+        // console.log(error)
       })
     }
     postResetPassword();

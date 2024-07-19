@@ -1,0 +1,13 @@
+.my-class{
+    background-color: #fffefe;
+}
+
+.leftbutton:hover{
+    background-color: #fffefe;
+    transition: .5s ease-in-out ;
+}
+.Mui-selected {
+    background-color: #000000;
+    color: #000000;
+
+}
