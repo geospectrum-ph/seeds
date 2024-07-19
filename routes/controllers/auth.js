@@ -104,7 +104,7 @@ exports.signin = (req, res) => {
           if (err) {
             res.status(500).json({ erros: err });
           } if (decoded) {
-            console.log('decoded!')
+            // console.log('decoded!')
             return res.status(200).json({
               success: true,
               token: access_token,

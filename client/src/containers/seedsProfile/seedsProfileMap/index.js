@@ -78,8 +78,8 @@ function SeedsMap() {
   const routeArray = [
     {
       "subdomain":"Disease Incidence",
-      "route_brgy": `http://ec2-52-90-134-187.compute-1.amazonaws.com/healthmapper/brgy/single`, 
-      "route_graph":'http://ec2-52-90-134-187.compute-1.amazonaws.com/healthmapper/graph', 
+      "route_brgy": `http://localhost:5000/healthmapper/brgy/single`, 
+      "route_graph":'http://localhost:5000/healthmapper/graph', 
       "set_select":setDiseaseSelect, 
       "set_graph":setDiseaseMapperGraph,
       "class_select": [
@@ -89,8 +89,8 @@ function SeedsMap() {
       ]
     }, {
       "subdomain":"Commercial Establishments",
-      "route_brgy": `http://ec2-52-90-134-187.compute-1.amazonaws.com/commercialmapper/brgy/single`, 
-      "route_graph":'http://ec2-52-90-134-187.compute-1.amazonaws.com/commercialmapper/graph', 
+      "route_brgy": `http://localhost:5000/commercialmapper/brgy/single`, 
+      "route_graph":'http://localhost:5000/commercialmapper/graph', 
       "set_select":setCommercialSelect, 
       "set_graph":setCommercialMapperGraph,
       "class_select": [
@@ -100,15 +100,15 @@ function SeedsMap() {
       ]
     }, {
       "subdomain":"Existing Land Use",
-      "route_brgy": `http://ec2-52-90-134-187.compute-1.amazonaws.com/landuse/brgy`, 
-      "route_graph":'http://ec2-52-90-134-187.compute-1.amazonaws.com/landuse/graph', 
+      "route_brgy": `http://localhost:5000/landuse/brgy`, 
+      "route_graph":'http://localhost:5000/landuse/graph', 
       "set_select":setLandUseSelect,
       "set_graph":setLandUseGraph,
       "class_select":  [] // wala talaga
     }, {
       "subdomain":"Jobs",
-      "route_brgy": `http://ec2-52-90-134-187.compute-1.amazonaws.com/jobmapper/brgy/single`, 
-      "route_graph":'http://ec2-52-90-134-187.compute-1.amazonaws.com/jobmapper/graph', 
+      "route_brgy": `http://localhost:5000/jobmapper/brgy/single`, 
+      "route_graph":'http://localhost:5000/jobmapper/graph', 
       "set_select":setJobSelect,
       "set_graph":setJobMapperGraph,
       "class_select": [
@@ -128,12 +128,12 @@ function SeedsMap() {
 
   useEffect(() => {
     const fetchData = async() => {
-      const res = await axios.get(`http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/bounds`,)
+      const res = await axios.get(`http://localhost:5000/getdata/bounds`,)
       setBounds(res.data)
     }
 
     const fetchDataMandaluyong = async() => {
-      const res = await axios("http://ec2-52-90-134-187.compute-1.amazonaws.com/household/mandaGet")
+      const res = await axios("http://localhost:5000/household/mandaGet")
       setHouseholdBldgShape(res.data)
     }
     
@@ -142,7 +142,7 @@ function SeedsMap() {
 
     seedsmap.current = L.map('seedsmap', {
       fullscreenControl: true,
-      center: position,
+      center: [14,7423, -120.8693],
       zoom: 13,
       layers: [esri]
     });
@@ -205,7 +205,7 @@ function SeedsMap() {
   }
 
   useEffect(() => { 
-    console.log("208: " + brgySelect)
+    // console.log("208: " + brgySelect)
     if (brgySelect) {
       var landUses = null;
       var popup = new L.popup().setContent('Details')
@@ -271,7 +271,7 @@ function SeedsMap() {
         if (currentSubdomain && currentSubdomain.replace(/\s+/g, "") === "HouseholdSurveys"){
           var poly 
           // for drawing bldg shapefile
-          console.log(householdBldgSelect)
+          // console.log(householdBldgSelect)
           if (householdBldgSelect ) {
             poly = new L.geoJSON(householdBldgSelect, {
               style: {fillColor: 'red', fillOpacity: 0.95},
@@ -316,25 +316,25 @@ function SeedsMap() {
   useEffect(() => {
     if (clickPos){
       const fetchData = async() => {
-        const get_brgyID = await axios.get(`http://ec2-52-90-134-187.compute-1.amazonaws.com/barangay/findBarangay`, {
+        const get_brgyID = await axios.get(`http://localhost:5000/barangay/findBarangay`, {
           params: {
             lat: clickPos[1], 
             long: clickPos[0]
           }
         });
-        console.log("325: ", get_brgyID.data)
+        // console.log("325: ", get_brgyID.data)
         if (get_brgyID && profileLoc && get_brgyID.data[0]) { // for 2nd click,  && get_brgyID.data[0] this is needed para kapag lumipat sa ibang profile, hindi mag eerror.
-          console.log("327: ", get_brgyID.data[0]["properties"].brgy_name, profileLoc)
+          // console.log("327: ", get_brgyID.data[0]["properties"].brgy_name, profileLoc)
           if (get_brgyID.data[0]["properties"].BARANGAY === profileLoc) {
-            console.log("papasok dito")
+            // console.log("papasok dito")
             setSecondClick(true)
-            const res = await axios.get(`http://ec2-52-90-134-187.compute-1.amazonaws.com/household/click`,  {
+            const res = await axios.get(`http://localhost:5000/household/click`,  {
               params: {
                 lat: clickPos[1], 
                 long: clickPos[0]
               }
             });
-            console.log(res)
+            // console.log(res)
             if (res.data.Household_Population) {
               setHouseholdBldgPopulation(res.data.Household_Population.map((x)=>{ 
                 x['id'] = x._id
@@ -392,12 +392,12 @@ function SeedsMap() {
       setProfileLoc(brgyID[0].properties.brgy_name)
       
       const fetchData = async() => {
-        const res_brgy_only = await axios("http://ec2-52-90-134-187.compute-1.amazonaws.com/barangay",
+        const res_brgy_only = await axios("http://localhost:5000/barangay",
           {params: {brgy_name:brgyID[0].properties.brgy_name}});
         setBrgySelect(res_brgy_only.data[0])
         setHouseholdSelect(res_brgy_only.data[0])
 
-        const res = await axios("http://ec2-52-90-134-187.compute-1.amazonaws.com/household/get", {
+        const res = await axios("http://localhost:5000/household/get", {
           params: {
             brgy_id: brgyID[0].properties.brgy_name,
             no_members_min: householdMin,

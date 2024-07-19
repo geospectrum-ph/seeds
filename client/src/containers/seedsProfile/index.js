@@ -95,22 +95,22 @@ export default function SeedsFeatures() {
  
   useEffect(() => {
     let path = window.location.href;
-    if (path === 'http://ec2-52-90-134-187.compute-1.amazonaws.com/seeds/profile/social' && tabValue !== "Soc") {
+    if (path === 'http://localhost:5000/seeds/profile/social' && tabValue !== "Soc") {
       setTabValue("Soc")
       setCurrentDomain("Health")
       setCurrentSubdomain("Disease Incidence")
     }
-    else if (path === 'http://ec2-52-90-134-187.compute-1.amazonaws.com/seeds/profile/economic' && tabValue !== "Eco") {
+    else if (path === 'http://localhost:5000/seeds/profile/economic' && tabValue !== "Eco") {
       setTabValue("Eco")
       setCurrentDomain("Commerce, Trade and Industry")
       setCurrentSubdomain("Commercial Establishments")
     }
-    else if (path === 'http://ec2-52-90-134-187.compute-1.amazonaws.com/seeds/profile/environmental' && tabValue !== "Env") {
+    else if (path === 'http://localhost:5000/seeds/profile/environmental' && tabValue !== "Env") {
       setTabValue("Env")
       setCurrentDomain("Land Use and Land Use Trends")
       setCurrentSubdomain("Existing Land Use")
     }
-    else if (path === 'http://ec2-52-90-134-187.compute-1.amazonaws.com/seeds/profile/demographic' && tabValue !== "Dem") {
+    else if (path === 'http://localhost:5000/seeds/profile/demographic' && tabValue !== "Dem") {
       setTabValue("Dem")
       setCurrentDomain("Labor Force Profile")
       setCurrentSubdomain("Jobs")

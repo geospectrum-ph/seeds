@@ -2,7 +2,7 @@ var router = require('express').Router();
 let City = require('../models/city.model'); // access the model you are referring to
 
 /* GET Citys listing. */
-router.route('/').get((req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/cities/",
+router.route('/').get((req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/cities/",
                                       // eto yung ieexcute niya na function
   const query = req.body;
   City.find(query) // pwede ka maglagay ng query dito to further specify sorting methods

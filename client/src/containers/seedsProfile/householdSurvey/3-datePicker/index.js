@@ -44,7 +44,7 @@ export default function CalendarsDateRangePicker() {
 
   const handleStartDateChange = (date) => {
     const fetchData = async() => {
-      const res = await axios(`http://ec2-52-90-134-187.compute-1.amazonaws.com/commercialmapper/brgy/single`, {
+      const res = await axios(`http://localhost:5000/commercialmapper/brgy/single`, {
         params: {
           brgy_id: profileLoc,
           startdate: parseDate(date),
@@ -52,7 +52,7 @@ export default function CalendarsDateRangePicker() {
           com_class: commercialClassSelect
       }}); //ito yung gagamitin pag sa web yung server
       setCommercialSelect(res.data)
-      const res_graph = await axios(`http://ec2-52-90-134-187.compute-1.amazonaws.com/commercialmapper/graph`, {
+      const res_graph = await axios(`http://localhost:5000/commercialmapper/graph`, {
         params: {brgy_id: profileLoc}});
       setCommercialMapperGraph(res_graph.data)      
     }
@@ -63,7 +63,7 @@ export default function CalendarsDateRangePicker() {
 
   const handleEndDateChange = (date) => {
     const fetchData = async() => {
-      const res = await axios.get(`http://ec2-52-90-134-187.compute-1.amazonaws.com/commercialmapper/brgy/single`, {
+      const res = await axios.get(`http://localhost:5000/commercialmapper/brgy/single`, {
         params: {
           brgy_id: profileLoc,
           startdate: startDate,
@@ -73,7 +73,7 @@ export default function CalendarsDateRangePicker() {
       }); //ito yung gagamitin pag sa web yung server
       setCommercialSelect(res.data)
 
-      const res_graph = await axios.get(`http://ec2-52-90-134-187.compute-1.amazonaws.com/commercialmapper/graph`,
+      const res_graph = await axios.get(`http://localhost:5000/commercialmapper/graph`,
         {params: {brgy_id: profileLoc}} );
       setCommercialMapperGraph(res_graph.data)
     }

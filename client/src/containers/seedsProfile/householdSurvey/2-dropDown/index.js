@@ -75,24 +75,24 @@ export default function DropdownPhilsys() {
 
   useEffect(() =>{
     const fetchData = async() => {
-      const res = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/analytics/getsubcategory/single',
+      const res = await axios('http://localhost:5000/analytics/getsubcategory/single',
       {params: {layerKey: 'Household_Population', specific_subcategory: 'housing_unit_serial_number'}});
 
-      const res2 = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/analytics/getsubcategory/single',
+      const res2 = await axios('http://localhost:5000/analytics/getsubcategory/single',
       {params: {layerKey: 'Household_Population', specific_subcategory: 'address_field'}});
 
-      const res3 = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/analytics/getsubcategory/single',
+      const res3 = await axios('http://localhost:5000/analytics/getsubcategory/single',
       {params: {layerKey: 'Household_Shape', specific_subcategory: 'properties.land_use'}});
       
-      const res4 = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/analytics/getsubcategory/single',
+      const res4 = await axios('http://localhost:5000/analytics/getsubcategory/single',
       {params: {layerKey: 'Household_Shape', specific_subcategory: 'properties.type_of_material'}});
       
       setHousingLandUse(res3.data)
       setMaterialType(res4.data)
       
-      const p_res = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/analytics/getsubcategory/single',
+      const p_res = await axios('http://localhost:5000/analytics/getsubcategory/single',
       {params: {layerKey: 'Household_Population', specific_subcategory: 'occupation'}});
-      const p_res2 = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/analytics/getsubcategory/single',
+      const p_res2 = await axios('http://localhost:5000/analytics/getsubcategory/single',
       {params: {layerKey: 'Household_Population', specific_subcategory: 'profession'}}); 
       
       setOccupation(p_res.data) 
@@ -106,11 +106,10 @@ export default function DropdownPhilsys() {
   const handleBrgyChange = (event) => {
     setProfileLoc(event.target.value)
     const fetchData = async() => {
-      // const res_brgy_only = await axios("http://ec2-52-90-134-187.compute-1.amazonaws.com/barangay",
-      const res_brgy_only = await axios("http://ec2-52-90-134-187.compute-1.amazonaws.com/barangay",  
+      const res_brgy_only = await axios("http://localhost:5000/barangay",  
         {params: {brgy_name: event.target.value,}});
 
-      console.log(res_brgy_only.data)
+      // console.log(res_brgy_only.data)
 
       setBrgySelect(res_brgy_only.data[0])
       setHouseholdSelect(res_brgy_only.data[0])
@@ -208,9 +207,8 @@ export default function DropdownPhilsys() {
 
   useEffect(() => {
     const fetchData = async() => {
-      console.log("profileLoc: " + profileLoc)
-      // const res = await axios("http://ec2-52-90-134-187.compute-1.amazonaws.com/household/get", {
-      const res = await axios("http://ec2-52-90-134-187.compute-1.amazonaws.com/household/get", { 
+      // console.log("profileLoc: " + profileLoc)
+      const res = await axios("http://localhost:5000/household/get", { 
         params: {
           brgy_id: profileLoc,
           no_members_min: householdMin,

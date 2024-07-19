@@ -268,7 +268,7 @@ function AnalyticsMap() {
       "opacity": 0.65
     };
     const fetchData = async() => {
-      const res = await axios.get(`http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/bounds`,)
+      const res = await axios.get(`http://localhost:5000/getdata/bounds`,)
       if (res.data){
         bound = new L.geoJSON(res.data, {style: myStyle})
         bound.addTo(analyticsmap.current)

@@ -11,7 +11,7 @@ Table.collection.createIndex({ "properties.mtd_id": "text" });
 Raster.collection.createIndex({ "properties.mtd_id": "text" });
 
 /* GET barangays listing. */
-router.route('/brgy/single').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/brgy/single').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   const startdate = req.query.startdate || await getMin(Commercial_Barangay, "date");
   const enddate = req.query.enddate || await getMax(Commercial_Barangay, "date");
@@ -20,7 +20,7 @@ router.route('/brgy/single').get(async (req, res) => { // bale pag pumunta ka sa
   var shape = await Barangay.findOne({"properties.brgy_id": req.query.brgy_id})
   var properties = []
 
-  console.log(shape)
+  // console.log(shape)
 
   var bar = new Promise((resolve, reject) => {
     com_classes.forEach(async (com_class) => {
@@ -71,7 +71,7 @@ router.route('/brgy/single').get(async (req, res) => { // bale pag pumunta ka sa
 });
 
 /* GET barangays listing. */
-router.route('/graph').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/graph').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   const startdate = req.query.startdate || await getMin(Commercial_Barangay, "date");
   const enddate = req.query.enddate || await getMax(Commercial_Barangay, "date");
@@ -125,7 +125,7 @@ router.route('/graph').get(async (req, res) => { // bale pag pumunta ka sa "http
 });
 
 /* GET barangays listing. */
-router.route('/brgy/all').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/brgy/all').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   const startdate = req.query.startdate || await getMin(Commercial_Barangay, "date");
   const enddate = req.query.enddate || await getMax(Commercial_Barangay, "date");
@@ -175,7 +175,7 @@ router.route('/brgy/all').get(async (req, res) => { // bale pag pumunta ka sa "h
 });
 
 /* GET barangays listing. */
-router.route('/allpoints').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/allpoints').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   Commercial_Points.find()
   .then(items => res.json(items))
@@ -183,7 +183,7 @@ router.route('/allpoints').get(async (req, res) => { // bale pag pumunta ka sa "
 });
 
 /* GET barangays listing. */
-router.route('/single/points').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/single/points').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   const query = {
     "properties.brgy_id": req.query.brgy_id,

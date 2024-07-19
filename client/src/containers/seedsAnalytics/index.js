@@ -117,7 +117,7 @@ export default function Analytics() {
  
   useEffect(()=>{
     const fetchData = async () => {
-      const res = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/analytics/getlayers', ); // data layer dropdown
+      const res = await axios('http://localhost:5000/analytics/getlayers', ); // data layer dropdown
       setCatLayers(res.data)
     }
     fetchData()
@@ -135,7 +135,7 @@ export default function Analytics() {
       setSelectCatDataOne([sc1, sc2]) //selected category by user
     }
     const fetchData = async () => {
-      const res = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/analytics/getlocations', {params:{
+      const res = await axios('http://localhost:5000/analytics/getlocations', {params:{
         layerArray: e.target.value.length > 2 ? [sc1, sc2]: [sc1]
       }});  
       setLocLayers(res.data) // ito yung lalamanin ng location dropdown
@@ -144,7 +144,7 @@ export default function Analytics() {
       }))
     }
     const fetchData2 = async () => {
-      const res = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/analytics/getsubcategories', {params:{
+      const res = await axios('http://localhost:5000/analytics/getsubcategories', {params:{
         layerArray: e.target.value.length > 2 ? [sc1, sc2]: [sc1]
       }}); 
       if (e.target.value.length > 1){
@@ -423,7 +423,7 @@ export default function Analytics() {
         }), selectSubCat2.filter((item) => { 
           if (item !==undefined){return item}
         })]} // performAnalysis - galing sa dropdown layer, location, subcat, ito yung binabalik sa backend para makuha yung baseOutput.
-      const res = await axios.post('http://ec2-52-90-134-187.compute-1.amazonaws.com/analytics/basicanalysis', 
+      const res = await axios.post('http://localhost:5000/analytics/basicanalysis', 
         performAnalysisInput
       ).then((response)=>{
         setDisUp(false)

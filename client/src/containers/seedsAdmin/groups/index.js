@@ -71,12 +71,12 @@ export default function Groups() {
   //delete user
   const handleDelete = async row => {
     const _id = row._id;
-    const getGroupLength = await axios.get(`http://ec2-52-90-134-187.compute-1.amazonaws.com/usermaster/checkUserGroupUnderExist/${_id}`);
+    const getGroupLength = await axios.get(`http://localhost:5000/usermaster/checkUserGroupUnderExist/${_id}`);
     if(getGroupLength.data > 0){
       alert('Unable to delete User Group.')
     }
     else{
-      const req = await axios.delete(`http://ec2-52-90-134-187.compute-1.amazonaws.com/usergroup/delete/${_id}`)
+      const req = await axios.delete(`http://localhost:5000/usergroup/delete/${_id}`)
       .then(function() {
         alert("Group deleted successsfully.");
         getUserGroups();
@@ -98,7 +98,7 @@ export default function Groups() {
     
     const getUpdateValue=(e, row)=>{
       if(e.target.checked){
-        console.log(updateGPrivileges, selectedUpdateGroupRow.privileges)
+        // console.log(updateGPrivileges, selectedUpdateGroupRow.privileges)
         let data = updateGPrivileges;
         data.push(row)
         setUpdateGPrivileges(data)
@@ -115,14 +115,14 @@ export default function Groups() {
       const updatePrivilege_values = [];
       
       const updateData = async() => {
-        const res = await axios.put(`http://ec2-52-90-134-187.compute-1.amazonaws.com/usergroup/update/${groupUpdate.id}`, {
+        const res = await axios.put(`http://localhost:5000/usergroup/update/${groupUpdate.id}`, {
           user_group_type: groupUpdate.user_group_type, 
           privileges: updatePrivilege_values
         }).then(function(res) {
           alert("Group updated successfully.");
           getUserGroups();
         }).catch((error) => {
-          console.log(error.response)
+          // console.log(error.response)
         })
       }
       updateData(); 
@@ -194,11 +194,11 @@ export default function Groups() {
   const [group, setGroup] = useState([])
   const getUserGroups = async () => {
     try{
-      const userGroups = await axios.get("http://ec2-52-90-134-187.compute-1.amazonaws.com/usergroup");
+      const userGroups = await axios.get("http://localhost:5000/usergroup");
       setGroup(userGroups.data)
     }
     catch(e){
-      console.log(e)
+      /* console.log(e) */
     }
   }
 
@@ -222,7 +222,7 @@ export default function Groups() {
     const handleAddGroupState = () => {
       setDisUp(true)
       const fetchData = async() => {
-        const res = await axios.post("http://ec2-52-90-134-187.compute-1.amazonaws.com/usergroup/add/", {
+        const res = await axios.post("http://localhost:5000/usergroup/add/", {
           user_group_type: groupAdd.user_group_type,
           privileges:  selectedGroupPrivilege,
         }).then(function() {            
@@ -230,7 +230,7 @@ export default function Groups() {
           getUserGroups();
           setDisUp(false)
         }).catch((error) => {
-          console.log(error)
+          // console.log(error)
         })
       }
       fetchData(); 

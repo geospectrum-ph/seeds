@@ -84,7 +84,7 @@ export default function MainWindow() {
     if(localStorage.getItem('user')){
        setSessionOpen(true)
       const fetchFiles = async() => {
-        const file = await axios.get("http://ec2-52-90-134-187.compute-1.amazonaws.com/session/file/"
+        const file = await axios.get("http://localhost:5000/session/file/"
           +JSON.parse(localStorage.getItem('user'))._id)
         setSessionFile(file.data)
       }
@@ -92,16 +92,15 @@ export default function MainWindow() {
     }
     
     const fetchData = async () => {
-      const res = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/barangay/', ); 
-      const res3 = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/healthmapper/brgy/all', );
-      const res5 = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/healthmapper/allpoints',);
-      const res6 = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/commercialmapper/brgy/all',);
-      const res7 = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/jobmapper//brgy/all',);
-      const res8 = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/landuse/brgy/all',);
-      const userGroupPrivileges = await axios.get("http://ec2-52-90-134-187.compute-1.amazonaws.com/groupprivilege"); 
+      const res = await axios('http://localhost:5000/barangay/', ); 
+      const res3 = await axios('http://localhost:5000/healthmapper/brgy/all', );
+      const res5 = await axios('http://localhost:5000/healthmapper/allpoints',);
+      const res6 = await axios('http://localhost:5000/commercialmapper/brgy/all',);
+      const res7 = await axios('http://localhost:5000/jobmapper//brgy/all',);
+      const res8 = await axios('http://localhost:5000/landuse/brgy/all',);
+      const userGroupPrivileges = await axios.get("http://localhost:5000/groupprivilege"); 
       setGroupPrivilege(userGroupPrivileges.data);
       setPoints(res5.data)
-      console.log(res6.data)
      
       // SOCIAL - healthmapper
       setDiseaseIncidenceAll(res3.data.values.map((x)=>{return { 
@@ -169,16 +168,16 @@ export default function MainWindow() {
   }
   const handleSessionRestore = () => {
     const fetchSession = async() =>{
-      const sessionData = await axios.get("http://ec2-52-90-134-187.compute-1.amazonaws.com/session/get?userId=" 
+      const sessionData = await axios.get("http://localhost:5000/session/get?userId=" 
         + JSON.parse(localStorage.getItem('user'))._id); 
 
       if (sessionData !== null) {
         setSessionData(sessionData.data)
         if (sessionData.data.map.layers){
           const fetchBrgys = async(i) => {
-            const res = await axios.get(`http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/`,
+            const res = await axios.get(`http://localhost:5000/getdata/`,
               {params:{id: sessionData.data.map.layers[i]}})
-            const res2 = await axios.get(`http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/sld`,
+            const res2 = await axios.get(`http://localhost:5000/getdata/sld`,
               {params:{metadataID: sessionData.data.map.layers[i]}})
   
             setBrgys(brgys => [...brgys, res.data])
@@ -197,14 +196,16 @@ export default function MainWindow() {
         }
       } else {
         const create = async() => {
-          const createSession = await axios.post("http://ec2-52-90-134-187.compute-1.amazonaws.com/session/create", {
+          const createSession = await axios.post("http://localhost:5000/session/create", {
             userId: JSON.parse(localStorage.getItem('user'))._id,
             populate: '',
             catalogue: '',
             map: '',
             profile: '',
             analytics: ''
-          }).then(()=>console.log("success"))
+          }).then(()=>{
+            // console.log("success")
+        })
         }
         create()
         setSessionData({

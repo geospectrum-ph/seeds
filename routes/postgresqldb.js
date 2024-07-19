@@ -33,7 +33,7 @@ const philsysTable = async (user,password,database,host,port,table) => {
     client.connect();
     client.query(`SELECT * from ${table}`, (err,result)=>{
       if (err){
-        return console.log(err);
+        // return console.log(err);
       } resolve()
       philsys.push(result.rows)
       client.end();

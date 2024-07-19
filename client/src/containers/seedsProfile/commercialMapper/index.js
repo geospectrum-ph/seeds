@@ -107,7 +107,7 @@ export default function CommercialMapper() {
 
   useEffect(() => {
     const fetchData = async() => {
-      const res = await axios(`http://ec2-52-90-134-187.compute-1.amazonaws.com/commercialmapper/brgy/single`, {
+      const res = await axios(`http://localhost:5000/commercialmapper/brgy/single`, {
         params: {
           brgy_id: profileLoc,
           startdate: startDate,
@@ -117,7 +117,7 @@ export default function CommercialMapper() {
       setCommercialSelect(res.data) 
       setBrgySelect(res.data) 
 
-      const res_graph = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/commercialmapper/graph', {
+      const res_graph = await axios('http://localhost:5000/commercialmapper/graph', {
         params: {
           brgy_id: profileLoc
         }
@@ -129,7 +129,7 @@ export default function CommercialMapper() {
 
   useEffect(() =>{
     const fetchData = async() => {
-      const res = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/analytics/getsubcategory/single', {
+      const res = await axios('http://localhost:5000/analytics/getsubcategory/single', {
         params: {
           layerKey: 'Commercial_Barangay', 
           specific_subcategory: 'class'

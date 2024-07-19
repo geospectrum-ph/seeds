@@ -106,11 +106,11 @@ export default function Domains() {
 
    const getDomains = async () => {
     try{
-      const domains = await axios.get("http://ec2-52-90-134-187.compute-1.amazonaws.com/metadata/");
+      const domains = await axios.get("http://localhost:5000/metadata/");
       setDomain(domains.data);      
     }
     catch(e){
-      console.log(e)
+      // /* console.log(e) */
     }
   }
  
@@ -167,7 +167,7 @@ export default function Domains() {
     //functional for update group
     const handleUpdateMetadataState = () => {
       const updateMetadata = async() => {
-        const res = await axios.put(`http://ec2-52-90-134-187.compute-1.amazonaws.com/metadata/metadataproperties/${selectedUpdateMetadataRow.id}`, // lalagay dito yung link na gamit mo
+        const res = await axios.put(`http://localhost:5000/metadata/metadataproperties/${selectedUpdateMetadataRow.id}`, // lalagay dito yung link na gamit mo
           {// ito yung mga parameters na naka-list sa insomnia
             description: updateMetadataState.description,
             language: updateMetadataState.language,
@@ -185,7 +185,7 @@ export default function Domains() {
             getDomains();
           })
           .catch((error) => {
-            console.log(error.response)
+            // console.log(error.response)
           })
       }
       updateMetadata(); 

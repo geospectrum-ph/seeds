@@ -28,11 +28,11 @@ async function findShapesUsingPointOrPolygon(Shapes, pointOrPolygon){
 }
 
 /* GET Barangays listing. */
-router.route('/').get((req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/barangay/",
+router.route('/').get((req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/barangay/",
                                       // eto yung ieexcute niya na function
   var brgy_id = req.query.brgy_name || null;
   var query = {}
-  console.log(brgy_id, req.query.brgy_name)
+  // console.log(brgy_id, req.query.brgy_name)
   if (brgy_id){
     query = {"properties.brgy_name": req.query.brgy_name};
   }
@@ -68,7 +68,7 @@ router.route('/add').post((req, res) => {
 
 /* GET barangays listing. */
 // Source: https://stackoverflow.com/questions/27820794/how-to-use-geointersects-in-mongodb-properly
-router.route('/findBarangay').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/barangay/findBarangay",
+router.route('/findBarangay').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/barangay/findBarangay",
                                       // eto yung ieexcute niya na function
   const pointOrPolygon = { 
     type: 'Point', 

@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
     res.send("password reset link sent to your email account");
   } catch (error) {
     res.send("An error occured");
-    console.log(error);
+    // console.log(error);
   }
 });
 
@@ -65,7 +65,7 @@ router.post("/:userId/:token", async (req, res) => {
         
   } catch (error) {
     res.send("An error occured");
-    console.log(error);
+    // console.log(error);
   }
 });
 

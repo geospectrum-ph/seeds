@@ -22,7 +22,6 @@ router.post("/", async (req, res) => {
       }).save();
     }
     // http://ec2-52-55-74-109.compute-1.amazonaws.com
-    // const link = `http://ec2-52-90-134-187.compute-1.amazonaws.com/resetPassword/${user._id}/${token.token}`; // for AWS // NOTE: CHANGE THIS WHEN PUSHING TO AWS CLOUD (STAGING)
     const link = `${process.env.BASE_URL}/resetPassword/${user._id}/${token.token}`; // for AWS // NOTE: CHANGE THIS WHEN PUSHING TO AWS CLOUD (STAGING)
 
     await sendEmail(user.email, "Password reset", link);
@@ -30,7 +29,7 @@ router.post("/", async (req, res) => {
     res.send("password reset link sent to your email account");
   } catch (error) {
     res.send("An error occured");
-    console.log(error);
+    // console.log(error);
   }
 });
 
@@ -67,7 +66,7 @@ router.post("/:userId/:token", async (req, res) => {
 
   } catch (error) {
     res.send("An error occured");
-    console.log(error);
+    // console.log(error);
   }
 });
 

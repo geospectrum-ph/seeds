@@ -146,12 +146,12 @@ export default function Users() {
 
   const getUserData = async () => {
     try{
-      const userData = await axios.get("http://ec2-52-90-134-187.compute-1.amazonaws.com/usermaster/getusers/"
+      const userData = await axios.get("http://localhost:5000/usermaster/getusers/"
         +userItem._id+"");
       setUser(userData.data); 
     }
     catch(e){
-      console.log(e)
+      /* console.log(e) */
     }
   }
 
@@ -163,7 +163,7 @@ export default function Users() {
 
   useEffect (() => {
     const getUserGroups = async () => {
-      const userGroups = await axios.get("http://ec2-52-90-134-187.compute-1.amazonaws.com/usermaster/getusergroups");
+      const userGroups = await axios.get("http://localhost:5000/usermaster/getusergroups");
       setuserGroups(userGroups.data); 
     }
     
@@ -188,7 +188,7 @@ export default function Users() {
   //DELETE USER
   const handleDelete = async row => {
     const _id = row._id;
-    const req = await axios.delete(`http://ec2-52-90-134-187.compute-1.amazonaws.com/usermaster/deleteuser/${_id}`)
+    const req = await axios.delete(`http://localhost:5000/usermaster/deleteuser/${_id}`)
     .then(function() {
       alert("User account was deleted.");     
       getUserData();
@@ -209,7 +209,7 @@ export default function Users() {
     const handleUpdateState = () => {
       setDisUp(true)
       const updateData = async(res, req) => {
-        res = await axios.post(`http://ec2-52-90-134-187.compute-1.amazonaws.com/usermaster/edituser/${selectedUpdateRow._id}`, {
+        res = await axios.post(`http://localhost:5000/usermaster/edituser/${selectedUpdateRow._id}`, {
           name: selectedUpdateRow.name, 
           email: selectedUpdateRow.email,
           user_type: selectedUpdateRow.user_type,
@@ -218,7 +218,7 @@ export default function Users() {
           alert("User account was updated.");
           setDisUp(false);
         }).catch((error) => {
-          console.log(error)
+          // console.log(error)
           setDisUp(false)
         })
       }
@@ -263,7 +263,7 @@ export default function Users() {
                   }, getContentAnchorEl: null
                 }}> 
                 {userTypeChoices_admin.map((choice, i)=>{
-                  console.log("choices", choice)
+                  // console.log("choices", choice)
                   return(
                   <MenuItem key={i} value={choice}>{choice.user_group_type}</MenuItem>
                   )
@@ -314,7 +314,7 @@ export default function Users() {
     const handleSignUpState = event => {
       setDisUp(true)
       const fetchData = async() => {
-        const res = await axios.post("http://ec2-52-90-134-187.compute-1.amazonaws.com/usermaster/signup", {
+        const res = await axios.post("http://localhost:5000/usermaster/signup", {
           name: signUpState.name,  //Number(signUpState.serialNo)  
           email: signUpState.email,
           password: signUpState.password,

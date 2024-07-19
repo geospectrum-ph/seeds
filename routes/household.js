@@ -30,7 +30,7 @@ async function findShapesUsingPointOrPolygon(Shapes, pointOrPolygon){
 
 /* GET barangays listing. */
 // Source: https://stackoverflow.com/questions/27820794/how-to-use-geointersects-in-mongodb-properly
-router.route('/click').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/barangay/findBarangay",
+router.route('/click').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/barangay/findBarangay",
                                                   // eto yung ieexcute niya na function
   const pointOrPolygon = { 
     type: 'Point', 
@@ -40,7 +40,7 @@ router.route('/click').get(async (req, res) => { // bale pag pumunta ka sa "http
   var household_population_items = null;
   var household_shape_items = await findShapesUsingPointOrPolygon(Household_Shape, pointOrPolygon); // hanapin yung selectedBrgy based sa Barangay na mag-iintersect sa pointOrPolygon
 
-  console.log("household", household_shape_items)
+  // console.log("household", household_shape_items)
   if (household_shape_items.length > 0){
     var housing_unit_serial_number = household_shape_items[0].properties.BLDG_ID.toString();
     var query_pop = {
@@ -112,12 +112,12 @@ const filterModel = async (model, query) => {
   var results = null;
 
   return filteredItems = new Promise(async (resolve, reject) => {
-    console.log('entering promise!')
+    // console.log('entering promise!')
     model.find(query).lean()
     .then(result => {
       results = result
     }).then (() => {
-      console.log('resolving promise!')
+      // console.log('resolving promise!')
       resolve()
     })
   }).then(() => {
@@ -203,7 +203,7 @@ router.route('/get').get(async (req, res) => {
   var brgy_shp = null;
   var brgy_shp_geom = null; 
 
-  console.log(brgy_id)
+  // console.log(brgy_id)
   if (brgy_id){
     brgy_shp = await Barangay.findOne({ "properties.brgy_name": brgy_id });
     brgy_shp_geom = setupGeointersects(brgy_shp.geometry); // issue here: centroid isn't the basis of geospatial query, so the ones in borders gets called in different boundaries
@@ -332,7 +332,9 @@ router.route('/get').get(async (req, res) => {
 router.route('/mandaGet').get((req, res) => {
   Household_Shape.find({"properties.mtd_id": "MTD019"})
     .then(items => res.status(200).json(items))
-    .catch(err => console.log(err))
+    .catch(err => {
+      // console.log(err)
+    })
 })
 
 module.exports = router;

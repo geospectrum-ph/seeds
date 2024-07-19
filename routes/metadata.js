@@ -19,7 +19,7 @@ const formatDate = (dateString) => {
 }
 
 /* GET metadata listing. */
-router.route('/').get((req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/metadata/",
+router.route('/').get((req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/metadata/",
                                       // eto yung ieexcute niya na function
   const query = req.body;
   Metadata.find(query).then(items => res.json(items.map((x)=>{
@@ -42,7 +42,7 @@ router.route('/').get((req, res) => { // bale pag pumunta ka sa "http://ec2-52-9
 });
 
 /* GET metadata listing. */
-router.route('/checkData').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/metadata/",
+router.route('/checkData').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/metadata/",
                                       // eto yung ieexcute niya na function
   const selected = req.query.selected;
   const data = []
@@ -72,7 +72,7 @@ router.route('/add').post((req, res) => {
 });
 
 /* UPDATE metadata listing. */
-router.route('/update').post((req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/metadata/update",
+router.route('/update').post((req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/metadata/update",
                                       // eto yung ieexcute niya na function
   const query = {"id": req.body.id};
   Metadata.findOneAndUpdate(query, req.body) // pwede ka maglagay ng query dito to further specify sorting methods
@@ -85,7 +85,7 @@ router.route('/update').post((req, res) => { // bale pag pumunta ka sa "http://e
 });
 
 /* GET metadata listing for domains. */
-router.route('/getdomains').get((req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/metadata/getdomains",
+router.route('/getdomains').get((req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/metadata/getdomains",
   // eto yung ieexcute niya na function
   var layersMappingKeys = Object.keys(layersMapping)
   var data = {
@@ -154,7 +154,7 @@ router.route('/getdomains').get((req, res) => { // bale pag pumunta ka sa "http:
 });
 
 /* GET metadata Social listing for domains. */
-router.route('/getdomainssocial').get((req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/metadata/getdomains",
+router.route('/getdomainssocial').get((req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/metadata/getdomains",
   // eto yung ieexcute niya na function
   var layersMappingKeys = Object.keys(layersMapping)
   var data = {
@@ -229,7 +229,7 @@ router.route('/getdomainssocial').get((req, res) => { // bale pag pumunta ka sa 
 });
 
 /* GET metadata Economic listing for domains. */
-router.route('/getdomainseconomic').get((req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/metadata/getdomains",
+router.route('/getdomainseconomic').get((req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/metadata/getdomains",
   // eto yung ieexcute niya na function
   var layersMappingKeys = Object.keys(layersMapping)
   var data = {
@@ -302,7 +302,7 @@ router.route('/getdomainseconomic').get((req, res) => { // bale pag pumunta ka s
 });
 
 /* GET metadata Environmentals listing for domains. */
-router.route('/getdomainsenvironmental').get((req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/metadata/getdomains",
+router.route('/getdomainsenvironmental').get((req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/metadata/getdomains",
   // eto yung ieexcute niya na function
   var layersMappingKeys = Object.keys(layersMapping)
   var data = {
@@ -376,7 +376,7 @@ router.route('/getdomainsenvironmental').get((req, res) => { // bale pag pumunta
 
 
 /* GET metadata Demographics listing for domains. */
-router.route('/getdomainsdemographic').get((req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/metadata/getdomains",
+router.route('/getdomainsdemographic').get((req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/metadata/getdomains",
   // eto yung ieexcute niya na function
   var layersMappingKeys = Object.keys(layersMapping)
   var data = {

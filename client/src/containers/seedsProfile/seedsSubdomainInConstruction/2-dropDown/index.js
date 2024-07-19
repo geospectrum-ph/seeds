@@ -53,7 +53,7 @@ export default function MultipleSelect() {
     });
     setProfileLoc(event.target.value)
     const fetchData = async() => {
-      const res = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/healthmapper/brgy/single', {
+      const res = await axios('http://localhost:5000/healthmapper/brgy/single', {
         params: {
           brgy_id: event.target.value,
           startdate: startDate,
@@ -63,7 +63,7 @@ export default function MultipleSelect() {
 
       setHealthSelect(res.data)
 
-      const res_graph = await axios('http://ec2-52-90-134-187.compute-1.amazonaws.com/healthmapper/graph', {params: {brgy_id: event.target.value}});
+      const res_graph = await axios('http://localhost:5000/healthmapper/graph', {params: {brgy_id: event.target.value}});
       setDiseaseMapperGraph(res_graph.data.values)
     } 
     fetchData();

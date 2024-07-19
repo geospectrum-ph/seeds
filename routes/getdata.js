@@ -44,7 +44,7 @@ const getItems = async (Collection, queryMetadataID, res) => {
 }
 
 /* DOWNLOAD FILES */
-router.route('/download').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/download?id=MTD001",
+router.route('/download').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/download?id=MTD001",
                                       // eto yung ieexcute niya na function
   const checkMetadataID = {id: req.query.id};
   const queryMetadataID = {"properties.mtd_id": req.query.id};
@@ -67,7 +67,9 @@ router.route('/download').get(async (req, res) => { // bale pag pumunta ka sa "h
         await Table.find(queryMetadataID) // pwede ka maglagay ng query dito to further specify sorting methods
           .then(items => {
             parseAsync(items)
-              .then(csv => console.log(csv))
+              .then(csv => {
+                // console.log(csv)
+          })
               .catch(err => console.error(err));
             res.json("DONE EXPORT!");
           }).catch(err => res.status(400).json('Table Return Error: ' + err));
@@ -86,7 +88,7 @@ router.route('/download').get(async (req, res) => { // bale pag pumunta ka sa "h
 });
 
 /* GET metadata listing. */
-router.route('/').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   const checkMetadataID = {id: req.query.id};
   const queryMetadataID = {"properties.mtd_id": req.query.id};
@@ -126,7 +128,7 @@ router.route('/').get(async (req, res) => { // bale pag pumunta ka sa "http://ec
 });
 
 /* GET barangays listing. */
-router.route('/barangays').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/barangays",
+router.route('/barangays').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/barangays",
                                       // eto yung ieexcute niya na function
   Barangay.find().then(items => {
     var data = {
@@ -144,7 +146,7 @@ router.route('/barangays').get(async (req, res) => { // bale pag pumunta ka sa "
 });
 
 /* GET metadata listing. */
-router.route('/disease').get(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/disease').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   const diseases = {
     "count":3,
@@ -154,7 +156,7 @@ router.route('/disease').get(async (req, res) => { // bale pag pumunta ka sa "ht
 });
 
 /* GET metadata listing. */
-router.route('/delete').post(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/delete').post(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   const checkMetadataID = {"id": req.body.id};
   const queryMetadataID = {"properties.mtd_id": req.body.id};
@@ -162,7 +164,9 @@ router.route('/delete').post(async (req, res) => { // bale pag pumunta ka sa "ht
   const deleteCSVfromCollection = (model, query, idToDelete) => {
     model.deleteMany(query) // delete all objects with that metadata ID
       .then(Metadata.findByIdAndDelete(idToDelete, function (err) {
-        if(err) console.log(err);
+        if(err) {
+          // console.log(err);
+        }
       })).then(Style.deleteMany({metadataID: req.body.id}))
       .then(res.json("Data has been deleted."))
       .catch(err => res.status(400).json('Table Return Error: ' + err));
@@ -171,7 +175,9 @@ router.route('/delete').post(async (req, res) => { // bale pag pumunta ka sa "ht
   const deleteShapefilefromCollection = (model, query, idToDelete) => {
     model.deleteMany(query) // delete all objects with that metadata ID
       .then(Metadata.findByIdAndDelete(idToDelete, function (err) {
-        if(err) console.log(err);
+        if(err){
+          // console.log(err);
+        }
       }))
       .then(Style.deleteMany({metadataID: req.body.id}))
       .then(res.json("Data has been deleted."))
@@ -192,11 +198,15 @@ router.route('/delete').post(async (req, res) => { // bale pag pumunta ka sa "ht
         else {
           Shapefile.deleteMany(queryMetadataID) // delete all objects with that metadata ID
             .then(Metadata.findByIdAndDelete(result._id, function (err) {
-              if(err) console.log(err);
-              console.log("Successful metadata deletion");
+              if(err){
+                // console.log(err);
+              }
+              // console.log("Successful metadata deletion");
             })).then(Style.deleteMany({metadataID: req.body.id}, function (err) {
-              if(err) console.log(err);
-              console.log("Successful style deletion");
+              if(err) {
+                // console.log(err);
+              }
+              // console.log("Successful style deletion");
             })).then(res.json("Data has been deleted."))
             .catch(err => res.status(400).json('Shapefile Return Error: ' + err));
         }
@@ -217,8 +227,10 @@ router.route('/delete').post(async (req, res) => { // bale pag pumunta ka sa "ht
       } else if (result.type == 'tif'){
         Raster.deleteMany(queryMetadataID) // delete all objects with that metadata ID
           .then(Metadata.findByIdAndDelete(result._id, function (err) {
-            if(err) console.log(err);
-            console.log("Successful deletion");
+            if(err){
+              // console.log(err);
+            }
+            // console.log("Successful deletion");
           }))
           .then(res.json("Data has been deleted."))
           .catch(err => res.status(400).json('Raster Return Error: ' + err));
@@ -232,7 +244,7 @@ router.route('/delete').post(async (req, res) => { // bale pag pumunta ka sa "ht
 });
 
 /* GET SLD Legend. */
-router.route('/sld').get((req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/sld",
+router.route('/sld').get((req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/sld",
                                       // eto yung ieexcute niya na function
   const query = {metadataID: req.query.metadataID};
 
@@ -258,7 +270,7 @@ router.route('/sld').get((req, res) => { // bale pag pumunta ka sa "http://ec2-5
 });
 
 /* GET barangays listing. */
-router.route('/turf/intersect').post(async (req, res) => { // bale pag pumunta ka sa "http://ec2-52-90-134-187.compute-1.amazonaws.com/getdata/?id=MTD001",
+router.route('/turf/intersect').post(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/?id=MTD001",
                                       // eto yung ieexcute niya na function
   var poly1 = turf.polygon(req.body.poly1.geometry.coordinates)
   var poly2 = turf.polygon(req.body.poly2.geometry.coordinates)
@@ -270,7 +282,9 @@ router.route('/turf/intersect').post(async (req, res) => { // bale pag pumunta k
 router.route('/bounds').get((req, res) => {
   Barangay.find({"properties.NAME_2": "Mandaluyong", "geometry.type": "Polygon"})
     .then(items => res.json(items))
-    .catch(err => console.log(err))
+    .catch(err => {
+      // console.log(err)
+})
 })
 // Coming next: downloading of Files - use https://www.npmjs.com/package/geojson2shp and https://www.npmjs.com/package/json2csv
 

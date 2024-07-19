@@ -90,7 +90,7 @@ const philsysTable = async (user,password,database,host,connectionLimit,table) =
       return loop = new Promise(async (resolve, reject) => {
         pool.query(`SELECT ${Serial_number},${Shape_Area},${Address},${Storeys},${Type},${No_Members},${Name},${Gender},${Age},${Birthday},${Head},${Occupation},${Profession} from ${Table}`, (err,result, fields)=>{
           if (err){
-            return console.log(err);
+            // return console.log(err);
           } resolve()
           philsys.push(result)
         })

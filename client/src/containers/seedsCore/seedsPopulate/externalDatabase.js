@@ -112,7 +112,7 @@ export default function ExternalDB( ) {
     setDisUp(true)
 
     const fetchData = async() => {
-      const res = await axios.get('http://ec2-52-90-134-187.compute-1.amazonaws.com/mysqldb/mysqlCredentials',{
+      const res = await axios.get('http://localhost:5000/mysqldb/mysqlCredentials',{
         params: {
           user: state.user,
           password: state.password,
@@ -152,7 +152,7 @@ export default function ExternalDB( ) {
     const handleImportTable = () => {
       setDisUp(true)
       const fetchData = async() => {
-        const res = await axios("http://ec2-52-90-134-187.compute-1.amazonaws.com/mysqldb/tableColumnsH", {
+        const res = await axios("http://localhost:5000/mysqldb/tableColumnsH", {
           params: { // ito yung mga parameters na naka-list sa insomnia
             Table: stateTable.table, //Number(stateTable.serialNo)
             Serial_number: stateTable.serialNo,  //Number(stateTable.serialNo)  
@@ -172,7 +172,7 @@ export default function ExternalDB( ) {
         }).then(function(res ) {
           // handle success
           if (res.data == "Household Data Imported") { 
-            axios.post('http://ec2-52-90-134-187.compute-1.amazonaws.com/mysqldb/postP', stateTable).then(async ()=>{
+            axios.post('http://localhost:5000/mysqldb/postP', stateTable).then(async ()=>{
               setDisUp(false) 
               setOpenDBDialog(false)
             })
@@ -328,7 +328,7 @@ export default function ExternalDB( ) {
     const handleImportTable = event => {
       setDisUp(true)
       const fetchData = async() => {
-        const res = await axios("http://ec2-52-90-134-187.compute-1.amazonaws.com/mysqldb/tableColumnsD", {
+        const res = await axios("http://localhost:5000/mysqldb/tableColumnsD", {
           params: { // ito yung mga parameters na naka-list sa insomnia
             // diseaseID: stateTable.diseaseID, //Number(stateTable.serialNo)
             disease: stateTable.disease,  //Number(stateTable.serialNo)  
@@ -340,7 +340,7 @@ export default function ExternalDB( ) {
           }
         }).then(function(res) {
           if (res.data == "Disease Data Imported") { 
-            axios.post('http://ec2-52-90-134-187.compute-1.amazonaws.com/mysqldb/postD', stateTable).then(async ()=>{
+            axios.post('http://localhost:5000/mysqldb/postD', stateTable).then(async ()=>{
               setDisUp(false)
               setOpenDBDialog(false)
             })
@@ -424,7 +424,7 @@ export default function ExternalDB( ) {
   const handleDropdownDialog = () => {
     setDisUp(true)
     const fetchData = async() => {
-      const res = await axios("http://ec2-52-90-134-187.compute-1.amazonaws.com/mysqldb/tableSchema", {
+      const res = await axios("http://localhost:5000/mysqldb/tableSchema", {
         params: { // ito yung mga parameters na naka-list sa insomnia
          table: internalTableName, //Number(stateTable.serialNo)
          table1: externalTableName,  //Number(stateTable.serialNo)  
