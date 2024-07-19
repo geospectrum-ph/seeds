@@ -22,7 +22,7 @@ const methodOverride = require('method-override');
 require('dotenv').config();
 
 // const app = express();
-const port = process.env.PORT || 5000; // https://seeds-demo.geospectrum.com.ph
+const port = process.env.PORT || 5000; // https://seeds.geospectrum.com.ph
 
 app.use(express.json({limit: '1000mb'}));
 app.use(express.urlencoded({limit: '1000mb', extended: true}))
@@ -34,8 +34,8 @@ app.use(bodyParser.json({limit: '1000mb'}))
 app.use(methodOverride('_method'));
 
 //MongoDB connection string
-// const uri = "mongodb+srv://seeds:seeds@seeds.nm1d8.mongodb.net/seeds-db?retryWrites=true&w=majority"
-const uri = "mongodb://127.0.0.1:27017/seeds-db"
+const uri = "mongodb+srv://seeds:seeds@seeds.nm1d8.mongodb.net/seeds-db?retryWrites=true&w=majority"
+// const uri = "mongodb://127.0.0.1:27017/seeds-db"
 
 mongoose.connect(process.env.MONGODB_URI || uri, { useNewUrlParser: true, useUnifiedTopology: true }).catch(error => console.log(error));
 
