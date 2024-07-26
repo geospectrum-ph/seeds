@@ -120,14 +120,14 @@ export default function DropdownLandUse() {
 
     const fetchData = async() => {
 
-      const res = await axios(`http://ec2-52-55-74-109.compute-1.amazonaws.com/landuse/brgy`,
+      const res = await axios(`https://seeds.geospectrum.com.ph/landuse/brgy`,
       // const res = await axios(`http://localhost:5000/landuse/brgy`,
       {params: {brgy_id: event.target.value
                 }}); //ito yung gagamitin pag sa web yung server
       setLandUseSelect(res.data)
 
 
-      const res_graph = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/landuse/graph',
+      const res_graph = await axios('https://seeds.geospectrum.com.ph/landuse/graph',
       // const res_graph = await axios('http://localhost:5000/landuse/graph',
       {params: {brgy_id: event.target.value}} );
       // console.log("res_graph.data.values",res_graph.data.values);

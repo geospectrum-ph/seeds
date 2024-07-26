@@ -81,15 +81,15 @@ function MainWindow(match) {
 
   useEffect (() => {
     const fetchData = async () => {
-      const res = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/barangay/', ); //ito yung gagamitin pag sa web yung server
-      const res3 = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/brgy/all', ); //ito yung gagamitin pag sa web yung server
-      const res2 = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/getdata/barangays', ); //ito yung gagamitin pag sa web yung server
-      const res4 = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/metadata/',); //ito yung gagamitin pag sa web yung server
+      const res = await axios('https://seeds.geospectrum.com.ph/barangay/', ); //ito yung gagamitin pag sa web yung server
+      const res3 = await axios('https://seeds.geospectrum.com.ph/healthmapper/brgy/all', ); //ito yung gagamitin pag sa web yung server
+      const res2 = await axios('https://seeds.geospectrum.com.ph/getdata/barangays', ); //ito yung gagamitin pag sa web yung server
+      const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',); //ito yung gagamitin pag sa web yung server
       // const res = await axios('http://localhost:5000/metadata/', ); //ito yung gagamitin pag sa local machine yung server
-      const res5 = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/allpoints',);
-      const res6 = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/commercialmapper//brgy/all',);
-      const res7 = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/jobmapper//brgy/all',);
-      const res8 = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/landuse/brgy/all',);
+      const res5 = await axios('https://seeds.geospectrum.com.ph/healthmapper/allpoints',);
+      const res6 = await axios('https://seeds.geospectrum.com.ph/commercialmapper//brgy/all',);
+      const res7 = await axios('https://seeds.geospectrum.com.ph/jobmapper//brgy/all',);
+      const res8 = await axios('https://seeds.geospectrum.com.ph/landuse/brgy/all',);
   
       // setHealthAll(res3.data)
       setDd(res2.data)

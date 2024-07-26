@@ -71,12 +71,12 @@ export default function Groups() {
   //delete user
   const handleDelete = async row => {
     const _id = row._id;
-    const getGroupLength = await axios.get(`http://localhost:5000/usermaster/checkUserGroupUnderExist/${_id}`);
+    const getGroupLength = await axios.get(`https://seeds.geospectrum.com.ph/usermaster/checkUserGroupUnderExist/${_id}`);
     if(getGroupLength.data > 0){
       alert('Unable to delete User Group.')
     }
     else{
-      const req = await axios.delete(`http://localhost:5000/usergroup/delete/${_id}`)
+      const req = await axios.delete(`https://seeds.geospectrum.com.ph/usergroup/delete/${_id}`)
       .then(function() {
         alert("Group deleted successsfully.");
         getUserGroups();
@@ -115,7 +115,7 @@ export default function Groups() {
       const updatePrivilege_values = [];
       
       const updateData = async() => {
-        const res = await axios.put(`http://localhost:5000/usergroup/update/${groupUpdate.id}`, {
+        const res = await axios.put(`https://seeds.geospectrum.com.ph/usergroup/update/${groupUpdate.id}`, {
           user_group_type: groupUpdate.user_group_type, 
           privileges: updatePrivilege_values
         }).then(function(res) {
@@ -194,7 +194,7 @@ export default function Groups() {
   const [group, setGroup] = useState([])
   const getUserGroups = async () => {
     try{
-      const userGroups = await axios.get("http://localhost:5000/usergroup");
+      const userGroups = await axios.get("https://seeds.geospectrum.com.ph/usergroup");
       setGroup(userGroups.data)
     }
     catch(e){
@@ -222,7 +222,7 @@ export default function Groups() {
     const handleAddGroupState = () => {
       setDisUp(true)
       const fetchData = async() => {
-        const res = await axios.post("http://localhost:5000/usergroup/add/", {
+        const res = await axios.post("https://seeds.geospectrum.com.ph/usergroup/add/", {
           user_group_type: groupAdd.user_group_type,
           privileges:  selectedGroupPrivilege,
         }).then(function() {            

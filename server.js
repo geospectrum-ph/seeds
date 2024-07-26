@@ -22,7 +22,7 @@ const methodOverride = require('method-override');
 require('dotenv').config();
 
 // const app = express();
-const port = process.env.PORT || 5000; // https://seeds-demo.geospectrum.com.ph
+const port = process.env.PORT || 5000; // "https://seeds-demo.geospectrum.com.ph" ;
 
 app.use(express.json({limit: '1000mb'}));
 app.use(express.urlencoded({limit: '1000mb', extended: true}))

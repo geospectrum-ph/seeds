@@ -173,7 +173,7 @@ export default function DropdownJob() {
     });
     setHealthLoc(event.target.value)
     const fetchData = async() => {
-      const res = await axios.get('http://ec2-52-55-74-109.compute-1.amazonaws.com/jobmapper/brgy/single', 
+      const res = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/brgy/single', 
       {params: {brgy_id: event.target.value,
                 startdate: startDate,
                 enddate: endDate,
@@ -183,7 +183,7 @@ export default function DropdownJob() {
       setJobSelect(res.data) // dito yung brgy
       // console.log("jobSelect on Location Change",res.data)
 
-      const res_graph = await axios.get('http://ec2-52-55-74-109.compute-1.amazonaws.com/jobmapper/graph', 
+      const res_graph = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/graph', 
       {params: {brgy_id: event.target.value,
                 startdate: startDate,
                 enddate: endDate,
@@ -197,7 +197,7 @@ export default function DropdownJob() {
     setJobClassSelect(event.target.value);
 
     const fetchData = async() => {
-      const res = await axios.get('http://ec2-52-55-74-109.compute-1.amazonaws.com/jobmapper/brgy/single', 
+      const res = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/brgy/single', 
       {params: {brgy_id: healthLoc,
                 startdate: startDate,
                 enddate: endDate,
@@ -209,7 +209,7 @@ export default function DropdownJob() {
       // console.log("jobSelect on Job Change",res.data)
 
 
-      const res_graph = await axios.get('http://ec2-52-55-74-109.compute-1.amazonaws.com/jobmapper/graph', 
+      const res_graph = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/graph', 
       {params: {brgy_id: healthLoc,
                 startdate: startDate,
                 enddate: endDate,

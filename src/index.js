@@ -12,15 +12,15 @@ import * as serviceWorker from './serviceWorker';
 // })
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <FeaturesContextProvider>
       <MapContextProvider>
         <SEEDSContextProvider>
           <App />
         </SEEDSContextProvider>
       </MapContextProvider>
-    </FeaturesContextProvider>
-  </React.StrictMode>,
+    </FeaturesContextProvider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 

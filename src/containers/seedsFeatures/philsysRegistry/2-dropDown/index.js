@@ -127,7 +127,7 @@ export default function DropdownPhilsys() {
 
     const fetchData = async() => {
 
-      const res = await axios(`http://ec2-52-55-74-109.compute-1.amazonaws.com/commercialmapper/brgy/single`, 
+      const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
       {params: {brgy_id: event.target.value,
                 startdate: startDate,
                 enddate: endDate,
@@ -136,7 +136,7 @@ export default function DropdownPhilsys() {
       setCommercialSelect(res.data) 
 
 
-      const res_graph = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/commercialmapper/graph', 
+      const res_graph = await axios('https://seeds.geospectrum.com.ph/commercialmapper/graph', 
       
       {params: {brgy_id: event.target.value}} );
       // console.log("res_graph.data.values",res_graph.data.values);
@@ -167,7 +167,7 @@ export default function DropdownPhilsys() {
 
 
     const fetchData = async() => {
-      const res = await axios(`http://ec2-52-55-74-109.compute-1.amazonaws.com/commercialmapper/brgy/single`, 
+      const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
       {params: {brgy_id: healthLoc,
                 startdate: startDate,
                 enddate: endDate,
@@ -175,7 +175,7 @@ export default function DropdownPhilsys() {
                 }}); //ito yung gagamitin pag sa web yung server
       setCommercialSelect(res.data) 
 
-      const res_graph = await axios(`http://ec2-52-55-74-109.compute-1.amazonaws.com/commercialmapper/graph`, 
+      const res_graph = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/graph`, 
       {params: {brgy_id: healthLoc}} );
 
       // console.log("res_graph.data.values",res_graph.data.values);

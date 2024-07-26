@@ -101,7 +101,7 @@ function SeedsMap(props) {
   React.useEffect(() => {
     // create map
     const fetchData = async() => {
-      const res = await axios.get(`http://ec2-52-55-74-109.compute-1.amazonaws.com/barangay/`,)
+      const res = await axios.get(`https://seeds.geospectrum.com.ph/barangay/`,)
       setBounds(res.data)
     }
     fetchData()
@@ -216,7 +216,7 @@ function SeedsMap(props) {
   React.useEffect(() => {
     if (clickPos){
       const fetchData = async() => {
-        const get_brgyID = await axios.get(`http://ec2-52-55-74-109.compute-1.amazonaws.com/barangay/findBarangay`,
+        const get_brgyID = await axios.get(`https://seeds.geospectrum.com.ph/barangay/findBarangay`,
         {params: {lat: clickPos[1], long: clickPos[0]}} );
         
         setID(get_brgyID.data)
@@ -231,28 +231,28 @@ function SeedsMap(props) {
       // console.log(brgyID)
       setHealthLoc(brgyID[0].properties.brgy_id)
       const fetchData = async() => {
-        const res = await axios.get(`http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/brgy/single`,
+        const res = await axios.get(`https://seeds.geospectrum.com.ph/healthmapper/brgy/single`,
         {params: {brgy_id: brgyID[0].properties.brgy_id}} );
         setMapPos(res.data)
         setHealthSelect(res.data)
         // console.log(res.data)
-        const res_graph = await axios.get('http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/graph',
+        const res_graph = await axios.get('https://seeds.geospectrum.com.ph/healthmapper/graph',
         {params: {brgy_id: brgyID[0].properties.brgy_id}} );
         setHealthMapperGraph(res_graph.data.values)
 
-        const res_job = await axios.get('http://ec2-52-55-74-109.compute-1.amazonaws.com/jobmapper/brgy/single',
+        const res_job = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/brgy/single',
         {params: {brgy_id: brgyID[0].properties.brgy_id}} );
         setJobSelect(res_job.data)
 
-        const res_job_graph = await axios.get('http://ec2-52-55-74-109.compute-1.amazonaws.com/jobmapper/graph',
+        const res_job_graph = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/graph',
         {params: {brgy_id: brgyID[0].properties.brgy_id}} );
         setJobMapperGraph(res_job_graph.data.values)
 
-        const res_land_use = await axios(`http://ec2-52-55-74-109.compute-1.amazonaws.com/landuse/brgy`,
+        const res_land_use = await axios(`https://seeds.geospectrum.com.ph/landuse/brgy`,
         {params: {brgy_id: brgyID[0].properties.brgy_id}});
         setLandUseSelect(res_land_use.data)
 
-        const res_land_use_graph = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/landuse/graph',
+        const res_land_use_graph = await axios('https://seeds.geospectrum.com.ph/landuse/graph',
         {params: {brgy_id: brgyID[0].properties.brgy_id}} );
         setLandUseGraph(res_land_use_graph.data)
       }

@@ -97,7 +97,7 @@ export default function ResetPassword(props) {
 
   const onResetPassword = () => { 
     const postResetPassword = async() => {
-      const res = await axios.post(`http://localhost:5000/resetPasswordMaster/`+
+      const res = await axios.post(`https://seeds.geospectrum.com.ph/resetPasswordMaster/`+
         props.match.params.id+"/"+props.match.params.token+"", {
           password: resetPassword,  
           password_confirmation: confirmResetPassword,

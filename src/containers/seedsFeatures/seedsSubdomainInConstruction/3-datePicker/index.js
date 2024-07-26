@@ -18,8 +18,8 @@ import {
 
 
 // react nice dates
-import { DateRangePicker, START_DATE, END_DATE } from 'react-nice-dates';
-import 'react-nice-dates/build/style.css';
+import { DateRangePicker, START_DATE, END_DATE } from '@bjarkehs/react-nice-dates';
+// import 'react-nice-dates/build/style.css';
 import { enUS } from 'date-fns/locale';
 import './index.css';
 
@@ -76,14 +76,14 @@ export default function CalendarsDateRangePicker() {
   const handleStartDateChange = (date) => {
 
     const fetchData = async() => {
-      const res = await axios(`http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/brgy/single`, 
+      const res = await axios(`https://seeds.geospectrum.com.ph/healthmapper/brgy/single`, 
       {params: {brgy_id: healthLoc,
                 startdate: parseDate(date),
                 enddate: endDate}}); //ito yung gagamitin pag sa web yung server
 
       setHealthSelect(res.data)
 
-      const res_graph = await axios(`http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/graph`, 
+      const res_graph = await axios(`https://seeds.geospectrum.com.ph/healthmapper/graph`, 
       {params: {brgy_id: healthLoc}} );
       // console.log(res_graph.data.values);
       setHealthMapperGraph(res_graph.data)
@@ -98,7 +98,7 @@ export default function CalendarsDateRangePicker() {
   const handleEndDateChange = (date) => {
 
     // const fetchData = async() => {
-    //   const res = await axios.get('http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/brgy/single',
+    //   const res = await axios.get('https://seeds.geospectrum.com.ph/healthmapper/brgy/single',
     //   {params: {brgy_id: healthLoc,
     //             startdate: startDate,
     //             enddate: parseDate(date)}}); //ito yung gagamitin pag sa web yung server
@@ -107,7 +107,7 @@ export default function CalendarsDateRangePicker() {
     //   console.log("HEALTH SELECT");
     //   console.log(healthSelect)
 
-    //   const res_graph = await axios.get('http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/graph',
+    //   const res_graph = await axios.get('https://seeds.geospectrum.com.ph/healthmapper/graph',
     //   {params: {brgy_id: healthLoc}} );
     //   console.log(res_graph.data);
     //   setHealthMapperGraph(res_graph.data)

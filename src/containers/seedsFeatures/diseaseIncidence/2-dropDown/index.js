@@ -154,14 +154,14 @@ export default function DropdownDisease() {
     });
     setHealthLoc(event.target.value)
     const fetchData = async() => {
-      const res = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/brgy/single', 
+      const res = await axios('https://seeds.geospectrum.com.ph/healthmapper/brgy/single', 
       {params: {brgy_id: event.target.value,
                 startdate: startDate,
                 enddate: endDate}}); //ito yung gagamitin pag sa web yung server
       setHealthSelect(res.data) 
 
       
-      const res_graph = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/graph', 
+      const res_graph = await axios('https://seeds.geospectrum.com.ph/healthmapper/graph', 
       {params: {brgy_id: event.target.value}} );
       setHealthMapperGraph(res_graph.data.values)
     } 
@@ -174,14 +174,14 @@ export default function DropdownDisease() {
   const handleDiseaseChange = (event) => {
     setDiseaseClassSelect(event.target.value);
     const fetchData = async() => {
-      const res = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/brgy/single', 
+      const res = await axios('https://seeds.geospectrum.com.ph/healthmapper/brgy/single', 
       {params: {brgy_id: event.target.value,
                 startdate: startDate,
                 enddate: endDate}}); //ito yung gagamitin pag sa web yung server
       setHealthSelect(res.data) 
 
       
-      const res_graph = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/graph', 
+      const res_graph = await axios('https://seeds.geospectrum.com.ph/healthmapper/graph', 
       {params: {brgy_id: event.target.value}} );
       setHealthMapperGraph(res_graph.data.values)
 
@@ -224,7 +224,7 @@ export default function DropdownDisease() {
       // console.log("clear points")
 
     } else {
-      // const res5 = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/allpoints',);
+      // const res5 = await axios('https://seeds.geospectrum.com.ph/healthmapper/allpoints',);
       // setPoints(res5.data)
       setToggle(true)
     }

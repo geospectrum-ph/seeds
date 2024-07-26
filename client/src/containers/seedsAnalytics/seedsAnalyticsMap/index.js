@@ -268,7 +268,7 @@ function AnalyticsMap() {
       "opacity": 0.65
     };
     const fetchData = async() => {
-      const res = await axios.get(`http://localhost:5000/getdata/bounds`,)
+      const res = await axios.get(`https://seeds.geospectrum.com.ph/getdata/bounds`,)
       if (res.data){
         bound = new L.geoJSON(res.data, {style: myStyle})
         bound.addTo(analyticsmap.current)

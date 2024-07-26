@@ -10,8 +10,8 @@ import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 // react nice dates
-import { DateRangePicker, START_DATE, END_DATE } from 'react-nice-dates';
-import 'react-nice-dates/build/style.css';
+import { DateRangePicker, START_DATE, END_DATE } from '@bjarkehs/react-nice-dates';
+// import 'react-nice-dates/build/style.css';
 import { enUS } from 'date-fns/locale';
 import './index.css';
 
@@ -49,7 +49,7 @@ export default function CalendarsDateRangePicker() {
   
   const handleStartDateChange = (date) => {
     const fetchData = async() => {
-      const res = await axios(`http://localhost:5000/healthmapper/brgy/single`, {
+      const res = await axios(`https://seeds.geospectrum.com.ph/healthmapper/brgy/single`, {
         params: {
           brgy_id: profileLoc,
           startdate: parseDate(date),
@@ -59,7 +59,7 @@ export default function CalendarsDateRangePicker() {
 
       setHealthSelect(res.data)
 
-      const res_graph = await axios(`http://localhost:5000/healthmapper/graph`, {params: {brgy_id: profileLoc}} );
+      const res_graph = await axios(`https://seeds.geospectrum.com.ph/healthmapper/graph`, {params: {brgy_id: profileLoc}} );
       setDiseaseMapperGraph(res_graph.data)
     }
     fetchData();
