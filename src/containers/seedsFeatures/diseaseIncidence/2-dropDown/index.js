@@ -153,35 +153,48 @@ export default function DropdownDisease() {
       
     });
     setHealthLoc(event.target.value)
+
     const fetchData = async() => {
-      const res = await axios('https://seeds.geospectrum.com.ph/healthmapper/brgy/single', 
+      const res = await axios('http://localhost:5000/healthmapper/brgy/single', 
       {params: {brgy_id: event.target.value,
                 startdate: startDate,
                 enddate: endDate}}); //ito yung gagamitin pag sa web yung server
       setHealthSelect(res.data) 
 
       
-      const res_graph = await axios('https://seeds.geospectrum.com.ph/healthmapper/graph', 
+      const res_graph = await axios('http://localhost:5000/healthmapper/graph', 
       {params: {brgy_id: event.target.value}} );
       setHealthMapperGraph(res_graph.data.values)
     } 
+
+    // const fetchData = async() => {
+    //   const res = await axios('https://seeds.geospectrum.com.ph/healthmapper/brgy/single', 
+    //   {params: {brgy_id: event.target.value,
+    //             startdate: startDate,
+    //             enddate: endDate}}); //ito yung gagamitin pag sa web yung server
+    //   setHealthSelect(res.data) 
+
+      
+    //   const res_graph = await axios('https://seeds.geospectrum.com.ph/healthmapper/graph', 
+    //   {params: {brgy_id: event.target.value}} );
+    //   setHealthMapperGraph(res_graph.data.values)
+    // } 
     
     fetchData();
 
   };
-
 
   const handleDiseaseChange = (event) => {
     setDiseaseClassSelect(event.target.value);
     const fetchData = async() => {
-      const res = await axios('https://seeds.geospectrum.com.ph/healthmapper/brgy/single', 
+      const res = await axios('http://localhost:5000/healthmapper/brgy/single', 
       {params: {brgy_id: event.target.value,
                 startdate: startDate,
                 enddate: endDate}}); //ito yung gagamitin pag sa web yung server
       setHealthSelect(res.data) 
 
       
-      const res_graph = await axios('https://seeds.geospectrum.com.ph/healthmapper/graph', 
+      const res_graph = await axios('http://localhost:5000/healthmapper/graph', 
       {params: {brgy_id: event.target.value}} );
       setHealthMapperGraph(res_graph.data.values)
 
@@ -190,6 +203,26 @@ export default function DropdownDisease() {
     fetchData();
 
   };
+
+  // const handleDiseaseChange = (event) => {
+  //   setDiseaseClassSelect(event.target.value);
+  //   const fetchData = async() => {
+  //     const res = await axios('https://seeds.geospectrum.com.ph/healthmapper/brgy/single', 
+  //     {params: {brgy_id: event.target.value,
+  //               startdate: startDate,
+  //               enddate: endDate}}); //ito yung gagamitin pag sa web yung server
+  //     setHealthSelect(res.data) 
+
+      
+  //     const res_graph = await axios('https://seeds.geospectrum.com.ph/healthmapper/graph', 
+  //     {params: {brgy_id: event.target.value}} );
+  //     setHealthMapperGraph(res_graph.data.values)
+
+  //   } 
+    
+  //   fetchData();
+
+  // };
   // console.log(healthLoc)
 
 

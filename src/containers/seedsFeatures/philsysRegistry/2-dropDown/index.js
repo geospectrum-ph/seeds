@@ -124,10 +124,9 @@ export default function DropdownPhilsys() {
     // console.log("HealthLoc",(healthLoc))
     // console.log("HealthLoc-even",(event.target.value))
 
-
     const fetchData = async() => {
 
-      const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
+      const res = await axios(`http://localhost:5000/commercialmapper/brgy/single`, 
       {params: {brgy_id: event.target.value,
                 startdate: startDate,
                 enddate: endDate,
@@ -136,7 +135,7 @@ export default function DropdownPhilsys() {
       setCommercialSelect(res.data) 
 
 
-      const res_graph = await axios('https://seeds.geospectrum.com.ph/commercialmapper/graph', 
+      const res_graph = await axios('http://localhost:5000/commercialmapper/graph', 
       
       {params: {brgy_id: event.target.value}} );
       // console.log("res_graph.data.values",res_graph.data.values);
@@ -151,6 +150,35 @@ export default function DropdownPhilsys() {
       
 
     }
+
+    // const fetchData = async() => {
+
+    //   const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
+    //   {params: {brgy_id: event.target.value,
+    //             startdate: startDate,
+    //             enddate: endDate,
+    //             com_class: commercialClassSelect
+    //             }}); //ito yung gagamitin pag sa web yung server
+    //   setCommercialSelect(res.data) 
+
+
+    //   const res_graph = await axios('https://seeds.geospectrum.com.ph/commercialmapper/graph', 
+      
+    //   {params: {brgy_id: event.target.value}} );
+    //   // console.log("res_graph.data.values",res_graph.data.values);
+    //   setCommercialMapperGraph(res_graph.data.values)
+    //   // console.log("Commercial Select upon Dropdown 1",res.data)
+    //   // console.log("DD1-LOCATION")
+    //   // console.log("DD1-HealthLoc",event.target.value)
+    //   // console.log("DD1-Start", startDate)
+    //   // console.log("DD1-End", endDate)
+    //   // console.log("DD1-CommercialClassSelect", commercialClassSelect)
+    //   // console.log("DD1-type", typeof(commercialClassSelect))
+      
+
+    // }
+
+
     fetchData();
   };
 
@@ -165,9 +193,8 @@ export default function DropdownPhilsys() {
     // console.log("commercial class-event",event.target.value)
     // console.log("commercial class-event",typeof(event.target.value))
 
-
     const fetchData = async() => {
-      const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
+      const res = await axios(`http://localhost:5000/commercialmapper/brgy/single`, 
       {params: {brgy_id: healthLoc,
                 startdate: startDate,
                 enddate: endDate,
@@ -175,7 +202,7 @@ export default function DropdownPhilsys() {
                 }}); //ito yung gagamitin pag sa web yung server
       setCommercialSelect(res.data) 
 
-      const res_graph = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/graph`, 
+      const res_graph = await axios(`http://localhost:5000/commercialmapper/graph`, 
       {params: {brgy_id: healthLoc}} );
 
       // console.log("res_graph.data.values",res_graph.data.values);
@@ -190,6 +217,31 @@ export default function DropdownPhilsys() {
       // console.log("DD1-type", typeof(event.target.value))
 
     } 
+
+    // const fetchData = async() => {
+    //   const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
+    //   {params: {brgy_id: healthLoc,
+    //             startdate: startDate,
+    //             enddate: endDate,
+    //             com_class: event.target.value
+    //             }}); //ito yung gagamitin pag sa web yung server
+    //   setCommercialSelect(res.data) 
+
+    //   const res_graph = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/graph`, 
+    //   {params: {brgy_id: healthLoc}} );
+
+    //   // console.log("res_graph.data.values",res_graph.data.values);
+    //   setCommercialMapperGraph(res_graph.data.values)
+
+    //   // console.log("Commercial Select upon Dropdown 2",res.data)
+    //   // console.log("DD2-LOCATION")
+    //   // console.log("DD2-HealthLoc",healthLoc)
+    //   // console.log("DD2-Start", startDate)
+    //   // console.log("DD2-End", endDate)
+    //   // console.log("DD2-CommercialClassSelect", event.target.value)
+    //   // console.log("DD1-type", typeof(event.target.value))
+
+    // } 
     fetchData();
 
   };

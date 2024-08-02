@@ -173,7 +173,7 @@ export default function DropdownJob() {
     });
     setHealthLoc(event.target.value)
     const fetchData = async() => {
-      const res = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/brgy/single', 
+      const res = await axios.get('http://localhost:5000/jobmapper/brgy/single', 
       {params: {brgy_id: event.target.value,
                 startdate: startDate,
                 enddate: endDate,
@@ -183,13 +183,31 @@ export default function DropdownJob() {
       setJobSelect(res.data) // dito yung brgy
       // console.log("jobSelect on Location Change",res.data)
 
-      const res_graph = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/graph', 
+      const res_graph = await axios.get('http://localhost:5000/jobmapper/graph', 
       {params: {brgy_id: event.target.value,
                 startdate: startDate,
                 enddate: endDate,
                 job_class: jobClassSelect}} );
       setJobMapperGraph(res_graph.data.values)
     } 
+    // const fetchData = async() => {
+    //   const res = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/brgy/single', 
+    //   {params: {brgy_id: event.target.value,
+    //             startdate: startDate,
+    //             enddate: endDate,
+    //             job_class: jobClassSelect
+    //           }} ); //ito yung gagamitin pag sa web yung server
+
+    //   setJobSelect(res.data) // dito yung brgy
+    //   // console.log("jobSelect on Location Change",res.data)
+
+    //   const res_graph = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/graph', 
+    //   {params: {brgy_id: event.target.value,
+    //             startdate: startDate,
+    //             enddate: endDate,
+    //             job_class: jobClassSelect}} );
+    //   setJobMapperGraph(res_graph.data.values)
+    // } 
     fetchData();
 
   };
@@ -197,7 +215,7 @@ export default function DropdownJob() {
     setJobClassSelect(event.target.value);
 
     const fetchData = async() => {
-      const res = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/brgy/single', 
+      const res = await axios.get('http://localhost:5000/jobmapper/brgy/single', 
       {params: {brgy_id: healthLoc,
                 startdate: startDate,
                 enddate: endDate,
@@ -209,7 +227,7 @@ export default function DropdownJob() {
       // console.log("jobSelect on Job Change",res.data)
 
 
-      const res_graph = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/graph', 
+      const res_graph = await axios.get('http://localhost:5000/jobmapper/graph', 
       {params: {brgy_id: healthLoc,
                 startdate: startDate,
                 enddate: endDate,
@@ -219,6 +237,30 @@ export default function DropdownJob() {
 
 
     } 
+
+    // const fetchData = async() => {
+    //   const res = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/brgy/single', 
+    //   {params: {brgy_id: healthLoc,
+    //             startdate: startDate,
+    //             enddate: endDate,
+    //             job_class: event.target.value
+    //           }} ); //ito yung gagamitin pag sa web yung server
+
+    //   setJobSelect(res.data)
+    //   // console.log(res.data);
+    //   // console.log("jobSelect on Job Change",res.data)
+
+
+    //   const res_graph = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/graph', 
+    //   {params: {brgy_id: healthLoc,
+    //             startdate: startDate,
+    //             enddate: endDate,
+    //             job_class: event.target.value}} );
+    //   // console.log(res_graph.data.values);
+    //   setJobMapperGraph(res_graph.data.values)
+
+
+    // } 
     fetchData();
   };
 

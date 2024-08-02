@@ -7,7 +7,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 // react nice dates
 import { DateRangePicker, START_DATE, END_DATE } from '@bjarkehs/react-nice-dates';
-// import 'react-nice-dates/build/style.css';
+import 'react-nice-dates/build/style.css';
 import { enUS } from 'date-fns/locale';
 
 // import contexts
@@ -44,7 +44,7 @@ export default function CalendarsDateRangePicker() {
 
   const handleStartDateChange = (date) => {
     const fetchData = async() => {
-      const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, {
+      const res = await axios(`http://localhost:5000/commercialmapper/brgy/single`, {
         params: {
           brgy_id: profileLoc,
           startdate: parseDate(date),
@@ -52,7 +52,7 @@ export default function CalendarsDateRangePicker() {
           com_class: commercialClassSelect
       }}); //ito yung gagamitin pag sa web yung server
       setCommercialSelect(res.data)
-      const res_graph = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/graph`, {
+      const res_graph = await axios(`http://localhost:5000/commercialmapper/graph`, {
         params: {brgy_id: profileLoc}});
       setCommercialMapperGraph(res_graph.data)      
     }
@@ -63,7 +63,7 @@ export default function CalendarsDateRangePicker() {
 
   const handleEndDateChange = (date) => {
     const fetchData = async() => {
-      const res = await axios.get(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, {
+      const res = await axios.get(`http://localhost:5000/commercialmapper/brgy/single`, {
         params: {
           brgy_id: profileLoc,
           startdate: startDate,
@@ -73,7 +73,7 @@ export default function CalendarsDateRangePicker() {
       }); //ito yung gagamitin pag sa web yung server
       setCommercialSelect(res.data)
 
-      const res_graph = await axios.get(`https://seeds.geospectrum.com.ph/commercialmapper/graph`,
+      const res_graph = await axios.get(`http://localhost:5000/commercialmapper/graph`,
         {params: {brgy_id: profileLoc}} );
       setCommercialMapperGraph(res_graph.data)
     }
@@ -81,6 +81,46 @@ export default function CalendarsDateRangePicker() {
     setEndDateLocal(date);
     setEndDate(parseDate(date));
   };
+
+  // const handleStartDateChange = (date) => {
+  //   const fetchData = async() => {
+  //     const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, {
+  //       params: {
+  //         brgy_id: profileLoc,
+  //         startdate: parseDate(date),
+  //         enddate: endDate,
+  //         com_class: commercialClassSelect
+  //     }}); //ito yung gagamitin pag sa web yung server
+  //     setCommercialSelect(res.data)
+  //     const res_graph = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/graph`, {
+  //       params: {brgy_id: profileLoc}});
+  //     setCommercialMapperGraph(res_graph.data)      
+  //   }
+  //   fetchData();
+  //   setStartDateLocal(date);
+  //   setStartDate(parseDate(date));
+  // };
+
+  // const handleEndDateChange = (date) => {
+  //   const fetchData = async() => {
+  //     const res = await axios.get(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, {
+  //       params: {
+  //         brgy_id: profileLoc,
+  //         startdate: startDate,
+  //         enddate: parseDate(date),
+  //         com_class: commercialClassSelect
+  //       }
+  //     }); //ito yung gagamitin pag sa web yung server
+  //     setCommercialSelect(res.data)
+
+  //     const res_graph = await axios.get(`https://seeds.geospectrum.com.ph/commercialmapper/graph`,
+  //       {params: {brgy_id: profileLoc}} );
+  //     setCommercialMapperGraph(res_graph.data)
+  //   }
+  //   fetchData();
+  //   setEndDateLocal(date);
+  //   setEndDate(parseDate(date));
+  // };
 
   const { profileLoc } = useContext(MapContext);
   const { setCommercialSelect, setCommercialMapperGraph} = useContext(FeaturesContext);

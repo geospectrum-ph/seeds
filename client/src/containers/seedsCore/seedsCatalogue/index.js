@@ -143,7 +143,8 @@ export default function DataCatalogue() {
 
   useEffect(() => {
     const fetchData = async() => {
-      const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',);
+      const res4 = await axios('http://localhost:5000/metadata/',);
+      // const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',);
 
       setDataCat(res4.data);
       setDataShow(res4.data);
@@ -243,7 +244,8 @@ export default function DataCatalogue() {
   useEffect(() => {
     const interval = setInterval(() => {
       const saveSession = async() => {
-        const res = await axios.post("https://seeds.geospectrum.com.ph/session/edit", sessionData)
+        const res = await axios.post("http://localhost:5000/session/edit", sessionData)
+        // const res = await axios.post("https://seeds.geospectrum.com.ph/session/edit", sessionData)
         .then(function(res) {
           if ('errors' in res) {
             alert(res.data.errors)
@@ -298,8 +300,10 @@ export default function DataCatalogue() {
     })
 
     const fetchData = async (i) =>{
-      const res = await axios.get(`https://seeds.geospectrum.com.ph/getdata/`,{params:{id: selected[i]}})
-      const res2 = await axios.get(`https://seeds.geospectrum.com.ph/getdata/sld`,{params:{metadataID: selected[i]}})
+      const res = await axios.get(`http://localhost:5000/getdata/`,{params:{id: selected[i]}})
+      const res2 = await axios.get(`http://localhost:5000/getdata/sld`,{params:{metadataID: selected[i]}})
+      // const res = await axios.get(`https://seeds.geospectrum.com.ph/getdata/`,{params:{id: selected[i]}})
+      // const res2 = await axios.get(`https://seeds.geospectrum.com.ph/getdata/sld`,{params:{metadataID: selected[i]}})
 
       var wantedKey = 'mtd_id'
       if (loadedMtd.length===0) {
@@ -356,7 +360,8 @@ export default function DataCatalogue() {
   const handleAddToMap = async () => {
     setOpenBackdrop(true);
     var loaded = []
-    const res = await axios.get(`https://seeds.geospectrum.com.ph/metadata/checkData`,{params:{selected: selected}})
+    const res = await axios.get(`http://localhost:5000/metadata/checkData`,{params:{selected: selected}})
+    // const res = await axios.get(`https://seeds.geospectrum.com.ph/metadata/checkData`,{params:{selected: selected}})
     if (res.data.length > 0) {handleOpenWarningDialog(); setLoadingDataCat(false)} else handleClose(loaded)
   }
 
@@ -396,9 +401,11 @@ export default function DataCatalogue() {
       if (textFieldContent === selected[0]) {
         setLoadingDelete(true)
         setOpenBackdrop(true)
-        axios.post('https://seeds.geospectrum.com.ph/getdata/delete', {"id": textFieldContent})
+        axios.post('http://localhost:5000/getdata/delete', {"id": textFieldContent})
+        // axios.post('https://seeds.geospectrum.com.ph/getdata/delete', {"id": textFieldContent})
         .then(async (res) => {
-          const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',); //ito yung gagamitin pag sa web yung server
+          const res4 = await axios('http://localhost:5000/metadata/',); //ito yung gagamitin pag sa web yung server
+          // const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',); //ito yung gagamitin pag sa web yung server
           setDataCat(res4.data);
           setDataShow(res4.data);
           setLoadingDelete(false)

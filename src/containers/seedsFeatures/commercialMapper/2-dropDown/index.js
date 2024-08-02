@@ -138,7 +138,8 @@ export default function MultipleSelect() {
   React.useEffect(() => {
     const fetchData = async() => {
 
-      const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
+      const res = await axios(`http://localhost:5000/commercialmapper/brgy/single`, 
+      // const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
       {params: {brgy_id: healthLoc,
                 startdate: startDate,
                 enddate: endDate, 
@@ -147,7 +148,8 @@ export default function MultipleSelect() {
       setCommercialSelect(res.data) 
       // console.log("jobSelect on Date1 Change", res.data)
 
-      const res_graph = await axios('https://seeds.geospectrum.com.ph/commercialmapper/graph', 
+      const res_graph = await axios('http://localhost:5000/commercialmapper/graph', 
+      // const res_graph = await axios('https://seeds.geospectrum.com.ph/commercialmapper/graph', 
       
       {params: {brgy_id: healthLoc}} );
       // console.log("res_graph.data.values",res_graph.data.values);
@@ -180,7 +182,8 @@ export default function MultipleSelect() {
 
     const fetchData = async() => {
       // console.log('hehe')
-      const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
+      const res = await axios(`http://localhost:5000/commercialmapper/brgy/single`, 
+      // const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
       {params: {brgy_id: event.target.value,
                 startdate: startDate,
                 enddate: endDate, 
@@ -188,7 +191,8 @@ export default function MultipleSelect() {
       setCommercialSelect(res.data) 
       // console.log("jobSelect on Brgy Change---withjim", res.data)
 
-      const res_graph = await axios('https://seeds.geospectrum.com.ph/commercialmapper/graph', 
+      const res_graph = await axios('http://localhost:5000/commercialmapper/graph', 
+      // const res_graph = await axios('https://seeds.geospectrum.com.ph/commercialmapper/graph', 
       
       {params: {brgy_id: event.target.value}} );
       // console.log("res_graph.data.values",res_graph.data.values);
@@ -219,14 +223,18 @@ export default function MultipleSelect() {
 
 
     const fetchData = async() => {
-      const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
+      const res = await axios(`http://localhost:5000/commercialmapper/brgy/single`, 
+
+      // const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
       {params: {brgy_id: healthLoc,
                 startdate: startDate,
                 enddate: endDate,
                 }}); //ito yung gagamitin pag sa web yung server
       setCommercialSelect(res.data) // general data, ito yung magpprint dapat sa card/paper
 
-      const res_graph = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/graph`, 
+      const res_graph = await axios(`http://localhost:5000/commercialmapper/graph`, 
+
+      // const res_graph = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/graph`, 
       {params: {brgy_id: healthLoc}} );
 
       // console.log("res_graph.data.values",res_graph.data.values);

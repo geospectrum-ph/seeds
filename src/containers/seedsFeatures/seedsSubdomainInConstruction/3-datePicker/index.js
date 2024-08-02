@@ -19,7 +19,7 @@ import {
 
 // react nice dates
 import { DateRangePicker, START_DATE, END_DATE } from '@bjarkehs/react-nice-dates';
-// import 'react-nice-dates/build/style.css';
+import 'react-nice-dates/build/style.css';
 import { enUS } from 'date-fns/locale';
 import './index.css';
 
@@ -76,18 +76,32 @@ export default function CalendarsDateRangePicker() {
   const handleStartDateChange = (date) => {
 
     const fetchData = async() => {
-      const res = await axios(`https://seeds.geospectrum.com.ph/healthmapper/brgy/single`, 
+      const res = await axios(`http://localhost:5000/healthmapper/brgy/single`, 
       {params: {brgy_id: healthLoc,
                 startdate: parseDate(date),
                 enddate: endDate}}); //ito yung gagamitin pag sa web yung server
 
       setHealthSelect(res.data)
 
-      const res_graph = await axios(`https://seeds.geospectrum.com.ph/healthmapper/graph`, 
+      const res_graph = await axios(`http://localhost:5000/healthmapper/graph`, 
       {params: {brgy_id: healthLoc}} );
       // console.log(res_graph.data.values);
       setHealthMapperGraph(res_graph.data)
     }
+
+    // const fetchData = async() => {
+    //   const res = await axios(`https://seeds.geospectrum.com.ph/healthmapper/brgy/single`, 
+    //   {params: {brgy_id: healthLoc,
+    //             startdate: parseDate(date),
+    //             enddate: endDate}}); //ito yung gagamitin pag sa web yung server
+
+    //   setHealthSelect(res.data)
+
+    //   const res_graph = await axios(`https://seeds.geospectrum.com.ph/healthmapper/graph`, 
+    //   {params: {brgy_id: healthLoc}} );
+    //   // console.log(res_graph.data.values);
+    //   setHealthMapperGraph(res_graph.data)
+    // }
 
     fetchData();
     setStartDateLocal(date);

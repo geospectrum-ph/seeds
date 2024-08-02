@@ -281,8 +281,11 @@ export default function DataCatalogue() {
 
   const handleClose = () => {  //para ma-display yung data sa mapa
     const fetchData = async (i) =>{
-      const res = await axios.get(`https://seeds.geospectrum.com.ph/getdata/`,{params:{id: selected[i]}})
-      const res2 = await axios.get(`https://seeds.geospectrum.com.ph/getdata/sld`,{params:{metadataID: selected[i]}})
+      const res = await axios.get(`http://localhost:5000/getdata/`,{params:{id: selected[i]}})
+      const res2 = await axios.get(`http://localhost:5000/getdata/sld`,{params:{metadataID: selected[i]}})
+
+      // const res = await axios.get(`https://seeds.geospectrum.com.ph/getdata/`,{params:{id: selected[i]}})
+      // const res2 = await axios.get(`https://seeds.geospectrum.com.ph/getdata/sld`,{params:{metadataID: selected[i]}})
 
       setBrgys(brgys.concat(res.data))
       var legendStyles = legendItems // weird na pag cinomment out ko to, nawawala yung ibang legend,
@@ -307,8 +310,8 @@ export default function DataCatalogue() {
   };
 
   const handleAddToMap = async () => {
-    const res = await axios.get(`https://seeds.geospectrum.com.ph/metadata/checkData`,{params:{selected: selected}})
-    // const res = await axios.get(`http://localhost:5000/metadata/checkData`,{params:{selected: selected}})
+    const res = await axios.get(`http://localhost:5000/metadata/checkData`,{params:{selected: selected}})
+    // const res = await axios.get(`https://seeds.geospectrum.com.ph/metadata/checkData`,{params:{selected: selected}})
     if (res.data.length > 0) {handleOpenWarningDialog()} else handleClose()
   }
 
@@ -368,18 +371,17 @@ export default function DataCatalogue() {
 
   
 
-
   const handleStartDateChange = (date) => {
 
     const fetchData = async() => {
-      const res = await axios(`https://seeds.geospectrum.com.ph/healthmapper/brgy/single`, 
+      const res = await axios(`http://localhost:5000/healthmapper/brgy/single`, 
       {params: {brgy_id: healthLoc,
                 startdate: parseDate(date),
                 enddate: endDate}}); //ito yung gagamitin pag sa web yung server
 
       setJobSelect(res.data)
 
-      const res_graph = await axios(`https://seeds.geospectrum.com.ph/jobmapper/graph`, 
+      const res_graph = await axios(`http://localhost:5000/jobmapper/graph`, 
       {params: {brgy_id: healthLoc}} );
       // console.log(res_graph.data.values);
       setJobMapperGraph(res_graph.data.values)
@@ -395,7 +397,7 @@ export default function DataCatalogue() {
   const handleEndDateChange = (date) => {
 
     const fetchData = async() => {
-      const res = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/brgy/single',
+      const res = await axios.get('http://localhost:5000/jobmapper/brgy/single',
       {params: {brgy_id: healthLoc,
                 startdate: startDate,
                 enddate: parseDate(date)}}); //ito yung gagamitin pag sa web yung server
@@ -404,7 +406,7 @@ export default function DataCatalogue() {
       // console.log("HEALTH SELECT");
       // console.log(healthSelect)
 
-      const res_graph = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/graph',
+      const res_graph = await axios.get('http://localhost:5000/jobmapper/graph',
       {params: {brgy_id: healthLoc}} );
       // console.log(res_graph.data);
       setJobMapperGraph(res_graph.data.values)
@@ -415,6 +417,53 @@ export default function DataCatalogue() {
     // console.log("date",startDate, endDate)
 
   };
+
+  // const handleStartDateChange = (date) => {
+
+  //   const fetchData = async() => {
+  //     const res = await axios(`https://seeds.geospectrum.com.ph/healthmapper/brgy/single`, 
+  //     {params: {brgy_id: healthLoc,
+  //               startdate: parseDate(date),
+  //               enddate: endDate}}); //ito yung gagamitin pag sa web yung server
+
+  //     setJobSelect(res.data)
+
+  //     const res_graph = await axios(`https://seeds.geospectrum.com.ph/jobmapper/graph`, 
+  //     {params: {brgy_id: healthLoc}} );
+  //     // console.log(res_graph.data.values);
+  //     setJobMapperGraph(res_graph.data.values)
+  //   }
+
+  //   fetchData();
+  //   setStartDateLocal(date);
+  //   setStartDate(parseDate(date));
+  //     // console.log(res_graph.data.values);
+
+
+  // };
+  // const handleEndDateChange = (date) => {
+
+  //   const fetchData = async() => {
+  //     const res = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/brgy/single',
+  //     {params: {brgy_id: healthLoc,
+  //               startdate: startDate,
+  //               enddate: parseDate(date)}}); //ito yung gagamitin pag sa web yung server
+
+  //     setJobSelect(res.data)
+  //     // console.log("HEALTH SELECT");
+  //     // console.log(healthSelect)
+
+  //     const res_graph = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/graph',
+  //     {params: {brgy_id: healthLoc}} );
+  //     // console.log(res_graph.data);
+  //     setJobMapperGraph(res_graph.data.values)
+  //   }
+  //   fetchData();
+  //   setEndDateLocal(date);
+  //   setEndDate(parseDate(date));
+  //   // console.log("date",startDate, endDate)
+
+  // };
 
   const handleCloseDeleteDialog = () => {
     setOpenDeleteDialog(false);
@@ -429,11 +478,11 @@ export default function DataCatalogue() {
 
     const handleDeleteData = () => {
       if (textFieldContent == selected[0]) {
-        axios.post('https://seeds.geospectrum.com.ph/getdata/delete', {"id": textFieldContent})
-        // axios.post('http://localhost:5000/getdata/delete', {"id": textFieldContent})
+        axios.post('http://localhost:5000/getdata/delete', {"id": textFieldContent})
+        // axios.post('https://seeds.geospectrum.com.ph/getdata/delete', {"id": textFieldContent})
         .then(async (res) => {
-          const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',); //ito yung gagamitin pag sa web yung server
-          // const res4 = await axios('http://localhost:5000/metadata/',); //ito yung gagamitin pag sa web yung server
+          const res4 = await axios('http://localhost:5000/metadata/',); //ito yung gagamitin pag sa web yung server
+          // const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',); //ito yung gagamitin pag sa web yung server
           setDataCat(res4.data);
           setDataShow(res4.data);
           alert(res.data)

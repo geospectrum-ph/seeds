@@ -81,15 +81,23 @@ function MainWindow(match) {
 
   useEffect (() => {
     const fetchData = async () => {
-      const res = await axios('https://seeds.geospectrum.com.ph/barangay/', ); //ito yung gagamitin pag sa web yung server
-      const res3 = await axios('https://seeds.geospectrum.com.ph/healthmapper/brgy/all', ); //ito yung gagamitin pag sa web yung server
-      const res2 = await axios('https://seeds.geospectrum.com.ph/getdata/barangays', ); //ito yung gagamitin pag sa web yung server
-      const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',); //ito yung gagamitin pag sa web yung server
-      // const res = await axios('http://localhost:5000/metadata/', ); //ito yung gagamitin pag sa local machine yung server
-      const res5 = await axios('https://seeds.geospectrum.com.ph/healthmapper/allpoints',);
-      const res6 = await axios('https://seeds.geospectrum.com.ph/commercialmapper//brgy/all',);
-      const res7 = await axios('https://seeds.geospectrum.com.ph/jobmapper//brgy/all',);
-      const res8 = await axios('https://seeds.geospectrum.com.ph/landuse/brgy/all',);
+      const res = await axios('http://localhost:5000/barangay/', ); //ito yung gagamitin pag sa web yung server
+      const res3 = await axios('http://localhost:5000/healthmapper/brgy/all', ); //ito yung gagamitin pag sa web yung server
+      const res2 = await axios('http://localhost:5000/getdata/barangays', ); //ito yung gagamitin pag sa web yung server
+      const res4 = await axios('http://localhost:5000/metadata/',); //ito yung gagamitin pag sa web yung server
+      const res5 = await axios('http://localhost:5000/healthmapper/allpoints',);
+      const res6 = await axios('http://localhost:5000/commercialmapper//brgy/all',);
+      const res7 = await axios('http://localhost:5000/jobmapper//brgy/all',);
+      const res8 = await axios('http://localhost:5000/landuse/brgy/all',);
+
+      // const res = await axios('https://seeds.geospectrum.com.ph/barangay/', ); //ito yung gagamitin pag sa web yung server
+      // const res3 = await axios('https://seeds.geospectrum.com.ph/healthmapper/brgy/all', ); //ito yung gagamitin pag sa web yung server
+      // const res2 = await axios('https://seeds.geospectrum.com.ph/getdata/barangays', ); //ito yung gagamitin pag sa web yung server
+      // const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',); //ito yung gagamitin pag sa web yung server
+      // const res5 = await axios('https://seeds.geospectrum.com.ph/healthmapper/allpoints',);
+      // const res6 = await axios('https://seeds.geospectrum.com.ph/commercialmapper//brgy/all',);
+      // const res7 = await axios('https://seeds.geospectrum.com.ph/jobmapper//brgy/all',);
+      // const res8 = await axios('https://seeds.geospectrum.com.ph/landuse/brgy/all',);
   
       // setHealthAll(res3.data)
       setDd(res2.data)

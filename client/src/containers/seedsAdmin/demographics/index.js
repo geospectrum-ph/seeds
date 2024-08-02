@@ -58,8 +58,9 @@ export default function Demograhics() {
    const [domain, setDomain] = useState([])
    const getDomains = async () => {
      try{
-       const domains = await axios.get("https://seeds.geospectrum.com.ph/metadata/getdomainsdemographic");
-       setDomain(domains.data);
+      const domains = await axios.get("http://localhost:5000/metadata/getdomainsdemographic");
+      // const domains = await axios.get("https://seeds.geospectrum.com.ph/metadata/getdomainsdemographic");
+      setDomain(domains.data);
      }
      catch(e){
       //  /* console.log(e) */

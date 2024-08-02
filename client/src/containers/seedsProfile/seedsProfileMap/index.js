@@ -78,8 +78,8 @@ function SeedsMap() {
   const routeArray = [
     {
       "subdomain":"Disease Incidence",
-      "route_brgy": `https://seeds.geospectrum.com.ph/healthmapper/brgy/single`, 
-      "route_graph":'https://seeds.geospectrum.com.ph/healthmapper/graph', 
+      "route_brgy": `http://localhost:5000/healthmapper/brgy/single`, 
+      "route_graph":'http://localhost:5000/healthmapper/graph', 
       "set_select":setDiseaseSelect, 
       "set_graph":setDiseaseMapperGraph,
       "class_select": [
@@ -89,8 +89,8 @@ function SeedsMap() {
       ]
     }, {
       "subdomain":"Commercial Establishments",
-      "route_brgy": `https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
-      "route_graph":'https://seeds.geospectrum.com.ph/commercialmapper/graph', 
+      "route_brgy": `http://localhost:5000/commercialmapper/brgy/single`, 
+      "route_graph":'http://localhost:5000/commercialmapper/graph', 
       "set_select":setCommercialSelect, 
       "set_graph":setCommercialMapperGraph,
       "class_select": [
@@ -100,15 +100,15 @@ function SeedsMap() {
       ]
     }, {
       "subdomain":"Existing Land Use",
-      "route_brgy": `https://seeds.geospectrum.com.ph/landuse/brgy`, 
-      "route_graph":'https://seeds.geospectrum.com.ph/landuse/graph', 
+      "route_brgy": `http://localhost:5000/landuse/brgy`, 
+      "route_graph":'http://localhost:5000/landuse/graph', 
       "set_select":setLandUseSelect,
       "set_graph":setLandUseGraph,
       "class_select":  [] // wala talaga
     }, {
       "subdomain":"Jobs",
-      "route_brgy": `https://seeds.geospectrum.com.ph/jobmapper/brgy/single`, 
-      "route_graph":'https://seeds.geospectrum.com.ph/jobmapper/graph', 
+      "route_brgy": `http://localhost:5000/jobmapper/brgy/single`, 
+      "route_graph":'http://localhost:5000/jobmapper/graph', 
       "set_select":setJobSelect,
       "set_graph":setJobMapperGraph,
       "class_select": [
@@ -119,6 +119,50 @@ function SeedsMap() {
     },
   ]
 
+  // const routeArray = [
+  //   {
+  //     "subdomain":"Disease Incidence",
+  //     "route_brgy": `https://seeds.geospectrum.com.ph/healthmapper/brgy/single`, 
+  //     "route_graph":'https://seeds.geospectrum.com.ph/healthmapper/graph', 
+  //     "set_select":setDiseaseSelect, 
+  //     "set_graph":setDiseaseMapperGraph,
+  //     "class_select": [
+  //       {"context": startDate, "param": "startdate"},
+  //       {"context": endDate, "param": "enddate"}
+  //       // {"context": diseaseClassSelect, "param": ""} // di pa na iimplement
+  //     ]
+  //   }, {
+  //     "subdomain":"Commercial Establishments",
+  //     "route_brgy": `https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
+  //     "route_graph":'https://seeds.geospectrum.com.ph/commercialmapper/graph', 
+  //     "set_select":setCommercialSelect, 
+  //     "set_graph":setCommercialMapperGraph,
+  //     "class_select": [
+  //       {"context": startDate, "param": "startdate"},
+  //       {"context": endDate, "param": "enddate"}
+  //       // {"context": commercialClassSelect, "param": "com_class"} // di ginagamit?
+  //     ]
+  //   }, {
+  //     "subdomain":"Existing Land Use",
+  //     "route_brgy": `https://seeds.geospectrum.com.ph/landuse/brgy`, 
+  //     "route_graph":'https://seeds.geospectrum.com.ph/landuse/graph', 
+  //     "set_select":setLandUseSelect,
+  //     "set_graph":setLandUseGraph,
+  //     "class_select":  [] // wala talaga
+  //   }, {
+  //     "subdomain":"Jobs",
+  //     "route_brgy": `https://seeds.geospectrum.com.ph/jobmapper/brgy/single`, 
+  //     "route_graph":'https://seeds.geospectrum.com.ph/jobmapper/graph', 
+  //     "set_select":setJobSelect,
+  //     "set_graph":setJobMapperGraph,
+  //     "class_select": [
+  //       {"context": startDate, "param": "startdate"},
+  //       {"context": endDate, "param": "enddate"},
+  //       {"context": jobClassSelect, "param": "job_class"}
+  //     ]
+  //   },
+  // ]
+
   var osm = L.tileLayer('https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png', {attribution:
     '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'})
   var cartodb = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {attribution:
@@ -126,30 +170,55 @@ function SeedsMap() {
   var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution:
     'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'})
 
-  useEffect(() => {
-    const fetchData = async() => {
-      const res = await axios.get(`https://seeds.geospectrum.com.ph/getdata/bounds`,)
-      setBounds(res.data)
-    }
+    useEffect(() => {
+      const fetchData = async() => {
+        const res = await axios.get(`http://localhost:5000/getdata/bounds`,)
+        setBounds(res.data)
+      }
+  
+      const fetchDataMandaluyong = async() => {
+        const res = await axios("http://localhost:5000/household/mandaGet")
+        setHouseholdBldgShape(res.data)
+      }
+      
+      fetchDataMandaluyong()
+      fetchData()
+  
+      seedsmap.current = L.map('seedsmap', {
+        fullscreenControl: true,
+        center: [14,7423, -120.8693],
+        zoom: 13,
+        layers: [esri]
+      });
+  
+      var rose = new L.control.rose('rose', {position:'bottomleft', icon:'default', iSize:'medium', opacity:0.8});
+      rose.addTo(seedsmap.current)
+    }, []);
 
-    const fetchDataMandaluyong = async() => {
-      const res = await axios("https://seeds.geospectrum.com.ph/household/mandaGet")
-      setHouseholdBldgShape(res.data)
-    }
+  // useEffect(() => {
+  //   const fetchData = async() => {
+  //     const res = await axios.get(`https://seeds.geospectrum.com.ph/getdata/bounds`,)
+  //     setBounds(res.data)
+  //   }
+
+  //   const fetchDataMandaluyong = async() => {
+  //     const res = await axios("https://seeds.geospectrum.com.ph/household/mandaGet")
+  //     setHouseholdBldgShape(res.data)
+  //   }
     
-    fetchDataMandaluyong()
-    fetchData()
+  //   fetchDataMandaluyong()
+  //   fetchData()
 
-    seedsmap.current = L.map('seedsmap', {
-      fullscreenControl: true,
-      center: [14,7423, -120.8693],
-      zoom: 13,
-      layers: [esri]
-    });
+  //   seedsmap.current = L.map('seedsmap', {
+  //     fullscreenControl: true,
+  //     center: [14,7423, -120.8693],
+  //     zoom: 13,
+  //     layers: [esri]
+  //   });
 
-    var rose = new L.control.rose('rose', {position:'bottomleft', icon:'default', iSize:'medium', opacity:0.8});
-    rose.addTo(seedsmap.current)
-  }, []);
+  //   var rose = new L.control.rose('rose', {position:'bottomleft', icon:'default', iSize:'medium', opacity:0.8});
+  //   rose.addTo(seedsmap.current)
+  // }, []);
 
   var bound 
 
@@ -316,7 +385,7 @@ function SeedsMap() {
   useEffect(() => {
     if (clickPos){
       const fetchData = async() => {
-        const get_brgyID = await axios.get(`https://seeds.geospectrum.com.ph/barangay/findBarangay`, {
+        const get_brgyID = await axios.get(`http://localhost:5000/barangay/findBarangay`, {
           params: {
             lat: clickPos[1], 
             long: clickPos[0]
@@ -328,7 +397,7 @@ function SeedsMap() {
           if (get_brgyID.data[0]["properties"].BARANGAY === profileLoc) {
             // console.log("papasok dito")
             setSecondClick(true)
-            const res = await axios.get(`https://seeds.geospectrum.com.ph/household/click`,  {
+            const res = await axios.get(`http://localhost:5000/household/click`,  {
               params: {
                 lat: clickPos[1], 
                 long: clickPos[0]
@@ -350,6 +419,44 @@ function SeedsMap() {
       fetchData();
     }
   }, [clickPos])
+
+  // useEffect(() => {
+  //   if (clickPos){
+  //     const fetchData = async() => {
+  //       const get_brgyID = await axios.get(`https://seeds.geospectrum.com.ph/barangay/findBarangay`, {
+  //         params: {
+  //           lat: clickPos[1], 
+  //           long: clickPos[0]
+  //         }
+  //       });
+  //       // console.log("325: ", get_brgyID.data)
+  //       if (get_brgyID && profileLoc && get_brgyID.data[0]) { // for 2nd click,  && get_brgyID.data[0] this is needed para kapag lumipat sa ibang profile, hindi mag eerror.
+  //         // console.log("327: ", get_brgyID.data[0]["properties"].brgy_name, profileLoc)
+  //         if (get_brgyID.data[0]["properties"].BARANGAY === profileLoc) {
+  //           // console.log("papasok dito")
+  //           setSecondClick(true)
+  //           const res = await axios.get(`https://seeds.geospectrum.com.ph/household/click`,  {
+  //             params: {
+  //               lat: clickPos[1], 
+  //               long: clickPos[0]
+  //             }
+  //           });
+  //           // console.log(res)
+  //           if (res.data.Household_Population) {
+  //             setHouseholdBldgPopulation(res.data.Household_Population.map((x)=>{ 
+  //               x['id'] = x._id
+  //               return x
+  //             }));
+  //           }
+  //         } else {setSecondClick(false)}
+  //       }
+  //       setID(get_brgyID.data)
+  //       setLandUseCategory(null)
+  //       setLandUseClassSelect(null);
+  //     }
+  //     fetchData();
+  //   }
+  // }, [clickPos])
 
   useEffect(() => {
     if (currentSubdomain && currentSubdomain.replace(/\s+/g, "") !== "HouseholdSurveys" && brgyID) { 
@@ -392,12 +499,12 @@ function SeedsMap() {
       setProfileLoc(brgyID[0].properties.brgy_name)
       
       const fetchData = async() => {
-        const res_brgy_only = await axios("https://seeds.geospectrum.com.ph/barangay",
+        const res_brgy_only = await axios("http://localhost:5000/barangay",
           {params: {brgy_name:brgyID[0].properties.brgy_name}});
         setBrgySelect(res_brgy_only.data[0])
         setHouseholdSelect(res_brgy_only.data[0])
 
-        const res = await axios("https://seeds.geospectrum.com.ph/household/get", {
+        const res = await axios("http://localhost:5000/household/get", {
           params: {
             brgy_id: brgyID[0].properties.brgy_name,
             no_members_min: householdMin,
@@ -425,6 +532,42 @@ function SeedsMap() {
           }
         }) // yung Household_Shape shape lang yung kinukuha sa map!
       }
+
+      // const fetchData = async() => {
+      //   const res_brgy_only = await axios("https://seeds.geospectrum.com.ph/barangay",
+      //     {params: {brgy_name:brgyID[0].properties.brgy_name}});
+      //   setBrgySelect(res_brgy_only.data[0])
+      //   setHouseholdSelect(res_brgy_only.data[0])
+
+      //   const res = await axios("https://seeds.geospectrum.com.ph/household/get", {
+      //     params: {
+      //       brgy_id: brgyID[0].properties.brgy_name,
+      //       no_members_min: householdMin,
+      //       no_members_max: householdMax,
+      //       area_max: areaMax,
+      //       land_use: housingLandUseSelected,
+      //       number_of_storeys_min: numberStoreysMin,
+      //       number_of_storeys_max: numberStoreysMax,
+      //       type_of_material: materialTypeSelected,
+      //       occupation: occupationSelected,
+      //       profession: professionSelected,
+      //       gender: gender,
+      //       age_min: ageMin,
+      //       age_max: ageMax,
+      //     }
+      //   }).then(function(res) {
+      //     if (res) {
+      //       // setHouseholdBldgShape(res.data.Household_Shape)
+      //       if (secondClick === false) {
+      //         setHouseholdBldgPopulation(res.data.Household_Population.map((x)=>{
+      //           x['id'] = x._id
+      //           return x
+      //         }));
+      //       }
+      //     }
+      //   }) // yung Household_Shape shape lang yung kinukuha sa map!
+      // }
+
       fetchData(); 
     }    
   }, [brgyID,currentSubdomain, householdMin, householdMax, areaMax, housingLandUseSelected, 
