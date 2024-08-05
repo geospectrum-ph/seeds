@@ -1,10 +1,8 @@
 
-import React, {useContext, useState, useEffect} from 'react';
+import React from 'react';
 import axios from 'axios';
 import _without from "lodash/without";
-import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Label, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Button, Typography, Grid, Container, Paper, Checkbox, Divider, FormControl, FormGroup,
-          InputLabel, MenuItem, Select ,Radio, RadioGroup, FormControlLabel, ListSubheader, FormHelperText }from '@material-ui/core';
+import { Button, Grid, Container, FormControl, InputLabel, MenuItem, Select, FormHelperText } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { DataGrid } from '@material-ui/data-grid';
 
@@ -14,22 +12,26 @@ import AnalyticsDatePicker from './datePicker'
 import LoadingPage from '../loadingPage'
 
 import { SEEDSContext } from '../../context/SEEDSContext';
-import {AnalyticsContext} from '../../context/AnalyticsContext';
+import { AnalyticsContext } from '../../context/AnalyticsContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTypography-h3': {
       fontFamily: 'LeagueSpartan'
-    }, '& .MuiTypography-h5': {
+    },
+    '& .MuiTypography-h5': {
       fontFamily: 'LeagueSpartan'
-    }, '& .MuiTypography-h6': {
+    },
+    '& .MuiTypography-h6': {
       fontFamily: 'LeagueSpartan'
     }
-  }, formControl: {
+  },
+  formControl: {
     marginTop: theme.spacing(2),
     minWidth: '100%',
     maxWidth: 300
-  }, login2: {
+  },
+  login2: {
     borderWidth: 1,
     borderRadius: 0,
     borderColor: "#1b798e",
@@ -41,18 +43,22 @@ const useStyles = makeStyles((theme) => ({
       color: '#fffefe',
       backgroundColor: '#1b798e',
       borderColor: "#1b798e"
-    }, '&:active': {
+    },
+    '&:active': {
       color: '#fffefe',
       borderColor: "#1b798e",
       backgroundColor: '#229922'
-    }, '&:focus': {
+    },
+    '&:focus': {
       color: '#fffefe',
       borderColor: "#229922",
       backgroundColor: '#229922'
     }
-  }, cardGrid: {
+  },
+  cardGrid: {
     paddingBottom: theme.spacing(8)
-  }, login1: {
+  },
+  login1: {
     border: 0,
     borderRadius: 5,
     backgroundColor: '#1b798e',
@@ -63,7 +69,8 @@ const useStyles = makeStyles((theme) => ({
       color: '#fffefe',
       backgroundColor: '#229922',
     }
-  }, deleteButton: {
+  },
+  deleteButton: {
     border: 0,
     borderRadius: 5,
     backgroundColor: '#ced8da',
@@ -74,9 +81,10 @@ const useStyles = makeStyles((theme) => ({
       color: '#fffefe',
       backgroundColor: '#A31621',
     }
-  }, menuPaper: {
-    maxHeight: 300
   },
+  menuPaper: {
+    maxHeight: 300
+  }
 }));
 
 export default function Analytics() {
@@ -100,307 +108,84 @@ export default function Analytics() {
   }, []);
 
   React.useEffect(() => {
-    const fetchLayers = async(id) => {
+    layers && layers.length > 0 ? setLayers([]) : null;
+
+    const fetchFeatures = async(id) => {      
       await axios("http://localhost:5000/getdata/?id=" + id)
         .then((response) => {
-          setLayers([...layers, response.data[0]]);
+          setLayers(...layers, response.data);
         })
         .catch((error) => {
           console.log(error);
         });
     }
 
-    list && list.length > 0 ? setLayers(list.map((item) => (item.id ? fetchLayers(item.id) : null))) : null;
+    list.map((item) => ("id" in item ? fetchFeatures(item.id) : null));
   }, [list]);
 
-  React.useEffect(() => {
-    layers ? console.log(layers) : null;
-  }, [layers]);
+  const [layerSelected, setLayerSelected] = React.useState([]);
+
+  const handleChange = (event) => {
+    const { target: { value } } = event;
+
+    setLayerSelected(typeof value === 'string' ? value.split(',') : value);
+  }
+
+  const handleClearLayers = (event) => {
+    setLayerSelected([]);
+  }
 
   return (
-    <div className={classes.root}>
+    <div className = { classes.root }>
       <LoadingPage/>
       <br/><br/>
-      <Container maxWidth="xl">
-        <Grid container spacing={3} justifyContent="flex-start">
-          <Grid item xs={12} md={6} lg={5}>
-            <FormControl focused required variant="outlined" className={classes.formControl}>
-              <InputLabel>Data Layers</InputLabel>  
-              {/* <Select multiple label="Data Layers" displayEmpty={true} value={selectCatDataOne}
-                MenuProps={{
+      <Container maxWidth = "xl">
+        <Grid container spacing = { 3 } justifyContent = "flex-start">
+          <Grid item xs = { 12 } md = { 6 }>
+            <FormControl focused required variant = "outlined" className = { classes.formControl }>
+              <InputLabel>Data Layers</InputLabel>
+              <Select
+                label = "Data Layers"
+                displayEmpty
+                value = { layerSelected  && layers.length > 0 ? layerSelected : [] }
+                onChange = { (event) => { handleChange(event) }}
+                MenuProps = {{
                   anchorOrigin: {
                     vertical: "bottom",
                     horizontal: "left"
-                  }, transformOrigin: {
+                  },
+                  transformOrigin: {
                     vertical: "top",
                     horizontal: "left"
-                  }, getContentAnchorEl: null
-                }} onChange={(e)=>onCatChangeDataOne(e)}>
-                <ListSubheader disabled>JSON</ListSubheader>
-                {catLayers.length > 0 ? catLayers.map((item, index) =>
-                  {if (item.json_type==='json'){
-                    return (
-                      <MenuItem value={item.layer_name} key={index} disabled={
-                        selectCatDataOne.length > 1 && selectCatDataOne.includes(item.layer_name) == false 
-                        && selectCatDataOne[0] != selectCatDataOne[1]}>
-                        {item.layer_name}
+                  },
+                  getContentAnchorEl: null
+                }}
+              >
+                <MenuItem disabled autoFocus value = "">
+                  Please select a dataset
+                </MenuItem>
+                {
+                  layers && layers.length > 0 ?
+                    layers.map((layer) => (
+                      <MenuItem key = { layer.properties.mtd_id } value = { layer.properties.mtd_id }>
+                        { layer.properties.mtd_id } : { layer.name } ({ layer.geometry.type })
                       </MenuItem>
-                    )
-                  }})
-                : null}
-                <ListSubheader disabled>GeoJSON Point</ListSubheader>
-                {catLayers.length > 0 ? catLayers.map((item, index) =>
-                  {if (item.json_type==='geojson.Point'){
-                    return (
-                      <MenuItem value={item.layer_name} key={index} disabled={
-                        selectCatDataOne.length > 1 && selectCatDataOne.includes(item.layer_name) == false 
-                        && selectCatDataOne[0] != selectCatDataOne[1]}>
-                        {item.layer_name}
+                    ))
+                    :
+                      <MenuItem disabled>
+                        No data available
                       </MenuItem>
-                    )
-                  }})
-                : null}
+                }
               </Select>
-              <FormHelperText>Please select one or two.</FormHelperText> */}
+              <FormHelperText>Please select one or two.</FormHelperText>
             </FormControl>
           </Grid>
-          {/* <Grid item xs={12} md={6} lg={5}>
-            <FormControl focused required variant="outlined" className={classes.formControl} >
-              <InputLabel>Location</InputLabel>
-              <Select multiple label="Location" value={selectLoc} onChange={(e)=>onLocChange(e)}
-                MenuProps={{
-                  anchorOrigin: {
-                    vertical: "bottom",
-                    horizontal: "left"
-                  }, transformOrigin: {
-                    vertical: "top",
-                    horizontal: "left"
-                  }, getContentAnchorEl: null,
-                  classes: { paper: classes.menuPaper }
-                }}>
-                {locLayers.length > 0 ? 
-                  <MenuItem value="Select all" onClick={selectAll} 
-                    primaryText={checkedAll?"Select None":"Select all"}>
-                    {checkedAll?"Select None":"Select all"}
-                  </MenuItem>
-                : null}
-                {locLayers.length > 0 ? locLayers.map((item, index) =>{
-                  return (
-                    <MenuItem value={item.value} key={index} selected={selectLoc.includes(item.value)}>
-                      {item.label}
-                    </MenuItem>
-                  )
-                }) : null}
-              </Select>
-              <FormHelperText>Please select at least two.</FormHelperText>
-            </FormControl>
-          </Grid> */}
-
-          <Grid item xs={12} md={6} lg={1} className={classes.formControl2}>
-            <AnalyticsDatePicker/>
-          </Grid>
-          <Grid item xs={12} md={6} lg={1} container direction="row" justifyContent="flex-start" 
-            alignItems="center">
-            <Button style={{height:"63%"}} fullWidth className={classes.deleteButton} 
-              variant="contained" onClick={()=>clearItems()} >
+          <Grid item xs = { 12 } md = { 2 } container direction = "row" justifyContent = "flex-start" alignItems = "center">
+            <Button fullWidth className = { classes.deleteButton } variant = "contained" onClick = { (event) => { handleClearLayers(event) } } style = { { height: "56px", marginTop: "-8px" } }>
               Clear
             </Button>
           </Grid>
         </Grid>
-
-        {/* <Grid container spacing={3} justifyContent="center" > 
-          <Grid item xs={12} md={12} lg={4} style={{height:"65vh"}}>
-            <Paper style={{height:"90%", overflowY:"scroll"}}>
-              <Grid container direction="column" justifyContent="space-between" style={{padding:20}}>
-                <Grid item xs={12}>
-                  {selectLoc.length > 1? subCat.map((item, index) => {
-                    return (
-                      <Grid>
-                        <Typography variant="h6">{selectCatDataOne[0].replace(/_/g, ' ')}</Typography>
-                        <Divider/>
-                        {disNum?
-                          <FormControl required style={{paddingLeft:20}}>
-                            <RadioGroup required onChange={onRadioChange} 
-                              defaultValue={disNum[0].length>0 ? disNum[0][0].column_name:null}>
-                              {disNum[index].map((item, index) => {
-                                return (
-                                <div>
-                                  <FormControlLabel style={{fontWeight:700}} label={item.column_label}
-                                    control={<Radio value={item.column_name}/>}/>
-                                </div>)})
-                              }
-                            </RadioGroup>
-                          </FormControl>
-                        : null}
-                        <Divider/>
-                      </Grid>
-                    )
-                  }) : null}
-      
-                  {selectLoc.length > 1? subCat.map((item, index) => {
-                    return (
-                    <Grid container direction='column'>
-                      {disStr ? disStr[index].map((item2) => {
-                        var isCheckedNon = selectSubCat1.filter((item3)=>{ 
-                          if (item3.column_name == item2.column_name) { // check if selectSubCat contains the JSON for corresponding column_name
-                            if (item3.column_classes.length > 0) { // check if there are checked column_classes under it
-                              return true // naka-check lahat or at least 1 ng anak. pag return false, empty array
-                            }
-                          }
-                        })
-                        return (
-                          <FormControl required style={{paddingLeft:10}} >
-                            <FormGroup>
-                              <div style={{display: 'flex', direction: 'row', alignItems: 'center'}}>
-                                <Checkbox required defaultChecked value={item2.column_name} 
-                                  label={item2.column_label} onChange={onRadioChangeNon} 
-                                  checked={isCheckedNon.length>0}/>
-                                <Typography style={{fontWeight:700}}>{item2.column_label}</Typography>
-                              </div>
-                            
-                              {item2.column_classes? item2.column_classes.map((item) => {
-                                var isChecked = selectSubCat1.filter((item3)=>{
-                                  if (item3.column_name == item2.column_name) {  // check if selectSubCat contains the JSON for corresponding column_name
-                                    if (item3.column_classes.includes(item)) { // check if column_classes contains this specific item
-                                      return true
-                                    }
-                                  }
-                                })
-                                return(
-                                  <div style={{display: 'flex', direction: 'row', alignItems: 'center'}}>
-                                    <Checkbox required defaultChecked value={item} label={item} 
-                                      style={{paddingLeft:30}} checked={isChecked.length>0}
-                                      onChange={(e)=>onRadioChangeSub(e, item2.column_name)}/>
-                                    <Typography>{item}</Typography>
-                                  </div>)
-                                })
-                              : null}
-                            </FormGroup>
-                          </FormControl>
-                        )
-                      }): null}
-                      <Divider/>
-                    </Grid>
-                  )}): null}
-                  <br/>
-                  {selectLoc.length > 1? subCat2.map((item, index) => {
-                    return (
-                      <Grid container direction="column" >
-                        <Typography variant="h6">{selectCatDataOne[1].replace(/_/g, ' ')}</Typography>
-                        <Divider/>
-                        {dis2Num ?
-                          <FormControl required style={{paddingLeft:20}} >
-                            <RadioGroup required onChange={onRadioChange2} 
-                              defaultValue={dis2Num[0].length>0?dis2Num[0][0].column_name:null}>
-                              {dis2Num[index].map((item) => {
-                                return (
-                                  <div>
-                                    <FormControlLabel control={<Radio value={item.column_name} />} label={item.column_label}/>
-                                  </div>
-                                )
-                              })}
-                            </RadioGroup>
-                          </FormControl>
-                        :null}
-                        <Divider/>
-                      </Grid>
-                    )
-                  }): null}
-                  {selectLoc.length > 1? subCat2.map((item, index) => {
-                    return (
-                      <Grid container direction='column' style={{paddingLeft:10}} >
-                        {dis2Str?dis2Str[index].map((item2) => {
-                          var isCheckedNon = selectSubCat2.filter((item3)=>{
-                            if (item3.column_name == item2.column_name) {
-                              if (item3.column_classes.length > 0) { // check if there are checked column_classes under it
-                                return true
-                              }
-                            }
-                          })
-                          return (
-                            <FormControl required>
-                              <FormGroup required>
-                                <div style={{display: 'flex', direction: 'row', alignItems: 'center'}}>
-                                  <Checkbox required defaultChecked value={item2.column_name} 
-                                    label={item2.column_label} onChange={onRadioChange2Non} 
-                                    checked={isCheckedNon.length>0}/>
-                                  <Typography style={{fontWeight:700}}>{item2.column_label}</Typography>
-                                </div>
-                                {item2.column_classes? item2.column_classes.map((item) => {
-                                  var isChecked = selectSubCat2.filter((item3)=>{
-                                    if (item3.column_name == item2.column_name) {
-                                      if (item3.column_classes.includes(item)) {
-                                        return true
-                                      }
-                                    }
-                                  })
-                                  return(
-                                    <div style={{display: 'flex', direction: 'row', alignItems: 'center'}}>
-                                      <Checkbox defaultChecked value={item} label={item} style={{paddingLeft:30}} 
-                                        onChange={(e)=>onRadioChange2Sub(e, item2.column_name)} 
-                                        checked={isChecked.length>0}/>
-                                      <Typography>{item}</Typography>
-                                    </div>
-                                  )})
-                                : null}
-                              </FormGroup>
-                            </FormControl>
-                          )
-                        }): null}
-                        <Divider/>
-                      </Grid>
-                    )
-                  }): null}
-                </Grid>
-              </Grid>
-            </Paper>
-
-            <Paper style={{height:"10%", }} variant="outlined" elevation={0}>
-              <Button className={classes.login1} style={{height:"100%", width:"100%",}} variant="contained" 
-                onClick={performAnalysis} disabled={!selectCatDataOne.length>0 || !checkboxChecked || 
-                selectLoc.length < 2}>
-                Perform Analysis
-              </Button>
-            </Paper>
-          </Grid>
-
-          <Grid item xs={12} md={12} lg={8} style={{height:"65vh"}}>
-            <SeedsAnalyticsMap/>
-          </Grid>
-        </Grid>
-
-        <Grid container direction="row" spacing={3} justifyContent="center" >
-          <Grid item xs={12} md={12} lg={6} >
-            <Typography align="center" variant="h5">Table</Typography>
-            <Paper style={{height:500}}>
-              {rows.length > 0 ?
-                <DataGrid rows={rows} columns={cols} rowsPerPageOptions={[25, 50, 100]}/>
-              : null}
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={12} lg={6} >
-            <Typography align="center" variant="h5">Graphs</Typography>
-            <Paper style={{height:500}}> 
-              {mapBrgys.length > 0 && graphLabels ?
-                <ResponsiveContainer>
-                  <ScatterChart width={600} height={400} >
-                    <CartesianGrid />
-                    <XAxis type="number" dataKey={Object.keys(graphLabels)[0]} 
-                      name={graphLabels[Object.keys(graphLabels)[0]]} unit="">
-                      <Label value={graphLabels[Object.keys(graphLabels)[0]]} offset={0} position="insideBottom"/>
-                    </XAxis>
-                    <YAxis type="number" dataKey={Object.keys(graphLabels)[1]} 
-                      name={graphLabels[Object.keys(graphLabels)[1]]} unit="" 
-                      label={{value: graphLabels[Object.keys(graphLabels)[1]], angle: -90, position: 'insideLeft'}}/>
-                    <ZAxis type="string" dataKey="brgy_name" name="Barangay" unit="" />
-                    <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                    <Scatter name="Graph" data={graphData} fill={theme.palette.primary.main}/>
-                  </ScatterChart> 
-                </ResponsiveContainer>
-              : null}
-            </Paper>
-          </Grid>
-        </Grid> */}
       </Container>
     </div>
   );
