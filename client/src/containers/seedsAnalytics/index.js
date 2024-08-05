@@ -82,6 +82,20 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#A31621',
     }
   },
+  analyzeButton: {
+    border: 0,
+    borderRadius: 5,
+    backgroundColor: '#1b798e',
+    color: '#ffffff',
+    fontSize: '1rem',
+    textAlign: "center",
+    justify:"center",
+    fontFamily:'LeagueSpartan',
+    '&:hover': {
+      color: '#fffefe',
+      backgroundColor: '#229922',
+    }
+  },
   menuPaper: {
     maxHeight: 300
   }
@@ -135,13 +149,17 @@ export default function Analytics() {
     setLayerSelected([]);
   }
 
+  const handleAnalyzeLayers = (event) => {
+    /* */
+  }
+
   return (
     <div className = { classes.root }>
       <LoadingPage/>
       <br/><br/>
       <Container maxWidth = "xl">
         <Grid container spacing = { 3 } justifyContent = "flex-start">
-          <Grid item xs = { 12 } md = { 6 }>
+          <Grid item xs = { 12 } md = { 8 }>
             <FormControl focused required variant = "outlined" className = { classes.formControl }>
               <InputLabel>Data Layers</InputLabel>
               <Select
@@ -183,6 +201,11 @@ export default function Analytics() {
           <Grid item xs = { 12 } md = { 2 } container direction = "row" justifyContent = "flex-start" alignItems = "center">
             <Button fullWidth className = { classes.deleteButton } variant = "contained" onClick = { (event) => { handleClearLayers(event) } } style = { { height: "56px", marginTop: "-8px" } }>
               Clear
+            </Button>
+          </Grid>
+          <Grid item xs = { 12 } md = { 2 } container direction = "row" justifyContent = "flex-start" alignItems = "center">
+            <Button fullWidth className = { classes.analyzeButton } variant = "contained" onClick = { (event) => { handleAnalyzeLayers(event) } } style = { { height: "56px", marginTop: "-8px" } }>
+              Analyze
             </Button>
           </Grid>
         </Grid>
