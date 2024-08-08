@@ -4,7 +4,11 @@ import axios from 'axios';
 import _without from "lodash/without";
 import { Box, Button, Grid, Container, FormControl, InputLabel, MenuItem, Select, FormHelperText } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
+import { SparkLineChart } from '@mui/x-charts/SparkLineChart';
 import { makeStyles } from '@material-ui/core/styles';
+
+import { describe } from "./handleConversion.js";
+
 
 import theme from '../../theme'
 import SeedsAnalyticsMap from './seedsAnalyticsMap/index'
@@ -153,71 +157,54 @@ export default function Analytics() {
     setLayerSelected([]);
   }
 
-  // const columns = [
-  //   { field: 'id', headerName: 'ID', width: 90 },
-  //   {
-  //     field: 'firstName',
-  //     headerName: 'First name',
-  //     width: 150,
-  //     editable: true,
-  //   },
-  //   {
-  //     field: 'lastName',
-  //     headerName: 'Last name',
-  //     width: 150,
-  //     editable: true,
-  //   },
-  //   {
-  //     field: 'age',
-  //     headerName: 'Age',
-  //     type: 'number',
-  //     width: 110,
-  //     editable: true,
-  //   },
-  //   {
-  //     field: 'fullName',
-  //     headerName: 'Full name',
-  //     description: 'This column has a value getter and is not sortable.',
-  //     sortable: false,
-  //     width: 160,
-  //     // valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
-  //   },
-  // ];
-  
-  // const rows = [
-  //   { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14 },
-  //   { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31 },
-  //   { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 31 },
-  //   { id: 4, lastName: 'Stark', firstName: 'Arya', age: 11 },
-  //   { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  //   { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  //   { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  //   { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  //   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-  // ];
-
   const [columns, setColumns] = React.useState([]);
   const [rows, setRows] = React.useState([]);
 
+  const [dataset, setDataset] = React.useState([]);
+  const [statistics, setStatistics] = React.useState(null);
+
   const handleAnalyzeLayers = (id_array) => {
-    const shapefile = [];
+    const shapefiles = [];
     
     id_array.map(function (id) {
       const object = layers.find(function (item) {
         return (item.properties.mtd_id === id);
       });
 
-      object ? shapefile.push(object) : null;
+      object ? shapefiles.push(object) : null;
     });
 
-    const shapefileActive = shapefile[0];
+    setColumns(
+      Object
+        .keys(shapefiles[0].features[0].properties)
+        .map((key) => ({
+          field: key,
+          headerName: key,
+          type: typeof(shapefiles[0].features[0].properties[key]),
+          width: 200,
+          editable: true
+        })));
 
-    console.log(shapefileActive);
+    setRows(
+      shapefiles[0].features.map((feature, index) => ({
+        id: index,
+        ...feature.properties 
+      })));
 
-    // setColumns([...Array(40)].map(e=>~~(Math.random()*40)));
-
-    /* */
+    setDataset(shapefiles[0].features.map((feature) => (feature.properties.AREA_SQKM * 1000)));
   }
+
+  React.useEffect(() => {
+    if (dataset && dataset.length > 0) {
+      describe(dataset)
+        .then((response) => {
+          setStatistics(Object.keys(response).map((key) => [key, response[key]]));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [dataset]);
 
   return (
     <div className = { classes.root }>
@@ -275,22 +262,48 @@ export default function Analytics() {
             </Button>
           </Grid>
           <Grid item xs = { 12 } md = { 6 } container direction = "row" justifyContent = "flex-start" alignItems = "center">
-            <Box sx={{ height: 400, width: '100%' }}>
+            <Box sx = {{ height: 600, width: "100%" }}>
               <DataGrid
-                rows={rows}
-                columns={columns}
-                initialState={{
+                rows = { rows }
+                columns = { columns }
+                initialState = {{
                   pagination: {
                     paginationModel: {
                       pageSize: 5,
                     },
                   },
                 }}
-                pageSizeOptions={[5]}
+                pageSizeOptions = { [5] }
                 checkboxSelection
                 disableRowSelectionOnClick
               />
             </Box>
+          </Grid>
+          <Grid item xs = { 12 } md = { 6 } container direction = "column" justifyContent = "center" alignItems = "center">
+            <Grid item container direction = "row" justifyContent = "flex-start" alignItems = "center">
+              <Box sx = {{ flexGrow: 1 }}>
+                { dataset && dataset.length > 0 ? <SparkLineChart data = { dataset } height = { 300 } showHighlight/> : null }
+              </Box>
+            </Grid>
+            <Grid item container direction = "column" justifyContent = "center" alignItems = "center">
+              <Box width = { "100%" } height = { 300 }>
+                {
+                  statistics ?
+                    <Grid width = "100%" container direction = "column" justifyContent = "center" alignItems = "center">
+                      {
+                        statistics.map((item) => (
+                          <Grid item width = "100%" container direction = "row" justifyContent = "flex-start" alignContent = "center">
+                            <Grid item xs = { 6 }>{ item[0] }</Grid>
+                            <Grid item xs = { 6 }>{ item[1] }</Grid>
+                          </Grid>
+                        ))
+                      }
+                    </Grid>
+                    :
+                    <span>No data available.</span>
+                }
+              </Box>
+            </Grid>
           </Grid>
         </Grid>
       </Container>
