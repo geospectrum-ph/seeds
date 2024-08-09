@@ -2,21 +2,18 @@
 import React from 'react';
 import axios from 'axios';
 import _without from "lodash/without";
-import { Box, Button, Grid, Container, FormControl, InputLabel, MenuItem, Select, FormHelperText } from '@material-ui/core';
-import { DataGrid } from '@material-ui/data-grid';
+import { Box, Button, Grid, Container, FormControl, InputLabel, MenuItem, Select, FormHelperText, Card, CardHeader, Divider, LinearProgress } from '@material-ui/core';
+import { DataGrid, GridNoRowsOverlay } from '@material-ui/data-grid';
 import { SparkLineChart } from '@mui/x-charts/SparkLineChart';
 import { makeStyles } from '@material-ui/core/styles';
 
+import * as turf from "@turf/turf";
 import { describe } from "./handleConversion.js";
 
-
-import theme from '../../theme'
-import SeedsAnalyticsMap from './seedsAnalyticsMap/index'
 import AnalyticsDatePicker from './datePicker'
 import LoadingPage from '../loadingPage'
-
-import { SEEDSContext } from '../../context/SEEDSContext';
-import { AnalyticsContext } from '../../context/AnalyticsContext';
+import { textAlign } from '@mui/system';
+import { AnalyticsContext } from '../../context/AnalyticsContext.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     marginTop: theme.spacing(2),
+    minWidth: '100%',
+    maxWidth: 300
+  },
+  innerFormControl: {
     minWidth: '100%',
     maxWidth: 300
   },
@@ -108,8 +109,25 @@ const useStyles = makeStyles((theme) => ({
 export default function Analytics() {
   const classes = useStyles();
 
-  const [list, setList] = React.useState([]);
-  const [layers, setLayers] = React.useState([]);
+  const {
+    list, setList,
+    layers, setLayers,
+
+    layerSelected, setLayerSelected,
+
+    columns, setColumns,
+    rows, setRows,
+
+    aspectFormDisabled, setAspectFormDisabled,
+
+    aspects, setAspects,
+
+    aspectSelected, setAspectSelected,
+
+    dataset, setDataset,
+
+    statistics, setStatistics
+  } = React.useContext(AnalyticsContext);
   
   React.useEffect(() => {
     const fetchList = async() => {
@@ -126,8 +144,6 @@ export default function Analytics() {
   }, []);
 
   React.useEffect(() => {
-    layers && layers.length > 0 ? setLayers([]) : null;
-
     const fetchFeatures = async(id) => {      
       await axios("http://localhost:5000/getdata/?id=" + id)
         .then((response) => {
@@ -142,12 +158,10 @@ export default function Analytics() {
   }, [list]);
 
   React.useEffect(() => {
-    console.log(layers);
+    // console.log(layers);
   }, [layers]);
 
-  const [layerSelected, setLayerSelected] = React.useState([]);
-
-  const handleChange = (event) => {
+  const handleLayerChange = (event) => {
     const { target: { value } } = event;
 
     setLayerSelected(typeof value === 'string' ? value.split(',') : value);
@@ -157,59 +171,150 @@ export default function Analytics() {
     setLayerSelected([]);
   }
 
-  const [columns, setColumns] = React.useState([]);
-  const [rows, setRows] = React.useState([]);
-
-  const [dataset, setDataset] = React.useState([]);
-  const [statistics, setStatistics] = React.useState(null);
-
   const handleAnalyzeLayers = (id_array) => {
-    const shapefiles = [];
-    
-    id_array.map(function (id) {
-      const object = layers.find(function (item) {
-        return (item.properties.mtd_id === id);
+    if (layers && layers.length > 0) {
+      const shapefiles = [];
+      
+      id_array.map(function (id) {
+        const object = layers.find(function (item) {
+          return (item.properties.mtd_id === id);
+        });
+
+        object ? shapefiles.push(object) : null;
       });
 
-      object ? shapefiles.push(object) : null;
-    });
+      if (shapefiles && shapefiles.length > 0) {
+        setColumns(
+          Object
+            .keys(shapefiles[0].features[0].properties)
+            .map(function (key) {
+              let type = typeof(shapefiles[0].features[0].properties[key]);
 
-    setColumns(
-      Object
-        .keys(shapefiles[0].features[0].properties)
-        .map((key) => ({
-          field: key,
-          headerName: key,
-          type: typeof(shapefiles[0].features[0].properties[key]),
-          width: 200,
-          editable: true
-        })));
+              return ({
+                field: key,
+                headerName: key,
+                type: type,
+                width: 200,
+                editable: true
+              });
+            }));
 
-    setRows(
-      shapefiles[0].features.map((feature, index) => ({
-        id: index,
-        ...feature.properties 
-      })));
+        setRows(
+          shapefiles[0].features.map((feature, index) => ({
+            id: index,
+            ...feature.properties 
+          })));
 
-    setDataset(shapefiles[0].features.map((feature) => (feature.properties.AREA_SQKM * 1000)));
+        setAspectFormDisabled(false);
+      }
+    }
   }
+
+  React.useEffect(() => {
+    if (columns && columns.length > 0) {
+      const shapefiles = layers.find(function (item) {
+        return (item.properties.mtd_id === layerSelected[0]);
+      });
+
+      const type = turf.getType(shapefiles.features[0]);
+
+      const aspectsBuffer = ["Geometry (" + type + ")"];
+
+      columns.map(function (column) {
+        if (column.type === "number" || column.type === "bigint") { aspectsBuffer.push(column.field) };
+      });
+
+      setAspects(aspectsBuffer);
+    }
+  }, [columns]);
+  
+  const handleAspectChange = (event) => {
+    setAspectSelected(event.target.value);
+  };
+
+  React.useEffect(() => { 
+    if (aspectSelected && aspectSelected !== "") {
+      const shapefiles = layers.find(function (item) {
+        return (item.properties.mtd_id === layerSelected[0]);
+      });
+      
+      if (aspectSelected.startsWith("Geometry")) {
+        function to_area(feature) {
+          const geodesic = require("geographiclib-geodesic");
+          const geo = geodesic.Geodesic.WGS84;
+      
+          const polygon = geo.Polygon(false);
+      
+          const coordinates = turf.flatten(feature.geometry).features[0].geometry.coordinates[0];
+          
+          coordinates.forEach((point) => {
+            polygon.AddPoint(point[1], point[0]);
+          });
+      
+          const measure = polygon.Compute(true, true);
+      
+          const area = Math.abs(measure.area) / 1000000;
+      
+          return (area);
+        }
+
+        function to_length(feature) {  
+          const length = turf.length(feature, { units: "kilometers" });
+      
+          return (length);
+        }
+
+        const type = turf.getType(shapefiles.features[0]);
+
+        switch (type) {
+          case "Polygon":
+            setDataset(shapefiles.features.map((feature) => (to_area(feature))));
+            break;
+          case "Line":
+            setDataset(shapefiles.features.map((feature) => (to_length(feature))));
+            break;
+          default:
+            return (null);
+        }
+      }
+      else {
+        setDataset(shapefiles.features.map((feature) => (feature.properties[aspectSelected])));
+      }
+    }
+  }, [aspectSelected]);
 
   React.useEffect(() => {
     if (dataset && dataset.length > 0) {
       describe(dataset)
-        .then((response) => {
-          setStatistics(Object.keys(response).map((key) => [key, response[key]]));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      .then((response) => {
+        setStatistics(Object.keys(response).map((key) => [key, response[key]]));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     }
   }, [dataset]);
 
+  function humanize(str) {
+    var i, frags = str.split('_');
+    for (i=0; i<frags.length; i++) {
+      frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
+    }
+    return frags.join(' ');
+  }
+
   return (
     <div className = { classes.root }>
+      <Grid item xs={12} style={{padding:15}} >
+        <Card style={{color:"#FFFEFE", backgroundColor:"#1b798e"}} >
+          <CardHeader
+            titleTypographyProps = {{ style: { fontFamily: "LeagueSpartan", fontWeight: 100 }}}
+            subheaderTypographyProps = {{ style: { color: "#fffefe" }}} title = "SEEDs Analytics"
+            subheader = "This module performs basic statistical analysis to available datasets."
+          />
+        </Card>
+      </Grid>
       <LoadingPage/>
-      <br/><br/>
       <Container maxWidth = "xl">
         <Grid container spacing = { 3 } justifyContent = "flex-start">
           <Grid item xs = { 12 } md = { 8 }>
@@ -219,7 +324,7 @@ export default function Analytics() {
                 label = "Data Layers"
                 displayEmpty
                 value = { layerSelected  && layers.length > 0 ? layerSelected : [] }
-                onChange = { (event) => { handleChange(event) }}
+                onChange = { (event) => { handleLayerChange(event) }}
                 MenuProps = {{
                   anchorOrigin: {
                     vertical: "bottom",
@@ -248,7 +353,7 @@ export default function Analytics() {
                       </MenuItem>
                 }
               </Select>
-              <FormHelperText>Please select one or two.</FormHelperText>
+              <FormHelperText>Please select a dataset.</FormHelperText>
             </FormControl>
           </Grid>
           <Grid item xs = { 12 } md = { 2 } container direction = "row" justifyContent = "flex-start" alignItems = "center">
@@ -262,7 +367,7 @@ export default function Analytics() {
             </Button>
           </Grid>
           <Grid item xs = { 12 } md = { 6 } container direction = "row" justifyContent = "flex-start" alignItems = "center">
-            <Box sx = {{ height: 600, width: "100%" }}>
+            <Box sx = {{ height: 650, width: "100%" }}>
               <DataGrid
                 rows = { rows }
                 columns = { columns }
@@ -274,27 +379,74 @@ export default function Analytics() {
                   },
                 }}
                 pageSizeOptions = { [5] }
-                checkboxSelection
-                disableRowSelectionOnClick
+                localeText = {{ noRowsLabel: "" }}
               />
             </Box>
           </Grid>
-          <Grid item xs = { 12 } md = { 6 } container direction = "column" justifyContent = "center" alignItems = "center">
+          <Grid item xs = { 12 } md = { 6 } container direction = "column" justifyContent = "flex-start" alignItems = "center">
             <Grid item container direction = "row" justifyContent = "flex-start" alignItems = "center">
-              <Box sx = {{ flexGrow: 1 }}>
-                { dataset && dataset.length > 0 ? <SparkLineChart data = { dataset } height = { 300 } showHighlight/> : null }
+              <Grid item xs = { 12 } style = {{ width: "100%" }}>
+                <Box sx={{ minWidth: 120 }}>
+                  <FormControl disabled = {aspectFormDisabled} focused = {!aspectFormDisabled} required variant = "outlined" className = { classes.innerFormControl }>
+                    {/* <InputLabel id="demo-simple-select-label" shrink>Aspect</InputLabel> */}
+                    <Select
+                      displayEmpty
+                      value={aspectSelected}
+                      onChange={handleAspectChange}
+                      MenuProps = {{
+                        anchorOrigin: {
+                          vertical: "bottom",
+                          horizontal: "left"
+                        },
+                        transformOrigin: {
+                          vertical: "top",
+                          horizontal: "left"
+                        },
+                        getContentAnchorEl: null
+                      }}
+                    >
+                      <MenuItem disabled autoFocus value = "">
+                        Please select an aspect
+                      </MenuItem>
+                      {
+                        aspects && aspects.length ? 
+                        aspects.map((aspect, index) => (<MenuItem key = { index } value = {aspect}>{aspect}</MenuItem>))
+                        :
+                        <MenuItem disabled value = "no_data">No data available.</MenuItem>
+                      }
+                    </Select>
+                  </FormControl>
+                </Box>
+              </Grid>
+            </Grid>
+            <Grid item container direction = "row" justifyContent = "flex-start" alignItems = "center">
+              <Box sx = {{ flexGrow: 1, padding: "5px 0 40px 0" }}>
+                {
+                  dataset && dataset.length > 0 ?
+                    <SparkLineChart
+                      data = { dataset }
+                      height = { 200 }
+                      showHighlight
+                      colors = { ["#1b798e"] }
+                    />
+                    :
+                    null
+                }
               </Box>
             </Grid>
             <Grid item container direction = "column" justifyContent = "center" alignItems = "center">
-              <Box width = { "100%" } height = { 300 }>
+              <Box width = { "100%" } height = { 200 }>
                 {
                   statistics ?
-                    <Grid width = "100%" container direction = "column" justifyContent = "center" alignItems = "center">
+                    <Grid width = "100%" container direction = "column" justifyContent = "center" alignItems = "center" spacing={2}>
                       {
-                        statistics.map((item) => (
-                          <Grid item width = "100%" container direction = "row" justifyContent = "flex-start" alignContent = "center">
-                            <Grid item xs = { 6 }>{ item[0] }</Grid>
-                            <Grid item xs = { 6 }>{ item[1] }</Grid>
+                        statistics.map((item, index) => (
+                          <Grid key = { index } item width = "100%" container direction = "column" justifyContent = "center" alignContent = "center" style = {{ padding: "0 8px" }}>
+                            <Grid item width = "100%" container direction = "row" justifyContent = "space-between" alignContent = "center" style = {{ padding: "8px 0" }}>
+                              <Grid item xs = { 8 }><span>{ humanize(item[0]) }</span></Grid>
+                              <Grid item xs = { 4 } container direction = "row" justifyContent = "flex-end" alignItems = "center"><span>{ item[1] }</span></Grid>
+                            </Grid>
+                            { index !== statistics.length ? <Divider/> : null }
                           </Grid>
                         ))
                       }
