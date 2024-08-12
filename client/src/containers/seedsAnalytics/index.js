@@ -144,6 +144,8 @@ export default function Analytics() {
   }, []);
 
   React.useEffect(() => {
+    console.log(list);
+
     const fetchFeatures = async(id) => {      
       await axios("http://localhost:5000/getdata/?id=" + id)
         .then((response) => {
@@ -303,6 +305,14 @@ export default function Analytics() {
     return frags.join(' ');
   }
 
+  function trimExtension(string) {
+    let string_array = string.split(".");
+    string_array.pop();
+    let filename = string_array.join("."); 
+
+    return (filename);
+  }
+
   return (
     <div className = { classes.root }>
       <Grid item xs={12} style={{padding:15}} >
@@ -341,10 +351,11 @@ export default function Analytics() {
                   Please select a dataset
                 </MenuItem>
                 {
-                  layers && layers.length > 0 ?
-                    layers.map((layer) => (
-                      <MenuItem key = { layer.properties.mtd_id } value = { layer.properties.mtd_id }>
-                        { layer.properties.mtd_id } : { layer.name } ({ layer.geometry.type })
+                  list && list.length > 0 ?
+                    list.map((item) => (
+                      <MenuItem key = { item.id } value = { item.id }>
+                        { item.id }: { trimExtension(item.name) }
+                        {/* { item.id }: { layer.name } ({ layer.geometry.type }) */}
                       </MenuItem>
                     ))
                     :

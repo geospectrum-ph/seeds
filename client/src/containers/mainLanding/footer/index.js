@@ -38,12 +38,10 @@ export default function Footer(){
       <Grid container direction="row" justifyContent="space-around" alignItems="center" style={{height:"100%"}}>
         <Grid item>
           <Typography >
-            {'Copyright © '}
-            <a href="https://tinyurl.com/seeds-gms/" className={classes.link}>
-              Geospectrum.SEEDs
-            </a>{' '}
+            <a href="https://tinyurl.com/seeds-gms/" className={classes.link} target = "_blank">
+              SEEDs
+            </a>{' © '}
             {new Date().getFullYear()}
-            {'.'}
           </Typography>
         </Grid>
         <Grid item>

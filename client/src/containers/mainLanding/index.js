@@ -6,9 +6,9 @@ import axios from 'axios';
 //import functions from other folders
 import './index.css';
 
-import MLP from '../../assets/MLP.JPG';
+// import MLP from '../../assets/MLP.JPG';
 // import BG from '../../assets/BG_SG_new2.jpg';
-import BG from '../../assets/BG_new_PH2.jpg';
+import BG from '../../assets/MLP.JPG';
 import Footer from './footer';
 import AppsBar from './appBar'
 import AboutUs from './appBar/aboutUs'
@@ -48,7 +48,9 @@ const useStyles = makeStyles(() => ({
     color: "#5aff3d"
   }, container: {
     backgroundImage: `url(${BG})`,
-    backgroundPosition: 'center center',
+    // backgroundPosition: '20% bottom',
+    // backgroundSize: '150%',
+        backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     height: '81.7vh', //same with loginpage container
@@ -61,19 +63,20 @@ export default function MainLanding(){
   const [checked, setChecked]=useState(false);
   const {setGroupPrivilege} = useContext(AdminContext)
   
-  useEffect(()=>{
-    setChecked(true);
-    const fetchData = async () => {
-      const userGroupPrivileges = await axios.get("http://localhost:5000/groupprivilege");
-      // const userGroupPrivileges = await axios.get("https://seeds.geospectrum.com.ph/groupprivilege");
-      setGroupPrivilege(userGroupPrivileges.data);
-    }
-    fetchData()
-  },[])
+  // useEffect(()=>{
+  //   setChecked(true);
+  //   const fetchData = async () => {
+  //     const userGroupPrivileges = await axios.get("http://localhost:5000/groupprivilege");
+  //     // const userGroupPrivileges = await axios.get("https://seeds.geospectrum.com.ph/groupprivilege");
+  //     setGroupPrivilege(userGroupPrivileges.data);
+  //   }
+  //   fetchData()
+  // },[])
+  
 
   return (
-    <Grid container direction="column" sx={{height: '100vh', overflowY: 'hidden'}}>
-      <Scroll showBelow={250}/> 
+    <Grid container direction = "column" sx = {{height: '100vh', overflowY: 'hidden'}}>
+      {/* <Scroll showBelow={250}/>  */}
       <Grid item>
         <AppsBar/>
       </Grid>
