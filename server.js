@@ -1,21 +1,17 @@
-// Property of: Geospectrum Analytics Services, Inc.
-// SEEDS Program
-// Server File
+const express = require("express");
 
+const app = express();
 
+const cors = require("cors");
 
-// Packages Used
-const express = require('express'); // for HTTP requests
+app.use(cors());
+
 const mongoose = require('mongoose'); // for Object Document Modelling
 const bodyParser = require('body-parser');
 // const cors = require('cors');
 const path = require('path');
 
-var app = express();
 
-// ADD THIS
-var cors = require('cors');
-app.use(cors());
 
 const methodOverride = require('method-override');
 

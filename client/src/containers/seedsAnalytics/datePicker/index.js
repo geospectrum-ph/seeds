@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { enGB } from 'date-fns/locale'
 import { DatePicker } from '@bjarkehs/react-nice-dates'
-import 'react-nice-dates/build/style.css'
+import '@bjarkehs/react-nice-dates/build/style.css'
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
 

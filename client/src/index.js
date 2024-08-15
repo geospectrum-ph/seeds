@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './containers';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./containers";
 import MapContextProvider from './context/MapContext';
 import FeaturesContextProvider from './context/FeaturesContext';
 import SEEDSContextProvider from './context/SEEDSContext';
@@ -10,8 +10,11 @@ import AdminContextProvider from './context/AdminContext';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './theme'
 import * as serviceWorker from './serviceWorker';
+// import reportWebVitals from "./reportWebVitals";
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
   // <React.StrictMode>
     <AdminContextProvider>
       <AnalyticsContextProvider>
@@ -27,9 +30,9 @@ ReactDOM.render(
       </AnalyticsContextProvider>
     </AdminContextProvider>
   // </React.StrictMode>
-  ,
-  document.getElementById('root')
 );
+
+// reportWebVitals();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

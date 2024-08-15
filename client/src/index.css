@@ -24,3 +24,10 @@ code {
   url('./fonts/glacial-indifference.bold.otf') format("truetype");
   font-weight: normal;
 }
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  
+  overflow: hidden;
+}

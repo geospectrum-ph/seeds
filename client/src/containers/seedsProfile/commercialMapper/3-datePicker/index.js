@@ -7,7 +7,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 // react nice dates
 import { DateRangePicker, START_DATE, END_DATE } from '@bjarkehs/react-nice-dates';
-import 'react-nice-dates/build/style.css';
+import '@bjarkehs/react-nice-dates/build/style.css';
 import { enUS } from 'date-fns/locale';
 
 // import contexts
