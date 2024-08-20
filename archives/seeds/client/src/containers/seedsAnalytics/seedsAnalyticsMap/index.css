@@ -1,0 +1,66 @@
+#analyticsmap{
+  height: 62.5vh;
+  z-index: 1;
+}
+
+.body{
+  background-color: #fffefe;
+}
+
+.maptitle {
+  padding: 6px 10px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.legend, .temporal-legend {
+  padding: 6px 10px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  min-width: 125px;
+}
+
+#legendTitle {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  text-transform:capitalize;
+  word-wrap: break-word;
+}
+
+.symbolsContainer1 {
+  float: left;
+  margin-left: 20px;
+}
+
+.symbolsContainer2 {
+  float: left;
+  margin-left: 10px;
+}
+
+.legendCircle {
+  border-radius:50%; 
+  border: 1px solid #0d3c47; 
+  background: rgba(13, 60, 71, .6);
+  background: rgba(27, 121, 142, .6);
+  display: inline-block;
+}
+    
+.legendValue {
+  position: absolute;
+  right: 8px;
+}
+
+.legendValueText {
+  position: absolute;
+  right: 8px;
+}
+  
+@import url('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css');
+@import url('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js');
+@import url('https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css');
+@import url('https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.css');

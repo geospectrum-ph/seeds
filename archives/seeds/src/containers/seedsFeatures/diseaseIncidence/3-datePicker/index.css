@@ -1,0 +1,25 @@
+.nice-dates-navigation, .nice-dates-day {
+    color: #0d3c47;
+    /* background-color:  */
+  }
+  .nice-dates-popover {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    border-radius: 1px;
+    max-width: 250px;
+    /* max-height: 300px; */
+    transition: none;
+  }
+
+  .nice-dates-day:before {
+  background-color: #1b798e;
+  z-index: 1;
+}
+.nice-dates-day:after {
+  border: 2px solid #333;
+  transform: scale(0.95);
+  transition-duration: 150ms;
+  transition-property: transform, opacity;
+  z-index: 2;
+}
+  
