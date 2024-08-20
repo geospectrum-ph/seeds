@@ -1,10 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import reactLogo from "/company-logo.png";
+import viteLogo from "/company-logo.png";
+
+import "./App.css";
+
+export default function App() {
+  const [count, setCount] = React.useState(0);
 
   return (
     <>
@@ -31,5 +33,3 @@ function App() {
     </>
   )
 }
-
-export default App
