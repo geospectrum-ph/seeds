@@ -1,6 +1,6 @@
 # SEEDs Web V2.0.0 © 2024
 
-![Company Logo](%PUBLIC%/company-logo.png)
+![Company Logo](./public/company-logo.png)
 
 Powered by **Geospectrum Analytics Services, Inc.**
 
