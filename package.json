@@ -12,14 +12,20 @@
   "repository": "github:geospectrum-ph/seeds",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "node server",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vite build --ssrManifest --outDir dist/client",
+    "build:server": "vite build --ssr src/entry-server.jsx --outDir dist/server",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "cross-env NODE_ENV=production node server"
   },
   "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "sirv": "^2.0.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
