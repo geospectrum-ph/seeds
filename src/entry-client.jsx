@@ -5,9 +5,10 @@ import App from "./App";
 
 import "./index.css";
 
-ReactDOMClient.hydrateRoot(
-  document.getElementById("root"),
-  <React.StrictMode>
-    <App/>
-  </React.StrictMode>
-)
+ReactDOMClient
+  .createRoot(document.getElementById("root"))
+  .render(
+    <React.StrictMode>
+      <App/>
+    </React.StrictMode>
+  );
