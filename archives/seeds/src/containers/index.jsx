@@ -1,34 +1,34 @@
 import React, {useContext, useEffect} from 'react';
-import MainLanding from "./mainLanding";
-import Landing from "./login";
-import MainWindow from './mainWindow';
-import SeedsMapPortal from './leftNav/seedsMapPortal'
-import AboutUs from "./mainWinAppBar/aboutUs";
-import ContactUs from "./mainWinAppBar/contactUs";
-import Products from "./mainWinAppBar/features";
-import SeedsFeatures from "./seedsFeatures";
+import MainLanding from "./mainLanding/index.js";
+import Landing from "./login/index.js";
+import MainWindow from './mainWindow/index.js';
+import SeedsMapPortal from './leftNav/seedsMapPortal/index.js'
+import AboutUs from "./mainWinAppBar/aboutUs/index.js";
+import ContactUs from "./mainWinAppBar/contactUs/index.js";
+import Products from "./mainWinAppBar/features/index.js";
+import SeedsFeatures from "./seedsFeatures/index.js";
 // import SeedsTableData from "./seedsFeatures/seedsTableData";
-import SeedsTableData from "./seedsFeatures/seedsTableData";
+import SeedsTableData from "./seedsFeatures/seedsTableData/index.js";
 // import SeedsTableData from 
 
 import { HashRouter as Router, Switch, Route, Link, useHistory} from "react-router-dom";
 // import PopulateSeeds from "../containers/leftNavDraw/drawers/populateSeeds";
 // import PopulateSeeds from "../dialog/populateSeeds";
 // import SeedsCatalogue from './leftNav'
-import SeedsCatalogue from './leftNav/seedsCatalogue';
-import SeedsPopulate from './leftNav/seedsPopulate';
-import SeedsOverview from '../containers/seedsFeatures/seedsOverview';
+import SeedsCatalogue from './leftNav/seedsCatalogue/index.js';
+import SeedsPopulate from './leftNav/seedsPopulate/index.js';
+import SeedsOverview from './seedsFeatures/seedsOverview/index.js';
 // import SeedsFeatures from "../containers/seedsFeatures";
 // import SeedsMapPortal from '../map';
 // import LeftNav from '../containers/leftNav2'
 
-import AppsBar from "./mainLanding/AppBar";
+import AppsBar from "./mainLanding/AppBar/index.js";
 // import SubTabs from  './seedsNANI';
 import axios from 'axios';
 
 import { FeaturesContext } from '../context/FeaturesContext.js';
 
-function App() {
+function AppPage() {
 
   const {setBrgysList}  = useContext(FeaturesContext);
 
@@ -133,4 +133,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppPage;

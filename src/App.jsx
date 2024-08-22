@@ -1,31 +1,30 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import "./App.css";
+import ErrorPage from "./framework/error";
+import LandingPage from "./framework/landing";
+
+const routes = [
+  {
+    path: "/",
+    errorElement: <ErrorPage/>,
+    children: [  
+      {
+        index: true,
+        element: <LandingPage/>
+      }
+    ]
+  },
+  {
+    path: "*",
+    element: <ErrorPage/>
+  }
+];
 
 let router;
 
 if (typeof(window) !== "undefined") {
-  function Test() {
-    return (<span>test</span>);
-  }
-
-  function Hmmm() {
-    return (<span>hmmm</span>);
-  }
-
-  router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Test/>,
-      children: []
-    },
-    {
-      path: "*",
-      element: <Hmmm/>,
-      children: []
-    }
-  ]);
+  router = createBrowserRouter(routes);
 }
 
 export default function App() {
