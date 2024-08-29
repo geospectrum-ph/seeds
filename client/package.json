@@ -1,13 +1,22 @@
 {
-  "name": "client",
-  "private": true,
-  "version": "0.0.0",
+  "name": "seeds",
+  "version": "2.0.0",
+  "description": "SEEDs V2.0.0 is a product of Geospectrum Analytics Services, Inc.",
+  "homepage": "https://github.com/geospectrum-ph/seeds#readme",
+  "bugs": {
+    "url": "https://github.com/geospectrum-ph/seeds/issues",
+    "email": "it.support@geospectrum.com.ph"
+  },
+  "license": "UNLICENSED",
+  "author": "Geospectrum Analytics Services, Inc. <it.support@geospectrum.com.ph> (https://www.geospectrum.com.ph)",
+  "repository": "github:geospectrum-ph/seeds",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "npm run dev"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -24,5 +33,6 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "vite": "^5.4.1"
-  }
+  },
+  "private": true
 }
