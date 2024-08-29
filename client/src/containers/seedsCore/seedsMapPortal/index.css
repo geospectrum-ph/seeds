@@ -1,0 +1,76 @@
+.title {
+  grid-row: 1;
+  justify-self: center;
+  text-align: center;
+  color: grey;
+  box-sizing: border-box;
+  margin-top: 0;
+  background-color: white;
+  font-size: 2em;
+  padding-left: 15px;
+  padding-right: 15px;  
+}
+
+.sub-content {
+  grid-row: 5;
+  padding-left: 10px;
+  text-align: center;
+  color: grey;
+  box-sizing: border-box;
+}
+
+.box {
+  background: #fff;
+  padding: 5px;
+  z-index: 2;
+}
+
+.elevated{
+  z-index: 999;
+}
+
+.output-title {
+  padding: 6px 10px;
+  font: 20px/22px Arial, Helvetica, sans-serif;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.leaflet-container .output-crs {
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 5px #bbb;
+  padding: 0px 5px;
+  color: #333;
+  font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+  margin: 5px 5px;
+}
+
+.input-title {
+  padding: 6px 10px;
+  font: 20px/22px Arial, Helvetica, sans-serif;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  border: 0;
+  width: 150px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  padding:5px;
+}
+
+th, td {
+  max-width: 150px;
+  overflow-wrap: break-word;
+}
+
+tr:nth-child(odd) {background-color: #f2f2f2;}
+
+.header { background-color: #ced8da }
+
+table {
+  display: block;
+  border-style: dotted;
+}

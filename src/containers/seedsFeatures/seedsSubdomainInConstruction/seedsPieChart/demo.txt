@@ -1,0 +1,69 @@
+<div className="container" style={{backgroundColor:"#fffefe", height: '40vh', width:"90%", borderRadius:0, textAlign:"center"}}>
+            <br></br>
+            <Grid>
+              <Grid container direction="row" 
+              justify="center"
+              alignItems="center">
+            <StopIcon color="primary" /> <Typography>Active</Typography>
+            <StopIcon style={{color:"b7e6f1"}}/><Typography>Recovered</Typography>
+            <StopIcon style={{color:"#0d3c47"}} /><Typography>Death</Typography>
+            </Grid>
+            </Grid>
+            {healthSelect?
+            <PieChart width={350} height={350} fill="#000000">
+              <Pie
+                dataKey="value"
+                // isAnimationActive={false}
+                data={dataPie}
+                cx="50%"
+                cy="42%"
+                outerRadius={120}
+                innerRadius={70}
+                // paddingAngle={2}
+                // fill="#8884d8"
+                label
+              >
+              {dataPie.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>: null}
+          </div>
+
+<Paper elevation={3} style={{height: '40vh', borderRadius:0, width:"90%"}}>
+<div className="container" style={{backgroundColor:"#fffefe", height: '40vh', width:"90%", borderRadius:0, textAlign:"center"}}>
+<br></br>
+<Grid>
+  <Grid container direction="row" 
+  justify="center"
+  alignItems="center">
+  {dataPie_JOB.map((entry, index) => (
+                <div>
+                  <StopIcon style={{color:COLORS[index % COLORS.length]}} /> <Typography>{entry.code}</Typography>
+                </div>
+              ))}
+  </Grid>
+</Grid>
+      {jobSelect?
+<PieChart width={350} height={350} fill="#000000">
+  <Pie
+    dataKey="value"
+    // isAnimationActive={false}
+    data={dataPie_JOB}
+    cx="50%"
+    cy="42%"
+    outerRadius={120}
+    innerRadius={70}
+    // paddingAngle={2}
+    // fill="#8884d8"
+    label
+  >
+  {dataPie_JOB.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+  </Pie>
+  <Tooltip />
+</PieChart>: null}
+</div>
+</Paper> 
