@@ -1,21 +1,24 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "SEEDs",
+  "name": "SEEDs",
+  "version": "2.0.0",
+  "author": "Geospectrum Analytics Services, Inc.",
+  "description": "SEEDs V2.0.0 is a product of Geospectrum Analytics Services, Inc.",
   "icons": [
     {
-      "src": "0 Logo (3D Colored).png",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "/favicons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/company-logo.png",
+      "sizes": "any",
       "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": ".",

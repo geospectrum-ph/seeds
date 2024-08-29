@@ -1,0 +1,16 @@
+{
+  "badges": {
+    "todo": {
+      "badge": "📌"
+    },
+    "inProgress": {
+      "badge": "⚠️"
+    },
+    "testing": {
+      "badge": "🚀"
+    },
+    "done": {
+      "badge": "✔️"
+    }
+  }
+}
