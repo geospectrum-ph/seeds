@@ -13,7 +13,6 @@
   "scripts": {
     "test": "exit 1",
     "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
     "start": "nodemon server.js"
   },
   "dependencies": {
