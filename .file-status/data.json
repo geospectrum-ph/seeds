@@ -1,0 +1,24 @@
+{
+   "fileStatuses": [
+      {
+         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\README.md",
+         "status": "inProgress"
+      },
+      {
+         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\server.js",
+         "status": "testing"
+      },
+      {
+         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\package.json",
+         "status": "inProgress"
+      },
+      {
+         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\.gitignore",
+         "status": "done"
+      },
+      {
+         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\.env",
+         "status": "inProgress"
+      }
+   ]
+}

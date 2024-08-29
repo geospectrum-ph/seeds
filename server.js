@@ -1,98 +1,38 @@
-import fs from "node:fs/promises";
-import express from "express";
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-// Constants...
+require("dotenv").config();
 
-const isProduction = process.env.NODE_ENV === "production";
-const port = process.env.PORT || 5173;
-const base = process.env.BASE || "/";
-
-// Cached production assets...
-
-const templateHtml = isProduction ? await fs.readFile("./dist/client/index.html", "utf-8") : "";
-const ssrManifest = isProduction ? await fs.readFile("./dist/client/.vite/ssr-manifest.json", "utf-8") : undefined;
-
-// Create http server...
-
-const app = express();
-
-// Add Vite or respective production middlewares...
-
-let vite;
-
-if (!isProduction) {
-  const { createServer } = await import("vite");
-
-  vite = await createServer({
-    server: { middlewareMode: true },
-    appType: "custom",
-    base
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(function () {
+    console.log(`The MongoDB database connection has been established successfully.`);
+  })
+  .catch(function (error) {
+    throw (error);
   });
 
-  app.use(vite.middlewares);
-}
-else {
-  const compression = (await import("compression")).default;
-  const sirv = (await import("sirv")).default;
+mongoose.connection.once("open", function () {
+  const express = require("express");
+  const app = express();
 
-  app.use(compression());
+  const path = require("path");
 
-  app.use(base, sirv("./dist/client", { extensions: [] }));
-}
+  app.use(express.static(path.join(__dirname, "client/build")));
 
-// Initialize MongoDB connection...
-
-const uri = process.env.MONGODB_URI || "mongodb+srv://seeds:seeds@seeds.nm1d8.mongodb.net/seeds-db?retryWrites=true&w=majority";
-
-mongoose.connect(uri).catch((error) => { console.log(error); });
-
-const connection = mongoose.connection;
-
-connection.once("open", () => {
-  console.log("MongoDB database connection established successfully");
-
-  // Serve HTML...
-
-  app.use("*", async (request, response) => {
-    try {
-      const url = request.originalUrl.replace(base, "");
-
-      let template;
-      let render;
-
-      if (!isProduction) {
-        // Always read fresh template in development...
-
-        template = await fs.readFile("./index.html", "utf-8");
-        template = await vite.transformIndexHtml(url, template);
-        render = (await vite.ssrLoadModule("/src/entry-server.jsx")).render;
-      }
-      else {
-        template = templateHtml;
-        render = (await import("./dist/server/entry-server.js")).render;
-      }
-
-      const rendered = await render(url, ssrManifest);
-
-      const html = template
-        .replace(`<!--app-head-->`, rendered.head ?? "")
-        .replace(`<!--app-html-->`, rendered.html ?? "");
-
-      response.status(200).set({ "Content-Type": "text/html" }).send(html);
-    }
-    catch (error) {
-      vite?.ssrFixStacktrace(error);
-      console.log(error.stack);
-      response.status(500).end(error.stack);
-    }
+  app.get("*", function (_request, response) {
+    response.sendFile(path.join(__dirname, "/client/build/index.html"));
   });
 
-  // Start http server...
-
-  app.listen(port, () => {
-    console.log(`Server started at http://localhost:${port}`);
+  app.listen(process.env.PORT, function () {
+    console.log(`The server is running on port: ${ process.env.PORT }.`);
   });
 });
 
-mongoose.disconnect();
+// mongoose
+//   .disconnect()
+//   .then(function () {
+//     console.log(`The MongoDB database connection has been terminated successfully.`);
+//   })
+//   .catch(function (error) {
+//     throw (error);
+//   });
