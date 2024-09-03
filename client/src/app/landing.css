@@ -1,0 +1,21 @@
+#landing {
+  flex-flow: column-reverse nowrap;
+
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.00), rgba(000, 000, 000, 0.50)), no-repeat center/cover url("../assets/landing.jpg");
+
+  > :nth-child(1) {
+    margin: 120px;
+
+    color: var(--color-light);
+
+    > :nth-child(1) {
+      font-size: 60px;
+    }
+
+    > :nth-child(2) {
+      font-size: 240px;
+      font-weight: bold;
+      line-height: 85%;
+    }
+  }
+}

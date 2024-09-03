@@ -1,5 +1,9 @@
 export default function Home() {
+  localStorage.setItem("active_page", "Home");
+
   return (
-    <p>Home</p>
+    <div className = "page">
+      <p>Home</p>
+    </div>
   );
 }

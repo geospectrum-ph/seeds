@@ -17,7 +17,9 @@ body {
   color: var(--color-light);
   background-color: var(--color-dark);
 
-  --color-main: rgba(015, 060, 075, 1.00);
+  --color-00: rgba(015, 060, 075, 1.00);
+  --color-01: rgba(025, 0100, 125, 1.00);
+  --color-02: rgba(180, 180, 180, 1.00);
 }
 
 #root {

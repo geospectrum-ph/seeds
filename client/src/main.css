@@ -1,0 +1,121 @@
+.button {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+
+  &.active {
+    background-color: var(--color-01);
+  }
+
+  &:hover {
+    background-color: var(--color-01);
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.page {
+  display: flex; 
+  flex-grow: 1;
+  flex-basis: auto;
+  flex-flow: column nowrap;
+
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+#app {
+  height: 100%;
+  
+  display: flex;
+  flex-basis: auto;
+  flex-flow: column nowrap;
+
+  > :nth-child(1) {
+    flex-grow: auto;
+  }
+
+  > :nth-child(2) {
+    flex-grow: 1;
+  }
+
+  > :nth-child(3) {
+    flex-grow: auto;
+  }
+}
+
+#header {
+  display: flex;
+  flex-basis: auto;
+  flex-flow: row nowrap;
+
+  padding: 12px;
+
+  background-color: var(--color-00);
+
+  > :nth-child(1) {
+    display: flex;
+    flex-grow: 1;
+    flex-flow: row nowrap;
+
+    justify-content: flex-start;
+    align-items: center;
+
+    > :nth-child(1) {
+      padding: 12px;
+      
+      font-size: 24px;
+    }
+
+    > :nth-child(2) {
+      margin: 0;
+      
+      font-size: 48px;
+      font-weight: bold;
+    }
+  }
+
+  > :nth-child(2) {
+    display: flex;
+    flex-grow: auto;
+    flex-flow: row nowrap;
+
+    justify-content: center;
+    align-items: center;
+
+    > * {
+      min-width: 150px;
+
+      margin: 0 12px 0 0;
+
+      font-size: 18px;
+      font-weight: bold;
+
+      text-decoration: none;
+      color: var(--color-light);
+    }
+  }
+}
+
+#footer {
+  display: flex;
+  flex-basis: auto;
+  flex-flow: row nowrap;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px;
+
+  background-color: var(--color-02);
+
+  > * {
+    margin: 0 6px;
+
+    color: var(--color-dark);
+  }
+}

@@ -1,5 +1,9 @@
 export default function Error() {
+  localStorage.setItem("active_page", "Error");
+
   return (
-    <p>Error</p>
+    <div className = "page">
+      <p>Error</p>
+    </div>
   );
 }
