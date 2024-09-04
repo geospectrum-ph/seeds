@@ -111,11 +111,11 @@
 
   padding: 12px;
 
-  background-color: var(--color-02);
+  background-color: var(--color-dark);
 
   > * {
     margin: 0 6px;
 
-    color: var(--color-dark);
+    color: var(--color-light);
   }
 }
