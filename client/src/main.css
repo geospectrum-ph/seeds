@@ -1,121 +1,304 @@
-.button {
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  padding: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  border-radius: 12px;
-
-  &.active {
-    background-color: var(--color-01);
-  }
+a {
+  text-decoration: none;
+  color: var(--color-02);
 
   &:hover {
-    background-color: var(--color-01);
-    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+    text-decoration: underline;
   }
 }
 
-.page {
-  display: flex; 
-  flex-grow: 1;
-  flex-basis: auto;
-  flex-flow: column nowrap;
+.button {
+  place-content: center center;
 
-  background-color: var(--color-light);
-  color: var(--color-dark);
+  display: flex;
+
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  padding: 12px;
+
+  &:hover {
+    box-shadow: inset 0px 0px 100px 100px rgba(255, 255, 255, 0.1);
+
+    background: var(--color-01);
+  }
+
+  &.active {
+    background: var(--color-01);
+  }
+
+  &#climb {
+    position: fixed;
+    z-index: 100;
+    bottom: 0px;
+    right: 0px;
+    place-content: center center;
+  
+    display: none;
+
+    transition: all 1.0s cubic-bezier(0.25, 0.1, 0.25, 1) 0.0s;
+  
+    border: none;
+    border-radius: 0px;
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+  
+    background: var(--color-02);
+    cursor: pointer;
+    user-select: none;
+  }
 }
 
 #app {
-  height: 100%;
-  
-  display: flex;
-  flex-basis: auto;
+  width: 100%;
+}
+
+.page {
   flex-flow: column nowrap;
 
-  > :nth-child(1) {
-    flex-grow: auto;
+  display: flex;
+
+  &#landing {
+    width: 100%;
+    height: 100vh;
   }
 
-  > :nth-child(2) {
-    flex-grow: 1;
+  &#home {
+    width: 100%;
+    height: 100vh;
   }
 
-  > :nth-child(3) {
-    flex-grow: auto;
+  &#login {
+    width: 100%;
+    height: 100vh;
+  }
+
+  &#about {
+    width: 100%;
+    height: 100vh;
+  }
+
+  &#feedback {
+    width: 100%;
+    height: 100vh;
+  }
+
+  &#error {
+    width: 100%;
+    height: 100vh;
+  }
+
+  > :nth-child(1) { /* #header */
+    flex: none;
+  }
+
+  > :nth-child(2) { /* .body */
+    flex: auto;
+  }
+
+  > :nth-child(3) { /* #footer */
+    flex: none;
   }
 }
 
 #header {
-  display: flex;
-  flex-basis: auto;
   flex-flow: row nowrap;
 
-  padding: 12px;
+  display: flex;
 
-  background-color: var(--color-00);
+  padding: 12px 120px;
+
+  background: var(--color-00);
 
   > :nth-child(1) {
-    display: flex;
-    flex-grow: 1;
+    flex: auto;
     flex-flow: row nowrap;
+    place-content: center start;
 
-    justify-content: flex-start;
-    align-items: center;
+    display: flex;
 
     > :nth-child(1) {
       padding: 12px;
       
-      font-size: 24px;
+      font: 24px/1 "Outfit", sans-serif;
     }
 
     > :nth-child(2) {
-      margin: 0;
+      margin: 0px;
       
-      font-size: 48px;
-      font-weight: bold;
+      font: bold 48px/1 "Outfit", sans-serif;
     }
   }
 
   > :nth-child(2) {
-    display: flex;
-    flex-grow: auto;
+    flex: none;
     flex-flow: row nowrap;
+    place-content: center center;
 
-    justify-content: center;
-    align-items: center;
+    display: flex;
 
     > * {
       min-width: 150px;
 
-      margin: 0 12px 0 0;
+      margin: 0px 12px 0px 0px;
 
-      font-size: 18px;
-      font-weight: bold;
-
+      font: bold 18px/1 "Outfit", sans-serif;
       text-decoration: none;
       color: var(--color-light);
     }
   }
 }
 
-#footer {
+.body {
+  flex-flow: column nowrap;
+
   display: flex;
-  flex-basis: auto;
+
+  background: var(--color-light);
+
+  color: var(--color-dark);
+}
+
+#footer {
   flex-flow: row nowrap;
+  place-content: center center;
 
-  justify-content: center;
-  align-items: center;
+  display: flex;
 
-  padding: 12px;
+  padding: 12px 120px;
 
-  background-color: var(--color-dark);
+  background: var(--color-dark);
 
   > * {
-    margin: 0 6px;
+    margin: 0px 6px;
 
     color: var(--color-light);
+  }
+}
+
+#landing {
+  > .body {
+    animation: zoom-in 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 0.0s;
+
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.00), rgba(000, 000, 000, 0.50)), no-repeat center/cover url("./assets/landing-page-background.jpg");
+
+    > :nth-child(1) {
+      flex-flow: column nowrap;
+      place-content: center end;
+  
+      display: flex;
+      
+      margin: 120px;
+      height: 100%;
+
+      user-select: none;
+      pointer-events: none;
+
+      color: var(--color-light);
+
+      > :nth-child(1) {
+        animation: wait-hidden 0.5s 0.0s, fade-in 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 0.5s;
+
+        font: 60px/1 "Outfit", sans-serif;
+      }
+
+      > :nth-child(2) {
+        animation: wait-hidden 1.0s 0.0s, fade-in 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 1.0s;
+
+        font: bold 240px/1 "Outfit", sans-serif;
+      }
+    }
+  }
+}
+
+#about {
+  > .body {
+    flex-direction: column nowrap;
+
+    display: flex;
+
+    > * {
+      box-sizing: border-box;
+      min-height: 120px;
+      padding: 60px 120px;
+    }
+
+    > :nth-child(1) {
+      flex-direction: row nowrap;
+
+      display: flex;
+
+      animation: fade-in 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 0.0s;
+
+      padding: 120px;
+
+      font: bold 120px/1 "Outfit", sans-serif;
+
+      > * {
+        > span {
+          color: var(--color-01);
+        }
+      }
+    }
+
+    > :nth-child(2) {
+      background: var(--color-03);
+
+      font: 36px/1 "Outfit", sans-serif;
+      color: var(--color-dark);
+
+      > * {
+        > a {
+          color: var(--color-01);
+        }
+      }
+    }
+
+    > :nth-child(3) {
+      > * {
+        > a {
+          color: var(--color-01);
+        }
+      }
+    }
+  }
+}
+
+@keyframes wait-hidden {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 0%;
+  }
+}
+
+@keyframes wait-visible {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes zoom-in {
+  0% {
+    background-size: 120%;
+  }
+  100% {
+    background-size: 100%;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translate(0px, -24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0px);
   }
 }

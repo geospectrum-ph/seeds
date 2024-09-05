@@ -13,10 +13,6 @@
          "status": "inProgress"
       },
       {
-         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\main.jsx",
-         "status": "inProgress"
-      },
-      {
          "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\app\\about.jsx",
          "status": "todo"
       },
@@ -43,6 +39,10 @@
       {
          "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\main.css",
          "status": "inProgress"
+      },
+      {
+         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\main.jsx",
+         "status": "todo"
       }
    ]
 }
