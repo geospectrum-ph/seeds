@@ -21,10 +21,6 @@
          "status": "todo"
       },
       {
-         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\app\\feedback.jsx",
-         "status": "todo"
-      },
-      {
          "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\app\\home.jsx",
          "status": "inProgress"
       },
@@ -42,6 +38,10 @@
       },
       {
          "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\main.jsx",
+         "status": "todo"
+      },
+      {
+         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\app\\help.jsx",
          "status": "todo"
       }
    ]
