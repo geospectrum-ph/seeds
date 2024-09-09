@@ -26,7 +26,6 @@ export default function Header() {
       <div>
         <Link to = "/home"><div className = "button" onClick = { function () { handleActiveButton("Home"); } }>{ "Home" }</div></Link>
         <Link to = "/about"><div className = "button" onClick = { function () { handleActiveButton("About"); } }>{ "About" }</div></Link>
-        <Link to = "/help"><div className = "button" onClick = { function () { handleActiveButton("Help"); } }>{ "Help" }</div></Link>
         <Link to = "/login"><div className = "button" onClick = { function () { handleActiveButton("Log In"); } }>{ "Log In" }</div></Link>
       </div>
     </div>

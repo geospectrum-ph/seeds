@@ -18,7 +18,7 @@ input, textarea, select {
 label {
   display: inline-block;
 
-  font: bold 16px/1 "Outfit", sans-serif;
+  font: 16px/1 "Outfit", sans-serif;
 }
 
 textarea {
@@ -244,7 +244,7 @@ textarea {
       padding: 60px 120px;
     }
 
-    > :nth-child(1) {
+    > :nth-child(odd) {
       flex-direction: row nowrap;
 
       display: flex;
@@ -262,7 +262,7 @@ textarea {
       }
     }
 
-    > :nth-child(2) {
+    > :nth-child(even) {
       background: var(--color-03);
 
       font: 36px/1 "Outfit", sans-serif;
@@ -273,88 +273,60 @@ textarea {
           color: var(--color-01);
         }
       }
-    }
 
-    > :nth-child(3) {
-      > * {
-        > a {
-          color: var(--color-01);
-        }
-      }
-    }
-  }
-}
-
-#help {
-  > .body {
-    flex-direction: column nowrap;
-
-    display: flex;
-
-    > * {
-      box-sizing: border-box;
-      min-height: 120px;
-      padding: 60px 120px;
-    }
-
-    > :nth-child(1), > :nth-child(3) {
-      flex-direction: row nowrap;
-
-      display: flex;
-
-      animation: fade-in 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 0.0s;
-
-      padding: 120px;
-
-      font: bold 120px/1 "Outfit", sans-serif;
-
-      > * {
-        > span {
-          color: var(--color-01);
-        }
-      }
-    }
-
-    > :nth-child(2) {
-      background: var(--color-03);
-
-      color: var(--color-dark);
-
-      > * {
+      > #help-form {
         > * {
           flex-direction: row nowrap;
           place-content: center center;
-
+  
           display: flex;
-
+  
           > * {
             > * {
               font: 36px/1 "Outfit", sans-serif !important;
             }
           }
         }
-
+  
         > :not(:last-child) {         
           margin: 0px 0px 12px 0px;
-
+  
           > :nth-child(1) {
             place-content: center center;
-
+  
             display: inline-block;
-
+  
             width: 25%;
           }
-
+  
           > :nth-child(2) {
             width: 75%;
           }
         }
-
+  
         > :last-child {
           > * {
             width: 120px;
-
+  
             margin: 24px 0px 0px 0px;
+          }
+        }
+      }
+
+      > #about-map {
+        width: calc(100vw - 240px);
+        height: 50vh;
+
+        .about-popup {
+          top: -96px;
+
+          & p {
+            margin: 0px;
+            width: auto;
+            height: auto;
+            padding: 12px;
+
+            font: bold 12px/1 "Outfit", sans-serif;
           }
         }
       }

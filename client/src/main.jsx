@@ -6,7 +6,6 @@ import Landing from "./app/landing";
 import Home from "./app/home";
 import Login from "./app/login";
 import About from "./app/about";
-import Help from "./app/help";
 import Error from "./app/error";
 
 import sign_console from "./assets/signature";
@@ -52,7 +51,6 @@ export default function Router() {
         <Route path = "home" element = { <Landing/> }/>
         <Route path = "login" element = { <Login/> }/>
         <Route path = "about" element = { <About/> }/>
-        <Route path = "help" element = { <Help/> }/>
         <Route path = "*" element = { <Error/> }/>
       </Route>
     </Routes>
