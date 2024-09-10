@@ -364,7 +364,34 @@ export default function About() {
         </div>
         <div>
           <Map/>
+          <div id = "about-details">
+            <div>
+              <div>
+                { "Address" }
+              </div>
+              <div>
+                { "The Linden Suites, 37 San Miguel Avenue, Ortigas Center, Pasig City, Metro Manila, Philippines" }
+              </div>
+            </div>
+            <div>
+            <div>
+              { "Email Address" }
+            </div>
+            <div>
+              { "seeds@geospectrum.com.ph" }
+            </div>
+          </div>
+          <div>
+            <div>
+              { "Contact Number" }
+            </div>
+            <div>
+              { "+63917-7915536 / +63920-9113418 / +(632)-637-8026" }
+            </div>
+          </div>
+          </div>
         </div>
+        <div/>
       </div>
       <Footer/>
       <Climb/>

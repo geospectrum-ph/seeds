@@ -197,6 +197,33 @@ textarea {
   }
 }
 
+.map {
+  .maplibregl-ctrl {
+    font: 12px/1.5 "Outfit", sans-serif;
+  }
+
+  .map-location {
+    top: calc(0px - 8px - 8px - 2px - 16px);
+
+    border: 16px solid var(--color-dark);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+
+    &::before {
+      content: "";
+
+      position: absolute;
+      z-index: 0;
+      top: calc(150% + 2px);
+      left: -50%;
+
+      border: 16px solid transparent;
+      border-top: 16px solid var(--color-dark);
+    }
+  }
+}
+
 #landing {
   > .body {
     animation: zoom-in 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 0.0s;
@@ -316,17 +343,14 @@ textarea {
       > #about-map {
         width: calc(100vw - 240px);
         height: 50vh;
+      }
 
-        .about-popup {
-          top: -96px;
+      > #about-details {
+        > * {
+          > :nth-child(1) {
+            margin: 48px 0px 36px 0px;
 
-          & p {
-            margin: 0px;
-            width: auto;
-            height: auto;
-            padding: 12px;
-
-            font: bold 12px/1 "Outfit", sans-serif;
+            font: bold 36px/1 "Outfit", sans-serif;
           }
         }
       }

@@ -1,68 +1,67 @@
 import React from "react";
 
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
+import maplibregl from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
 
 export default function Map() {
-  const map = React.useRef(null);
-
   React.useEffect(function () {
-    if (!map.current) {
-      const basemap = new L.TileLayer("https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.{ext}", {
-        minZoom: 0,
-        maxZoom: 20,
-        attribution: `&copy; <a href = "https://www.stadiamaps.com/" target = "_blank">Stadia Maps</a> &copy; <a href = "https://www.stamen.com/" target = "_blank">Stamen Design</a> &copy; <a href = "https://openmaptiles.org/" target = "_blank">OpenMapTiles</a> &copy; <a href = "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors`,
-        ext: "png"
+    const basemap = "https://raw.githubusercontent.com/go2garret/maps/main/src/assets/json/openStreetMap.json";    
+    const center = [121.06027390911558, 14.581667728584403];
+    
+    const map = new maplibregl.Map({
+      container: "about-map",
+      style: basemap,
+      center: center,
+      zoom: 12,
+      minZoom: 2,
+      maxZoom: 18
+    });
+
+    const scale = new maplibregl.ScaleControl({
+      maxWidth: 120,
+      unit: "metric"
+    });
+
+    map.addControl(scale);
+  
+    const navigation = new maplibregl.NavigationControl();
+    
+    map.addControl(navigation, "top-left");
+
+    const full_screen = new maplibregl.FullscreenControl({
+      container: document.querySelector("root")
+    });
+
+    map.addControl(full_screen);
+
+    const icon = document.createElement("div");
+
+    icon.className = "map-location";
+
+    const marker = new maplibregl.Marker({
+      element: icon
+    });
+
+    marker
+      .setLngLat(center)
+      .addTo(map);
+
+    map.on("dragend", function () {
+      map.easeTo({
+        center: center,
+        essential: true
       });
+    });
 
-      const location_lat = 14.582;
-      const location_lng = 121.060;
-
-      map.current = new L.Map("about-map", {
-        center: [location_lat, location_lng],
-        zoom: 12,
-        layers: [basemap]
+    map.on("zoomend", function () {
+      map.easeTo({
+        center: center,
+        essential: true
       });
-
-      const location_interactive = new L.CircleMarker([location_lat, location_lng],
-        {
-          color: "var(--color-00)",
-          opacity: 0.50,
-          fillColor: "var(--color-00)",
-          fillOpacity: 0.25,
-          radius: 12
-        });
-
-      location_interactive.addTo(map.current);
-      
-      const location = new L.CircleMarker([location_lat, location_lng],
-        {
-          color: "var(--color-dark)",
-          opacity: 1.00,
-          fillColor: "var(--color-dark)",
-          fillOpacity: 0.50,
-          radius: 5
-        });
-
-      location.addTo(map.current);
-
-      const popup = new L.Popup({
-        keepInView: true,
-        closeButton: false,
-        autoClose: false,
-        closeOnEscapeKey: false,
-        closeOnClick: false,
-        className: "about-popup"
-      });
-
-      popup
-        .setLatLng([location_lat, location_lng])
-        .setContent("<p>GEOSPECTRUM</p>")
-        .openOn(map.current);
-    }
+    });
   }, []);
 
   return (
-    <div id = "about-map"/>
+    <div id = "about-map" className = "map"/>
   );
 }
