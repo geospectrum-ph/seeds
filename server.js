@@ -20,10 +20,10 @@ mongoose.connection.once("open", function () {
 
   const path = require("path");
 
-  app.use(express.static(path.join(__dirname, "client/build")));
+  app.use(express.static(path.join(__dirname, "client/dist")));
 
   app.get("*", function (_request, response) {
-    response.sendFile(path.join(__dirname, "/client/build/index.html"));
+    response.sendFile(path.join(__dirname, "/client/dist/index.html"));
   });
 
   app.listen(process.env.PORT, function () {
