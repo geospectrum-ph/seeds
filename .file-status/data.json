@@ -13,23 +13,15 @@
          "status": "inProgress"
       },
       {
-         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\app\\about.jsx",
+         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\pages\\about.jsx",
          "status": "todo"
       },
       {
-         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\app\\error.jsx",
+         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\pages\\error.jsx",
          "status": "todo"
       },
       {
-         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\app\\home.jsx",
-         "status": "inProgress"
-      },
-      {
-         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\app\\landing.jsx",
-         "status": "inProgress"
-      },
-      {
-         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\app\\login.jsx",
+         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\pages\\home.jsx",
          "status": "inProgress"
       },
       {
@@ -39,6 +31,18 @@
       {
          "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\main.jsx",
          "status": "todo"
+      },
+      {
+         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\pages\\index.jsx",
+         "status": "inProgress"
+      },
+      {
+         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\pages\\sign-in.jsx",
+         "status": "inProgress"
+      },
+      {
+         "path": "c:\\Users\\My PC\\Documents\\GitHub\\seeds\\client\\src\\components\\header.jsx",
+         "status": "inProgress"
       }
    ]
 }

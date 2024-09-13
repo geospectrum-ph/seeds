@@ -1,12 +1,14 @@
 import React from "react";
 
+import maplibregl from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Map from "../components/map";
 import Climb from "../assets/climb";
 
 export default function About() {
-  localStorage.setItem("active_page", "About");
+  localStorage.setItem("active_page", "about");
 
   async function submit(data) {
     for (const entry of data.entries()) {
@@ -32,6 +34,61 @@ export default function About() {
       submit(data);
 
       form.reset();
+    });
+
+    const basemap = "https://raw.githubusercontent.com/go2garret/maps/main/src/assets/json/openStreetMap.json";    
+    const center = [121.06027390911558, 14.581667728584403];
+    
+    const map = new maplibregl.Map({
+      container: "about-map",
+      style: basemap,
+      center: center,
+      zoom: 12,
+      minZoom: 2,
+      maxZoom: 18
+    });
+
+    const scale = new maplibregl.ScaleControl({
+      maxWidth: 120,
+      unit: "metric"
+    });
+
+    map.addControl(scale);
+  
+    const navigation = new maplibregl.NavigationControl();
+    
+    map.addControl(navigation, "top-left");
+
+    const full_screen = new maplibregl.FullscreenControl({
+      container: document.querySelector("root")
+    });
+
+    map.addControl(full_screen);
+
+    const icon = document.createElement("div");
+
+    icon.className = "map-location";
+
+    const marker = new maplibregl.Marker({
+      element: icon
+    });
+
+    marker
+      .setLngLat(center)
+      .addTo(map);
+
+    map.on("dragend", function () {
+      map.easeTo({
+        center: center,
+        essential: true
+      });
+    });
+
+    map.on("zoomend", function () {
+      map.easeTo({
+        center: center,
+        essential: true
+      });
     });
   }, []);
 
@@ -363,8 +420,8 @@ export default function About() {
           <div>{ "Find Us" }</div>
         </div>
         <div>
-          <Map/>
-          <div id = "about-details">
+        <div id = "about-map" className = "map"/>
+        <div id = "about-details">
             <div>
               <div>
                 { "Address" }

@@ -2,8 +2,60 @@ a {
   text-decoration: none;
   color: var(--color-02);
 
+  &.title {
+    color: var(--color-light);
+  }
+
   &:hover {
-    text-decoration: underline;
+    color: var(--color-accent);
+  }
+
+  &.button {
+    color: var(--color-light);
+  }
+}
+
+form {
+  width: 100%;
+  height: auto;
+
+  > * {
+    flex-direction: row nowrap;
+    place-content: center center;
+
+    display: flex;
+
+    width: 100%;
+
+    > * {
+      > * {
+        font: 36px/1 "Outfit", sans-serif !important;
+      }
+    }
+  }
+
+  > :not(:last-child) {         
+    margin: 0px 0px 12px 0px;
+
+    > :nth-child(1) {
+      place-content: center center;
+
+      display: inline-block;
+
+      width: 25%;
+    }
+
+    > :nth-child(2) {
+      width: 75%;
+    }
+  }
+
+  > :last-child {
+    > * {
+      width: 120px;
+
+      margin: 24px 0px 0px 0px;
+    }
   }
 }
 
@@ -83,35 +135,8 @@ textarea {
 
   display: flex;
 
-  &#landing {
-    width: 100%;
-    height: 100vh;
-  }
-
-  &#home {
-    width: 100%;
-    height: 100vh;
-  }
-
-  &#login {
-    width: 100%;
-    height: 100vh;
-  }
-
-  &#about {
-    width: 100%;
-    height: 100vh;
-  }
-
-  &#help {
-    width: 100%;
-    height: 100vh;
-  }
-
-  &#error {
-    width: 100%;
-    height: 100vh;
-  }
+  width: 100%;
+  height: 100vh;
 
   > :nth-child(1) { /* #header */
     flex: none;
@@ -142,16 +167,25 @@ textarea {
 
     display: flex;
 
-    > :nth-child(1) {
-      padding: 12px;
-      
-      font: 24px/1 "Outfit", sans-serif;
-    }
+    > * {
+      flex-flow: row nowrap;
+      place-content: center start;
+  
+      display: flex;
 
-    > :nth-child(2) {
-      margin: 0px;
-      
-      font: bold 48px/1 "Outfit", sans-serif;
+      width: auto;
+
+      > :nth-child(1) {
+        padding: 12px;
+        
+        font: 24px/1 "Outfit", sans-serif;
+      }
+
+      > :nth-child(2) {
+        margin: 0px;
+        
+        font: bold 48px/1 "Outfit", sans-serif;
+      }
     }
   }
 
@@ -192,8 +226,6 @@ textarea {
 
   > * {
     margin: 0px 6px;
-
-    color: var(--color-light);
   }
 }
 
@@ -224,7 +256,7 @@ textarea {
   }
 }
 
-#landing {
+#index {
   > .body {
     animation: zoom-in 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 0.0s;
 
@@ -256,6 +288,18 @@ textarea {
         font: bold 240px/1 "Outfit", sans-serif;
       }
     }
+  }
+}
+
+#sign-in {
+  > .body {
+    flex-direction: column nowrap;
+    flex-flow: column nowrap;
+    place-content: center center;
+
+    display: flex;
+
+    padding: 60px 120px;
   }
 }
 
@@ -298,45 +342,6 @@ textarea {
       > * {
         > a {
           color: var(--color-01);
-        }
-      }
-
-      > #help-form {
-        > * {
-          flex-direction: row nowrap;
-          place-content: center center;
-  
-          display: flex;
-  
-          > * {
-            > * {
-              font: 36px/1 "Outfit", sans-serif !important;
-            }
-          }
-        }
-  
-        > :not(:last-child) {         
-          margin: 0px 0px 12px 0px;
-  
-          > :nth-child(1) {
-            place-content: center center;
-  
-            display: inline-block;
-  
-            width: 25%;
-          }
-  
-          > :nth-child(2) {
-            width: 75%;
-          }
-        }
-  
-        > :last-child {
-          > * {
-            width: 120px;
-  
-            margin: 24px 0px 0px 0px;
-          }
         }
       }
 

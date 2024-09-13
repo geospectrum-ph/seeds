@@ -1,15 +1,15 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-export default function Login() {
-  localStorage.setItem("active_page", "Log In");
+export default function Error() {
+  localStorage.setItem("active-page", "error");
 
   return (
-    <div id = "login" className = "page">
+    <div id = "error" className = "page">
       <Header/>
       <div className = "body">
         <div>
-          <div>{ "Log In!" }</div>
+          <div>{ "Error" }</div>
         </div>
       </div>
       <Footer/>

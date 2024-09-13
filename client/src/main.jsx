@@ -2,55 +2,50 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Landing from "./app/landing";
-import Home from "./app/home";
-import Login from "./app/login";
-import About from "./app/about";
-import Error from "./app/error";
+import Index from "./pages/index";
+import SignIn from "./pages/sign-in";
+import Home from "./pages/home";
+import Catalogue from "./pages/catalogue";
+import MapPortal from "./pages/map-portal";
+import Analytics from "./pages/analytics";
+import ExecutiveProfile from "./pages/executive-profile";
+import Account from "./pages/account";
+import About from "./pages/about";
+import Help from "./pages/help";
+import TermsOfUse from "./pages/terms-of-use";
+import PrivacyPolicy from "./pages/privacy-policy";
+import Error from "./pages/error";
 
 import sign_console from "./assets/signature";
 
 import "./main.css";
 
-// function Router() {
-//   function PrivateRoute ({ Component }) {
-//     /*
-//       const [someLocalVariable, setSomeLocalVariable] = React.useState(false);
-
-//       React.useEffect(function () {
-//         const key = localStorage.getItem("key");
-
-//         if (key === valid) { setSomeLocalVariable(true); } 
-//       }, [someGlobalVariable]);
-
-//       return (someLocalVariable ? <Component /> : <Navigate to = "/login"/>);
-//     */
-         
-//     return (false ? <Component /> : <Navigate to = "/login"/>);
-//   };
-
-//   return (
-//     <Routes>
-//       <Route path = "/">
-//         <Route index element = { <Landing/> }/>
-//         <Route path = "home" element = { <PrivateRoute Component = { <Home/> }/> }/>
-//         <Route path = "login" element = { <Login/> }/>
-//         <Route path = "about" element = { <About/> }/>
-//         <Route path = "feedback" element = { <Feedback/> }/>
-//         <Route path = "*" element = { <Error/> }/>
-//       </Route>
-//     </Routes>
-//   );
-// }
-
 export default function Router() {
+  const [authorization, setAuthorization] = React.useState(null);
+
+  React.useEffect(function () {
+    const token = localStorage.getItem("token");
+
+    if (token) { setAuthorization(true); }
+  }, []);
+
   return (
     <Routes>
       <Route path = "/">
-        <Route index element = { <Landing/> }/>
-        <Route path = "home" element = { <Landing/> }/>
-        <Route path = "login" element = { <Login/> }/>
+        <Route index element = { <Index/> }/>
+        <Route path = "sign-in" element = { <SignIn/> }/>
+        <Route path = "home">
+          <Route index element = { authorization ? <Home/> : <SignIn/> }/>
+          <Route path = "catalogue" element = { authorization ? <Catalogue/> : <SignIn/> }/>
+          <Route path = "map-portal" element = { authorization ? <MapPortal/> : <SignIn/> }/>
+          <Route path = "analytics" element = { authorization ? <Analytics/> : <SignIn/> }/>
+          <Route path = "executive-profile" element = { authorization ? <ExecutiveProfile/> : <SignIn/> }/>
+        </Route>
+        <Route path = "account" element = { authorization ? <Account/> : <SignIn/> }/>
         <Route path = "about" element = { <About/> }/>
+        <Route path = "terms-of-use" element = { <TermsOfUse/> }/>
+        <Route path = "privacy-policy" element = { <PrivacyPolicy/> }/>
+        <Route path = "help" element = { <Help/> }/>
         <Route path = "*" element = { <Error/> }/>
       </Route>
     </Routes>

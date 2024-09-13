@@ -1,16 +1,15 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-export default function Landing() {
-  localStorage.setItem("active_page", "Landing");
+export default function MapPortal() {
+  localStorage.setItem("active-page", "map-portal");
 
   return (
-    <div id = "landing" className = "page">
+    <div id = "map-portal" className = "page">
       <Header/>
       <div className = "body">
         <div>
-          <div>{ "Welcome to" }</div>
-          <div>{ "SEEDs" }</div>
+          <div>{ "Map Portal" }</div>
         </div>
       </div>
       <Footer/>
