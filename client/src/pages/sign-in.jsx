@@ -13,17 +13,24 @@ export default function SignIn() {
       for (const entry of data.entries()) {
         console.log(entry);
       }
+
+      
     }
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      const data = new FormData(form);
+      const username = document.getElementById("sign-in-username").value;
+      const password = document.getElementById("sign-in-password").value;
 
-      data.append("username", document.getElementById("sign-in-username").value);
-      data.append("password", document.getElementById("sign-in-password").value);
+      if (username !== "" && password !== "") {
+        const data = new FormData(form);
 
-      submit(data);
+        data.append("username", username);
+        data.append("password", password);
+  
+        submit(data);
+      }
 
       form.reset();
     });
