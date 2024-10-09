@@ -1,5 +1,7 @@
 import React from "react";
 
+import axios from "axios";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -14,7 +16,24 @@ export default function SignIn() {
         console.log(entry);
       }
 
-      
+      const url = "http://localhost:5173/";
+      const test_email = "seeds@geospectrum.com.ph";
+
+      await axios
+        .post(url + "user/sign-in/", {
+          name: "test_name",
+          email: test_email,
+          password: "test_password",
+          type: "test_type"
+        })
+        .then(function (response) {
+          console.log("response:");
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log("error:");
+          console.log(error);
+        });
     }
 
     form.addEventListener("submit", function (event) {

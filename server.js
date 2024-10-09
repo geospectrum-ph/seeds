@@ -11,25 +11,30 @@ mongoose
     throw (error);
   });
 
-mongoose.connection.once("open", function () {
-  const express = require("express");
-  const app = express();
+mongoose
+  .connection
+    .once("open", function () {
+      const express = require("express");
+      const app = express();
 
-  const cors = require("cors");
-  app.use(cors());
+      const cors = require("cors");
+      app.use(cors());
 
-  const path = require("path");
+      const user_router = require("./routes/user");
+      app.use("/user", user_router);
 
-  app.use(express.static(path.join(__dirname, "client/dist")));
+      const path = require("path");
 
-  app.get("*", function (_request, response) {
-    response.sendFile(path.join(__dirname, "/client/dist/index.html"));
-  });
+      app.use(express.static(path.join(__dirname, "client/dist")));
 
-  app.listen(process.env.PORT, function () {
-    console.log(`The server is running on port: ${ process.env.PORT }.`);
-  });
-});
+      app.get("*", function (_request, response) {
+        response.sendFile(path.join(__dirname, "/client/dist/index.html"));
+      });
+
+      app.listen(process.env.PORT, function () {
+        console.log(`The server is running on port: ${ process.env.PORT }.`);
+      });
+    });
 
 // mongoose
 //   .disconnect()
