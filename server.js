@@ -17,11 +17,13 @@ mongoose
       const express = require("express");
       const app = express();
 
+      app.use(express.json());
+
       const cors = require("cors");
       app.use(cors());
 
-      const user_router = require("./routes/user");
-      app.use("/user", user_router);
+      const users_router = require("./routes/users");
+      app.use("/users", users_router);
 
       const path = require("path");
 

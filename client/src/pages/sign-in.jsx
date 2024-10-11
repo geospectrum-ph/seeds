@@ -11,20 +11,13 @@ export default function SignIn() {
   React.useEffect(function () {
     const form = document.getElementById("sign-in-form");
 
-    async function submit(data) {
-      for (const entry of data.entries()) {
-        console.log(entry);
-      }
-
-      const url = "http://localhost:5173/";
-      const test_email = "seeds@geospectrum.com.ph";
+    async function submit(username, password) {
+      const url = "http://localhost:3000/";
 
       await axios
-        .post(url + "user/sign-in/", {
-          name: "test_name",
-          email: test_email,
-          password: "test_password",
-          type: "test_type"
+        .post(url + "users/sign-in/", {
+          email: username,
+          password: password
         })
         .then(function (response) {
           console.log("response:");
@@ -43,12 +36,7 @@ export default function SignIn() {
       const password = document.getElementById("sign-in-password").value;
 
       if (username !== "" && password !== "") {
-        const data = new FormData(form);
-
-        data.append("username", username);
-        data.append("password", password);
-  
-        submit(data);
+        submit(username, password);
       }
 
       form.reset();
