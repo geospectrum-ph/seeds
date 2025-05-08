@@ -68,7 +68,7 @@ export default function Footer(){
       <Grid container direction="row" justifyContent="center" alignItems="center" style={{paddingBottom:10}}>
         <Grid item style={{paddingRight:20}} >
           <h1 className={classes.appbarTitle} style={{cursor: 'pointer'}} onClick={()=>{history.push('/')}}>
-            <img src={logo2} style={{height:55, marginTop: 0}} onClick={()=>{history.push('/')}}/>
+            <img src={logo2} style={{height:10, marginTop: 30}} onClick={()=>{history.push('/')}}/>
             <span className={classes.colorText}>SEED</span>s 
           </h1>
         </Grid> 
