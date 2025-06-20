@@ -254,14 +254,14 @@ router.route('/sld').get((req, res) => { // bale pag pumunta ka sa "https://seed
         "name":"default",
         "title":"default",
         "color":"#000000",
-        "weight":"1",
+        "weight":"0.5",
         "strokeOpacity":null,
         "fillOpacity":null,
         "fillColor":"#ff0000",
         "dashArray":null,
         "lineJoin":"bevel",
         "lineCap":null}],
-        "metadataID":req.query.metadataID
+        "metadataID":req.query.metadataID,
       }
 
       if (items) {res.status(200).json(items)} else {res.status(200).json(defaultStyle)}

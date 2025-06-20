@@ -162,6 +162,12 @@ export default function MapLayer(props) {
     setOpen(true);
   };
 
+
+  React.useEffect(function () {
+    console.log(layerList);
+
+  }, [layerList]);
+
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
