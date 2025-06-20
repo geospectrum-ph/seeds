@@ -13,6 +13,7 @@ const path = require('path');
 
 var app = express();
 
+
 // ADD THIS
 var cors = require('cors');
 app.use(cors());
