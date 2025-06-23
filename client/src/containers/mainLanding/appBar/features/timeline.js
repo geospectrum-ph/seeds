@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { createTheme, makeStyles } from '@material-ui/core/styles';
 import { useMediaQuery, Paper, Typography } from '@material-ui/core';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
@@ -15,7 +15,24 @@ import upload from '../../../../assets/icons/24 SEEDs Populate.png'
 import cat from '../../../../assets/icons/25 SEEDs Catalogue.png'
 import portal from '../../../../assets/icons/26 SEEDs Portal.png'
 
-import theme from '../../../../theme'
+const theme = createTheme({
+  typography: {
+    h3: {
+      fontFamily: "Outfit"
+    },
+    h6: {
+      fontFamily: "Outfit"
+    }
+  },
+  palette: {
+    primary: {
+      main: "#1b798e"
+    },
+    secondary: {
+      main: "#0d3c47"
+    }
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   paper: {

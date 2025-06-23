@@ -1,14 +1,34 @@
 import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
-import { AppBar, makeStyles, Toolbar, Typography, Tab, Tabs, useMediaQuery, Box } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Tab, Tabs, useMediaQuery, Box } from '@material-ui/core';
 import { TabContext } from '@material-ui/lab';
 import { useHistory } from "react-router-dom";
 
 import logo2 from '../../../assets/icons/0 Logo (3D Colored).png'
-import theme from '../../../theme';
 import DrawerComponent from '../drawerComponent';
 
 import { SEEDSContext } from '../../../context/SEEDSContext';
+
+import { createTheme, makeStyles } from '@material-ui/core/styles';
+
+const theme = createTheme({
+  typography: {
+    h3: {
+      fontFamily: "Outfit"
+    },
+    h6: {
+      fontFamily: "Outfit"
+    }
+  },
+  palette: {
+    primary: {
+      main: "#1b798e"
+    },
+    secondary: {
+      main: "#0d3c47"
+    }
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
