@@ -44,7 +44,7 @@ export default function TemporaryDrawer() {
     setSelectedIndex(5)
     try{
       const _id = JSON.parse(localStorage.getItem('user'))._id;
-      axios.get(`http://localhost:5000/usermaster/checkUserPrivilege/${_id}/61892c33219fea59d81938b3`).then(resp => {
+      axios.get(`https://seeds.geospectrum.com.ph/usermaster/checkUserPrivilege/${_id}/61892c33219fea59d81938b3`).then(resp => {
         setIsUserPrivilegeManageUsers(resp.data);
         setIsAuth(isUserPrivilegeManageUsers["is_Privilege"])
       });

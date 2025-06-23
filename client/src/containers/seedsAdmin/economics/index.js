@@ -56,7 +56,7 @@ export default function Economics() {
   const [domain, setDomain] = useState([])
   const getDomains = async () => {
     try{
-      const domains = await axios.get("http://localhost:5000/metadata/getdomainseconomic");
+      const domains = await axios.get("https://seeds.geospectrum.com.ph/metadata/getdomainseconomic");
       setDomain(domains.data);    
     }
     catch(e){

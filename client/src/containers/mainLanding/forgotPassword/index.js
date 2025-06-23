@@ -111,7 +111,7 @@ export default function SignIn() {
 
     const postEmail = async() => {
       setDisUp(true)
-      const res = await axios.post("http://localhost:5000/resetPasswordMaster/", {"email": email})
+      const res = await axios.post("https://seeds.geospectrum.com.ph/resetPasswordMaster/", {"email": email})
         .then(function(res) {
           setDisUp(false)
           alert("Password reset link sent to your email account!")

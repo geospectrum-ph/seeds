@@ -18,8 +18,8 @@ import {
 
 
 // react nice dates
-import { DateRangePicker, START_DATE, END_DATE } from 'react-nice-dates';
-import 'react-nice-dates/build/style.css';
+import { DateRangePicker, START_DATE, END_DATE } from '@bjarkehs/react-nice-dates';
+import '@bjarkehs/react-nice-dates/build/style.css';
 import { enUS } from 'date-fns/locale';
 import './index.css';
 
@@ -75,7 +75,7 @@ export default function CalendarsDateRangePickerJob() {
   const handleStartDateChange = (date) => {
 
     const fetchData = async() => {
-      const res = await axios(`http://ec2-52-55-74-109.compute-1.amazonaws.com/jobmapper/brgy/single`, 
+      const res = await axios(`https://seeds.geospectrum.com.ph/jobmapper/brgy/single`, 
       {params: {brgy_id: healthLoc,
                 startdate: parseDate(date),
                 enddate: endDate,
@@ -84,7 +84,7 @@ export default function CalendarsDateRangePickerJob() {
       setJobSelect(res.data)
       // console.log("jobSelect on Date1 Change",res.data)
 
-      const res_graph = await axios(`http://ec2-52-55-74-109.compute-1.amazonaws.com/jobmapper/graph`, 
+      const res_graph = await axios(`https://seeds.geospectrum.com.ph/jobmapper/graph`, 
       {params: {brgy_id: healthLoc,
                 startdate: parseDate(date),
                 enddate: endDate,
@@ -103,7 +103,7 @@ export default function CalendarsDateRangePickerJob() {
   const handleEndDateChange = (date) => {
 
     const fetchData = async() => {
-      const res = await axios.get('http://ec2-52-55-74-109.compute-1.amazonaws.com/jobmapper/brgy/single',
+      const res = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/brgy/single',
       {params: {brgy_id: healthLoc,
                 startdate: startDate,
                 enddate: parseDate(date),
@@ -115,7 +115,7 @@ export default function CalendarsDateRangePickerJob() {
       // console.log(healthSelect)
       // console.log("jobSelect on Date2 Change",res.data)
 
-      const res_graph = await axios.get('http://ec2-52-55-74-109.compute-1.amazonaws.com/jobmapper/graph',
+      const res_graph = await axios.get('https://seeds.geospectrum.com.ph/jobmapper/graph',
       {params: {brgy_id: healthLoc,
         startdate: startDate,
         enddate: parseDate(date),

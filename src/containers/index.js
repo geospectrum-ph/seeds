@@ -35,7 +35,7 @@ function App() {
   useEffect(()=>{
 
     const fetchData = async () => {
-      const names = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/getdata/barangays/',);
+      const names = await axios('https://seeds.geospectrum.com.ph/getdata/barangays/',);
       setBrgysList(names.data.values);
     };
 

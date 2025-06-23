@@ -78,8 +78,8 @@ function SeedsMap() {
   const routeArray = [
     {
       "subdomain":"Disease Incidence",
-      "route_brgy": `http://localhost:5000/healthmapper/brgy/single`, 
-      "route_graph":'http://localhost:5000/healthmapper/graph', 
+      "route_brgy": `https://seeds.geospectrum.com.ph/healthmapper/brgy/single`, 
+      "route_graph":'https://seeds.geospectrum.com.ph/healthmapper/graph', 
       "set_select":setDiseaseSelect, 
       "set_graph":setDiseaseMapperGraph,
       "class_select": [
@@ -89,8 +89,8 @@ function SeedsMap() {
       ]
     }, {
       "subdomain":"Commercial Establishments",
-      "route_brgy": `http://localhost:5000/commercialmapper/brgy/single`, 
-      "route_graph":'http://localhost:5000/commercialmapper/graph', 
+      "route_brgy": `https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, 
+      "route_graph":'https://seeds.geospectrum.com.ph/commercialmapper/graph', 
       "set_select":setCommercialSelect, 
       "set_graph":setCommercialMapperGraph,
       "class_select": [
@@ -100,15 +100,15 @@ function SeedsMap() {
       ]
     }, {
       "subdomain":"Existing Land Use",
-      "route_brgy": `http://localhost:5000/landuse/brgy`, 
-      "route_graph":'http://localhost:5000/landuse/graph', 
+      "route_brgy": `https://seeds.geospectrum.com.ph/landuse/brgy`, 
+      "route_graph":'https://seeds.geospectrum.com.ph/landuse/graph', 
       "set_select":setLandUseSelect,
       "set_graph":setLandUseGraph,
       "class_select":  [] // wala talaga
     }, {
       "subdomain":"Jobs",
-      "route_brgy": `http://localhost:5000/jobmapper/brgy/single`, 
-      "route_graph":'http://localhost:5000/jobmapper/graph', 
+      "route_brgy": `https://seeds.geospectrum.com.ph/jobmapper/brgy/single`, 
+      "route_graph":'https://seeds.geospectrum.com.ph/jobmapper/graph', 
       "set_select":setJobSelect,
       "set_graph":setJobMapperGraph,
       "class_select": [
@@ -128,12 +128,12 @@ function SeedsMap() {
 
   useEffect(() => {
     const fetchData = async() => {
-      const res = await axios.get(`http://localhost:5000/getdata/bounds`,)
+      const res = await axios.get(`https://seeds.geospectrum.com.ph/getdata/bounds`,)
       setBounds(res.data)
     }
 
     const fetchDataMandaluyong = async() => {
-      const res = await axios("http://localhost:5000/household/mandaGet")
+      const res = await axios("https://seeds.geospectrum.com.ph/household/mandaGet")
       setHouseholdBldgShape(res.data)
     }
     
@@ -316,7 +316,7 @@ function SeedsMap() {
   useEffect(() => {
     if (clickPos){
       const fetchData = async() => {
-        const get_brgyID = await axios.get(`http://localhost:5000/barangay/findBarangay`, {
+        const get_brgyID = await axios.get(`https://seeds.geospectrum.com.ph/barangay/findBarangay`, {
           params: {
             lat: clickPos[1], 
             long: clickPos[0]
@@ -328,7 +328,7 @@ function SeedsMap() {
           if (get_brgyID.data[0]["properties"].BARANGAY === profileLoc) {
             // console.log("papasok dito")
             setSecondClick(true)
-            const res = await axios.get(`http://localhost:5000/household/click`,  {
+            const res = await axios.get(`https://seeds.geospectrum.com.ph/household/click`,  {
               params: {
                 lat: clickPos[1], 
                 long: clickPos[0]
@@ -392,12 +392,12 @@ function SeedsMap() {
       setProfileLoc(brgyID[0].properties.brgy_name)
       
       const fetchData = async() => {
-        const res_brgy_only = await axios("http://localhost:5000/barangay",
+        const res_brgy_only = await axios("https://seeds.geospectrum.com.ph/barangay",
           {params: {brgy_name:brgyID[0].properties.brgy_name}});
         setBrgySelect(res_brgy_only.data[0])
         setHouseholdSelect(res_brgy_only.data[0])
 
-        const res = await axios("http://localhost:5000/household/get", {
+        const res = await axios("https://seeds.geospectrum.com.ph/household/get", {
           params: {
             brgy_id: brgyID[0].properties.brgy_name,
             no_members_min: householdMin,

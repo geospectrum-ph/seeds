@@ -122,14 +122,14 @@ export default function MultipleSelect() {
     setHealthLoc(event.target.value)
     // console.log(startDate, endDate)
     const fetchData = async() => {
-      const res = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/brgy/single', 
+      const res = await axios('https://seeds.geospectrum.com.ph/healthmapper/brgy/single', 
       {params: {brgy_id: event.target.value,
                 startdate: startDate,
                 enddate: endDate}}); //ito yung gagamitin pag sa web yung server
 
       setHealthSelect(res.data)
 
-      const res_graph = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/healthmapper/graph', 
+      const res_graph = await axios('https://seeds.geospectrum.com.ph/healthmapper/graph', 
       {params: {brgy_id: event.target.value}} );
       // console.log(res_graph.data.values);
       setHealthMapperGraph(res_graph.data.values)

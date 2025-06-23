@@ -119,7 +119,7 @@ export default function DemLabor() {
 
   useEffect(() =>{
     const fetchData = async() => {
-      const res = await axios('http://localhost:5000/analytics/getsubcategory/single', {
+      const res = await axios('https://seeds.geospectrum.com.ph/analytics/getsubcategory/single', {
         params: {
           layerKey: 'Employment_Barangay', 
           specific_subcategory: 'job_class'
@@ -146,7 +146,7 @@ export default function DemLabor() {
 
   useEffect(()=>{
     const fetchData = async() => {
-      const res = await axios(`http://localhost:5000/jobmapper/brgy/single`, {
+      const res = await axios(`https://seeds.geospectrum.com.ph/jobmapper/brgy/single`, {
         params: {
           brgy_id: profileLoc,
           startdate: startDate,
@@ -156,7 +156,7 @@ export default function DemLabor() {
       }); 
       setJobSelect(res.data)
       setBrgySelect(res.data)
-      const res_graph = await axios(`http://localhost:5000/jobmapper/graph`, {
+      const res_graph = await axios(`https://seeds.geospectrum.com.ph/jobmapper/graph`, {
         params: {
           brgy_id: profileLoc,
           startdate: startDate,

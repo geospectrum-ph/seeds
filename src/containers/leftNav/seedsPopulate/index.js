@@ -677,8 +677,8 @@ export default function SeedsPopulate() {
 
       if (state.type === 'shp'){
         // axios.post('http://localhost:5000/upload/shp', formData, config).then(async ()=>{
-        axios.post('http://ec2-52-55-74-109.compute-1.amazonaws.com/upload/shp', formData, config).then(async ()=>{
-          const res4 = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/metadata/',); //ito yung gagamitin pag sa web yung server
+        axios.post('https://seeds.geospectrum.com.ph/upload/shp', formData, config).then(async ()=>{
+          const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',); //ito yung gagamitin pag sa web yung server
           // const res4 = await axios('http://localhost:5000/metadata/',); //ito yung gagamitin pag sa web yung server
           setDataCat(res4.data);
           setDataShow(res4.data);
@@ -686,8 +686,8 @@ export default function SeedsPopulate() {
           setDisUp(false)
         })
       } else if (state.type === 'tif'){
-        axios.post('http://ec2-52-55-74-109.compute-1.amazonaws.com/upload/tif', formData, config).then(async ()=>{
-          const res4 = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/metadata/',); //ito yung gagamitin pag sa web yung server
+        axios.post('https://seeds.geospectrum.com.ph/upload/tif', formData, config).then(async ()=>{
+          const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',); //ito yung gagamitin pag sa web yung server
           // const res4 = await axios('http://localhost:5000/metadata/',); //ito yung gagamitin pag sa web yung server
           setDataCat(res4.data);
           setDataShow(res4.data);
@@ -695,8 +695,8 @@ export default function SeedsPopulate() {
           setDisUp(false)
         })
       } else {
-        axios.post('http://ec2-52-55-74-109.compute-1.amazonaws.com/upload/csv', formData, config).then(async ()=>{
-          const res4 = await axios('http://ec2-52-55-74-109.compute-1.amazonaws.com/metadata/',); //ito yung gagamitin pag sa web yung server
+        axios.post('https://seeds.geospectrum.com.ph/upload/csv', formData, config).then(async ()=>{
+          const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',); //ito yung gagamitin pag sa web yung server
           // const res4 = await axios('http://localhost:5000/metadata/',); //ito yung gagamitin pag sa web yung server
           setDataCat(res4.data);
           setDataShow(res4.data);
@@ -713,7 +713,7 @@ export default function SeedsPopulate() {
   }
 
   const handleClose = () => {
-    axios.get('http://ec2-52-55-74-109.compute-1.amazonaws.com/clearTemp');
+    axios.get('https://seeds.geospectrum.com.ph/clearTemp');
     setOpen(false);
   };
   const handleChange = (event) => {
