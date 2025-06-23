@@ -5,16 +5,34 @@ import _without from "lodash/without";
 import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Label, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Button, Typography, Grid, Container, Paper, Checkbox, Divider, FormControl, FormGroup,
           InputLabel, MenuItem, Select ,Radio, RadioGroup, FormControlLabel, ListSubheader, FormHelperText }from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { createTheme, makeStyles } from '@material-ui/core/styles';
 import { DataGrid } from '@material-ui/data-grid';
 
-import theme from '../../theme'
 import SeedsAnalyticsMap from './seedsAnalyticsMap/index'
 import AnalyticsDatePicker from './datePicker'
 import LoadingPage from '../loadingPage'
 
 import { SEEDSContext } from '../../context/SEEDSContext';
 import {AnalyticsContext} from '../../context/AnalyticsContext';
+
+const theme = createTheme({
+  typography: {
+    h3: {
+      fontFamily: "Outfit"
+    },
+    h6: {
+      fontFamily: "Outfit"
+    }
+  },
+  palette: {
+    primary: {
+      main: "#1b798e"
+    },
+    secondary: {
+      main: "#0d3c47"
+    }
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {

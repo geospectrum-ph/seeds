@@ -50,8 +50,8 @@ const useStyles = makeStyles(() => ({
     backgroundImage: `url(${BG})`,
     backgroundPosition: 'center center',
     backgroundSize: 'cover',
+    height: "100%",
     backgroundRepeat: 'no-repeat',
-    height: '81.7vh', //same with loginpage container
     fontFamily:'LeagueSpartan'
   }
 }));
@@ -71,12 +71,12 @@ export default function MainLanding(){
   },[])
 
   return (
-    <Grid container direction="column" sx={{height: '100vh', overflowY: 'hidden'}}>
-      <Scroll showBelow={250}/> 
+    <Grid id = "main-landing" container direction="column">
+      {/* <Scroll showBelow={250}/>  */}
       <Grid item>
         <AppsBar/>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item>
         <Route exact path="/">
           <Grid container className={classes.container}>
             <Grid item xs={12} md={10} lg={7} container direction="column" justifyContent="flex-end" 

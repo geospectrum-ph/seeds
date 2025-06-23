@@ -1,123 +1,99 @@
-// Property of: Geospectrum Analytics Services, Inc.
-// SEEDS Program
-// Server File
+const express = require("express");
 
+const app = express();
 
+app.use(express.json({ limit: "1000mb" }));
+app.use(express.urlencoded({ limit: "1000mb", extended: true }));
 
-// Packages Used
-const express = require('express'); // for HTTP requests
-const mongoose = require('mongoose'); // for Object Document Modelling
-const bodyParser = require('body-parser');
-// const cors = require('cors');
-const path = require('path');
+const bodyParser = require("body-parser");
 
-var app = express();
+app.use(bodyParser.urlencoded({ limit: "1000mb", extended: true, parameterLimit: 200000 }));
+app.use(bodyParser.json({limit: "1000mb"}));
 
-// ADD THIS
-var cors = require('cors');
+const methodOverride = require("method-override");
+
+app.use(methodOverride("_method"));
+
+const cors = require("cors");
+
 app.use(cors());
 
-const methodOverride = require('method-override');
+const mongoose = require("mongoose");
 
-require('dotenv').config();
+mongoose.set("strictQuery", false);
 
-// const app = express();
-const port = process.env.PORT || 5000; // "https://seeds-demo.geospectrum.com.ph" ;
+const mongodb_connection_string = "mongodb+srv://seeds:seeds@seeds.nm1d8.mongodb.net/seeds-db?retryWrites=true&w=majority"
+// const mongodb_connection_string = "mongodb://127.0.0.1:27017/seeds-db"
 
-app.use(express.json({limit: '1000mb'}));
-app.use(express.urlencoded({limit: '1000mb', extended: true}))
-app.use(bodyParser.urlencoded({limit: '1000mb', extended: true, parameterLimit:200000}))
-app.use(bodyParser.json({limit: '1000mb'}))
+require("dotenv").config();
 
-// app.use(cors()); // it enables all cors requests
+const port = process.env.PORT || 5000; // https://seeds.geospectrum.com.ph
 
-app.use(methodOverride('_method'));
+const path = require("path");
 
-//MongoDB connection string
-const uri = "mongodb+srv://seeds:seeds@seeds.nm1d8.mongodb.net/seeds-db?retryWrites=true&w=majority"
-// const uri = "mongodb://127.0.0.1:27017/seeds-db"
+mongoose
+  .connect(process.env.MONGODB_URI || mongodb_connection_string, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log("MongoDB database connection established successfully");
 
-mongoose.connect(process.env.MONGODB_URI || uri, { useNewUrlParser: true, useUnifiedTopology: true }).catch(error => console.log(error));
+    const analyticsRouter = require("./routes/analytics");
+    const barangayRouter = require("./routes/barangay");
+    const buildingRouter = require("./routes/building");
+    const cityRouter = require("./routes/city");
+    const commercialmapperRouter = require("./routes/commercialmapper");
+    const getRouter = require("./routes/getdata");
+    const groupprivilege = require("./routes/group_privilege");
+    const healthmapperRouter = require("./routes/healthmapper");
+    const householdRouter = require("./routes/household");
+    const jobmapperRouter = require("./routes/jobmapper");
+    const landUseRouter = require("./routes/landuse");
+    const metadataRouter = require("./routes/metadata");
+    const mobileRouter = require("./routes/mobile");
+    const mysqlrouter = require("./routes/mysqldb");
+    const personRouter = require("./routes/person");
+    const postgresqldbrouter = require("./routes/postgresqldb");
+    const resetpassword = require("./routes/controllers/passwordReset");
+    const resetpasswordmaster = require("./routes/controllers/passwordResetMaster");
+    const sessionRouter = require("./routes/session");
+    const uploadRouter = require("./routes/upload");
+    const userRouter = require("./routes/user");
+    const usergroup = require("./routes/user_group");
+    const usergrouppermission = require("./routes/user_group_permission");
+    const userMasterRouter = require("./routes/user_master");
 
-const connection = mongoose.connection;
-connection.once('open', () => {
-  console.log("MongoDB database connection established successfully");
+    app.use("/analytics", analyticsRouter);
+    app.use("/barangay", barangayRouter);
+    app.use("/building", buildingRouter);
+    app.use("/city", cityRouter);
+    app.use("/commercialmapper", commercialmapperRouter);
+    app.use("/getdata", getRouter);
+    app.use("/groupprivilege", groupprivilege);
+    app.use("/healthmapper", healthmapperRouter);
+    app.use("/household", householdRouter);
+    app.use("/jobmapper", jobmapperRouter);
+    app.use("/landuse", landUseRouter);
+    app.use("/metadata", metadataRouter);
+    app.use("/mobile", mobileRouter);
+    app.use("/mysqldb", mysqlrouter);
+    app.use("/person", personRouter);
+    app.use("/postgresqldb", postgresqldbrouter);
+    app.use("/resetpassword", resetpassword);
+    app.use("/resetpasswordmaster", resetpasswordmaster);
+    app.use("/session", sessionRouter);
+    app.use("/upload", uploadRouter);
+    app.use("/user", userRouter);
+    app.use("/usergroup", usergroup);
+    app.use("/usergrouppermission", usergrouppermission);
+    app.use("/usermaster", userMasterRouter);
 
-  // bodyParser deprecated? 8 Sept 2021
-  app.use(bodyParser.urlencoded({limit: '1000mb', extended: true, parameterLimit:200000}))
-  app.use(bodyParser.json({limit: '1000mb'}))
-  
-  // app.use(express.urlencoded({limit: '200mb', extended: true}))
-  // app.use(express.json({limit: '100mb'}))
-  // if(process.env.NODE_ENV === 'production'){
-  //   app.use(express.static('client/build'));
-  // }
+    app.use(express.static(path.join(__dirname, "client/build")));
 
-  //import routes
-  const userRouter = require('./routes/user');
-  const userMasterRouter = require('./routes/user_master');
-  const { db } = require('./models/user.model');
-  const resetpassword = require("./routes/controllers/passwordReset");
-  const resetpasswordmaster = require("./routes/controllers/passwordResetMaster");
-  const personRouter = require('./routes/person');
-  const buildingRouter = require('./routes/building');
-  const barangayRouter = require('./routes/barangay');
-  const cityRouter = require('./routes/city');
-  const uploadRouter = require('./routes/upload');
-  const metadataRouter = require('./routes/metadata');
-  const getRouter = require('./routes/getdata');
-  const healthmapperRouter = require('./routes/healthmapper');
-  const jobmapperRouter = require('./routes/jobmapper');
-  const commercialmapperRouter = require('./routes/commercialmapper');
-  const landUseRouter = require('./routes/landuse');
-  const analyticsRouter = require('./routes/analytics');
-  const sessionRouter = require('./routes/session');
+    app.get("*", (request, response) => {
+      response.sendFile(path.join(__dirname, "/client/build/index.html"));
+    });
 
-  const postgresqldbrouter = require('./routes/postgresqldb');
-  const mysqlrouter = require('./routes/mysqldb');
-
-  const householdRouter = require('./routes/household');
-  const groupprivilege = require('./routes/group_privilege');
-  const usergroup = require('./routes/user_group');
-  const usergrouppermission = require('./routes/user_group_permission');
-
-  const mobileRouter = require('./routes/mobile/mobile')
-
-
-  app.use('/mysqldb', mysqlrouter);
-  app.use('/postgresqldb', postgresqldbrouter);
-  app.use('/person', personRouter);
-  app.use('/building', buildingRouter);
-  app.use('/barangay', barangayRouter);
-  app.use('/city', cityRouter);
-  app.use('/upload', uploadRouter);
-  app.use('/metadata', metadataRouter);
-  app.use('/getdata', getRouter);
-  app.use('/healthmapper', healthmapperRouter);
-  app.use('/jobmapper', jobmapperRouter);
-  app.use('/commercialmapper', commercialmapperRouter);
-  app.use('/landuse', landUseRouter);
-  app.use('/analytics', analyticsRouter);
-  app.use('/session', sessionRouter);
-  app.use('/household', householdRouter);
-  app.use('/user', userRouter);
-  app.use('/usermaster', userMasterRouter);
-  app.use('/resetpassword', resetpassword);
-  app.use('/resetpasswordmaster', resetpasswordmaster);
-  app.use('/groupprivilege', groupprivilege);
-  app.use('/usergroup', usergroup);
-  app.use('/usergrouppermission', usergrouppermission);
-  app.use('/mobile', mobileRouter)
-
-  app.use(express.static(path.join(__dirname, 'client/build')));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/client/build/index.html'));
-  });
-
-  app.listen(port, () => {
-      console.log(`Server is running on port: ${port}`);
-  });
-
-})
-
+    app.listen(port, () => {
+        console.log(`The server is running on port: ${port}`);
+    });
+  })
+  .catch(error => console.log(error));

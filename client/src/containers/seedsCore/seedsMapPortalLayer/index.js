@@ -80,8 +80,8 @@ export default function MapLayer() {
     const barangay = layer.barangay
     const lgi = layer.layerGroup
     const [checked, setChecked] = useState(false)
-    const [sliderVal, setSliderVal] = lgi.fillOpacity ? React.useState(lgi.fillOpacity*100) : 0;
-    const sliderValRef = lgi.fillOpacity ? React.useState(lgi.fillOpacity*100) : 0;
+    const [sliderVal, setSliderVal] = lgi.fillOpacity ? React.useState(lgi.fillOpacity*100) : React.useState(0);
+    const sliderValRef = lgi.fillOpacity ? React.useState(lgi.fillOpacity*100) : React.useState(0);
     const deletionProcess = React.useRef(false)
     const [isLayerOn, setIsLayerOn] = React.useState(lgi.active)
     const isLayerOnRef = React.useRef(lgi.active)

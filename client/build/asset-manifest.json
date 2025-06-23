@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.75f3fc19.css",
-    "main.js": "/static/js/main.9a02de54.js",
+    "main.css": "/static/css/main.cd0474b4.css",
+    "main.js": "/static/js/main.131e5d87.js",
     "static/media/demographic.png": "/static/media/demographic.dec8ed80c216d556c321.png",
     "static/media/environmental.png": "/static/media/environmental.c70583aa8af48bc0f2e6.png",
     "static/media/BG_new_PH2.jpg": "/static/media/BG_new_PH2.01dc5a45385315235a66.jpg",
@@ -14,7 +14,7 @@
     "static/media/ver3_sMP3.png": "/static/media/ver3_sMP3.4fd441b72160c67e0242.png",
     "static/media/ver3_sMP2.png": "/static/media/ver3_sMP2.5c5bfdc6a474255b77a0.png",
     "static/media/sMP8.png": "/static/media/sMP8.7f320328d1ad9848d7b5.png",
-    "static/media/0 Logo (3D Colored).png": "/static/media/0 Logo (3D Colored).0f30a5b2f37eb72d19d4.png",
+    "static/media/0 Logo (3D Colored)_old.png": "/static/media/0 Logo (3D Colored)_old.0f30a5b2f37eb72d19d4.png",
     "static/media/ver2_sMP8.png": "/static/media/ver2_sMP8.8b847bb595d6bf9a9b0d.png",
     "static/media/sMP7.png": "/static/media/sMP7.9c8f52bb73364fce09d8.png",
     "static/media/sMP2.png": "/static/media/sMP2.abe14ec9cee98d7abbbc.png",
@@ -89,7 +89,6 @@
     "static/media/ver2_sD7.png": "/static/media/ver2_sD7.ca3065c85f87de400da2.png",
     "static/media/22 Municipality,City Census (Option 1).png": "/static/media/22 Municipality,City Census (Option 1).8be3dc75f48f8ad68d3c.png",
     "static/media/26 SEEDs Portal.png": "/static/media/26 SEEDs Portal.be18fdf476d1d7dff34a.png",
-    "static/media/0 Logo (3D Colored).ico": "/static/media/0 Logo (3D Colored).6021d8c3896cf4b2a445.ico",
     "static/media/ver3_sP2.png": "/static/media/ver3_sP2.c8f1173f31f8c45a61bb.png",
     "static/media/3 Health.png": "/static/media/3 Health.e3687b381069c473e599.png",
     "static/media/42 Add to Map.png": "/static/media/42 Add to Map.1eaf1c141b0a5df11cd2.png",
@@ -134,17 +133,19 @@
     "static/media/ver3_sP7.png": "/static/media/ver3_sP7.f79d19e26d6def6311fa.png",
     "static/media/27 SEEDs Profile.png": "/static/media/27 SEEDs Profile.981dcdd1640800b472c7.png",
     "static/media/seedMark.png": "/static/media/seedMark.770ab603e3dff5c73dcb.png",
+    "static/media/0 Logo (3D Colored).png": "/static/media/0 Logo (3D Colored).90ab9b43b70e2971d517.png",
     "static/media/glacial-indifference.bold.otf": "/static/media/glacial-indifference.bold.e742f534cb2ac8b560c6.otf",
     "static/media/hjjkhjk.png": "/static/media/hjjkhjk.31cd7347a8917688c8be.png",
     "static/media/LeagueSpartan-Bold.otf": "/static/media/LeagueSpartan-Bold.caadcad8af387d419251.otf",
+    "static/media/0 Logo (3D Colored).ico": "/static/media/0 Logo (3D Colored).586e5c307e8a32a531f1.ico",
     "static/media/spritesheet.svg": "/static/media/spritesheet.a4e0eb7ad904a4858361.svg",
     "index.html": "/index.html",
-    "static/media/default.svg": "/static/media/default.d6eb510ff1e3da772690be11a3431a27.svg",
-    "main.75f3fc19.css.map": "/static/css/main.75f3fc19.css.map",
-    "main.9a02de54.js.map": "/static/js/main.9a02de54.js.map"
+    "static/media/default.svg": "/static/media/default.7b7baf362112d9afb7c843890000bd98.svg",
+    "main.cd0474b4.css.map": "/static/css/main.cd0474b4.css.map",
+    "main.131e5d87.js.map": "/static/js/main.131e5d87.js.map"
   },
   "entrypoints": [
-    "static/css/main.75f3fc19.css",
-    "static/js/main.9a02de54.js"
+    "static/css/main.cd0474b4.css",
+    "static/js/main.131e5d87.js"
   ]
 }
