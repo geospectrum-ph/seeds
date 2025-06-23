@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { Grid } from '@material-ui/core/'
-import { Tabs, Tab, Box } from '@mui/material'
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 import MultipleSelect from "../2-dropDown";
 import Details from "../4-details"

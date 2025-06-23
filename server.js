@@ -34,6 +34,8 @@ app.use(methodOverride('_method'));
 const uri = "mongodb+srv://seeds:seeds@seeds.nm1d8.mongodb.net/seeds-db?retryWrites=true&w=majority"
 // const uri = "mongodb://127.0.0.1:27017/seeds-db" // mongodb conn string in localhost
 
+mongoose.set('strictQuery', false);
+
 mongoose
   .connect(process.env.MONGODB_URI || uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {

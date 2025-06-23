@@ -30,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
     color: '#fffefe',
     height: 55,
     fontSize: '1rem',
-    padding: '0 10px',
-    margin: '0 5px',
+    // padding: '0 10px',
+    // margin: '0 5px',
     fontFamily:'LeagueSpartan'
   }, login1: {
     border: 0,
@@ -40,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
     color: '#ffffff',
     fontSize: '1rem',
     height: 55,
-    padding: '0 30px',
-    margin: '0 5px',
+    // padding: '0 30px',
+    // margin: '0 5px',
     fontFamily:'LeagueSpartan',
     '&:hover': {
       color: '#fffefe',

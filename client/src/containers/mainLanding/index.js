@@ -71,7 +71,7 @@ export default function MainLanding(){
   },[])
 
   return (
-    <Grid container direction="column" sx={{height: '100vh', overflowY: 'hidden'}}>
+    <Grid id = "main-landing" container direction="column" sx={{height: '100vh', overflowY: 'hidden'}}>
       <Scroll showBelow={250}/> 
       <Grid item>
         <AppsBar/>
