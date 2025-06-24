@@ -23,20 +23,6 @@ import ResetPassword from './resetPassword'
 
 import { AdminContext } from '../../context/AdminContext'
 
-// colorschemes
-// #000000
-// #0d3c47
-// #1b798e
-// #29b5d5
-// #70cee3
-// #b7e6f1
-// #fffefe
-// #5aff3d
-// #b6c4c7
-// #ced8da
-// #e6ebec
-// #229922
-
 const useStyles = makeStyles(() => ({
   title: {
     color: '#fffefe',
@@ -47,12 +33,12 @@ const useStyles = makeStyles(() => ({
     fontSize: '2.5rem',
     color: "#5aff3d"
   }, container: {
-    backgroundImage: `url(${BG})`,
-    backgroundPosition: 'center center',
-    backgroundSize: 'cover',
+    
+                            background: `linear-gradient(rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75)), url(${ BG }) no-repeat center center`,
+                            backgroundSize: "cover",
     height: "100%",
     backgroundRepeat: 'no-repeat',
-    fontFamily:'LeagueSpartan'
+    fontFamily:"'Outfit', sans-serif"
   }
 }));
 
@@ -71,15 +57,14 @@ export default function MainLanding(){
   },[])
 
   return (
-    <Grid id = "main-landing" container direction="column">
-      {/* <Scroll showBelow={250}/>  */}
+    <Grid id = "main-landing" className = { classes.container } container direction = "column">
       <Grid item>
         <AppsBar/>
       </Grid>
       <Grid item>
-        <Route exact path="/">
-          <Grid container className={classes.container}>
-            <Grid item xs={12} md={10} lg={7} container direction="column" justifyContent="flex-end" 
+        <Route exact path = "/">
+          <Grid container >
+            <Grid item xs = { 12 } md = { 10 } lg = { 7 } container direction = "column" justifyContent="flex-end" 
               alignItems="flex-start" style={{paddingLeft:"10vw", paddingBottom:"2vh"}}>
               <Collapse in ={checked} {...(checked ? { timeout: 1000 } : {})} collapsedSize={250}>
                 <h1 className={classes.title}>Welcome to 

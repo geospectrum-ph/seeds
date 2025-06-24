@@ -10,28 +10,7 @@ import App from "./containers";
 
 import "./index.css";
 
-import { ThemeProvider, createTheme } from "@material-ui/core/styles";
-
 import * as serviceWorker from "./serviceWorker";
-
-const theme = createTheme({
-  typography: {
-    h3: {
-      fontFamily: "Outfit"
-    },
-    h6: {
-      fontFamily: "Outfit"
-    }
-  },
-  palette: {
-    primary: {
-      main: "#1b798e"
-    },
-    secondary: {
-      main: "#0d3c47"
-    }
-  },
-});
 
 ReactDOM.render(
   // <React.StrictMode>
@@ -40,9 +19,7 @@ ReactDOM.render(
         <FeaturesContextProvider>
           <MapContextProvider>
             <SEEDSContextProvider>
-              <ThemeProvider theme = { theme }>
-                <App />
-              </ThemeProvider>
+              <App/>
             </SEEDSContextProvider>
           </MapContextProvider>
         </FeaturesContextProvider>
@@ -53,8 +30,7 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
+// If you want your app to work offline and load faster, you can change unregister() to register() below. Note that this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 
-serviceWorker.unregister();
+serviceWorker.register();

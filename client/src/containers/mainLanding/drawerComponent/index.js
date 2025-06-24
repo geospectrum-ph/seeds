@@ -1,75 +1,79 @@
-import React, { useState } from 'react';
-import { List, IconButton, ListItemText, Drawer } from '@material-ui/core';
+import * as React from "react";
+import { useHistory } from "react-router-dom";
+
+import { makeStyles, withStyles} from "@material-ui/core/styles";
+import { Drawer, IconButton, List, ListItemText } from "@material-ui/core";
 import MuiListItem from "@material-ui/core/ListItem";
-import { makeStyles, withStyles} from '@material-ui/core/styles'
-import MenuIcon from '@material-ui/icons/Menu';
-import {useHistory} from "react-router-dom";
+import MenuIcon from "@material-ui/icons/Menu";
 
 const ListItem = withStyles({
   root: {
-    "&$selected": {
-      backgroundColor: "#1b798e",
-      color: "white"
-    }, "&$selected:hover": {
-      backgroundColor: "#1b798e",
-      color: "white"
-    }, "&:hover": {
-      backgroundColor: "#1b798e",
-      color: "white"
-    }
-  }, selected: {}
+    "&.list-item-selected": {
+      backgroundColor: "var(--color-background-01)",
+      
+      color: "var(--color-white)",
+    },
+    "&:hover": {
+      backgroundColor: "var(--color-background-02)",
+      
+      color: "var(--color-white)",
+    },
+  },
 })(MuiListItem);
 
 const DrawerComponent = () => {
-
   const useStyles = makeStyles(theme => ({
     drawerContainer: {
-      width:"50%", 
-      '& .MuiListItemText-primary': {
-        fontFamily:"LeagueSpartan"
-      }
-    }, iconButtonContainer: {
-      marginLeft: 'auto',
-      color: 'white'
-    }, menuIconToggle: {
-      fontSize: '3rem'
-    }
+      width: "50%",
+
+      "& .MuiListItemText-primary": {
+        fontFamily: "'Outfit', sans-serif",
+      },
+    },
+    iconButtonContainer: {
+      marginLeft: "auto",
+      color: "var(--color-white)",
+    },
+    menuIconToggle: {
+      fontSize: "36px",
+      color: "var(--color-background-02)",
+    },
   }));
 
-  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openDrawer, setOpenDrawer] = React.useState(false);
+
   const history = useHistory();
 
   const handleListItemClick = (path) => {
-    history.push(path)
+    if (history.location.pathname !== path) {
+      history.push(path);
+    }
+
     setOpenDrawer(false);
   };
-  
+
   const classes = useStyles();
 
   return (
     <>
-      <Drawer anchor='right' classes={{ paper: classes.drawerContainer }} open={openDrawer}
-        onClose={() => setOpenDrawer(false)} onOpen={() => setOpenDrawer(true)}>
+      <Drawer anchor = "right" classes = {{ paper: classes.drawerContainer }} open = { openDrawer } onClose = { () => setOpenDrawer(false) }>
         <List>
-          <ListItem divider button onClick={() => handleListItemClick("/aboutUs")}>
-            <ListItemText className={classes.textfont1} primary="About Us"/>
+          <ListItem className = { history.location.pathname === "/aboutUs" ? "list-item-selected" : null } divider button onClick = { () => handleListItemClick("/aboutUs") }>
+            <ListItemText className = { classes.textfont1 } primary = "About Us"/>
           </ListItem>
-
-          <ListItem divider button onClick={() => handleListItemClick( "/contactUs")}>
-            <ListItemText className={classes.textfont1}>Contact Us</ListItemText>
+          <ListItem className = { history.location.pathname === "/features" ? "list-item-selected" : null } divider button onClick = { () => handleListItemClick("/features") }>
+            <ListItemText className = { classes.textfont1 }>Features</ListItemText>
           </ListItem>
-
-          <ListItem divider button onClick={() => handleListItemClick("/features")}>
-            <ListItemText className={classes.textfont1}>Features</ListItemText>
+          <ListItem className = { history.location.pathname === "/contactUs" ? "list-item-selected" : null } divider button onClick = { () => handleListItemClick("/contactUs") }>
+            <ListItemText className = { classes.textfont1 }>Contact Us</ListItemText>
           </ListItem>
-
-          <ListItem divider button onClick={() => handleListItemClick("/login")}>
-            <ListItemText className={classes.textfont1}>Login</ListItemText>
+          <ListItem className = { history.location.pathname === "/login" ? "list-item-selected" : null } divider button onClick = { () => handleListItemClick("/login") }>
+            <ListItemText className = { classes.textfont1 }>Login</ListItemText>
           </ListItem>
         </List>
       </Drawer>
-      <IconButton className={classes.iconButtonContainer} onClick={() => setOpenDrawer(!openDrawer)} disableRipple>
-        <MenuIcon className={classes.menuIconToggle}/>
+      <IconButton className = { classes.iconButtonContainer } onClick = { () => setOpenDrawer(!openDrawer) } disableRipple>
+        <MenuIcon className = { classes.menuIconToggle }/>
       </IconButton>
     </>
   );

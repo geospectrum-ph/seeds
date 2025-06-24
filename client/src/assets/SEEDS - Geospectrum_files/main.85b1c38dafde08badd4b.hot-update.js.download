@@ -130,7 +130,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
       // backgroundColor: "#000000",
       fontSize: "1.5rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h2': {
@@ -209,7 +209,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
     fontSize: '1rem',
     padding: '0 30px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -220,7 +220,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
     }
   },
   paperseedsmaintitle: {
-    // fontFamily:'LeagueSpartan',
+    // fontFamily: "'Outfit', sans-serif",
     fontFamily: 'GlacialIndifference',
     fontSize: '1.3rem' // height: '10vh'
 
@@ -242,7 +242,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
     // flexDirection:"row"
     color: "#fffefe",
     // fontFamily: "Nunito",
-    fontFamily: 'LeagueSpartan'
+    fontFamily: "'Outfit', sans-serif"
   },
   padding: {// padding: theme.spacing(3),
   },

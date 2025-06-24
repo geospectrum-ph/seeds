@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     height: '5vh',
     top: '2vh',
     padding: '0 30px',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     marginBottom: 40,
     '&:hover': {
       color: '#fffefe',

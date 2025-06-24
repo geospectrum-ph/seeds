@@ -46,7 +46,7 @@ export default function SampleCardPop() {
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.summary}>
-          <Typography variant="h5" style={{fontFamily:"LeagueSpartan", fontWeight:700}}>
+          <Typography variant="h5" style={{fontFamily:"'Outfit', sans-serif", fontWeight:700}}>
             {commercialSelect ? capitalizationTotal: <div>N/A</div>}
           </Typography>
           <Typography>Capitalization</Typography>
@@ -54,7 +54,7 @@ export default function SampleCardPop() {
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.summary}>
-          <Typography variant="h5" style={{fontFamily:"LeagueSpartan", fontWeight:700}}>
+          <Typography variant="h5" style={{fontFamily:"'Outfit', sans-serif", fontWeight:700}}>
             {commercialSelect ? employeesTotal: <div>N/A</div>}
           </Typography>
           <Typography>Employee Count</Typography>
@@ -62,7 +62,7 @@ export default function SampleCardPop() {
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.summary}>
-          <Typography variant="h5" style={{fontFamily:"LeagueSpartan", fontWeight:700}}>
+          <Typography variant="h5" style={{fontFamily:"'Outfit', sans-serif", fontWeight:700}}>
             {commercialSelect ? institutionCount: <div>N/A</div>}
           </Typography>
           <Typography>Institution Count</Typography>

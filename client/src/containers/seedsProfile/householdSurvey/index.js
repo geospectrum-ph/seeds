@@ -39,7 +39,7 @@ export default function DemLabor() {
               <CardHeader title={currentSubdomain} subheader={currentDomain}  titleTypographyProps={{
                 style: {
                   textAlign: "left", 
-                  fontFamily:"LeagueSpartan", 
+                  fontFamily:"'Outfit', sans-serif", 
                   fontSize:"0.9", 
                   wordWrap:"break-word"
                 }}}>

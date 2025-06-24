@@ -6,7 +6,7 @@ const useStyles = makeStyles({
   root: {
     height: 420,
   }, title: {
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     color: 'white',
   }, desc: {
     color: '#ddd',

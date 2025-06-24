@@ -3,15 +3,19 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Toolbar, Typography } from '@material-ui/core'
 import { useHistory } from "react-router-dom";
 
-import logo2 from '../../../assets/icons/0 Logo (3D Colored).png'
+import logo from '../../../assets/icons/0 Logo (3D Colored).png'
 
 import { SEEDSContext } from '../../../context/SEEDSContext';
 
 const useStyles = makeStyles(() => ({
   appbar: {
-    background:  'rgba(122,136,155,1)'
-  }, appbarTitle:{
-    fontFamily: 'LeagueSpartan',
+    background: "var(--color-black)",
+  },
+  footerLogo: {
+    height: "24px",
+  },
+  appbarTitle:{
+    fontFamily: "'Outfit', sans-serif",
     color: '#fffefe',
     display: 'flex',
     flexDirection: 'row',
@@ -22,7 +26,6 @@ const useStyles = makeStyles(() => ({
     color: '#0d3c47',
     '&:hover': {
       color: '#fffefe',
-      padding:'0.5px',
       textDecoration: "underline"
     }
   }
@@ -35,7 +38,7 @@ export default function Footer(){
 
   function Copyright() {
     return (
-      <Grid container direction="row" justifyContent="space-around" alignItems="center" style={{height:"100%"}}>
+      <Grid container direction="row" justifyContent="space-around" alignItems="center">
         <Grid item>
           <Typography >
             {'Copyright © '}
@@ -64,15 +67,18 @@ export default function Footer(){
   }
 
   return(
-    <Toolbar className={classes.appbar} elevation = {5}>
-      <Grid container direction="row" justifyContent="center" alignItems="center" style={{paddingBottom:10}}>
-        <Grid item style={{paddingRight:20}} >
-          <h1 className={classes.appbarTitle} style={{cursor: 'pointer'}} onClick={()=>{history.push('/')}}>
-            <img src={logo2} style={{height:10, marginTop: 30}} onClick={()=>{history.push('/')}}/>
-            <span className={classes.colorText}>SEED</span>s 
-          </h1>
+    <Toolbar className={classes.appbar}>
+      <Grid container direction="row" justifyContent="center" alignItems="center">
+        <Grid item>
+          <h4 className={classes.appbarTitle} style={{cursor: 'pointer'}} onClick={()=>{history.push('/')}}>
+            <img className = {classes.footerLogo} src={logo} onClick={()=>{history.push('/')}}/>
+            <span className = { classes.colorText }>
+              <span>SEED</span>
+              <span>s</span>
+            </span> 
+          </h4>
         </Grid> 
-        <Grid item xs={11} sm={11} md={8} lg={5} >
+        <Grid item xs = { 11 } sm = { 11 } md = { 8 } lg = { 5 }>
           <Copyright/>
         </Grid>
       </Grid>

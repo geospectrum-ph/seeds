@@ -37,10 +37,10 @@ const useStyles = makeStyles((theme) => ({
   }, appbarTitle:{
     flexGrow: '1',
     color: '#fffefe',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
   }, appbar: {
     backgroundColor: '#0d3c47',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     textAlign: "center",
   }, root1: {
     justify:"center",
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#1b798e',
     color: '#ffffff',
     fontSize: '1rem',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#229922'
@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     height: '5vh',
     top: '2vh',
     padding: '0 30px',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#229922'
@@ -102,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#e6ebec',
     color: '#33202A',
     fontSize: '1rem',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#A31621',
@@ -517,7 +517,7 @@ export default function DataCatalogue() {
         <Grid item xs={12} md={8} lg={10} style={{padding:15}} >
           <Paper style={{height:"100%", borderRadius:5}} className={classes.root1}>
             <Card style={{color:"#FFFEFE", backgroundColor:"#1b798e"}} >
-              <CardHeader titleTypographyProps={{style: {fontFamily:"LeagueSpartan", fontWeight:100}}}
+              <CardHeader titleTypographyProps={{style: {fontFamily:"'Outfit', sans-serif", fontWeight:100}}}
                 subheaderTypographyProps={{style: {color:"#fffefe"}}} title="SEEDs Catalogue"
                 subheader="This module shows all data uploaded through SEEDs Populate."/>
             </Card><br></br>

@@ -17,7 +17,7 @@ export default function AboutUs() {
   const classes = useStyles();
   return (
     <>
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <div className={classes.root}>
         <main id="header"> 
           <div className={classes.heroContent}>

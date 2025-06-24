@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.cd0474b4.css",
-    "main.js": "/static/js/main.131e5d87.js",
+    "main.css": "/static/css/main.3a4cb759.css",
+    "main.js": "/static/js/main.6bf38bb3.js",
     "static/media/demographic.png": "/static/media/demographic.dec8ed80c216d556c321.png",
     "static/media/environmental.png": "/static/media/environmental.c70583aa8af48bc0f2e6.png",
     "static/media/BG_new_PH2.jpg": "/static/media/BG_new_PH2.01dc5a45385315235a66.jpg",
@@ -134,18 +134,16 @@
     "static/media/27 SEEDs Profile.png": "/static/media/27 SEEDs Profile.981dcdd1640800b472c7.png",
     "static/media/seedMark.png": "/static/media/seedMark.770ab603e3dff5c73dcb.png",
     "static/media/0 Logo (3D Colored).png": "/static/media/0 Logo (3D Colored).90ab9b43b70e2971d517.png",
-    "static/media/glacial-indifference.bold.otf": "/static/media/glacial-indifference.bold.e742f534cb2ac8b560c6.otf",
     "static/media/hjjkhjk.png": "/static/media/hjjkhjk.31cd7347a8917688c8be.png",
-    "static/media/LeagueSpartan-Bold.otf": "/static/media/LeagueSpartan-Bold.caadcad8af387d419251.otf",
     "static/media/0 Logo (3D Colored).ico": "/static/media/0 Logo (3D Colored).586e5c307e8a32a531f1.ico",
     "static/media/spritesheet.svg": "/static/media/spritesheet.a4e0eb7ad904a4858361.svg",
     "index.html": "/index.html",
     "static/media/default.svg": "/static/media/default.7b7baf362112d9afb7c843890000bd98.svg",
-    "main.cd0474b4.css.map": "/static/css/main.cd0474b4.css.map",
-    "main.131e5d87.js.map": "/static/js/main.131e5d87.js.map"
+    "main.3a4cb759.css.map": "/static/css/main.3a4cb759.css.map",
+    "main.6bf38bb3.js.map": "/static/js/main.6bf38bb3.js.map"
   },
   "entrypoints": [
-    "static/css/main.cd0474b4.css",
-    "static/js/main.131e5d87.js"
+    "static/css/main.3a4cb759.css",
+    "static/js/main.6bf38bb3.js"
   ]
 }

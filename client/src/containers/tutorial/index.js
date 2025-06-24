@@ -74,12 +74,12 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   }, appbar: {
     backgroundColor: '#0d3c47',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     textAlign: "center",
   }, appbarTitle:{
     flexGrow: '1',
     color: '#fffefe',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     fontSize:20
   }, colorText: {
     color: "#5aff3d"
@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     justify:"center",
     padding: '14px 30px',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#229922',

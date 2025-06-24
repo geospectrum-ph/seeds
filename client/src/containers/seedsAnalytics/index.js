@@ -37,11 +37,11 @@ const theme = createTheme({
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTypography-h3': {
-      fontFamily: 'LeagueSpartan'
+      fontFamily: "'Outfit', sans-serif"
     }, '& .MuiTypography-h5': {
-      fontFamily: 'LeagueSpartan'
+      fontFamily: "'Outfit', sans-serif"
     }, '& .MuiTypography-h6': {
-      fontFamily: 'LeagueSpartan'
+      fontFamily: "'Outfit', sans-serif"
     }
   }, formControl: {
     marginTop: theme.spacing(2),
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     borderColor: "#1b798e",
     color: '#1b798e',
     padding: '10px 20px',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     fontSize: '1rem',
     '&:hover': {
       color: '#fffefe',
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#1b798e',
     color: '#ffffff',
     fontSize: '1rem',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#229922',
@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#ced8da',
     color: '#33202A',
     fontSize: '1rem',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#A31621',

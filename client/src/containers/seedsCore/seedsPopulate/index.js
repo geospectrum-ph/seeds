@@ -170,7 +170,7 @@ const useStyles = makeStyles(() => ({
     height: '5vh',
     top: '2vh',
     padding: '9px 18px',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#A31621'
@@ -184,7 +184,7 @@ const useStyles = makeStyles(() => ({
     height: '5vh',
     top: '2vh',
     padding: '0 30px',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#229922'
@@ -198,7 +198,7 @@ const useStyles = makeStyles(() => ({
     textAlign: "center",
     justify:"center",
     padding: '20px', //tb lr
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#229922',
@@ -212,7 +212,7 @@ const useStyles = makeStyles(() => ({
     textAlign: "center",
     justify:"center",
     padding: '10px', //tb lr
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#229922'
@@ -220,11 +220,11 @@ const useStyles = makeStyles(() => ({
   }, appbarTitle:{
     flexGrow: '1',
     color: '#fffefe',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     fontSize:20
   }, appbar: {
     backgroundColor: '#0d3c47',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     textAlign: "center",
   }, addtomap: {
     border: 0,
@@ -234,7 +234,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '1.2rem',
     textAlign: "center",
     justify:"center",
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#229922',
@@ -253,7 +253,7 @@ const useStyles = makeStyles(() => ({
     color: '#1b798e',
     textAlign: "center",
     padding: '9px 18px',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#229922',

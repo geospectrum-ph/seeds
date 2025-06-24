@@ -37,11 +37,11 @@ const useStyles = makeStyles({
   }, appbarTitle:{
     flexGrow: '1',
     color: '#fffefe',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     fontSize:20
   }, appbar: {
     backgroundColor: '#0d3c47',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     textAlign: "center",
     borderRadius:0
   }, deleteButton: {
@@ -53,7 +53,7 @@ const useStyles = makeStyles({
     height: '5vh',
     top: '2vh',
     padding: '9px 18px',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#A31621'
@@ -67,7 +67,7 @@ const useStyles = makeStyles({
     height: '5vh',
     top: '2vh',
     padding: '0 30px',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#229922',

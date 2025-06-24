@@ -29,7 +29,7 @@ function SeedsCarouselCard ({seedsFeatures,seedsDesc, imgPath}) {
       <CardActionArea>
         <CardMedia image={imgPath} className={classes.media}/>
           <CardContent>
-            <Typography variant="h4" style={{fontFamily:"LeagueSpartan"}} >
+            <Typography variant="h4" style={{fontFamily:"'Outfit', sans-serif"}} >
               {seedsFeatures}
             </Typography>
             <Divider/>

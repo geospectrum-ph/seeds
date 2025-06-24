@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     }, '& .MuiTypography-h1': {
       fontSize: "3.0rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan"
+      fontFamily: "'Outfit', sans-serif"
     }, '& .MuiTypography-h2': {
       fontFamily: "Nunito",
       fontSize: "1rem",
@@ -44,11 +44,11 @@ const useStyles = makeStyles((theme) => ({
     }, '& .MuiTypography-h5': {
       fontSize: "2.0rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan"
+      fontFamily: "'Outfit', sans-serif"
     }, '& .MuiTypography-h6': {
       fontSize: "0.8rem",
       color: "#1b798e",
-      fontFamily: "LeagueSpartan"
+      fontFamily: "'Outfit', sans-serif"
     }
   }, summary : {
     marginTop: theme.spacing(2),
@@ -70,14 +70,14 @@ export default function CardLandUse() {
       <Grid item xs={12}>
         {landUseCategory ?
           <Paper className={classes.summary}>
-            <Typography variant="h5" style={{fontFamily:"LeagueSpartan", fontWeight:700}}>
+            <Typography variant="h5" style={{fontFamily:"'Outfit', sans-serif", fontWeight:700}}>
               {Math.round(landUseCategory.area/100)/100}
             </Typography>
             <Typography> {landUseCategory.name}</Typography>
             <Typography> Area (in hectares) </Typography>
           </Paper>
         : <Paper className={classes.summary}>
-            <Typography variant="h5" style={{fontFamily:"LeagueSpartan", fontWeight:700}}>
+            <Typography variant="h5" style={{fontFamily:"'Outfit', sans-serif", fontWeight:700}}>
               N/A
             </Typography>
             <Typography> Selected Land Use</Typography>
@@ -85,14 +85,14 @@ export default function CardLandUse() {
           </Paper>
         }{landUseCategory?
           <Paper className={classes.summary}>
-            <Typography variant="h5" style={{fontFamily:"LeagueSpartan", fontWeight:700}}>
+            <Typography variant="h5" style={{fontFamily:"'Outfit', sans-serif", fontWeight:700}}>
               {landUseCategory.percent}
             </Typography>
             <Typography> {landUseCategory.name}</Typography>
             <Typography> Percent covered in barangay (%) </Typography>
           </Paper>
         : <Paper className={classes.summary}>
-            <Typography variant="h5" style={{fontFamily:"LeagueSpartan", fontWeight:700}}>N/A</Typography>
+            <Typography variant="h5" style={{fontFamily:"'Outfit', sans-serif", fontWeight:700}}>N/A</Typography>
             <Typography> Selected Land Use</Typography>
             <Typography> Percent covered in barangay (%) </Typography>
           </Paper>}

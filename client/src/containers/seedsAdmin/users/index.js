@@ -29,11 +29,11 @@ const useStyles = makeStyles(() => ({
   appbarTitle:{
     flexGrow: '1',
     color: '#fffefe',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     fontSize:20
   }, appbar: {
     backgroundColor: '#0d3c47',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     textAlign: "center",
     borderRadius:0
   }, table: {

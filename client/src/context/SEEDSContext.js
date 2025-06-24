@@ -1,38 +1,28 @@
-import React, { createContext, useState } from 'react';
+import * as React from "react";
 
-export const SEEDSContext = createContext();
-  // Context file for the states  of all the inputs in filters/ monitoring other variables
+export const SEEDSContext = React.createContext();
 
 const SEEDSContextProvider = (props) => {
-
-  //for start and end date in all profiles
-  const [startDate, setStartDate] = useState("19000101");
-
-  const [endDate, setEndDate] = useState("21001231");
+  const [startDate, setStartDate] = React.useState("19000101");
+  const [endDate, setEndDate] = React.useState("21001231");
 
   // these local start and end dates are for display format used in the date picker
   // Sun Nov 28 2021 00:00:00 GMT+0800 (Philippine Standard Time)
-  const [startDateLocal, setStartDateLocal] = useState(new Date(1900, 0, 1));
-
-  const [endDateLocal, setEndDateLocal] = useState(new Date(2100, 11, 31));
+  const [startDateLocal, setStartDateLocal] = React.useState(new Date(1900, 0, 1));
+  const [endDateLocal, setEndDateLocal] = React.useState(new Date(2100, 11, 31));
   
   // for monitoring the current module, domain, and subdomain
-  const [currentModule, setCurrentModule] = useState()
+  const [currentModule, setCurrentModule] = React.useState();
+  const [currentDomain, setCurrentDomain] = React.useState();
+  const [currentSubdomain, setCurrentSubdomain] = React.useState();
 
-  const [currentDomain, setCurrentDomain] = useState();
+  const [openLeftDrawer, setOpenLeftDrawer] = React.useState(false); //  for opening/closing left drawer in seeds 
 
-  const [currentSubdomain, setCurrentSubdomain] = useState();
-
-
-  //  for opening/closing left drawer in seeds 
-  const [openLeftDrawer, setOpenLeftDrawer] = useState(false);
-
-  // for setting the state of appbar in landing page
-  const [appBarValue, setAppBarValue] = useState('home');
+  const [appBarValue, setAppBarValue] = React.useState("home"); // for setting the state of appbar in landing page
 
   const [disUp, setDisUp] = React.useState(false); //for loading MOVE TO SEEDS CONTEXT
 
-  const [tabValue, setTabValue] = React.useState('Overview'); // seeds profile tab value
+  const [tabValue, setTabValue] = React.useState("Overview"); // seeds profile tab value
 
   const [loadingDataCat, setLoadingDataCat] = React.useState(false); // status of data catalogue in dialog (true or false) MOVE TO SEEDS CONTEXT
 
@@ -45,16 +35,37 @@ const SEEDSContextProvider = (props) => {
   const [openLayerGroups, setOpenLayerGroups] = React.useState(true); // for layer groups panel
 
   return (
-    <SEEDSContext.Provider value={{ 
-      startDate, setStartDate, endDate, setEndDate, startDateLocal, setStartDateLocal, endDateLocal, setEndDateLocal,
-      currentModule, setCurrentModule, currentDomain, setCurrentDomain, currentSubdomain, setCurrentSubdomain,
-      
-      openLeftDrawer, setOpenLeftDrawer, appBarValue, setAppBarValue,
+    <SEEDSContext.Provider
+      value = {{ 
+        startDate, setStartDate,
+        endDate, setEndDate,
+        
+        startDateLocal, setStartDateLocal,
+        endDateLocal, setEndDateLocal,
+        
+        currentModule, setCurrentModule,
+        currentDomain, setCurrentDomain,
+        currentSubdomain, setCurrentSubdomain,
+        
+        openLeftDrawer, setOpenLeftDrawer,
+        
+        appBarValue, setAppBarValue,
 
-      disUp, setDisUp, tabValue, setTabValue, loadingDataCat, setLoadingDataCat,  selectedIndex, setSelectedIndex,
-      checked, setChecked,  open, setOpen, openLayerGroups, setOpenLayerGroups
-    }}>
-      {props.children}
+        disUp, setDisUp,
+        
+        tabValue, setTabValue,
+        
+        loadingDataCat, setLoadingDataCat,
+        
+        selectedIndex, setSelectedIndex,
+        
+        checked, setChecked,
+        
+        open, setOpen,
+        
+        openLayerGroups, setOpenLayerGroups
+      }}>
+      { props.children }
     </SEEDSContext.Provider>
   );
 }

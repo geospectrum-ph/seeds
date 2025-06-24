@@ -7,13 +7,13 @@ const useStyles = makeStyles({
     height: 420,
     root: {
       '& .MuiTypography-h3': {
-        fontFamily: 'LeagueSpartan',
+        fontFamily: "'Outfit', sans-serif",
       }, '& .MuiTypography-h6': {
-        fontFamily: 'LeagueSpartan',
+        fontFamily: "'Outfit', sans-serif",
       },
     },
   }, title: {
-      fontFamily:'LeagueSpartan',
+      fontFamily: "'Outfit', sans-serif",
      color: 'white',
   }, desc: {
     color: '#ddd',
@@ -40,7 +40,7 @@ export default function ImageCard({seedsFeatures,domainName, iconName}) {
 
   return (
     <div>
-      <Typography gutterBottom variant="h5" component="h2" align="center" style={{fontFamily:"LeagueSpartan"}}>
+      <Typography gutterBottom variant="h5" component="h2" align="center" style={{fontFamily:"'Outfit', sans-serif"}}>
         {seedsFeatures}
       </Typography>
       <Grid container spacing={2} > 

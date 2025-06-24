@@ -1,90 +1,116 @@
-import React, {useContext} from 'react';
-import PropTypes from 'prop-types';
-import { AppBar, Toolbar, Typography, Tab, Tabs, useMediaQuery, Box } from '@material-ui/core';
-import { TabContext } from '@material-ui/lab';
+import * as React from "react";
 import { useHistory } from "react-router-dom";
 
-import logo2 from '../../../assets/icons/0 Logo (3D Colored).png'
-import DrawerComponent from '../drawerComponent';
+import PropTypes from "prop-types";
 
-import { SEEDSContext } from '../../../context/SEEDSContext';
+import { createTheme, makeStyles } from "@material-ui/core/styles";
+import { AppBar, Toolbar, Typography, Tab, Tabs, useMediaQuery, Box } from "@material-ui/core";
+import { TabContext } from "@material-ui/lab";
 
-import { createTheme, makeStyles } from '@material-ui/core/styles';
+import { SEEDSContext } from "../../../context/SEEDSContext";
+
+import DrawerComponent from "../drawerComponent";
+import logo from '../../../assets/icons/0 Logo (3D Colored).png'
 
 const theme = createTheme({
   typography: {
-    h3: {
-      fontFamily: "Outfit"
-    },
-    h6: {
-      fontFamily: "Outfit"
-    }
-  },
-  palette: {
-    primary: {
-      main: "#1b798e"
-    },
-    secondary: {
-      main: "#0d3c47"
-    }
+    fontFamily: "'Outfit', sans-serif"
   },
 });
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    background: theme.palette.secondary.main
-  }, appbarTitle:{
-    fontFamily: 'LeagueSpartan',
-    color: '#fffefe',
-    '&:hover': {
-      padding:'0.5px',
-    }, display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justify: 'center'
-  }, colorText: {
-    color: "#5aff3d"
-  }, buttonStyle1: {
-    border: 0,
-    borderRadius: 0,
-    color: '#fffefe',
-    height: 55,
-    fontSize: '1rem',
-    // padding: '0 10px',
-    // margin: '0 5px',
-    fontFamily:'LeagueSpartan'
-  }, login1: {
-    border: 0,
-    borderRadius: 5,
-    backgroundColor: '#1b798e',
-    color: '#ffffff',
-    fontSize: '1rem',
-    height: 55,
-    // padding: '0 30px',
-    // margin: '0 5px',
-    fontFamily:'LeagueSpartan',
-    '&:hover': {
-      color: '#fffefe',
-      backgroundColor: '#229922'
-    }
-  }, tabsContainer: {
-    marginLeft: 'auto'
-  }
+    width: "auto",
+
+    boxSizing: "border-box",
+    padding: "0 12px",
+
+    background: "var(--color-background-01)",
+  },
+  appbarTitle: {
+    display: "flex",
+    flexFlow: "row nowrap",
+    alignItems: "flex-end",
+    justify: "center",
+
+    boxSizing: "border-box",
+    gap: "12px",
+
+    cursor: "pointer",
+  },
+  logo: {
+    height: "48px",
+  },
+  appbarColorText: {
+    font: "bold 32px 'Outfit', sans-serif",
+    
+    "& :nth-of-type(1)": {
+      color: "var(--color-green-02)",
+    },
+  },
+  tabsContainer: {
+    marginLeft: "auto",
+  },
+  indicatorColor: {
+    backgroundColor: "var(--color-white)",
+  },
+  tabRoot: {
+    minWidth: "120px",
+    height: "auto",
+
+    boxSizing: "border-box",
+    margin: "0 12px 0 0",
+
+    opacity: 1.00,
+
+    font: "600 16px 'Outfit', sans-serif",
+    color: "var(--color-background-02)",
+
+    "&:hover": {
+      color: "var(--color-white)",
+    },
+  },
+  tabSelected: {
+    color: "var(--color-white)",
+  },
+  loginRoot: {
+    minWidth: "120px",
+    height: "auto",
+
+    boxSizing: "border-box",
+    margin: "0 0 0 24px",
+
+    background: "var(--color-background-02)",
+    opacity: 1.00,
+
+    font: "600 16px 'Outfit', sans-serif",
+    color: "var(--color-background-01)",
+
+    "&:hover": {
+      background: "var(--color-green-01)",
+
+      color: "var(--color-white)",
+    },
+  },
+  loginSelected: {
+    background: "var(--color-green-01)",
+
+    color: "var(--color-white)",
+  },
 }));
  
-function TabPanel(props) {
+function TabPanel (props) {
   const { children, value, index, ...other } = props;
 
   return (
-    <div role="tabpanel" hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}>
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
+    <div id = { `simple-tabpanel-${index}` } role = "tabpanel" hidden = { value !== index } aria-labelledby = { `simple-tab-${index}` } { ...other }>
+      {
+        value === index
+        && 
+        <Box>
+          <Typography>{ children }</Typography>
         </Box>
-      )}
+      }
     </div>
   );
 }
@@ -95,55 +121,66 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
   
-  
 export default function AppsBar(){
-  const classes = useStyles();
-  const history = useHistory();
-  const {appBarValue, setAppBarValue} = useContext(SEEDSContext);
+  const {appBarValue, setAppBarValue} = React.useContext(SEEDSContext);
 
   const handleClickTab = (e, newValue) => {
     setAppBarValue(newValue);
   };
+
+  const history = useHistory();
+
   const handleClickLogo = () => {
-    setAppBarValue('home');
-    history.push('/')
+    setAppBarValue("home");
+    
+    if (history.location.pathname !== "/") {
+      history.push("/");
+    }
   };
-  const handleLogin= () => {
-    setAppBarValue('Login');
-    history.push('/login')
+
+  const handleLogin = () => {
+    setAppBarValue("Login");
+
+    if (history.location.pathname !== "/login") {
+      history.push("/login");
+    }
+  };
+
+  const handleHistory = (path) => {
+    if (history.location.pathname !== path) {
+      history.push(path);
+    }
   };
   
-  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
 
-  return(
-    <TabContext value={appBarValue}>
-      <AppBar position="static" className={classes.appBar} >
-        <Toolbar >
-          <h1 className={classes.appbarTitle} style={{cursor: 'pointer'}} onClick={handleClickLogo}>
-            <img src={logo2} style={{height:40, display:'block', marginTop: 0}} onClick={handleClickLogo} />
-            <span className={classes.colorText} >SEED</span>s
+  const classes = useStyles();
+
+  return (
+    <TabContext value = { appBarValue }>
+      <AppBar position = "static" className = { classes.appBar }>
+        <Toolbar>
+          <h1 className = { classes.appbarTitle } onClick = { handleClickLogo }>
+            <img src = { logo } className = { classes.logo }/>
+            <span className = { classes.appbarColorText }>
+              <span>SEED</span>
+              <span>s</span>
+            </span>
           </h1> 
-          {isMatch ? (
-          <>
-            <DrawerComponent />
-          </>
-          ) : (<>
-            <Tabs onChange={handleClickTab} className={classes.tabsContainer}
-              indicatorColor='primary' value={appBarValue}>
-              <Tab disableRipple label='Home' className={classes.buttonStyle1}
-                value="home" to='/' onClick={()=>{history.push('/')}}/>
-              <Tab disableRipple label='About Us' className={classes.buttonStyle1}
-                value="aboutUs" to='/aboutUs' onClick={()=>{history.push('/aboutUs')}}/>
-              <Tab disableRipple label='Features' value='features'
-                className={classes.buttonStyle1} onClick={()=>{history.push('/features')}}/>
-              <Tab disableRipple label='Contact Us' value='contactUs'
-                className={classes.buttonStyle1} onClick={()=>{history.push('/contactUs')}}/>
-              <Tab disableRipple label='Login' value='Login'
-                onClick={handleLogin} className={classes.login1}/>
-            </Tabs>
-          </>)}
+          {
+            isMatch ?
+              <DrawerComponent/>
+              :
+              <Tabs className = { classes.tabsContainer } classes = {{ indicator: classes.indicatorColor }} value = { appBarValue } onChange = { handleClickTab }>
+                <Tab classes = {{ root: classes.tabRoot, selected: classes.tabSelected }} label = "Home" value = "home" to = "/" disableRipple onClick = { () => { handleHistory("/") }}/>
+                <Tab classes = {{ root: classes.tabRoot, selected: classes.tabSelected }} label = "About Us" value = "aboutUs" to = "/aboutUs" disableRipple onClick = { () => { handleHistory("/aboutUs") }}/>
+                <Tab classes = {{ root: classes.tabRoot, selected: classes.tabSelected }} label = "Features" value = "features" to = "/features" disableRipple onClick = { () => { handleHistory("/features") }}/>
+                <Tab classes = {{ root: classes.tabRoot, selected: classes.tabSelected }} label = "Contact Us" value = "contacUs" to = "/contactUs" disableRipple onClick = { () => { handleHistory("/contactUs") }}/>
+                <Tab classes = {{ root: classes.loginRoot, selected: classes.loginSelected }} label = "Login" value = "Login" textColor	= "inherit" disableRipple onClick = { handleLogin }/>
+              </Tabs>
+          }
         </Toolbar>
       </AppBar>
     </TabContext>
-  )
+  );
 }

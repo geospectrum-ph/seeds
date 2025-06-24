@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#fffefe',
     fontSize: '1.2rem',
     padding: '20px 40px',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#229922',
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     borderColor: "#1b798e",
     color: '#1b798e',
     padding: '20px 40px',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     fontSize: '1.2rem',
     '&:hover': {
       color: '#fffefe',
@@ -46,7 +46,7 @@ export default function Features() {
   const classes = useStyles();
   return (
     <>
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <div className={classes.root}>
         <div className={classes.heroContent} >
           <Container maxWidth="md">

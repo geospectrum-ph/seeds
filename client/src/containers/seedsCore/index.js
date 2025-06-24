@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#1b798e',
     }
   }, textfont1: {
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     fontSize: '3rem'
   }, appbarTitle:{
     display: 'flex',
@@ -102,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   }, appbar: {
     backgroundColor: '#0d3c47',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     textAlign: "center",
     height:  '6.7vh',
     zIndex: theme.zIndex.drawer + 1

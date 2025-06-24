@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     }, '& .MuiTypography-h1': {
       fontSize: "3.0rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan"
+      fontFamily: "'Outfit', sans-serif"
     }, '& .MuiTypography-h2': {
       fontFamily: "Nunito",
       fontSize: "1rem",
@@ -44,11 +44,11 @@ const useStyles = makeStyles((theme) => ({
     }, '& .MuiTypography-h5': {
       fontSize: "2.0rem",
       color: "#0c343d",  
-      fontFamily: "LeagueSpartan"
+      fontFamily: "'Outfit', sans-serif"
     }, '& .MuiTypography-h6': {
       fontSize: "0.8rem",
       color: "#1b798e",
-      fontFamily: "LeagueSpartan"
+      fontFamily: "'Outfit', sans-serif"
     }
   }, summary : {
     marginTop: theme.spacing(2),
@@ -71,7 +71,7 @@ export default function CardDisease() {
       </Grid> 
       <Grid item xs={12}>
         <Paper className={classes.summary}>
-          <Typography variant="h5" style={{fontFamily:"LeagueSpartan", fontWeight:700}}>
+          <Typography variant="h5" style={{fontFamily:"'Outfit', sans-serif", fontWeight:700}}>
             {diseaseSelect ? diseaseSelect.properties.active: <>N/A</>}
           </Typography>
           <Typography>Active</Typography>
@@ -79,7 +79,7 @@ export default function CardDisease() {
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.summary}>
-          <Typography variant="h5" style={{fontFamily:"LeagueSpartan", fontWeight:700}}>
+          <Typography variant="h5" style={{fontFamily:"'Outfit', sans-serif", fontWeight:700}}>
             {diseaseSelect ? diseaseSelect.properties.recovered: <>N/A</>}
           </Typography>
           <Typography>Recovered</Typography>
@@ -87,7 +87,7 @@ export default function CardDisease() {
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.summary}>
-          <Typography variant="h5" style={{fontFamily:"LeagueSpartan", fontWeight:700}}>
+          <Typography variant="h5" style={{fontFamily:"'Outfit', sans-serif", fontWeight:700}}>
             {diseaseSelect ? diseaseSelect.properties.death: <>N/A</>}
           </Typography>
           <Typography>Death</Typography>
@@ -95,7 +95,7 @@ export default function CardDisease() {
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.summary}>
-          <Typography variant="h5" style={{fontFamily:"LeagueSpartan", fontWeight:700}}>
+          <Typography variant="h5" style={{fontFamily:"'Outfit', sans-serif", fontWeight:700}}>
             {(diseaseSelect && diseaseSelect.properties.active !== "N/A") ? 
               diseaseSelect.properties.active + diseaseSelect.properties.recovered + diseaseSelect.properties.death
             : <>N/A</>}

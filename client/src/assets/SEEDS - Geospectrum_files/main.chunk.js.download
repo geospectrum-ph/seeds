@@ -11,7 +11,7 @@
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\r\n\r\n\r\n/* <link href=\"https://fonts.googleapis.com/css2?family=Lato&display=swap\" rel=\"stylesheet\"> */\r\n\r\n.info {\r\n    width: 25vw;\r\n    height: 48vh;\r\n    position: absolute;\r\n    top:25%;\r\n    left: 37.5%;\r\n}\r\n\r\n.center1 {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n    color: '#0c343d';\r\n    /* font-family: \"Nunito\", */\r\n    font-family:'LeagueSpartan';\r\n    /* // fontFamily:'GlacialIndifference',\r\n    // fontFamily:'Montserrat',\r\n    // fontFamily: 'Lora' */\r\n}\r\n\r\n.row {\r\n    /* background-color:  rgb(255, 255, 255);\r\n    width: 100%; */\r\n    /* height: 15vh; */\r\n    display: flex;\r\n    flex-direction: row;\r\n    /* align-items: flex-end; */\r\n    /* justify-items: left; */\r\n    /* border-bottom: forestgreen; */\r\n}\r\n\r\n.footer {\r\n    background-color:  rgb(255, 255, 255);\r\n    width: 100%;\r\n    height: 15vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    /* border-bottom: forestgreen; */\r\n}", ""]);
+exports.push([module.i, "\r\n\r\n\r\n/* <link href=\"https://fonts.googleapis.com/css2?family=Lato&display=swap\" rel=\"stylesheet\"> */\r\n\r\n.info {\r\n    width: 25vw;\r\n    height: 48vh;\r\n    position: absolute;\r\n    top:25%;\r\n    left: 37.5%;\r\n}\r\n\r\n.center1 {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n    color: '#0c343d';\r\n    /* font-family: \"Nunito\", */\r\n    font-family:"'Outfit', sans-serif";\r\n    /* // fontFamily:'GlacialIndifference',\r\n    // fontFamily:'Montserrat',\r\n    // fontFamily: 'Lora' */\r\n}\r\n\r\n.row {\r\n    /* background-color:  rgb(255, 255, 255);\r\n    width: 100%; */\r\n    /* height: 15vh; */\r\n    display: flex;\r\n    flex-direction: row;\r\n    /* align-items: flex-end; */\r\n    /* justify-items: left; */\r\n    /* border-bottom: forestgreen; */\r\n}\r\n\r\n.footer {\r\n    background-color:  rgb(255, 255, 255);\r\n    width: 100%;\r\n    height: 15vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    /* border-bottom: forestgreen; */\r\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -416,7 +416,7 @@ exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_1___);
 // Module
-exports.push([module.i, "body {\r\n  margin: 0;\r\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\r\n    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\r\n    sans-serif, 'LeagueSpartan', 'GlacialIndifference';\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n}\r\n\r\ncode {\r\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\r\n    monospace;\r\n}\r\n@font-face{\r\n  font-family: \"LeagueSpartan\";\r\n  src: local(\"LeagueSpartan\"),\r\n  url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") format(\"truetype\");\r\n  font-weight: normal;\r\n}\r\n\r\n@font-face{\r\n  font-family: \"GlacialIndifference\";\r\n  src: local(\"GlacialIndifference\"),\r\n  url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") format(\"truetype\");\r\n  font-weight: normal;\r\n}\r\n", ""]);
+exports.push([module.i, "body {\r\n  margin: 0;\r\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\r\n    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\r\n    sans-serif, "'Outfit', sans-serif", 'GlacialIndifference';\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n}\r\n\r\ncode {\r\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\r\n    monospace;\r\n}\r\n@font-face{\r\n  font-family: \"LeagueSpartan\";\r\n  src: local(\"LeagueSpartan\"),\r\n  url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") format(\"truetype\");\r\n  font-weight: normal;\r\n}\r\n\r\n@font-face{\r\n  font-family: \"GlacialIndifference\";\r\n  src: local(\"GlacialIndifference\"),\r\n  url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") format(\"truetype\");\r\n  font-weight: normal;\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -1267,7 +1267,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["makeSty
     height: 48,
     padding: '0 30px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -1279,7 +1279,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["makeSty
     },
     center1: {
       // fontFamily: "Nunito",
-      fontFamily: 'LeagueSpartan',
+      fontFamily: "'Outfit', sans-serif",
       // fontFamily:'GlacialIndifference',
       // fontFamily:'Montserrat',
       // fontFamily: 'Lora'
@@ -1694,7 +1694,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["makeSty
   },
   textfont1: {
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -2290,7 +2290,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__["
     // background: '#122820',
     backgroundColor: '#0d3c47',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -3110,7 +3110,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__["
       // backgroundColor: "#000000",
       fontSize: "1.5rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h2': {
@@ -3187,7 +3187,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__["
     // width: '100vw',
     padding: '0 30px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -4522,7 +4522,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__["
       // backgroundColor: "#000000",
       fontSize: "1.5rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h2': {
@@ -4597,7 +4597,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__["
     // width: '100vw',
     padding: '0 30px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -6021,7 +6021,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
     // background: '#122820',
     backgroundColor: '#0d3c47',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -7544,7 +7544,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
     padding: '0 30px',
     paddingTop: '20px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -7596,7 +7596,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
     padding: '0 30px',
     paddingTop: '20px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -9099,7 +9099,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
     paddingTop: '20px',
     // paddingBottom: '20px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -9126,7 +9126,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
     // paddingTop: '20px',
     // paddingBottom: '20px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -9178,7 +9178,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
     // padding: '0 30px',
     // paddingTop: '20px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -10512,7 +10512,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["makeSty
   appbar: {
     background: '#0d3c47',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan' // fontFamily:'GlacialIndifference',
+    fontFamily: "'Outfit', sans-serif" // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
     //   height: '10%',
@@ -10547,7 +10547,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["makeSty
     fontSize: '1rem',
     padding: '0 30px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -10567,7 +10567,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["makeSty
     width: '100vw',
     padding: '0 30px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -10722,7 +10722,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["makeSty
     // color: '#122820',
     background: '#404040',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -10848,7 +10848,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["
   },
   title: {
     // fontFamily: 'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -10858,7 +10858,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["
   },
   desc: {
     // fontFamily: 'Nunito',
-    // fontFamily:'LeagueSpartan',
+    // fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -11053,7 +11053,7 @@ var _jsxFileName = "C:\\Users\\SPYNET\\SEEDS\\seeds-development\\client\\src\\co
 // import '../../fonts/league-spartan/LeagueSpartan-Bold.otf';
 // import '../../fonts/libre-baskerville/LibreBaskerville-Bold.otf';
 // fontFamily:'Nunito',
-// fontFamily:'LeagueSpartan',
+// fontFamily: "'Outfit', sans-serif",
 // fontFamily:'GlacialIndifference',
 // fontFamily:'Montserrat',
 // fontFamily: 'Lora'
@@ -11091,7 +11091,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["makeSty
     alignItems: 'center',
     textAlign: 'center',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan' // fontFamily:'GlacialIndifference',
+    fontFamily: "'Outfit', sans-serif" // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
 
@@ -11105,7 +11105,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["makeSty
     // background: '#122820',
     background: '#0d3c47',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -11143,7 +11143,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["makeSty
     fontSize: '1rem',
     padding: '0 30px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -11435,7 +11435,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["makeSty
     color: '#000000',
     fontSize: '2rem',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan' // fontFamily:'GlacialIndifference',
+    fontFamily: "'Outfit', sans-serif" // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
 
@@ -11444,7 +11444,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["makeSty
     color: '#000000',
     fontSize: '1.rem',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -11711,7 +11711,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["makeSty
   },
   head1: {
     // fontFamily: "Nunito",
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -11719,7 +11719,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["makeSty
   },
   head2: {
     // fontFamily: "Nunito",
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -12331,7 +12331,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["makeSty
     // fontFamily:'Nunito',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     '&:hover': {
       color: '#fffefe',
@@ -12350,13 +12350,13 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["makeSty
     width: '85vw',
     // opacity: '90%',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
-    // fontFamily:'LeagueSpartan',
+    // fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     '&:hover': {
       color: '#fffefe',
@@ -12377,7 +12377,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["makeSty
   },
   head1: {
     // fontFamily: "Nunito",
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -12385,7 +12385,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["makeSty
   },
   head2: {
     // fontFamily: "Nunito",
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -12905,7 +12905,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["makeSty
   },
   head1: {
     //   fontFamily: "Nunito",
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -13518,7 +13518,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_24__[
     // background: '#122820',
     backgroundColor: '#0d3c47',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -13963,7 +13963,7 @@ const useStyles = Object(_material_ui_core___WEBPACK_IMPORTED_MODULE_5__["makeSt
     // background: '#122820',
     backgroundColor: '#0d3c47',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -15699,7 +15699,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
       // backgroundColor: "#000000",
       fontSize: "1.5rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h2': {
@@ -15778,7 +15778,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
     fontSize: '1rem',
     padding: '0 30px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -15789,7 +15789,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
     }
   },
   paperseedsmaintitle: {
-    // fontFamily:'LeagueSpartan',
+    // fontFamily: "'Outfit', sans-serif",
     fontFamily: 'GlacialIndifference',
     fontSize: '1.3rem' // height: '10vh'
 
@@ -15811,7 +15811,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
     // flexDirection:"row"
     color: "#fffefe",
     // fontFamily: "Nunito",
-    fontFamily: 'LeagueSpartan'
+    fontFamily: "'Outfit', sans-serif"
   },
   padding: {// padding: theme.spacing(3),
   },
@@ -16150,7 +16150,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["makeSty
       // backgroundColor: "#000000",
       fontSize: "3.0rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h2': {
@@ -16185,14 +16185,14 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["makeSty
       fontSize: "2.0rem",
       color: "#0c343d",
       // color: "#fffefe",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h6': {
       // backgroundColor: "#000000",
       fontSize: "0.8rem",
       color: "#1b798e",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     }
   },
@@ -17200,7 +17200,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["makeSty
       // backgroundColor: "#000000",
       fontSize: "3.0rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h2': {
@@ -17235,14 +17235,14 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["makeSty
       fontSize: "2.0rem",
       color: "#0c343d",
       // color: "#fffefe",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h6': {
       // backgroundColor: "#000000",
       fontSize: "0.8rem",
       color: "#1b798e",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     }
   },
@@ -18650,7 +18650,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
       // backgroundColor: "#000000",
       fontSize: "1.5rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h2': {
@@ -18729,7 +18729,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
     fontSize: '1rem',
     padding: '0 30px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -18740,7 +18740,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
     }
   },
   paperseedsmaintitle: {
-    // fontFamily:'LeagueSpartan',
+    // fontFamily: "'Outfit', sans-serif",
     fontFamily: 'GlacialIndifference',
     fontSize: '1.3rem' // height: '10vh'
 
@@ -18762,7 +18762,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["
     // flexDirection:"row"
     color: "#fffefe",
     // fontFamily: "Nunito",
-    fontFamily: 'LeagueSpartan'
+    fontFamily: "'Outfit', sans-serif"
   },
   padding: {// padding: theme.spacing(3),
   },
@@ -21351,7 +21351,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_17__["makeSt
       // backgroundColor: "#000000",
       fontSize: "1.5rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h2': {
@@ -21385,14 +21385,14 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_17__["makeSt
       // backgroundColor: "#000000",
       fontSize: "1.0rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h6': {
       // backgroundColor: "#000000",
       fontSize: "0.8rem",
       color: "#1b798e",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     }
   },
@@ -22664,7 +22664,7 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["makeSty
       // backgroundColor: "#000000",
       fontSize: "3.0rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h2': {
@@ -22699,14 +22699,14 @@ const useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["makeSty
       fontSize: "2.0rem",
       color: "#0c343d",
       // color: "#fffefe",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h6': {
       // backgroundColor: "#000000",
       fontSize: "0.8rem",
       color: "#1b798e",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     }
   },
@@ -24010,7 +24010,7 @@ const useStyles = Object(_material_ui_core___WEBPACK_IMPORTED_MODULE_10__["makeS
     // background: '#122820',
     backgroundColor: '#0d3c47',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -27212,7 +27212,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["
       // backgroundColor: "#000000",
       fontSize: "1.5rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan" // padding: '3px',
+      fontFamily: "'Outfit', sans-serif" // padding: '3px',
 
     },
     '& .MuiTypography-h2': {
@@ -27763,7 +27763,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["
     fontSize: '1rem',
     padding: '0 30px',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -27774,7 +27774,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["
     }
   },
   paperseedsmaintitle: {
-    // fontFamily:'LeagueSpartan',
+    // fontFamily: "'Outfit', sans-serif",
     fontFamily: 'GlacialIndifference',
     fontSize: '1.3rem'
   },
@@ -27784,7 +27784,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["
     // background: '#122820',
     backgroundColor: '#0d3c47',
     // fontFamily:'Nunito',
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     // fontFamily:'GlacialIndifference',
     // fontFamily:'Montserrat',
     // fontFamily: 'Lora'
@@ -27823,7 +27823,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["
     // flexDirection:"row"
     color: "#fffefe",
     // fontFamily: "Nunito",
-    fontFamily: 'LeagueSpartan'
+    fontFamily: "'Outfit', sans-serif"
   },
   padding: {
     padding: theme.spacing(3)

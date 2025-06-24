@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#ced8da',
     color: '#33202A',
     fontSize: '1rem',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#A31621'

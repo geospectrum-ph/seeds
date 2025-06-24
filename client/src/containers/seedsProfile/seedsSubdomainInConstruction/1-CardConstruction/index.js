@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     }, '& .MuiTypography-h1': {
       fontSize: "3.0rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan",
+      fontFamily: "'Outfit', sans-serif",
     }, '& .MuiTypography-h2': {
       fontFamily: "Nunito",
       fontSize: "1rem",
@@ -46,11 +46,11 @@ const useStyles = makeStyles((theme) => ({
     }, '& .MuiTypography-h5': {
       fontSize: "2.0rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan",
+      fontFamily: "'Outfit', sans-serif",
     }, '& .MuiTypography-h6': {
       fontSize: "0.8rem",
       color: "#1b798e",
-      fontFamily: "LeagueSpartan",
+      fontFamily: "'Outfit', sans-serif",
     },
   }, summary : {
     marginTop: theme.spacing(2),

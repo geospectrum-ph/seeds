@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1)
   }, submit: {
     marginTop: theme.spacing(1),
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     border: 0,
     borderRadius: 5,
     backgroundColor: '#1b798e',
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1rem',
     height: 48,
     padding: '0 30px',  
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#229922',
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }, submitGuest: {
     marginTop: theme.spacing(2),
-    fontFamily: 'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     border: 15,
     borderColor: '#ccd0d5',
     lineHeight: '0 42px',
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1rem',
     height: 48,
     padding: '0 30px',  
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#229922',
@@ -76,10 +76,10 @@ const useStyles = makeStyles((theme) => ({
   }, appbarTitle:{
     flexGrow: '1',
     color: '#fffefe',
-    fontFamily:'LeagueSpartan'
+    fontFamily:"'Outfit', sans-serif"
   }, appbar: {
     backgroundColor: '#0d3c47',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     textAlign: "center"
   }, block: {
     height: '38px',

@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     height: 48,
     fontSize: '1rem',
     padding: '0 30px',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     '&:hover': {
       color: '#fffefe',
       backgroundColor: '#1b798e',
@@ -96,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.3rem',
   }, appbar: {
     backgroundColor: '#0d3c47',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     textAlign: "center",
   }, appbarTitle:{
     flexGrow: '1',
@@ -109,7 +109,7 @@ const useStyles = makeStyles((theme) => ({
   }, cardheader: {
     backgroundColor:"#1b798e",
     color:"#fffefe",
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
   }, padding: {
     padding: theme.spacing(3),
   }, paperfeaturebutton: {

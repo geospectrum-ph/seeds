@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     }, '& .MuiTypography-h1': {
       fontSize: "1.5rem",
       color: "#0c343d",
-      fontFamily: "LeagueSpartan",
+      fontFamily: "'Outfit', sans-serif",
     }, '& .MuiTypography-h2': {
       fontFamily: "Nunito",
       fontSize: "1rem",

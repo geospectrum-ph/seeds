@@ -206,7 +206,7 @@ export default function MapLayer() {
             <Typography style={{
                 fontWeight:1000, 
                 fontSize:"1.2rem", 
-                fontFamily:"LeagueSpartan"
+                fontFamily:"'Outfit', sans-serif"
               }}>
               Layer Groups
             </Typography>

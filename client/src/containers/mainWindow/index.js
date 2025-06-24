@@ -30,7 +30,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   appbar: {
     backgroundColor: '#0d3c47',
-    fontFamily:'LeagueSpartan',
+    fontFamily: "'Outfit', sans-serif",
     textAlign: "center",
     fontSize: "1.25rem"
   }, appbarTitle:{
