@@ -106,7 +106,6 @@ export default function MainLanding(){
         <Route path="/resetPassword/:id/:token" component={ResetPassword}/> 
 
         <Footer/>
-        
       </Grid>
     </Grid> 
   )

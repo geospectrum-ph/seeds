@@ -19,7 +19,8 @@ const useStyles = makeStyles(() => ({
     color: '#fffefe',
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
+    cursor: 'pointer'
   }, colorText: {
     color: "#5aff3d"
   }, link: {
@@ -36,7 +37,13 @@ export default function Footer(){
   const history = useHistory();    
   const {setAppBarValue} = useContext(SEEDSContext);
 
-  function Copyright() {
+  const handleHistory = (path) => {
+    if (history.location.pathname !== path) {
+      history.push(path);
+    }
+  };
+
+  function Copyright () {
     return (
       <Grid container direction="row" justifyContent="space-around" alignItems="center">
         <Grid item>
@@ -70,8 +77,8 @@ export default function Footer(){
     <Toolbar className={classes.appbar}>
       <Grid container direction="row" justifyContent="center" alignItems="center">
         <Grid item>
-          <h4 className={classes.appbarTitle} style={{cursor: 'pointer'}} onClick={()=>{history.push('/')}}>
-            <img className = {classes.footerLogo} src={logo} onClick={()=>{history.push('/')}}/>
+          <h4 className = { classes.appbarTitle } onClick = { () => { handleHistory("/"); }}>
+            <img className = { classes.footerLogo } src = { logo }/>
             <span className = { classes.colorText }>
               <span>SEED</span>
               <span>s</span>
