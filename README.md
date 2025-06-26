@@ -3,7 +3,8 @@
 ![Company Logo](./client/src/assets/banner.png)
 
 Powered by **Geospectrum Analytics Services, Inc.**
-The open-source data used for SEEDs was retrieved from **[OpenStreetMap](openstreetmap.org/copyright)**.
+
+The open-source data used for SEEDs was retrieved from **[OpenStreetMap](https://openstreetmap.org/copyright)**.
 
 ## About the Project
 
