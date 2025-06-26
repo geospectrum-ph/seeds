@@ -1,6 +1,6 @@
 # SEEDs V1.0.0 © 2025
 
-![Company Logo](./client/src/assets/banner-dark.png)
+![Company Logo](./client/src/assets/banner.png)
 
 Powered by **Geospectrum Analytics Services, Inc.**
 

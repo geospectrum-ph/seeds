@@ -1,0 +1,16 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+	<title>favicon (1)</title>
+	<style>
+		.s0 { fill: #3d0a0a } 
+		.s1 { fill: #7a1414 } 
+		.s2 { fill: #0f5c35 } 
+		.s3 { fill: #189959 } 
+	</style>
+	<g id="Folder 1 copy">
+		<path id="Layer copy 5" class="s0" d="m360.1 322.6v757.8l-360-142v-758z"/>
+		<path class="s1" d="m719.7 938.3l-360 142.1v-757.8l360-142.2z"/>
+		<path class="s0" d="m1079.8 322.2v757.8l-360-142.1v-757.9z"/>
+		<path id="Layer copy 7" class="s2" d="m359.3 240.2c-1.4-204.3-270-239.9-270-239.9 0 0 21.8 248.1 270 239.9z"/>
+		<path id="Layer copy 8" class="s3" d="m361.4 240.2c1.4-204.3 270-239.9 270-239.9 0 0-21.8 248.1-270 239.9z"/>
+	</g>
+</svg>

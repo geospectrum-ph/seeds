@@ -22,7 +22,7 @@ const mongoose = require("mongoose");
 
 mongoose.set("strictQuery", false);
 
-const mongodb_connection_string = "mongodb+srv://seeds:seeds@seeds.nm1d8.mongodb.net/seeds-db?retryWrites=true&w=majority"
+const mongodb_connection_string = "mongodb://seeds:seeds@seeds.nm1d8.mongodb.net/seeds-db?retryWrites=true&w=majority"
 // const mongodb_connection_string = "mongodb://127.0.0.1:27017/seeds-db"
 
 require("dotenv").config();
