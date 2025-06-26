@@ -510,8 +510,20 @@ function ReactMap() {
               }
             }
           }
+
+          console.log(data);
+
           var poly = new L.geoJSON(data, {
-            style: data.style,
+            style: {
+    "color": "var(--color-black)",
+    "stroke": true,
+    "weight": 1,
+    "opacity": 1.00,
+
+    "fill": true,
+    "fillColor": "var(--color-red-dark)",
+    "fillOpacity": 0.50,
+}
           }).bindPopup(popup)
           layerGroup.addLayer(poly)
         })

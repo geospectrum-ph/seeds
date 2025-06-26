@@ -646,12 +646,13 @@ async function SHP_GeneralUpload(inputLayer_, generatedID, sld_txt, res) {
     //     "mtd_id": generatedID
     //   },
     //   geometry: inputLayer_.geometry
-    const properties_ = {
-      "sld_txt": sld_txt,
-      "mtd_id": generatedID
-    }
+
+    // const properties_ = {
+    //   "sld_txt": sld_txt,
+    //   "mtd_id": generatedID
+    // }
     
-    "properties" in inputLayer_ ? inputLayer_.properties = { ...inputLayer_.properties, ...properties_ } : inputLayer_.properties = properties_;
+    // "properties" in inputLayer_ ? inputLayer_.properties = { ...inputLayer_.properties, ...properties_ } : inputLayer_.properties = properties_;
     
     const style_ = {
       "color" : "black",
@@ -663,7 +664,7 @@ async function SHP_GeneralUpload(inputLayer_, generatedID, sld_txt, res) {
 
     // inputLayer_.properties.style = sld_legend ? sld_legend.filter((x) => x.name === fields.NAME_3)[0] : null;
 // console.log(inputLayer_)
-    // console.log(inputLayer_);
+    console.log(inputLayer_);
     bulk.insert(inputLayer_);
 
   // perform operation

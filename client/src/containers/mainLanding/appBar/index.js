@@ -10,7 +10,8 @@ import { TabContext } from "@material-ui/lab";
 import { SEEDSContext } from "../../../context/SEEDSContext";
 
 import DrawerComponent from "../drawerComponent";
-import logo from '../../../assets/icons/0 Logo (3D Colored).png'
+
+import logo from "../../../assets/logo.png";
 
 const theme = createTheme({
   typography: {
@@ -19,18 +20,26 @@ const theme = createTheme({
 });
 
 const useStyles = makeStyles((theme) => ({
+  toolbar: {
+    minHeight: "auto", 
+
+    boxSizing: "border-box",
+    boxShadow: "none",
+    padding: "12px 48px",
+  },
   appBar: {
     width: "auto",
 
     boxSizing: "border-box",
-    padding: "0 12px",
+    boxShadow: "none",
+    padding: "0",
 
-    background: "var(--color-background-01)",
+    background: "var(--color-white)",
   },
   appbarTitle: {
     display: "flex",
     flexFlow: "row nowrap",
-    alignItems: "flex-end",
+    alignItems: "center",
     justify: "center",
 
     boxSizing: "border-box",
@@ -39,61 +48,76 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
   },
   logo: {
-    height: "48px",
+    height: "36px",
   },
   appbarColorText: {
-    font: "bold 32px 'Outfit', sans-serif",
-    
+    font: "800 32px/1 'Outfit', sans-serif",
+
     "& :nth-of-type(1)": {
-      color: "var(--color-green-02)",
+      color: "var(--color-green-dark)",
+    },
+
+    "& :nth-of-type(2)": {
+      color: "var(--color-black)",
     },
   },
   tabsContainer: {
+    display: "flex",
+    flexFlow: "row nowrap",
+    alignItems: "center",
+    justify: "center",
+
     marginLeft: "auto",
   },
   indicatorColor: {
-    backgroundColor: "var(--color-white)",
+    backgroundColor: "var(--color-black)",
   },
   tabRoot: {
-    minWidth: "120px",
+    minWidth: "auto",
+    width: "auto",
+    minHeight: "auto",
     height: "auto",
 
     boxSizing: "border-box",
     margin: "0 12px 0 0",
+    padding: "12px",
 
     opacity: 1.00,
 
-    font: "600 16px 'Outfit', sans-serif",
-    color: "var(--color-background-02)",
+    font: "800 16px/1 'Outfit', sans-serif",
+    color: "var(--color-gray-dark)",
 
     "&:hover": {
-      color: "var(--color-white)",
+      color: "var(--color-green-dark)",
     },
   },
   tabSelected: {
-    color: "var(--color-white)",
+    color: "var(--color-black)",
   },
   loginRoot: {
-    minWidth: "120px",
+    minWidth: "auto",
+    width: "auto",
+    minHeight: "auto",
     height: "auto",
 
     boxSizing: "border-box",
     margin: "0 0 0 24px",
+    padding: "12px",
 
-    background: "var(--color-background-02)",
+    background: "var(--color-black)",
     opacity: 1.00,
 
-    font: "600 16px 'Outfit', sans-serif",
-    color: "var(--color-background-01)",
+    font: "bold 16px/1 'Outfit', sans-serif",
+    color: "var(--color-white)",
 
     "&:hover": {
-      background: "var(--color-green-01)",
+      background: "var(--color-green-dark)",
 
       color: "var(--color-white)",
     },
   },
   loginSelected: {
-    background: "var(--color-green-01)",
+    background: "var(--color-green-dark)",
 
     color: "var(--color-white)",
   },
@@ -159,14 +183,14 @@ export default function AppsBar(){
   return (
     <TabContext value = { appBarValue }>
       <AppBar position = "static" className = { classes.appBar }>
-        <Toolbar>
-          <h1 className = { classes.appbarTitle } onClick = { handleClickLogo }>
+        <Toolbar className = { classes.toolbar }>
+          <div className = { classes.appbarTitle } onClick = { handleClickLogo }>
             <img src = { logo } className = { classes.logo }/>
             <span className = { classes.appbarColorText }>
-              <span>SEED</span>
-              <span>s</span>
+              <span>{ "SEED" }</span>
+              <span>{ "s" }</span>
             </span>
-          </h1> 
+          </div> 
           {
             isMatch ?
               <DrawerComponent/>

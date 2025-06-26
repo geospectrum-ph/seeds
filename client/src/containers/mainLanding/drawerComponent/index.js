@@ -9,12 +9,12 @@ import MenuIcon from "@material-ui/icons/Menu";
 const ListItem = withStyles({
   root: {
     "&.list-item-selected": {
-      backgroundColor: "var(--color-background-01)",
+      backgroundColor: "var(--color-black)",
       
       color: "var(--color-white)",
     },
     "&:hover": {
-      backgroundColor: "var(--color-background-02)",
+      backgroundColor: "var(--color-green-01)",
       
       color: "var(--color-white)",
     },
@@ -27,16 +27,18 @@ const DrawerComponent = () => {
       width: "50%",
 
       "& .MuiListItemText-primary": {
-        fontFamily: "'Outfit', sans-serif",
+        font: "600 18px/1 'Outfit', sans-serif",
       },
     },
+
     iconButtonContainer: {
       marginLeft: "auto",
-      color: "var(--color-white)",
+      color: "var(--color-black)",
     },
+
     menuIconToggle: {
       fontSize: "36px",
-      color: "var(--color-background-02)",
+      color: "var(--color-black)",
     },
   }));
 

@@ -25,20 +25,54 @@ import { AdminContext } from '../../context/AdminContext'
 
 const useStyles = makeStyles(() => ({
   title: {
-    color: '#fffefe',
+    color: 'var(--color-black)',
     fontSize:'4rem'
   }, colorText: {
-    color: "#5aff3d"
+    color: "var(--color-green-dark)",
   }, icon: {
     fontSize: '2.5rem',
     color: "#5aff3d"
   }, container: {
     
-                            background: `linear-gradient(rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75)), url(${ BG }) no-repeat center center`,
-                            backgroundSize: "cover",
+                            // background: `linear-gradient(rgba(255, 255, 255, 1.00), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.00)), url(${ BG }) no-repeat center center`,
+                            //                             // background: `url(${ BG }) no-repeat center center`,
+                            // backgroundSize: "cover",
+                            background: "var(--color-gray-light)",
     height: "100%",
     backgroundRepeat: 'no-repeat',
     fontFamily:"'Outfit', sans-serif"
+  },
+  mainPhoto: {
+    display: "flex",
+    flex: "1 1 0",
+
+    width: "100%",
+
+    background: `linear-gradient(rgba(255, 255, 255, 1.00), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.00)), url(${ BG }) no-repeat center center`,
+    backgroundSize: "cover",
+  },
+  mainLanding: {
+    height: "auto",
+
+    boxSizing: "border-box",
+    padding: "48px",
+    gap: "12px",
+
+    background: "var(--color-red-dark)",
+
+    "&> :nth-of-type(1)": {
+      font: "800 72px/1 'Outfit', sans-serif",
+      color: "var(--color-white)",
+    },
+
+    "&> :nth-of-type(2)": {
+      font: "800 72px/1 'Outfit', sans-serif",
+      color: "var(--color-white)",
+
+      "&> :nth-of-type(1)": {
+        color: "var(--color-green-dark)",
+      },
+    },
   }
 }));
 
@@ -63,14 +97,14 @@ export default function MainLanding(){
       </Grid>
       <Grid item>
         <Route exact path = "/">
-          <Grid container >
-            <Grid item xs = { 12 } md = { 10 } lg = { 7 } container direction = "column" justifyContent="flex-end" 
-              alignItems="flex-start" style={{paddingLeft:"10vw", paddingBottom:"2vh"}}>
-              <Collapse in ={checked} {...(checked ? { timeout: 1000 } : {})} collapsedSize={250}>
-                <h1 className={classes.title}>Welcome to 
-                  <div><span className={classes.colorText}>SEED</span>s!</div>
-                </h1> 
-              </Collapse>
+          <Grid container direction = "column" justifyContent = "flex-start" alignItems = "center">
+            <Grid item className = { classes.mainPhoto }/>
+            <Grid item className = { classes.mainLanding } container direction = "row" justifyContent = "center"  alignItems = "center">
+              <span>{ "Welcome to" }</span>
+              <span>
+                <span>SEED</span>
+                <span>s!</span>
+              </span>
             </Grid>
           </Grid>
         </Route>
