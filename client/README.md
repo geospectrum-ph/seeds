@@ -1,8 +1,10 @@
 # SEEDs V1.0.0 © 2025
 
-![Company Logo](./src/assets/banner-dark.png)
+![Company Logo](./src/assets/banner.png)
 
-Powered by **Geospectrum Analytics Services, Inc.**
+Powered by **[Geospectrum Analytics Services, Inc.](https://www.geospectrum.com.ph)** 
+
+The open-source data used for SEEDs was retrieved from **[OpenStreetMap](https://openstreetmap.org/copyright)**.
 
 ## About the Project
 
