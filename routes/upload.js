@@ -756,18 +756,12 @@ const converted = await Gdal.ogr2ogr(opened.datasets[0], options, "output");
 const dataByte =await Gdal.getFileBytes(converted);
 
 const jsonString = Buffer.from(dataByte).toString('utf8');
-
-    // console.log(jsonString);
-
 // const parsedData = JSON.parse(jsonString);
 
     Gdal.close(opened);
-
     // return(parsedData);
 
-    return(jsonString);
-
-    // return string;
+    return jsonString;
 
     // (async() {
       // Convert path to GeoJSON.
@@ -814,8 +808,6 @@ const jsonString = Buffer.from(dataByte).toString('utf8');
 // var inputLayer = dataset.layers.get(0);
 
 var inputLayer = await getFile(pathToObjectSHP);
-
-// console.log(inputLayer);
   
   // check how many items are in the metadata collection, also in preparation for metadataID generation
   var generatedID = await generateMetadataID();
