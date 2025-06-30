@@ -84,8 +84,8 @@ export default function MainWindow() {
     if(localStorage.getItem('user')){
        setSessionOpen(true)
       const fetchFiles = async() => {
-        // const file = await axios.get("https://seeds.geospectrum.com.ph/session/file/"
-        const file = await axios.get("http://localhost:5000/session/file/"
+        const file = await axios.get("https://seeds.geospectrum.com.ph/session/file/"
+        // const file = await axios.get("http://localhost:5000/session/file/"
           +JSON.parse(localStorage.getItem('user'))._id)
         setSessionFile(file.data)
       }
