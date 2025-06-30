@@ -93,6 +93,7 @@ export default function SocialHealth() {
   useEffect(() =>{
     const fetchData = async() => {
       const res = await axios('https://seeds.geospectrum.com.ph/analytics/getsubcategory/single', {
+      // const res = await axios('http://localhost:5000/analytics/getsubcategory/single', {
         params: {
           layerKey: 'Disease_Barangay', 
           specific_subcategory: 'disease'
@@ -103,6 +104,7 @@ export default function SocialHealth() {
         setDiseaseClassMap(res.data) 
       } else {
         const res2 = await axios('https://seeds.geospectrum.com.ph/analytics/getsubcategory/single', {
+        // const res2 = await axios('http://localhost:5000/analytics/getsubcategory/single', {
           params: {
             layerKey: 'Disease', 
             specific_subcategory: 'properties.disease'
@@ -133,6 +135,7 @@ export default function SocialHealth() {
     if (profileLoc) {
       const fetchData = async() => {
         const res = await axios('https://seeds.geospectrum.com.ph/healthmapper/brgy/single', {
+        // const res = await axios('http://localhost:5000/healthmapper/brgy/single', {
           params: {
             brgy_id: profileLoc,
             disease: diseaseClassSelect,
@@ -143,6 +146,7 @@ export default function SocialHealth() {
         setDiseaseSelect(res.data) 
         setBrgySelect(res.data) 
         const res_graph = await axios('https://seeds.geospectrum.com.ph/healthmapper/graph',  {
+        // const res_graph = await axios('http://localhost:5000/healthmapper/graph',  {
           params: {
             brgy_id: profileLoc,
             disease: diseaseClassSelect,

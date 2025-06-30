@@ -10,6 +10,7 @@ export default function Domains() {
   const getDomains = async () => {
     try{
       const domains = await axios.get("https://seeds.geospectrum.com.ph/metadata/getdomainssocial");
+      // const domains = await axios.get("http://localhost:5000/metadata/getdomainssocial");
       setDomain(domains.data);    
     }
     catch(e){

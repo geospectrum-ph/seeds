@@ -94,7 +94,27 @@ export default function DropdownPhilsys() {
       {params: {layerKey: 'Household_Population', specific_subcategory: 'occupation'}});
       const p_res2 = await axios('https://seeds.geospectrum.com.ph/analytics/getsubcategory/single',
       {params: {layerKey: 'Household_Population', specific_subcategory: 'profession'}}); 
+
+      // const res = await axios('http://localhost:5000/analytics/getsubcategory/single',
+      // {params: {layerKey: 'Household_Population', specific_subcategory: 'housing_unit_serial_number'}});
+
+      // const res2 = await axios('http://localhost:5000/analytics/getsubcategory/single',
+      // {params: {layerKey: 'Household_Population', specific_subcategory: 'address_field'}});
+
+      // const res3 = await axios('http://localhost:5000/analytics/getsubcategory/single',
+      // {params: {layerKey: 'Household_Shape', specific_subcategory: 'properties.land_use'}});
       
+      // const res4 = await axios('http://localhost:5000/analytics/getsubcategory/single',
+      // {params: {layerKey: 'Household_Shape', specific_subcategory: 'properties.type_of_material'}});
+      
+      // setHousingLandUse(res3.data)
+      // setMaterialType(res4.data)
+      
+      // const p_res = await axios('http://localhost:5000/analytics/getsubcategory/single',
+      // {params: {layerKey: 'Household_Population', specific_subcategory: 'occupation'}});
+      // const p_res2 = await axios('http://localhost:5000/analytics/getsubcategory/single',
+      // {params: {layerKey: 'Household_Population', specific_subcategory: 'profession'}}); 
+
       setOccupation(p_res.data) 
       setProfession(p_res2.data) 
     };
@@ -107,6 +127,7 @@ export default function DropdownPhilsys() {
     setProfileLoc(event.target.value)
     const fetchData = async() => {
       const res_brgy_only = await axios("https://seeds.geospectrum.com.ph/barangay",  
+      // const res_brgy_only = await axios("http://localhost:5000/barangay",  
         {params: {brgy_name: event.target.value,}});
 
       // console.log(res_brgy_only.data)
@@ -209,6 +230,7 @@ export default function DropdownPhilsys() {
     const fetchData = async() => {
       // console.log("profileLoc: " + profileLoc)
       const res = await axios("https://seeds.geospectrum.com.ph/household/get", { 
+      // const res = await axios("http://localhost:5000/household/get", { 
         params: {
           brgy_id: profileLoc,
           no_members_min: householdMin,

@@ -664,7 +664,7 @@ async function SHP_GeneralUpload(inputLayer_, generatedID, sld_txt, res) {
 
     // inputLayer_.properties.style = sld_legend ? sld_legend.filter((x) => x.name === fields.NAME_3)[0] : null;
 // console.log(inputLayer_)
-    console.log(inputLayer_);
+    // console.log(inputLayer_);
     bulk.insert(inputLayer_);
 
   // perform operation
@@ -756,10 +756,16 @@ const converted = await Gdal.ogr2ogr(opened.datasets[0], options, "output");
 const dataByte =await Gdal.getFileBytes(converted);
 
 const jsonString = Buffer.from(dataByte).toString('utf8');
-const parsedData = JSON.parse(jsonString);
+
+    // console.log(jsonString);
+
+// const parsedData = JSON.parse(jsonString);
 
     Gdal.close(opened);
-    return(parsedData);
+
+    // return(parsedData);
+
+    return(jsonString);
 
     // return string;
 
@@ -808,6 +814,8 @@ const parsedData = JSON.parse(jsonString);
 // var inputLayer = dataset.layers.get(0);
 
 var inputLayer = await getFile(pathToObjectSHP);
+
+// console.log(inputLayer);
   
   // check how many items are in the metadata collection, also in preparation for metadataID generation
   var generatedID = await generateMetadataID();

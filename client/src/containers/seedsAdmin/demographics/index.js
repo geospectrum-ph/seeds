@@ -59,6 +59,7 @@ export default function Demograhics() {
    const getDomains = async () => {
      try{
        const domains = await axios.get("https://seeds.geospectrum.com.ph/metadata/getdomainsdemographic");
+      // const domains = await axios.get("http://localhost:5000/metadata/getdomainsdemographic");
        setDomain(domains.data);
      }
      catch(e){

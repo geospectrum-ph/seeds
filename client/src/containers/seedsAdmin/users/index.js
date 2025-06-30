@@ -147,6 +147,7 @@ export default function Users() {
   const getUserData = async () => {
     try{
       const userData = await axios.get("https://seeds.geospectrum.com.ph/usermaster/getusers/"
+      // const userData = await axios.get("http://localhost:5000/usermaster/getusers/"
         +userItem._id+"");
       setUser(userData.data); 
     }
@@ -164,6 +165,7 @@ export default function Users() {
   useEffect (() => {
     const getUserGroups = async () => {
       const userGroups = await axios.get("https://seeds.geospectrum.com.ph/usermaster/getusergroups");
+      // const userGroups = await axios.get("http://localhost:5000/usermaster/getusergroups");
       setuserGroups(userGroups.data); 
     }
     
@@ -189,6 +191,7 @@ export default function Users() {
   const handleDelete = async row => {
     const _id = row._id;
     const req = await axios.delete(`https://seeds.geospectrum.com.ph/usermaster/deleteuser/${_id}`)
+    // const req = await axios.delete(`http://localhost:5000/usermaster/deleteuser/${_id}`)
     .then(function() {
       alert("User account was deleted.");     
       getUserData();
@@ -210,6 +213,7 @@ export default function Users() {
       setDisUp(true)
       const updateData = async(res, req) => {
         res = await axios.post(`https://seeds.geospectrum.com.ph/usermaster/edituser/${selectedUpdateRow._id}`, {
+        // res = await axios.post(`http://localhost:5000/usermaster/edituser/${selectedUpdateRow._id}`, {
           name: selectedUpdateRow.name, 
           email: selectedUpdateRow.email,
           user_type: selectedUpdateRow.user_type,
@@ -315,6 +319,7 @@ export default function Users() {
       setDisUp(true)
       const fetchData = async() => {
         const res = await axios.post("https://seeds.geospectrum.com.ph/usermaster/signup", {
+        // const res = await axios.post("http://localhost:5000/usermaster/signup", {
           name: signUpState.name,  //Number(signUpState.serialNo)  
           email: signUpState.email,
           password: signUpState.password,

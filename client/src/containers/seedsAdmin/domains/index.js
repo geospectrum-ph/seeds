@@ -107,6 +107,7 @@ export default function Domains() {
    const getDomains = async () => {
     try{
       const domains = await axios.get("https://seeds.geospectrum.com.ph/metadata/");
+            // const domains = await axios.get("http://localhost:5000/metadata/");
       setDomain(domains.data);      
     }
     catch(e){
@@ -168,6 +169,7 @@ export default function Domains() {
     const handleUpdateMetadataState = () => {
       const updateMetadata = async() => {
         const res = await axios.put(`https://seeds.geospectrum.com.ph/metadata/metadataproperties/${selectedUpdateMetadataRow.id}`, // lalagay dito yung link na gamit mo
+          // const res = await axios.put(`http://localhost:5000/metadata/metadataproperties/${selectedUpdateMetadataRow.id}`, // lalagay dito yung link na gamit mo
           {// ito yung mga parameters na naka-list sa insomnia
             description: updateMetadataState.description,
             language: updateMetadataState.language,

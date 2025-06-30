@@ -108,6 +108,7 @@ export default function CommercialMapper() {
   useEffect(() => {
     const fetchData = async() => {
       const res = await axios(`https://seeds.geospectrum.com.ph/commercialmapper/brgy/single`, {
+      // const res = await axios(`http://localhost:5000/commercialmapper/brgy/single`, {
         params: {
           brgy_id: profileLoc,
           startdate: startDate,
@@ -118,6 +119,7 @@ export default function CommercialMapper() {
       setBrgySelect(res.data) 
 
       const res_graph = await axios('https://seeds.geospectrum.com.ph/commercialmapper/graph', {
+      // const res_graph = await axios('http://localhost:5000/commercialmapper/graph', {
         params: {
           brgy_id: profileLoc
         }
@@ -130,6 +132,7 @@ export default function CommercialMapper() {
   useEffect(() =>{
     const fetchData = async() => {
       const res = await axios('https://seeds.geospectrum.com.ph/analytics/getsubcategory/single', {
+      // const res = await axios('http://localhost:5000/analytics/getsubcategory/single', {
         params: {
           layerKey: 'Commercial_Barangay', 
           specific_subcategory: 'class'

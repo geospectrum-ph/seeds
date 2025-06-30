@@ -129,6 +129,12 @@ export default function SeedsCore() {
          axios.get(`https://seeds.geospectrum.com.ph/usermaster/checkUserPrivilege/${_id}/617fc8d513d435bdbb7914bf`),
          axios.get(`https://seeds.geospectrum.com.ph/usermaster/checkUserPrivilege/${_id}/617fc8f513d435bdbb7914c0`),
          axios.get(`https://seeds.geospectrum.com.ph/usermaster/checkUserPrivilege/${_id}/61892c33219fea59d81938b3`),
+        //  axios.get(`http://localhost:5000/usermaster/checkUserPrivilege/${_id}/616cec44456bbb1c3c4e5daf`),
+        //  axios.get(`http://localhost:5000/usermaster/checkUserPrivilege/${_id}/616cf421e48a071bb478ec56`),
+        //  axios.get(`http://localhost:5000/usermaster/checkUserPrivilege/${_id}/617fc3d213d435bdbb7914be`),
+        //  axios.get(`http://localhost:5000/usermaster/checkUserPrivilege/${_id}/617fc8d513d435bdbb7914bf`),
+        //  axios.get(`http://localhost:5000/usermaster/checkUserPrivilege/${_id}/617fc8f513d435bdbb7914c0`),
+        //  axios.get(`http://localhost:5000/usermaster/checkUserPrivilege/${_id}/61892c33219fea59d81938b3`),
       ]).then(responseArr => {
         //this will be executed only when all requests are complete
         setIsUserPrivilegeUploadData(responseArr[0].data); 

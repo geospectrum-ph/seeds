@@ -85,6 +85,8 @@ export default function MainLanding(){
     setChecked(true);
     const fetchData = async () => {
       const userGroupPrivileges = await axios.get("https://seeds.geospectrum.com.ph/groupprivilege");
+      // const userGroupPrivileges = await axios.get("http://localhost:5000/groupprivilege");
+
       setGroupPrivilege(userGroupPrivileges.data);
     }
     fetchData()

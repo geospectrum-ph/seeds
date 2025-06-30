@@ -84,7 +84,8 @@ export default function MainWindow() {
     if(localStorage.getItem('user')){
        setSessionOpen(true)
       const fetchFiles = async() => {
-        const file = await axios.get("https://seeds.geospectrum.com.ph/session/file/"
+        // const file = await axios.get("https://seeds.geospectrum.com.ph/session/file/"
+        const file = await axios.get("http://localhost:5000/session/file/"
           +JSON.parse(localStorage.getItem('user'))._id)
         setSessionFile(file.data)
       }
@@ -99,6 +100,13 @@ export default function MainWindow() {
       const res7 = await axios('https://seeds.geospectrum.com.ph/jobmapper//brgy/all',);
       const res8 = await axios('https://seeds.geospectrum.com.ph/landuse/brgy/all',);
       const userGroupPrivileges = await axios.get("https://seeds.geospectrum.com.ph/groupprivilege"); 
+      //       const res = await axios('http://localhost:5000/barangay/', ); 
+      // const res3 = await axios('http://localhost:5000/healthmapper/brgy/all', );
+      // const res5 = await axios('http://localhost:5000/healthmapper/allpoints',);
+      // const res6 = await axios('http://localhost:5000/commercialmapper/brgy/all',);
+      // const res7 = await axios('http://localhost:5000/jobmapper//brgy/all',);
+      // const res8 = await axios('http://localhost:5000/landuse/brgy/all',);
+      // const userGroupPrivileges = await axios.get("http://localhost:5000/groupprivilege"); 
       setGroupPrivilege(userGroupPrivileges.data);
       setPoints(res5.data)
      
@@ -169,15 +177,19 @@ export default function MainWindow() {
   const handleSessionRestore = () => {
     const fetchSession = async() =>{
       const sessionData = await axios.get("https://seeds.geospectrum.com.ph/session/get?userId=" 
-        + JSON.parse(localStorage.getItem('user'))._id); 
+      // const sessionData = await axios.get("http://localhost:5000/session/get?userId=" 
+
+      + JSON.parse(localStorage.getItem('user'))._id); 
 
       if (sessionData !== null) {
         setSessionData(sessionData.data)
         if (sessionData.data.map.layers){
           const fetchBrgys = async(i) => {
             const res = await axios.get(`https://seeds.geospectrum.com.ph/getdata/`,
+                        // const res = await axios.get(`http://localhost:5000/getdata/`,
               {params:{id: sessionData.data.map.layers[i]}})
             const res2 = await axios.get(`https://seeds.geospectrum.com.ph/getdata/sld`,
+                          // const res2 = await axios.get(`http://localhost:5000/getdata/sld`,
               {params:{metadataID: sessionData.data.map.layers[i]}})
   
             setBrgys(brgys => [...brgys, res.data])
@@ -197,6 +209,7 @@ export default function MainWindow() {
       } else {
         const create = async() => {
           const createSession = await axios.post("https://seeds.geospectrum.com.ph/session/create", {
+          // const createSession = await axios.post("http://localhost:5000/session/create", {
             userId: JSON.parse(localStorage.getItem('user'))._id,
             populate: '',
             catalogue: '',

@@ -57,6 +57,8 @@ export default function Environmentals() {
   const getDomains = async () => {
     try{
       const domains = await axios.get("https://seeds.geospectrum.com.ph/metadata/getdomainsenvironmental");
+            // const domains = await axios.get("http://localhost:5000/metadata/getdomainsenvironmental");
+
       setDomain(domains.data);
     }
     catch(e){
