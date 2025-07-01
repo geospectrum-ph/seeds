@@ -623,10 +623,10 @@ export default function SeedsPopulate() {
       };
 
       if (state.type === 'shp'){
-        // axios.post('https://seeds.geospectrum.com.ph/upload/shp', formData, config).then(async ()=>{
-        //   const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',); //ito yung gagamitin pag sa web yung server
-        axios.post('http://localhost:5000/upload/shp', formData, config).then(async ()=>{
-          const res4 = await axios('http://localhost:5000/metadata/',); //ito yung gagamitin pag sa web yung server          setDataCat(res4.data);
+        axios.post('https://seeds.geospectrum.com.ph/upload/shp', formData, config).then(async ()=>{
+          const res4 = await axios('https://seeds.geospectrum.com.ph/metadata/',); //ito yung gagamitin pag sa web yung server
+        // axios.post('http://localhost:5000/upload/shp', formData, config).then(async ()=>{
+        //   const res4 = await axios('http://localhost:5000/metadata/',); //ito yung gagamitin pag sa web yung server          setDataCat(res4.data);
           setDataShow(res4.data);
           alert('Upload Complete');
           setDisUp(false)
