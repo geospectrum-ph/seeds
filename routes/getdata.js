@@ -130,19 +130,20 @@ router.route('/').get(async (req, res) => { // bale pag pumunta ka sa "https://s
 /* GET barangays listing. */
 router.route('/barangays').get(async (req, res) => { // bale pag pumunta ka sa "https://seeds-demo.geospectrum.com.ph/getdata/barangays",
                                       // eto yung ieexcute niya na function
-  Barangay.find().then(items => {
-    var data = {
-      'count': items.length,
-      'values': items.map(function (value) {
-        var barangay = {
-          "brgy_id": value.properties.brgy_id,
-          "brgy_name": value.properties.brgy_name,
-        }
-        return barangay;
-      }).sort((a,b) => (a.brgy_name > b.brgy_name) ? 1 : ((b.brgy_name > a.brgy_name) ? -1 : 0))
-    };
-    res.json(data);
-  }).catch(err => res.status(400).json('Error: ' + err));
+  // Barangay.find().then(items => {
+  //   var data = {
+  //     'count': items.length,
+  //     'values': items.map(function (value) {
+  //       var barangay = {
+  //         "brgy_id": value.properties.brgy_id,
+  //         "brgy_name": value.properties.brgy_name,
+  //       }
+  //       return barangay;
+  //     }).sort((a,b) => (a.brgy_name > b.brgy_name) ? 1 : ((b.brgy_name > a.brgy_name) ? -1 : 0))
+  //   };
+  //   res.json(data);
+  // }).catch(err => res.status(400).json('Error: ' + err));
+  res.status(400).json('Error: ' + err);
 });
 
 /* GET metadata listing. */

@@ -477,7 +477,9 @@ function ReactMap() {
   }, [lControl])
   
   useEffect(()=> {
-    if (brgys.length > 0 && lControl){
+    if (brgys.length > 0 && brgys[0].length > 0 && lControl){
+              // console.log(brgys);
+
       if (loadedMtd.length === brgys.length){
         // do nothing
       } else {
@@ -512,7 +514,7 @@ function ReactMap() {
             }
           }
 
-          console.log(data);
+          // console.log(data);
 
           var poly = new L.geoJSON(data, {
             style: {

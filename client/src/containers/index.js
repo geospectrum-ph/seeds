@@ -26,7 +26,7 @@ function App() {
       const names = await axios("https://seeds.geospectrum.com.ph/getdata/barangays/",);
       // const names = await axios("http://localhost:5000/getdata/barangays/",);
 
-      setBrgysList(names.data.values);
+      // setBrgysList(names.data.values);
     };
 
     fetchData();
