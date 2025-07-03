@@ -4,11 +4,12 @@ import { makeStyles, Grid } from "@material-ui/core";
 
 import RootHeader from "./header";
 import RootFooter from "./footer";
+import RootMap from "./map";
 
 import TermsOfUse from "./footer/terms-of-use";
 import PrivacyPolicy from "./footer/privacy-policy";
 
-import background from "../assets/background.jpg";
+import background from "../assets/map.png";
 
 const useStyles = makeStyles(function () {
   return ({
@@ -30,8 +31,10 @@ const useStyles = makeStyles(function () {
         flex: "1 1 auto",
         flexFlow: "column nowrap",
         
-        background: `linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.00)), url(${ background }) no-repeat center bottom`,
-        backgroundSize: "cover",
+        // background: `url(${ background }) no-repeat center bottom`,
+        // backgroundSize: "cover",
+
+        // background: "var(--color-gray-dark)",
 
         "& >:nth-of-type(1)": {
           flex: "1 1 auto",
@@ -119,6 +122,7 @@ export default function Root(){
           <Route path = "/terms-of-use">
             <TermsOfUse/>
           </Route>
+          <RootMap/>
         </Grid>
         <Grid id = "container-root-footer" item>
           <RootFooter/>

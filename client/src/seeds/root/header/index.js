@@ -13,6 +13,8 @@ import DrawerComponent from "../../containers/mainLanding/drawerComponent";
 
 import logo from "../../assets/logo.png";
 
+import background from "../../assets/map.png";
+
 const theme = createTheme({
   typography: {
     fontFamily: "'Outfit', sans-serif"
@@ -92,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   tabSelected: {
-    color: "var(--color-black)",
+    color: "var(--color-white)",
   },
   loginRoot: {
     minWidth: "auto",
@@ -108,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
     opacity: 1.00,
 
     font: "bold 16px/1 'Outfit', sans-serif",
-    color: "var(--color-white)",
+    color: "var(--color-gray-dark)",
 
     "&:hover": {
       background: "var(--color-green-dark)",
