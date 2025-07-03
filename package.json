@@ -1,7 +1,8 @@
 {
-  "name": "seeds-local",
-  "version": "0.0.0",
-  "description": "seeds-local",
+  "name": "seeds",
+  "version": "1.0.0",
+  "description": "SEEDs is a web-based GIS visualization platform.",
+  "author": "Geospectrum Analytics Services, Inc.",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

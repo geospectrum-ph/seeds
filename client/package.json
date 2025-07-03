@@ -1,7 +1,8 @@
 {
   "name": "client",
-  "version": "0.1.0",
-  "description": "SEEDs Development Project",
+  "version": "1.0.0",
+  "description": "SEEDs is a web-based GIS visualization platform.",
+  "author": "Geospectrum Analytics Services, Inc.",
   "main": "index.js",
   "scripts": {
     "test": "react-scripts test",
@@ -9,8 +10,6 @@
     "build-no-sourcemap": "GENERATE_SOURCEMAP=false react-scripts build",
     "build": "react-scripts build"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@bjarkehs/react-nice-dates": "^3.1.5",
     "@date-io/date-fns": "^2.14.0",
