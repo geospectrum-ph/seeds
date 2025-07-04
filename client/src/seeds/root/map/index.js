@@ -1,56 +1,48 @@
 import * as React from "react";
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core";
 
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-
-
-
-import { MapContext } from "../../context/MapContext";
+import * as Leaflet from "leaflet";
+import "leaflet/dist/leaflet.css";
 
 const useStyles = makeStyles(function () {
   return ({
-    map: {
-      width: "100vw",
-      height: "100vh",
-
-      display: "block",
-
+    rootMap: {
       position: "absolute",
       top: "0",
       left: "0",
       zIndex: "-100",
 
-      filter: "color(from hsl(0 100% 50%) srgb calc(r - 0.4) calc(g + 0.1) calc(b + 0.6) / calc(alpha - 0.1))",
+      width: "100vw",
+      height: "100vh",
+
+      display: "block",
+
+      filter: "grayscale(100%) brightness(100%)",
     },
   });
 });
 
 export default function Map () {
+  const styles = useStyles();
 
-    const {viewport,  map, lControl, setLC} = React.useContext(MapContext);
+  const mapRoot = React.useRef(null);
 
-      const styles = useStyles();
-
-        const position = [viewport.lat, viewport.lng]
-
-
-  
-
-React.useEffect(() => {
-    map.current = L.map('map', {
-      center: [14.5680,120.9632],
+  React.useEffect(() => {
+    mapRoot.current = L.map("map-root", {
+      center: [14.5680, 120.9632],
       zoom: 12,      
-      zoomControl: false
+      zoomControl: false,
     });
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map.current);
+    Leaflet
+      .tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: `&copy; <a href = "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors`,
+      })
+      .addTo(mapRoot.current);
   }, []);
 
   return (
-        <div id="map" className = { styles.map }></div>
+    <div id = "map-root" className = { styles.rootMap }/>
   );
 }

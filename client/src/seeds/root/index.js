@@ -6,10 +6,10 @@ import RootHeader from "./header";
 import RootFooter from "./footer";
 import RootMap from "./map";
 
+import About from "./header/about";
+
 import TermsOfUse from "./footer/terms-of-use";
 import PrivacyPolicy from "./footer/privacy-policy";
-
-import background from "../assets/map.png";
 
 const useStyles = makeStyles(function () {
   return ({
@@ -30,11 +30,6 @@ const useStyles = makeStyles(function () {
         display: "flex",
         flex: "1 1 auto",
         flexFlow: "column nowrap",
-        
-        // background: `url(${ background }) no-repeat center bottom`,
-        // backgroundSize: "cover",
-
-        // background: "var(--color-gray-dark)",
 
         "& >:nth-of-type(1)": {
           flex: "1 1 auto",
@@ -67,7 +62,7 @@ const useStyles = makeStyles(function () {
         placeContent: "center flex-start",
         placeItems: "center center",
 
-        font: "800 72px/1 'Outfit', sans-serif",
+        font: "800 120px/1 'Outfit', sans-serif",
         color: "var(--color-black)",
       },
       
@@ -80,7 +75,7 @@ const useStyles = makeStyles(function () {
         placeContent: "center flex-start",
         placeItems: "center center",
 
-        font: "800 72px/1 'Outfit', sans-serif",
+        font: "800 120px/1 'Outfit', sans-serif",
         color: "var(--color-black)",
 
         "& >:nth-of-type(1)": {
@@ -111,9 +106,9 @@ export default function Root(){
             {/* <SignIn/> */}
           </Route>
           <Route path = "/about">
-            {/* <About/> */}
+            <About/>
           </Route>
-          <Route path = "/help">
+          <Route path = "/contact-us">
             {/* <Help/> */}
           </Route>
           <Route path = "/privacy-policy">

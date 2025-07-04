@@ -19,7 +19,7 @@ const useStyles = makeStyles(function () {
       background: "var(--color-black)",
       cursor: "default",
 
-      font: "500 16px/1 'Outfit', sans-serif",
+      font: "400 16px/1 'Outfit', sans-serif",
       color: "var(--color-gray-dark)",
 
       "& > *": {
@@ -33,11 +33,23 @@ const useStyles = makeStyles(function () {
 
         boxSizing: "border-box",
         gap: "12px",
+
+        "&.active-terms-of-use": {
+          "& > :nth-of-type(1)": {
+            color: "var(--color-white)",
+          },
+        },
+        
+        "&.active-privacy-policy": {
+          "& > :nth-of-type(3)": {
+            color: "var(--color-white)",
+          },
+        },
       },
     },
     rootFooterLink: {
       "& > a": {
-        font: "500 16px/1 'Outfit', sans-serif",
+        font: "400 16px/1 'Outfit', sans-serif",
         textDecoration: "none",
         color: "var(--color-gray-dark)",
       },
@@ -55,14 +67,14 @@ export default function RootFooter(){
   const styles = useStyles();
   const history = useHistory();
 
-  const { setAppBarValue } = React.useContext(SEEDSContext);
+  const { appBarValue, setAppBarValue } = React.useContext(SEEDSContext);
 
   const handleHistory = (path) => {
     if (history.location.pathname !== path) {
       history.push(path);
     }
 
-    setAppBarValue(""); 
+    setAppBarValue(path); 
   };
 
   return (
@@ -73,7 +85,7 @@ export default function RootFooter(){
         <Grid item>{ new Date().getFullYear() }</Grid>
         <Grid item>{ "All Rights Reserved" }</Grid>
       </Grid>
-      <Grid container>         
+      <Grid className = { appBarValue === "/terms-of-use" ? "active-terms-of-use" : appBarValue === "/privacy-policy" ? "active-privacy-policy" : null } container>         
         <Grid item className = { styles.rootFooterLink } onClick = { function () { handleHistory("/terms-of-use"); }}>{ "Terms of Use" }</Grid>
         <Grid item>{ "|" }</Grid>
         <Grid item className = { styles.rootFooterLink } onClick = { function () { handleHistory("/privacy-policy"); }}>{ "Privacy Policy" }</Grid>

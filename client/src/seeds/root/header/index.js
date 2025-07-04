@@ -1,212 +1,250 @@
 import * as React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
-import PropTypes from "prop-types";
-
-import { createTheme, makeStyles } from "@material-ui/core/styles";
-import { AppBar, Toolbar, Typography, Tab, Tabs, useMediaQuery, Box } from "@material-ui/core";
-import { TabContext } from "@material-ui/lab";
+import { createTheme, makeStyles, withStyles, Drawer, Grid, IconButton, List, ListItemText, useMediaQuery } from "@material-ui/core";
+import MuiListItem from "@material-ui/core/ListItem";
+import MenuIcon from "@material-ui/icons/Menu";
 
 import { SEEDSContext } from "../../context/SEEDSContext";
 
-import DrawerComponent from "../../containers/mainLanding/drawerComponent";
-
 import logo from "../../assets/logo.png";
 
-import background from "../../assets/map.png";
+const theme = createTheme({});
 
-const theme = createTheme({
-  typography: {
-    fontFamily: "'Outfit', sans-serif"
-  },
+const useStyles = makeStyles(function (theme) {
+  return ({
+    rootHeader: {
+      width: "100%",
+      height: "72px",
+      minHeight: "72px",
+
+      display: "flex",
+      flexFlow: "row nowrap",
+      placeContent: "center space-between",
+      placeItems: "center center",
+
+      boxSizing: "border-box",
+      padding: "12px 48px",
+
+      background: "var(--color-white)",
+      cursor: "default",
+
+      font: "400 16px/1 'Outfit', sans-serif",
+      color: "var(--color-gray-dark)",
+
+      "& > :nth-of-type(1) > *": {  
+        display: "flex",
+        flexFlow: "row nowrap",
+        placeContent: "center center",
+        placeItems: "center center",
+
+        boxSizing: "border-box",
+        gap: "12px",
+
+        cursor: "pointer",
+
+        "& img": {
+          height: "48px",
+        },
+
+        "& > *": {
+          font: "800 36px/1 'Outfit', sans-serif",
+          color: "var(--color-black)",
+
+          "& > :nth-of-type(1)": {
+            color: "var(--color-green-dark)",
+          },
+          
+          "&:hover": {
+            "& > :nth-of-type(1)": {
+              color: "var(--color-black)",
+            },
+          },
+        },
+      },
+
+      "& > :nth-of-type(2)": {  
+        width: "auto",
+        height: "auto",
+      },
+
+      "& #root-menu-tabs": {
+        display: "flex",
+        flexFlow: "row nowrap",
+        placeContent: "center center",
+        placeItems: "center center",
+
+        boxSizing: "border-box",
+        gap: "12px",
+
+        "& > *": {
+          width: "auto",
+
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+
+          placeItems: "center center",
+          placeContent: "center center",
+
+          boxSizing: "border-box",
+          padding: "12px",
+          borderBottom: "2px solid var(--color-transparent)",
+      
+          font: "800 16px 'Outfit', sans-serif",
+          textAlign: "center",
+          textDecoration: "none",
+          color: "var(--color-gray-dark)",
+
+          "&:hover": {
+            color: "var(--color-black)", 
+          },
+
+          "&.active": {
+            borderBottom: "2px solid var(--color-black)",
+
+            color: "var(--color-red-dark)",
+          },
+          
+          "&:last-child": {
+            boxSizing: "border-box",
+            margin: "0 0 0 12px",
+            padding: "12px 24px",
+
+            backgroundColor: "var(--color-black)",
+
+            font: "600 16px 'Outfit', sans-serif",
+            color: "var(--color-gray-light)",
+
+            "&:hover": {
+              backgroundColor: "var(--color-red-dark)",
+              
+              color: "var(--color-white)", 
+            },
+
+            "&.active": {
+              borderBottom: "2px solid var(--color-black)",
+
+              backgroundColor: "var(--color-red-dark)",
+              
+              color: "var(--color-white)", 
+            },
+          },
+        },
+      },
+    },
+  });
 });
 
-const useStyles = makeStyles((theme) => ({
-  toolbar: {
-    minHeight: "auto", 
-
-    boxSizing: "border-box",
-    boxShadow: "none",
-    padding: "12px 48px",
-  },
-  appBar: {
-    width: "auto",
-
-    boxSizing: "border-box",
-    boxShadow: "none",
-    padding: "0",
-
-    background: "var(--color-white)",
-  },
-  appbarTitle: {
-    display: "flex",
-    flexFlow: "row nowrap",
-    alignItems: "center",
-    justify: "center",
-
-    boxSizing: "border-box",
-    gap: "12px",
-
-    cursor: "pointer",
-  },
-  logo: {
-    height: "36px",
-  },
-  appbarColorText: {
-    font: "800 32px/1 'Outfit', sans-serif",
-
-    "& :nth-of-type(1)": {
-      color: "var(--color-green-dark)",
-    },
-
-    "& :nth-of-type(2)": {
-      color: "var(--color-black)",
-    },
-  },
-  tabsContainer: {
-    display: "flex",
-    flexFlow: "row nowrap",
-    alignItems: "center",
-    justify: "center",
-
-    marginLeft: "auto",
-  },
-  indicatorColor: {
-    backgroundColor: "var(--color-black)",
-  },
-  tabRoot: {
-    minWidth: "auto",
-    width: "auto",
-    minHeight: "auto",
-    height: "auto",
-
-    boxSizing: "border-box",
-    margin: "0 12px 0 0",
-    padding: "12px",
-
-    opacity: 1.00,
-
-    font: "800 16px/1 'Outfit', sans-serif",
-    color: "var(--color-gray-dark)",
-
-    "&:hover": {
-      color: "var(--color-green-dark)",
-    },
-  },
-  tabSelected: {
-    color: "var(--color-white)",
-  },
-  loginRoot: {
-    minWidth: "auto",
-    width: "auto",
-    minHeight: "auto",
-    height: "auto",
-
-    boxSizing: "border-box",
-    margin: "0 0 0 24px",
-    padding: "12px",
-
-    background: "var(--color-black)",
-    opacity: 1.00,
-
-    font: "bold 16px/1 'Outfit', sans-serif",
-    color: "var(--color-gray-dark)",
-
-    "&:hover": {
-      background: "var(--color-green-dark)",
-
-      color: "var(--color-white)",
-    },
-  },
-  loginSelected: {
-    background: "var(--color-green-dark)",
-
-    color: "var(--color-white)",
-  },
-}));
- 
-function TabPanel (props) {
-  const { children, value, index, ...other } = props;
-
+function RootMenuTabs ({ array, appBarValue, handleHistory }) {
   return (
-    <div id = { `simple-tabpanel-${index}` } role = "tabpanel" hidden = { value !== index } aria-labelledby = { `simple-tab-${index}` } { ...other }>
+    <div id = "root-menu-tabs">
       {
-        value === index
-        && 
-        <Box>
-          <Typography>{ children }</Typography>
-        </Box>
+        array.map(function (item, index) {
+          return (
+            <Link to = { item.path } className = { appBarValue === item.path ? "active" : null } key = { index } onClick = { function () { handleHistory(item.path); } }>{ item.name }</Link>
+          );
+        })
       }
     </div>
   );
 }
-  
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
+
+function RootMenuDrawer ({ array, appBarValue, handleHistory }) {
+  const [control, setControl] = React.useState(false);
+
+  const ListItem = withStyles({
+    root: {
+      boxSizing: "border-box",
+      margin: "0 48px 0 0",
+      padding: "12px",
+
+      font: "600 16px 'Outfit', sans-serif",
+      color: "var(--color-gray-dark)",
+
+      "&.active": {
+        backgroundColor: "var(--color-red-dark)",
+        
+        color: "var(--color-white)",
+      },
+
+      "&:hover": {
+        backgroundColor: "var(--color-black)",
+        
+        color: "var(--color-white)",
+      },
+    },
+
+  })(MuiListItem);
+
+  return (
+    <div id = "root-menu-drawer">
+      <Drawer anchor = "right" open = { control } onClick = { function () { setControl(false); }}>
+        <List>
+          {
+            array.map(function (item, index) {
+              return (
+                <ListItem className = { appBarValue === item.path ? "active" : null } key = { index } divider button onClick = { function () { handleHistory(item.path); } }>
+                  <ListItemText primary = { item.name } disableTypography/>
+                </ListItem>
+              );
+            })
+          }
+        </List>
+      </Drawer>
+      <IconButton onClick = { function () { setControl(!control); }} disableRipple><MenuIcon/></IconButton>
+    </div>
+  );
 };
-  
-export default function RootHeader(){
-  const {appBarValue, setAppBarValue} = React.useContext(SEEDSContext);
 
-  const handleClickTab = (e, newValue) => {
-    setAppBarValue(newValue);
-  };
-
+export default function RootHeader () {
+  const styles = useStyles();
   const history = useHistory();
 
-  const handleClickLogo = () => {
-    setAppBarValue("home");
-    
-    if (history.location.pathname !== "/") {
-      history.push("/");
-    }
-  };
+  const { appBarValue, setAppBarValue } = React.useContext(SEEDSContext);
 
-  const handleLogin = () => {
-    setAppBarValue("Login");
+  const [array] = React.useState([
+    {
+      name: "HOME",
+      path: "/",
+    },
+    {
+      name: "ABOUT",
+      path: "/about",
+    },
+    {
+      name: "CONTACT US",
+      path: "/contact-us",
+    },
+    {
+      name: "SIGN IN",
+      path: "/sign-in",
+    },
+  ]);
 
-    if (history.location.pathname !== "/login") {
-      history.push("/login");
-    }
-  };
-
-  const handleHistory = (path) => {
+  function handleHistory (path) {
     if (history.location.pathname !== path) {
       history.push(path);
     }
-  };
-  
-  const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const classes = useStyles();
+    setAppBarValue(path);
+  };
 
   return (
-    <TabContext value = { appBarValue }>
-      <AppBar position = "static" className = { classes.appBar }>
-        <Toolbar className = { classes.toolbar }>
-          <div className = { classes.appbarTitle } onClick = { handleClickLogo }>
-            <img src = { logo } className = { classes.logo }/>
-            <span className = { classes.appbarColorText }>
-              <span>{ "SEED" }</span>
-              <span>{ "s" }</span>
-            </span>
-          </div> 
-          {
-            isMatch ?
-              <DrawerComponent/>
-              :
-              <Tabs className = { classes.tabsContainer } classes = {{ indicator: classes.indicatorColor }} value = { appBarValue } onChange = { handleClickTab }>
-                <Tab classes = {{ root: classes.tabRoot, selected: classes.tabSelected }} label = "Home" value = "home" to = "/" disableRipple onClick = { () => { handleHistory("/") }}/>
-                <Tab classes = {{ root: classes.tabRoot, selected: classes.tabSelected }} label = "About Us" value = "aboutUs" to = "/aboutUs" disableRipple onClick = { () => { handleHistory("/aboutUs") }}/>
-                <Tab classes = {{ root: classes.tabRoot, selected: classes.tabSelected }} label = "Features" value = "features" to = "/features" disableRipple onClick = { () => { handleHistory("/features") }}/>
-                <Tab classes = {{ root: classes.tabRoot, selected: classes.tabSelected }} label = "Contact Us" value = "contacUs" to = "/contactUs" disableRipple onClick = { () => { handleHistory("/contactUs") }}/>
-                <Tab classes = {{ root: classes.loginRoot, selected: classes.loginSelected }} label = "Login" value = "Login" textColor	= "inherit" disableRipple onClick = { handleLogin }/>
-              </Tabs>
-          }
-        </Toolbar>
-      </AppBar>
-    </TabContext>
+    <Grid id = "root-header" className = { styles.rootHeader } container>
+      <Grid item container>
+        <div onClick = { function () { handleHistory("/"); }}>
+          <img src = { logo }/>
+          <span><span>{ "SEED" }</span><span>{ "s" }</span></span>
+        </div> 
+      </Grid>
+      <Grid item container>
+        {
+          useMediaQuery(theme.breakpoints.down("sm")) ?
+            <RootMenuDrawer array = { array } appBarValue = { appBarValue } handleHistory = { handleHistory }/>
+            :
+            <RootMenuTabs array = { array } appBarValue = { appBarValue } handleHistory = { handleHistory }/>
+        }
+      </Grid>
+    </Grid>
   );
 }
