@@ -10,20 +10,20 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 
 import 'leaflet/dist/leaflet.css';
 
-import SeedsPopulate from '../seedsCore/seedsPopulate';
-import SeedsCatalogue from '../seedsCore/seedsCatalogue';
-import SeedsMapPortal from '../seedsCore/seedsMapPortal';
-import SeedsFeatures from '../seedsProfile';
-import SeedsAnalytics from '../seedsAnalytics';
-import SeedsAdmin from '../seedsAdmin'
-import LeftNav from '../seedsCore';
-import MiniDrawer from '../leftNavDraw'
+import SeedsPopulate from '../containers/seedsCore/seedsPopulate';
+import SeedsCatalogue from '../containers/seedsCore/seedsCatalogue';
+import SeedsMapPortal from '../containers/seedsCore/seedsMapPortal';
+import SeedsFeatures from '../containers/seedsProfile';
+import SeedsAnalytics from '../containers/seedsAnalytics';
+import SeedsAdmin from '../containers/seedsAdmin'
+import LeftNav from '../containers/seedsCore';
+import MiniDrawer from '../containers/leftNavDraw'
 
-import { AdminContext } from '../../context/AdminContext';
-import { SEEDSContext } from '../../context/SEEDSContext';
-import { FeaturesContext } from '../../context/FeaturesContext';
+import { AdminContext } from '../context/AdminContext';
+import { SEEDSContext } from '../context/SEEDSContext';
+import { FeaturesContext } from '../context/FeaturesContext';
 
-import Scroll from '../scroll';
+import Scroll from '../containers/scroll';
 
 const drawerWidth = 240;
 
@@ -72,7 +72,7 @@ export default function Home() {
       const interval = setInterval(() => {
         setLoginDetails(localStorage.removeItem('user'))
         setSessionData()
-        history.push('/')
+        history.push('/home')
       }, 43200000)
     // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
     return () => clearInterval(interval); 

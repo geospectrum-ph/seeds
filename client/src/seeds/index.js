@@ -7,7 +7,7 @@ import MapContextProvider from "../seeds/context/MapContext";
 import SEEDSContextProvider from "../seeds/context/SEEDSContext";
 
 import Root from "./root/index.js";
-// import Home from "./home/index.js";
+import Home from "./home/index.js";
 
 export default function SEEDs() {  
   return (
@@ -21,9 +21,9 @@ export default function SEEDs() {
                   <Route path = "/">
                     <Root/>
                   </Route>
-                  {/* <Route path = "/home" >
+                  <Route path = "/home" >
                     <Home/>
-                  </Route> */}
+                  </Route>
                 </Switch>
               </Router>
             </SEEDSContextProvider>

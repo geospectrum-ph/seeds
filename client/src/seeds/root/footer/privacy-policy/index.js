@@ -181,7 +181,7 @@ export default function PrivacyPolicy() {
           <br/>
           <span>{ `Unit 804, Linden Suites Tower 1, 37 San Miguel Avenue, Ortigas Center, Pasig City, Philippines` }</span>
           <ul>
-            <li><b>{ `Email:` }</b>&ensp;<a href="mailto:info@geospectrum.com.ph">{ "info@geospectrum.com.ph" }</a></li>
+            <li><b>{ `Email:` }</b>&ensp;<a href = "mailto:info@geospectrum.com.ph">{ "info@geospectrum.com.ph" }</a></li>
             <li><b>{ `Phone:` }</b>&ensp;{ `+63917-7915536 | +63920-9113418 | +(632)-8637-8026` }</li>
             <li><b>{ `Website:` }</b>&ensp;<a href = "https://www.geospectrum.com.ph/">{ "GEOSPECTRUM" }</a></li>
           </ul>

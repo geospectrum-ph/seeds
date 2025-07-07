@@ -6,7 +6,9 @@ import RootHeader from "./header";
 import RootFooter from "./footer";
 import RootMap from "./map";
 
+import SignIn from "./header/sign-in";
 import About from "./header/about";
+import ContactUs from "./header/contact-us";
 
 import TermsOfUse from "./footer/terms-of-use";
 import PrivacyPolicy from "./footer/privacy-policy";
@@ -22,20 +24,20 @@ const useStyles = makeStyles(function () {
       display: "flex",
       flexFlow: "column nowrap",
 
-      "& >:nth-of-type(1)": {
+      "& > :nth-of-type(1)": {
         flex: "0 1 auto",
       },
       
-      "& >:nth-of-type(2)": {        
+      "& > :nth-of-type(2)": {        
         display: "flex",
         flex: "1 1 auto",
         flexFlow: "column nowrap",
 
-        "& >:nth-of-type(1)": {
+        "& > :nth-of-type(1)": {
           flex: "1 1 auto",
         },
         
-        "& >:nth-of-type(2)": {
+        "& > :nth-of-type(2)": {
           flex: "0 1 auto",
         },
       },
@@ -46,39 +48,42 @@ const useStyles = makeStyles(function () {
 
       display: "flex",
       flexFlow: "column nowrap",
-      placeContent: "center flex-end",
+      placeContent: "center center",
       placeItems: "center center",
 
       boxSizing: "border-box",
       margin: "0",
-      padding: "48px",
 
-      "& >:nth-of-type(1)": {
+      "& > :nth-of-type(1)": {
         width: "100%",
         height: "auto",
 
         display: "flex",
         flexFlow: "row nowrap",
-        placeContent: "center flex-start",
+        placeContent: "center center",
         placeItems: "center center",
 
+        background: "var(--color-red-dark)",
+
         font: "800 120px/1 'Outfit', sans-serif",
-        color: "var(--color-black)",
+        color: "var(--color-white)",
       },
       
-      "& >:nth-of-type(2)": {
+      "& > :nth-of-type(2)": {
         width: "100%",
         height: "auto",
 
         display: "flex",
         flexFlow: "row nowrap",
-        placeContent: "center flex-start",
+        placeContent: "center center",
         placeItems: "center center",
 
-        font: "800 120px/1 'Outfit', sans-serif",
-        color: "var(--color-black)",
+        background: "var(--color-black)",
 
-        "& >:nth-of-type(1)": {
+        font: "800 120px/1 'Outfit', sans-serif",
+        color: "var(--color-white)",
+
+        "& > :nth-of-type(1)": {
           color: "var(--color-green-dark)",
         },
       },
@@ -103,13 +108,13 @@ export default function Root(){
             </Grid>
           </Route>
           <Route path = "/sign-in">
-            {/* <SignIn/> */}
+            <SignIn/>
           </Route>
           <Route path = "/about">
             <About/>
           </Route>
           <Route path = "/contact-us">
-            {/* <Help/> */}
+            <ContactUs/>
           </Route>
           <Route path = "/privacy-policy">
             <PrivacyPolicy/>

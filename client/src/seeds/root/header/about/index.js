@@ -1,5 +1,5 @@
-import { makeStyles, Button, Grid, Typography, Container, CssBaseline, Paper }from '@material-ui/core';
-import Carousel from 'react-material-ui-carousel'
+import { makeStyles, Grid, } from "@material-ui/core";
+import Carousel from "react-material-ui-carousel";
 
 const useStyles = makeStyles(function () {
   return ({
@@ -7,126 +7,84 @@ const useStyles = makeStyles(function () {
       width: "100%",
       height: "100%",
       
-      "& > *":  {
+      "& > *": {
         width: "100%",
         height: "100%",
-        
+
         display: "flex",
         flexFlow: "column nowrap",
         placeContent: "center center",
-        placeItems: "flex-start center",
+        placeItems: "center center",
 
-        "& > :nth-of-type(1)":  {
+        "& > :nth-of-type(1)": {
+          width: "100%",
+          height: "100%",
+
+          display: "flex",
           flex: "1 1 auto",
 
-          "& > *": {
-            flex: "1 1 auto",
-
-            "& > *": {
-              flex: "1 1 auto",
-            },
-
-            "& > *": {
-              flex: "1 1 auto",
-            },
+          background: "var(--color-white)",    
+            
+          "& > * > * > * > *": {
+            width: "100%",
+            height: "100%",
           },
         },
 
-        "& > :nth-of-type(2)":  {
-          flex: "0 1 auto",
+        "& > :nth-of-type(4)": {
+            display: "flex",
+            flex: "0 1 auto",
+            placeContent: "center center",
+            placeItems: "center center",
+
+            boxSizing: "border-box",
+            margin: "0",
+            padding: "48px",
+            gap: "12px",
+
+            background: "var(--color-white)",
         },
       },
     },
     aboutItem: {
+      width: "100%",
+      height: "100%",
+      
       display: "flex",
       flexFlow: "column nowrap",
       placeContent: "center center",
-      placeItems: "flex-start center",
+      placeItems: "center center",
 
-      boxSizing: "border-box",
-      padding: "48px",
-      gap: "48px",
+      "& > :nth-of-type(1)": {
+        width: "100%",
+        height: "auto",
 
-      background: "var(--color-white)",
+        flex: "0 1 auto",        
 
-      "& > :nth-of-type(1)":  {
-        flex: "0 1 auto",
+        boxSizing: "border-box",
+        padding: "48px",
+
+        background: "var(--color-red-dark)",
 
         font: "800 72px/1 'Outfit', sans-serif",
+        color: "var(--color-white)",
       },
 
-      "& > :nth-of-type(2)":  {
+      "& > :nth-of-type(2)": {
+        width: "100%",
+        height: "100%",
+
         flex: "1 1 auto",
 
+        boxSizing: "border-box",
+        padding: "48px",
+
+        background: "var(--color-white)",
+
         font: "400 18px/1.25 'Outfit', sans-serif",
+        color: "var(--color-black)",
       },
     },
-
-      // "& > *": {
-      //   overflow: "hidden auto",
-
-      //   display: "flex",
-      //   flex: "1 1 0",
-
-      //   "& > *": {
-      //     display: "flex",
-      //     flexFlow: "row nowrap",
-
-      //     boxSizing: "border-box",
-      //     margin: "0",
-      //     gap: "48px",
-
-      //     "& > *": {
-      //       width: "100%",
-      //       height: "100%",
-            
-      //       display: "flex",
-      //       flexFlow: "column nowrap",
-      //       placeContent: "center center",
-      //       placeItems: "flex-start center",
-
-      //       "&:nth-of-type(1)": {
-      //         font: "800 72px/1 'Outfit', sans-serif",
-      //       },
-
-      //       "&:nth-of-type(2)": {  
-      //         font: "400 18px/1.25 'Outfit', sans-serif",
-      //       },
-      //     },
-
-      //     "&:nth-of-type(odd)": {
-      //       background: "var(--color-red-dark)",
-
-      //       color: "var(--color-white)",
-      //     },
-
-      //     "&:nth-of-type(even)": {
-      //       background: "var(--color-white)",
-
-      //       color: "var(--color-black)",
-      //     },
-
-      //     "&:nth-of-type(1)": {
-      //       boxSizing: "border-box",
-      //       padding: "48px",
-      //     },
-
-      //     "&:nth-of-type(2)": {
-      //       boxSizing: "border-box",
-      //       padding: "48px",
-      //     },
-
-      //     "&:nth-of-type(4)": {
-      //       boxSizing: "border-box",
-      //       padding: "48px",
-      //     },
-
-      //     "&:nth-of-type(6)": {
-      //       boxSizing: "border-box",
-      //       padding: "48px",
-      //     },
-      //   },
-      // },
   });
 });
 
@@ -167,7 +125,7 @@ export default function About () {
 
   return (
     <Grid id = "page-about" className = { styles.pageAbout } container>
-      <Carousel>
+      <Carousel interval = { "8000" }>
         {
           items.map(function (item, index) {
             return (
@@ -179,73 +137,3 @@ export default function About () {
     </Grid>
   );
 }
-
-//               SEEDs Core
-//             </Typography>
-//             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-//               Comprises of a management system and its geographic databases which makes use of geographic maps 
-//               and other textual information to provide personalized user-centric functionalities.
-//             </Typography>
-//         </div>
-//           <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom >
-//             SEEDs Profile
-//           </Typography>
-//           <Typography variant="h5" align="center" color="textSecondary" paragraph>
-//             SEEDs Profile provides LGUs with GIS-based mapping and data analysis systems that will enhance, 
-//             among other things, the capability for:
-//           </Typography>
-//           <Grid container spacing={4} >
-//             {/* <Grid item xs={12} sm={6} md={3}>
-//               <ImageCard seedimg={seedsImg[0]}/>
-//             </Grid>
-//             <Grid item xs={12} sm={6} md={3}>
-//               <ImageCard seedimg={seedsImg[1]}/>
-//             </Grid>
-//             <Grid item xs={12} sm={6} md={3}>
-//               <ImageCard seedimg={seedsImg[2]}/>
-//             </Grid>
-//             <Grid item xs={12} sm={6} md={3}>
-//               <ImageCard seedimg={seedsImg[3]}/>
-//             </Grid> */}
-//           </Grid>
-
-//         <div className={styles.heroContent}>
-//           <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
-//             SEEDs Analytics
-//           </Typography>
-//         </div>
-//       </div>
-//         <main id="header"> 
-//           <div className={styles.heroContent}>
-//               <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
-//                 Overview of the Project
-//               </Typography>
-//               <Typography variant="h5" align="center" color="textSecondary" paragraph>
-//                 Insert description
-//               </Typography>
-//           </div>
-//             <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
-//               Project Team
-//             </Typography>
-//             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-//               Insert description
-//             </Typography>
-//             <br/>
-//           <div className={styles.heroContent} >
-//               <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
-//                 Project Team
-//               </Typography>
-//               <Typography variant="h5" align="center" color="textSecondary" paragraph>
-//                 Insert description
-//               </Typography>
-//           </div>
-//             <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
-//               Other details
-//             </Typography>
-//             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-//               Insert description
-//             </Typography>
-//             <br/>
-//         </main>
-//       </div>
-// </div>
