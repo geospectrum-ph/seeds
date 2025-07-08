@@ -16,8 +16,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import "leaflet/dist/leaflet.css";
 
 import SEEDsPopulate from '../containers/seedsCore/seedsPopulate';
-import SEEDsCatalogue from '../containers/seedsCore/seedsCatalogue';
-import SEEDsMapPortal from '../containers/seedsCore/seedsMapPortal';
+import SEEDsCatalogue from './catalogue';
+import SEEDsMapPortal from './map-portal';
 import SEEDsProfile from '../containers/seedsProfile';
 import SEEDsAnalytics from '../containers/seedsAnalytics';
 import SEEDsAdmin from '../containers/seedsAdmin'
