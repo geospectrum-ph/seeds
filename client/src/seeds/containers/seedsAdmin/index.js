@@ -109,25 +109,25 @@ export default function TemporaryDrawer() {
           <Grid container style={{height:"100vh"}}>
             <Grid item xs={12} style={{padding:20}}>
               <Switch>
-                <Route path="/seeds/admin/users">
+                <Route path="/home/admin/users">
                   <Users/>
                 </Route>
-                <Route path="/seeds/admin/people">
+                <Route path="/home/admin/people">
                   <People/>
                 </Route>
-                <Route path="/seeds/admin/domains">
+                <Route path="/home/admin/domains">
                   <Domains/>
                 </Route>
-                <Route path="/seeds/admin/socials">
+                <Route path="/home/admin/socials">
                   <Socials/>
                 </Route>
-                <Route path="/seeds/admin/economics">
+                <Route path="/home/admin/economics">
                   <Economics/>
                 </Route>
-                <Route path="/seeds/admin/environmentals">
+                <Route path="/home/admin/environmentals">
                   <Environmentals/>
                 </Route>
-                <Route path="/seeds/admin/demographics">
+                <Route path="/home/admin/demographics">
                   <Demographics/>
                 </Route>
               </Switch>
@@ -138,26 +138,26 @@ export default function TemporaryDrawer() {
           <Grid item xs={2}><ListContent/></Grid>
           <Grid item xs={10} style={{padding:50}}>
             <Switch>
-              <Route path="/seeds/admin/users"
+              <Route path="/home/admin/users"
                 render = {(props) => (
                   <Users {...props} term = {searchTerm} searchKeyword = {searchHandler}/>
                 )}/>
-              <Route path="/seeds/admin/people">
+              <Route path="/home/admin/people">
                 <People/>
               </Route>
-              <Route path="/seeds/admin/domains">
+              <Route path="/home/admin/domains">
                 <Domains/>
               </Route>
-              <Route path="/seeds/admin/socials">
+              <Route path="/home/admin/socials">
                 <Socials/>
               </Route>
-              <Route path="/seeds/admin/economics">
+              <Route path="/home/admin/economics">
                 <Economics/>
               </Route>
-              <Route path="/seeds/admin/environmentals">
+              <Route path="/home/admin/environmentals">
                 <Environmentals/>
               </Route>
-              <Route path="/seeds/admin/demographics">
+              <Route path="/home/admin/demographics">
                 <Demographics/>
               </Route>
             </Switch>

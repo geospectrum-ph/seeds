@@ -18,11 +18,11 @@ export default function SEEDs() {
             <SEEDSContextProvider>
               <Router>
                 <Switch>
-                  <Route path = "/">
-                    <Root/>
-                  </Route>
                   <Route path = "/home" >
                     <Home/>
+                  </Route>
+                  <Route path = "/">
+                    <Root/>
                   </Route>
                 </Switch>
               </Router>

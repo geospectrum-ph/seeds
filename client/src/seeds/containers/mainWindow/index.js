@@ -266,45 +266,45 @@ export default function MainWindow() {
         <Switch>
           {JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')).user_type.user_group_type ? (
           <>
-            <Route path="/seeds/populate">
+            <Route path="/populate">
               <SeedsPopulate/>
             </Route>
 
-            <Route path="/seeds/catalogue">
+            <Route path="/catalogue">
               <SeedsCatalogue/>
             </Route>
 
-            <Route path="/seeds/mapportal">
+            <Route path="/home/mapportal">
               <SeedsMapPortal/>
             </Route>
 
-            <Route path="/seeds/profile">
+            <Route path="/home/profile">
               <SeedsFeatures/>
             </Route>
 
-            <Route path="/seeds/analytics">
+            <Route path="/home/analytics">
               <SeedsAnalytics/>
             </Route>
 
-            <Route path="/seeds/admin">
+            <Route path="/home/admin">
               <SeedsAdmin/>
             </Route>
           </>
           ): JSON.parse(localStorage.getItem('user')).user_type === 'guest' ? (
           <>
-            <Route path="/seeds/catalogue">
+            <Route path="/home/catalogue">
               <SeedsCatalogue/>
             </Route>
 
-            <Route path="/seeds/mapportal">
+            <Route path="/home/mapportal">
               <SeedsMapPortal/>
             </Route>
 
-            <Route path="/seeds/profile">
+            <Route path="/home/profile">
               <SeedsFeatures/>
             </Route>
 
-            <Route path="/seeds/analytics">
+            <Route path="/home/analytics">
               <SeedsAnalytics/>
             </Route>
           </>
@@ -312,7 +312,7 @@ export default function MainWindow() {
           : 
           // null
           (<>
-            <Route path="/seeds">
+            <Route path="/home">
               <Redirect to='/login' />
             </Route>
           </>)}

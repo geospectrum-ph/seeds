@@ -196,7 +196,7 @@ export default function LeftNavDraw() {
         <Divider/>
         <List>
           <ListItem button key={'SEEDs Catalogue'} selected={selectedIndex === 1} className={classes.leftbutton}
-            onClick={(event) => handleListItemClick(event, 1, "/seeds/catalogue")}>
+            onClick={(event) => handleListItemClick(event, 1, "/home/catalogue")}>
             <Tooltip title="SEEDs Catalogue"> 
               <ListItemIcon className={classes.icon}> 
                 <img src={cat} style={{width: 35,}}/> 
@@ -206,7 +206,7 @@ export default function LeftNavDraw() {
           </ListItem>
 
           <ListItem button key={'SEED Map Portal'}  selected={selectedIndex === 2} className={classes.leftbutton}
-            onClick={(event) => handleListItemClick(event, 2, "/seeds/mapportal")}> 
+            onClick={(event) => handleListItemClick(event, 2, "/home/mapportal")}> 
             <Tooltip title="SEEDs Map Portal">
               <ListItemIcon className={classes.icon}> 
                 <img src={portal} style={{width: 35}}/> 

@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import axios from "axios";
 
-import { makeStyles, Grid, Dialog, DialogContent, Button, TextField } from "@material-ui/core";
+import { makeStyles, Grid, Button, TextField } from "@material-ui/core";
 
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -39,7 +39,7 @@ const useStyles = makeStyles(function() {
 
         "& > *": {
           boxSizing: "border-box",
-          gap: "48px",
+          gap: "24px",
         },
 
         "& > * > *": {
@@ -76,22 +76,44 @@ const useStyles = makeStyles(function() {
         },
 
         "& > :nth-of-type(2)": {
-          "& .MuiTextField-root": {
-            "& > *": {
-              font: "400 18px/1.25 'Outfit', sans-serif",
-            },
-            
-            "& .MuiTextFieldBase-input": {
-              overflow: "hidden",
-              textOverflow: "ellipsis"
+          "& > :nth-of-type(1)": {
+            "& .MuiTextField-root": {
+              "& > *": {
+                font: "400 18px/1.25 'Outfit', sans-serif",
+              },
+              
+              "& .MuiTextFieldBase-input": {
+                overflow: "hidden",
+                textOverflow: "ellipsis"
+              },
             },
           },
+          
+          "& > :nth-of-type(2)": {
 
-          "& .MuiButton-root": {
-            background: "var(--color-red-dark)",
+            "& .MuiButton-root": {
+              background: "var(--color-red-dark)",
 
-            font: "800 18px/1.25 'Outfit', sans-serif",
-            color: "var(--color-white)",
+              font: "800 18px/1.25 'Outfit', sans-serif",
+              color: "var(--color-white)",
+            },
+
+            "& .special-button": {
+              display: "flex",
+              flexFlow: "row nowrap",
+              placeContent: "center center",
+              placeItems: "center center",
+              
+              boxSizing: "border-box",
+              padding: "12px",
+
+              "& > a": {
+                cursor: "pointer",
+
+                font: "400 18px/1.25 'Outfit', sans-serif",
+                textAlign: "center",
+              },
+            },
           },
         },
       },
@@ -115,7 +137,7 @@ export default function SignIn() {
     password: "",
   };
 
-  function handleLogin (values, { setSubmitting }) {
+  function handleSignIn (values, { setSubmitting }) {
     async function fetchData () {
       await axios
         .post("https://seeds.geospectrum.com.ph/usermaster/signin", {
@@ -131,7 +153,7 @@ export default function SignIn() {
 
             alert("Login Success", response.data);
 
-            history.push("/seeds/mapportal");
+            history.push("/home/mapportal");
           }
         })
         .catch(function (error) {
@@ -256,15 +278,18 @@ export default function SignIn() {
     fetchData();
   }
 
-  const onGuest = (e) => {
-    e.preventDefault()
-    setLoginDetails({name: "Guest", user_type:'guest'})
-    history.push('/home/seeds/mapportal')
-    localStorage.setItem('user', JSON.stringify({name: "Guest", user_type:'guest'}))
+  function handleGuestSubmit () {
+    const guest_object = { name: "Guest", user_type: "guest" };
+
+    setLoginDetails(guest_object);
+
+    localStorage.setItem("user", JSON.stringify(guest_object));
+
+    history.push("/home/mapportal");
   }
 
-  const onForgotPassword = (e) => {
-    history.push('/forgotPassword')
+  function handlePasswordReset () {
+    history.push("/password-reset");
   }
 
   return (
@@ -279,7 +304,7 @@ export default function SignIn() {
         <Formik
           initialValues = { initial_values } validationSchema = { form_schema }
           onSubmit = { function (values, { setSubmitting }) {
-            handleLogin(values, { setSubmitting });
+            handleSignIn(values, { setSubmitting });
           }}
         >
           {
@@ -300,7 +325,8 @@ export default function SignIn() {
                   </Grid>
                   <Grid item container>
                     <Button disabled = { isSubmitting } onClick = { handleSubmit } title = "Submit">{ "Sign In" }</Button>
-                    <Button title = "Submit">{ "Guest" }</Button>
+                    <Button disabled = { isSubmitting } onClick = { handleGuestSubmit } title = "Submit">{ "Guest" }</Button>
+                    <span className = "special-button"><a disabled = { isSubmitting } onClick = { handlePasswordReset }>{ "Forgot password?" }</a></span>
                   </Grid>
                 </Grid>
               );
@@ -308,27 +334,6 @@ export default function SignIn() {
           }
         </Formik>
       </Grid>
-          {/* <form className={classes.form} noValidate>
-            <TextField variant="outlined" margin="normal" required fullWidth label="Email Address" name="email" 
-              autoComplete="email" autoFocus value={email} onChange={e=> setEmail(e.target.value)}/>
-            <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" 
-              type="password" autoComplete="current-password" value={password}
-              onChange={e=> setPassword(e.target.value)}/>
-            <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me"/>
-            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} 
-              onClick={onLogin}>
-              Login
-            </Button>
-
-            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submitGuest} 
-              onClick={onGuest}>
-              Guest
-            </Button>
-            <a onClick={onForgotPassword} href="#" variant="body2" 
-              style={{color: '#0d3c47'}}>
-              Forgot password?
-            </a>
-          </form> */}
     </Grid>
   );
 }

@@ -1,4 +1,5 @@
-import { Route } from "react-router-dom";
+import * as React from "react";
+import { useHistory, Route, Redirect } from "react-router-dom";
 
 import { makeStyles, Grid } from "@material-ui/core";
 
@@ -7,11 +8,14 @@ import RootFooter from "./footer";
 import RootMap from "./map";
 
 import SignIn from "./header/sign-in";
+import PasswordReset from "./header/password-reset";
 import About from "./header/about";
 import ContactUs from "./header/contact-us";
 
 import TermsOfUse from "./footer/terms-of-use";
 import PrivacyPolicy from "./footer/privacy-policy";
+
+import { SEEDSContext } from "../context/SEEDSContext";
 
 const useStyles = makeStyles(function () {
   return ({
@@ -93,6 +97,17 @@ const useStyles = makeStyles(function () {
 
 export default function Root(){
   const styles = useStyles();
+  const history = useHistory();
+
+  const { setAppBarValue } = React.useContext(SEEDSContext);
+
+  React.useEffect(function () {
+    if (history.location.pathname !== "/") {
+      history.push("/");
+    }
+
+    setAppBarValue("/");
+  }, []);
   
   return (
     <Grid id = "container-root" className = { styles.containerRoot } container>
@@ -107,20 +122,26 @@ export default function Root(){
               <span><span>{ "SEED" }</span><span>{ "s!" }</span></span>
             </Grid>
           </Route>
-          <Route path = "/sign-in">
+          <Route exact path = "/sign-in">
             <SignIn/>
           </Route>
-          <Route path = "/about">
+          <Route exact path = "/password-reset">
+            <PasswordReset/>
+          </Route>
+          <Route exact path = "/about">
             <About/>
           </Route>
-          <Route path = "/contact-us">
+          <Route exact path = "/contact-us">
             <ContactUs/>
           </Route>
-          <Route path = "/privacy-policy">
+          <Route exact path = "/privacy-policy">
             <PrivacyPolicy/>
           </Route>
-          <Route path = "/terms-of-use">
+          <Route exact path = "/terms-of-use">
             <TermsOfUse/>
+          </Route>
+          <Route>
+            <Redirect to = "/"/>
           </Route>
           <RootMap/>
         </Grid>
@@ -131,9 +152,3 @@ export default function Root(){
     </Grid>
   )
 }
-
-// <Route path="/forgotPassword">
-//   <ForgotPassword/>
-// </Route>
-
-// <Route path="/resetPassword/:id/:token" component={ResetPassword}/> 

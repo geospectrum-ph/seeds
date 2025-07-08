@@ -257,7 +257,7 @@ export default function SeedsCore() {
         <List>
           {JSON.stringify(isUserPrivilegeUploadData["is_Privilege"]) === "true" ?
             (<ListItem button key={'SEEDs Populate'} selected={selectedIndex === 0}
-              onClick={(event) => handleListItemClick(event, 0, "/seeds/populate")}
+              onClick={(event) => handleListItemClick(event, 0, "/home/populate")}
               className={classes.leftbutton}>
               <Tooltip title="SEEDs Populate">
                 <ListItemIcon className={classes.icon}>
@@ -270,7 +270,7 @@ export default function SeedsCore() {
 
           {JSON.stringify(isUserPrivilegeBrowseData["is_Privilege"]) === "true" ?
             (<ListItem button key={'SEEDs Catalogue'} selected={selectedIndex === 1}
-              onClick={(event) => handleListItemClick(event, 1, "/seeds/catalogue")} 
+              onClick={(event) => handleListItemClick(event, 1, "/home/catalogue")} 
               className={classes.leftbutton}>
               <Tooltip title="SEEDs Catalogue">
                 <ListItemIcon className={classes.icon}> <img src={cat} style={{width: 35,}}/> </ListItemIcon>
@@ -281,7 +281,7 @@ export default function SeedsCore() {
 
           {JSON.stringify(isUserPrivilegeAccessToMap["is_Privilege"]) === "true" ?
             (<ListItem button key={'SEED Map Portal'} selected={selectedIndex === 2}
-              onClick={(event) => handleListItemClick(event, 2, "/seeds/mapportal")}
+              onClick={(event) => handleListItemClick(event, 2, "/home/mapportal")}
               className={classes.leftbutton}> 
               <Tooltip title="SEEDs Map Portal">
                 <ListItemIcon className={classes.icon}><img src={portal} style={{width: 35}}/></ListItemIcon>
@@ -292,7 +292,7 @@ export default function SeedsCore() {
 
           {JSON.stringify(isUserPrivilegeAccessToProfile["is_Privilege"]) === "true" ?
             (<ListItem button key={'SEEDs Profile'} selected={selectedIndex === 3}
-              onClick={(event) => handleListItemClick(event, 3, "/seeds/profile")}
+              onClick={(event) => handleListItemClick(event, 3, "/home/profile")}
               className={classes.leftbutton}> 
               <Tooltip title="SEEDs Profile">
                 <ListItemIcon className={classes.icon}><img src={profile} style={{width: 35}}/></ListItemIcon>
@@ -303,7 +303,7 @@ export default function SeedsCore() {
 
           {JSON.stringify(isUserPrivilegeAccessToAnalysis["is_Privilege"]) === "true" ?
             (<ListItem button key={'SEEDs Analytics'} selected={selectedIndex === 4}
-              onClick={(event) => handleListItemClick(event, 4, "/seeds/analytics")}
+              onClick={(event) => handleListItemClick(event, 4, "/home/analytics")}
               className={classes.leftbutton}> 
               <Tooltip title="SEEDs Analytics">
                 <ListItemIcon className={classes.icon}><img src={anal} style={{width: 35}}/></ListItemIcon>
@@ -314,7 +314,7 @@ export default function SeedsCore() {
 
           {JSON.stringify(isUserPrivilegeManageUsers["is_Privilege"]) === "true" ?
             <ListItem button key={'SEEDs Admin'} selected={selectedIndex === 5}
-              onClick={(event) => handleListItemClick(event, 5, "/seeds/admin/users")}
+              onClick={(event) => handleListItemClick(event, 5, "/home/admin/users")}
               className={classes.leftbutton}> 
               <Tooltip title="SEEDs Admin">
                 <ListItemIcon className={classes.icon}><img src={admin} style={{width: 35}}/></ListItemIcon>

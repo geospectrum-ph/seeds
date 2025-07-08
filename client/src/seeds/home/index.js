@@ -240,12 +240,12 @@ export default function Home() {
     <Grid container direction="row" style={{overflowX:"clip"}}  justifyContent="center" alignItems="flex-end">
       <Scroll showBelow={250}/> 
 
-      {loginDetails? loginDetails.user_type !== 'guest' ? <LeftNav/>: <MiniDrawer/>: null}
+      {loginDetails && loginDetails.user_type !== 'guest' ? <LeftNav/>: <MiniDrawer/>}
       <Grid item xs={11} md={12} lg={12} style={{marginTop:64.5,backgroundColor:"#e6ebec"}}
         className={clsx(classes.appBar, {
           [classes.appBarShift]: openLeftDrawer,
         })} >
-        {loginDetails? loginDetails.user_type !== 'guest' ? sessionData ? 
+        {/* {loginDetails? loginDetails.user_type !== 'guest' ? sessionData ? 
           <Dialog open={sessionOpen} onClose={handleSessionClose}>
             <DialogTitle>
               {"Session restore"}
@@ -262,49 +262,49 @@ export default function Home() {
               </Button>
             </DialogActions>
           </Dialog>
-        : null : null : null}
+        : null : null : null} */}
         <Switch>
           {JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')).user_type.user_group_type ? (
           <>
-            <Route path="/seeds/populate">
+            <Route path="/home/populate">
               <SeedsPopulate/>
             </Route>
 
-            <Route path="/seeds/catalogue">
+            <Route path="/home/catalogue">
               <SeedsCatalogue/>
             </Route>
 
-            <Route path="/seeds/mapportal">
+            <Route path="/home/mapportal">
               <SeedsMapPortal/>
             </Route>
 
-            <Route path="/seeds/profile">
+            <Route path="/home/profile">
               <SeedsFeatures/>
             </Route>
 
-            <Route path="/seeds/analytics">
+            <Route path="/home/analytics">
               <SeedsAnalytics/>
             </Route>
 
-            <Route path="/seeds/admin">
+            <Route path="/home/admin">
               <SeedsAdmin/>
             </Route>
           </>
           ): JSON.parse(localStorage.getItem('user')).user_type === 'guest' ? (
           <>
-            <Route path="/seeds/catalogue">
+            <Route path="/home/catalogue">
               <SeedsCatalogue/>
             </Route>
 
-            <Route path="/seeds/mapportal">
+            <Route path="/home/mapportal">
               <SeedsMapPortal/>
             </Route>
 
-            <Route path="/seeds/profile">
+            <Route path="/home/profile">
               <SeedsFeatures/>
             </Route>
 
-            <Route path="/seeds/analytics">
+            <Route path="/home/analytics">
               <SeedsAnalytics/>
             </Route>
           </>
@@ -312,8 +312,8 @@ export default function Home() {
           : 
           // null
           (<>
-            <Route path="/seeds">
-              <Redirect to='/login' />
+            <Route path="/home">
+              <Redirect to='/sign-in' />
             </Route>
           </>)}
           <Redirect from="*" to='/' />
