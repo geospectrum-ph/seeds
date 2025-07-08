@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.3f981a53.css",
-    "main.js": "/static/js/main.d7d33754.js",
+    "main.js": "/static/js/main.04713876.js",
     "static/media/demographic_16-9_lr.jpg": "/static/media/demographic_16-9_lr.2899aa43da6e88747b6f.jpg",
     "static/media/social_16-9.jpg": "/static/media/social_16-9.6358ae4f46307d946112.jpg",
     "static/media/economic_16-9.jpg": "/static/media/economic_16-9.9c9c765088626191dd54.jpg",
@@ -43,13 +43,6 @@
     "static/media/21 Labor Force.png": "/static/media/21 Labor Force.961626fd63733fc6d58a.png",
     "static/media/9 Commerce.png": "/static/media/9 Commerce.24541a49709f6a8b6172.png",
     "static/media/28 SEEDs Analytics.png": "/static/media/28 SEEDs Analytics.1b91600708036dba5bd3.png",
-    "static/media/37 Help.ico": "/static/media/37 Help.459aea169bb854fbea18.ico",
-    "static/media/25 SEEDs Catalogue.ico": "/static/media/25 SEEDs Catalogue.a545cd8cdf6b0671a973.ico",
-    "static/media/26 SEEDs Portal.ico": "/static/media/26 SEEDs Portal.6d5f8060c6726156b99e.ico",
-    "static/media/24 SEEDs Populate.ico": "/static/media/24 SEEDs Populate.7a8898d37e5232d4bac3.ico",
-    "static/media/28 SEEDs Analytics.ico": "/static/media/28 SEEDs Analytics.16c905fa10d5a80f787f.ico",
-    "static/media/39 Logout.ico": "/static/media/39 Logout.83568dfe73be4cc25a31.ico",
-    "static/media/27 SEEDs Profile.ico": "/static/media/27 SEEDs Profile.a31a7af821722a2d0022.ico",
     "static/media/36 Legend.png": "/static/media/36 Legend.87eac05afa39e8b981b2.png",
     "static/media/39 Logout.png": "/static/media/39 Logout.a039c64122851fe58dfb.png",
     "static/media/38 Login.png": "/static/media/38 Login.c66a39070dd26c3ca285.png",
@@ -60,15 +53,14 @@
     "static/media/27 SEEDs Profile.png": "/static/media/27 SEEDs Profile.981dcdd1640800b472c7.png",
     "static/media/0 Logo (3D Colored).png": "/static/media/0 Logo (3D Colored).90ab9b43b70e2971d517.png",
     "static/media/logo.png": "/static/media/logo.9201cc00e20e4a531e9e.png",
-    "static/media/0 Logo (3D Colored).ico": "/static/media/0 Logo (3D Colored).586e5c307e8a32a531f1.ico",
     "static/media/spritesheet.svg": "/static/media/spritesheet.a4e0eb7ad904a4858361.svg",
     "index.html": "/index.html",
     "static/media/default.svg": "/static/media/default.7b7baf362112d9afb7c843890000bd98.svg",
     "main.3f981a53.css.map": "/static/css/main.3f981a53.css.map",
-    "main.d7d33754.js.map": "/static/js/main.d7d33754.js.map"
+    "main.04713876.js.map": "/static/js/main.04713876.js.map"
   },
   "entrypoints": [
     "static/css/main.3f981a53.css",
-    "static/js/main.d7d33754.js"
+    "static/js/main.04713876.js"
   ]
 }

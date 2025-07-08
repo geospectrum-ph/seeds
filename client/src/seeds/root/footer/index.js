@@ -8,6 +8,8 @@ import { SEEDSContext } from "../../context/SEEDSContext";
 const useStyles = makeStyles(function () {
   return ({
     rootFooter: {
+      minHeight: "48px",
+      
       display: "flex",
       flexFlow: "row nowrap",
       placeContent: "center space-between",

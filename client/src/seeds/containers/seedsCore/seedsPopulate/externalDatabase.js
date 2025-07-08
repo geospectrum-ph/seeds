@@ -9,7 +9,7 @@ import { FeaturesContext } from '../../../context/FeaturesContext.js';
 import { SEEDSContext } from '../../../context/SEEDSContext.js';
 
 import DropdownDialog from './dropdownDialog'
-import LoadingPage from '../../loadingPage'
+// import LoadingPage from '../../loadingPage'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -312,7 +312,7 @@ export default function ExternalDB( ) {
             Close
           </Button>
         </DialogActions>
-        <LoadingPage/>
+        {/* <LoadingPage/> */}
       </Paper>
     );
   }
@@ -421,7 +421,7 @@ export default function ExternalDB( ) {
             Close
           </Button>
         </DialogActions>
-        <LoadingPage/>
+        {/* <LoadingPage/> */}
       </Paper>
     );
   }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useHistory, Route, Redirect } from "react-router-dom";
+import { useHistory, Route, Redirect, Switch } from "react-router-dom";
 
 import { makeStyles, Grid } from "@material-ui/core";
 
@@ -101,6 +101,53 @@ export default function Root(){
 
   const { setAppBarValue } = React.useContext(SEEDSContext);
 
+  const modules = [
+    {
+      path: "/",
+      module:
+        <Grid id = "page-root" className = { styles.pageRoot }>
+          <span>{ "Welcome to" }</span>
+          <span><span>{ "SEED" }</span><span>{ "s!" }</span></span>
+        </Grid>,
+      level: 0,
+    },
+    {
+      path: "/sign-in",
+      module:<SignIn/>,
+      level: 0,
+    },
+    {
+      path: "/password-reset",
+      module: <PasswordReset/>,
+      level: 0,
+    },
+    {
+      path: "/about",
+      module: <About/>,
+      level: 0,
+    },
+    {
+      path: "/contact-us",
+      module: <ContactUs/>,
+      level: 0,
+    },
+    {
+      path: "/privacy-policy",
+      module: <PrivacyPolicy/>,
+      level: 0,
+    },
+    {
+      path: "/terms-of-use",
+      module: <TermsOfUse/>,
+      level: 0,
+    },
+    {
+      path: null,
+      module: <Redirect from = "*" to = "/"/>,
+      level: 0,
+    },
+  ];
+
   React.useEffect(function () {
     if (history.location.pathname !== "/") {
       history.push("/");
@@ -116,33 +163,26 @@ export default function Root(){
       </Grid>
       <Grid id = "container-root-body" item container>
         <Grid item>
-          <Route exact path = "/">
-            <Grid id = "page-root" className = { styles.pageRoot }>
-              <span>{ "Welcome to" }</span>
-              <span><span>{ "SEED" }</span><span>{ "s!" }</span></span>
-            </Grid>
-          </Route>
-          <Route exact path = "/sign-in">
-            <SignIn/>
-          </Route>
-          <Route exact path = "/password-reset">
-            <PasswordReset/>
-          </Route>
-          <Route exact path = "/about">
-            <About/>
-          </Route>
-          <Route exact path = "/contact-us">
-            <ContactUs/>
-          </Route>
-          <Route exact path = "/privacy-policy">
-            <PrivacyPolicy/>
-          </Route>
-          <Route exact path = "/terms-of-use">
-            <TermsOfUse/>
-          </Route>
-          <Route>
-            <Redirect to = "/"/>
-          </Route>
+          <Switch>
+            {
+              modules.map(function (item, index) {
+                if (item.path) {
+                  return (
+                    <Route key = { index } exact path = { item.path }>
+                      { item.module }
+                    </Route>
+                  );
+                }
+                else {
+                  return (
+                    <Route key = { index }>
+                      { item.module }
+                    </Route>
+                  );
+                }
+              })
+            }
+          </Switch>
           <RootMap/>
         </Grid>
         <Grid id = "container-root-footer" item>

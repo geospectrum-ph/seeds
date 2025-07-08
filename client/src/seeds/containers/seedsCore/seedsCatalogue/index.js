@@ -125,7 +125,7 @@ const theme = createTheme({
   }
 });
 
-export default function DataCatalogue() {
+export default function SEEDsCatalogue() {
   const classes = useStyles();
 
   const {setSelectedIndex, setLoadingDataCat} = useContext(SEEDSContext);

@@ -16,6 +16,7 @@ const useStyles = makeStyles(function (theme) {
     rootHeader: {
       width: "100%",
       height: "72px",
+      
       minHeight: "72px",
 
       display: "flex",

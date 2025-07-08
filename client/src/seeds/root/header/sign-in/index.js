@@ -9,6 +9,7 @@ import { Formik } from "formik";
 import * as yup from "yup";
 
 import { AdminContext } from "../../../context/AdminContext";
+import { SEEDSContext } from "../../../context/SEEDSContext";
 
 const useStyles = makeStyles(function() {
   return ({
@@ -125,7 +126,8 @@ export default function SignIn() {
   const styles = useStyles();
   const history = useHistory();
 
-    const { setLoginDetails, setSessionData, setSessionFile } = React.useContext(AdminContext);
+  const { setLoginDetails, setSessionData, setSessionFile } = React.useContext(AdminContext);
+  const { setAppBarValue } = React.useContext(SEEDSContext);
 
   const form_schema = yup.object().shape({
     email_address: yup.string().email("Invalid email address.").required("Email address required"),
@@ -153,7 +155,9 @@ export default function SignIn() {
 
             alert("Login Success", response.data);
 
-            history.push("/home/mapportal");
+            setAppBarValue("/home/map-portal");
+
+            history.push("/home/map-portal");
           }
         })
         .catch(function (error) {
@@ -180,103 +184,103 @@ export default function SignIn() {
     fetchData();
   }
 
-  const onLogin = (e) => {
-    e.preventDefault()
-    const fetchData = async() => {
-      const res = await axios.post("https://seeds.geospectrum.com.ph/usermaster/signin", {
-      // const res = await axios.post("http://localhost:5000/usermaster/signin", {
-        "email": email, 
-        "password": password
-      }).then(function(res) {
-        if ('success' in res.data) {
-          if (res.data.success === true) { 
-            setLoginDetails(res.data.message)
-            const fetch1 = async() =>{
-              const sessionData = await axios.get("https://seeds.geospectrum.com.ph/session/get?userId="
-                // const sessionData = await axios.get("http://localhost:5000/session/get?userId="
-                + res.data.message._id); 
-              const fuke = await axios.get("https://seeds.geospectrum.com.ph/session/file/"
-                              // const fuke = await axios.get("http://localhost:5000/session/file/"
-                + res.data.message._id)
-              if (sessionData !== null) {
-                setSessionData(sessionData.data)
-                setSessionFile(fuke.data)
-              } else {
-                const create = async() => {
-                  const createSession = await axios.post("https://seeds.geospectrum.com.ph/session/create", {
-                  // const createSession = await axios.post("http://localhost:5000/session/create", {
-                  userId: res.data.message._id,
-                    populate: {
-                      mapName: '',
-                      file: '',
-                      social: false,
-                      economic: false,
-                      environmental: false,
-                      demographic: false,
-                      type: '',
-                      keywords: [],
-                      description: '',
-                      language: '',
-                      license: '',
-                      doi: '',
-                      attribution: '',
-                      regions: '',
-                      dqs: '',
-                      restrictions: '',
-                      constraints: '',
-                      details: ''
-                    },
-                    catalogue: {    
-                      Social: true,
-                      Economic: true,
-                      Environmental: true,
-                      Demographic: true,
-                      Vector: true,
-                      Raster: true,
-                      Table: true,
-                      keywords: [],},
-                    map: {
-                      layers: ''
-                    },
-                    profile: '',
-                    analytics: ''
-                  }).then(()=>{
-                    // console.log("success")
-                  })
-                }
-                create()
-                setSessionData({
-                  userId: res.data.message._id,
-                  populate: '',
-                  catalogue: '',
-                  map: '',
-                  profile: '',
-                  analytics: ''
+  // const onLogin = (e) => {
+  //   e.preventDefault()
+  //   const fetchData = async() => {
+  //     const res = await axios.post("https://seeds.geospectrum.com.ph/usermaster/signin", {
+  //     // const res = await axios.post("http://localhost:5000/usermaster/signin", {
+  //       "email": email, 
+  //       "password": password
+  //     }).then(function(res) {
+  //       if ('success' in res.data) {
+  //         if (res.data.success === true) { 
+  //           setLoginDetails(res.data.message)
+  //           const fetch1 = async() =>{
+  //             const sessionData = await axios.get("https://seeds.geospectrum.com.ph/session/get?userId="
+  //               // const sessionData = await axios.get("http://localhost:5000/session/get?userId="
+  //               + res.data.message._id); 
+  //             const fuke = await axios.get("https://seeds.geospectrum.com.ph/session/file/"
+  //                             // const fuke = await axios.get("http://localhost:5000/session/file/"
+  //               + res.data.message._id)
+  //             if (sessionData !== null) {
+  //               setSessionData(sessionData.data)
+  //               setSessionFile(fuke.data)
+  //             } else {
+  //               const create = async() => {
+  //                 const createSession = await axios.post("https://seeds.geospectrum.com.ph/session/create", {
+  //                 // const createSession = await axios.post("http://localhost:5000/session/create", {
+  //                 userId: res.data.message._id,
+  //                   populate: {
+  //                     mapName: '',
+  //                     file: '',
+  //                     social: false,
+  //                     economic: false,
+  //                     environmental: false,
+  //                     demographic: false,
+  //                     type: '',
+  //                     keywords: [],
+  //                     description: '',
+  //                     language: '',
+  //                     license: '',
+  //                     doi: '',
+  //                     attribution: '',
+  //                     regions: '',
+  //                     dqs: '',
+  //                     restrictions: '',
+  //                     constraints: '',
+  //                     details: ''
+  //                   },
+  //                   catalogue: {    
+  //                     Social: true,
+  //                     Economic: true,
+  //                     Environmental: true,
+  //                     Demographic: true,
+  //                     Vector: true,
+  //                     Raster: true,
+  //                     Table: true,
+  //                     keywords: [],},
+  //                   map: {
+  //                     layers: ''
+  //                   },
+  //                   profile: '',
+  //                   analytics: ''
+  //                 }).then(()=>{
+  //                   // console.log("success")
+  //                 })
+  //               }
+  //               create()
+  //               setSessionData({
+  //                 userId: res.data.message._id,
+  //                 populate: '',
+  //                 catalogue: '',
+  //                 map: '',
+  //                 profile: '',
+  //                 analytics: ''
             
-                })
-              }
-            } 
-            fetch1();
-            localStorage.setItem('user', JSON.stringify(res.data.message))
-            alert("Login Success", res.data)
-            history.push('/seeds/mapportal')
-          } 
-        }
-      }).catch((error) => {
-        if (error.response.data.errors.length===1){
-          error.response.data.errors.forEach((error)=> {
-          for (var key in error) {
-            alert(key.charAt(0).toUpperCase() + key.slice(1)+" is " +error[key]+".")
-          }})
-        } else if (error.response.data.errors.length===2){
-          alert("Email is " +error.response.data.errors[0]['email']+".")
-        } else {
-          alert("Email and password are "+error.response.data.errors[0]['email']+".")  
-        }     
-      })
-    }
-    fetchData();
-  }
+  //               })
+  //             }
+  //           } 
+  //           fetch1();
+  //           localStorage.setItem('user', JSON.stringify(res.data.message))
+  //           alert("Login Success", res.data)
+  //           history.push('/seeds/mapportal')
+  //         } 
+  //       }
+  //     }).catch((error) => {
+  //       if (error.response.data.errors.length===1){
+  //         error.response.data.errors.forEach((error)=> {
+  //         for (var key in error) {
+  //           alert(key.charAt(0).toUpperCase() + key.slice(1)+" is " +error[key]+".")
+  //         }})
+  //       } else if (error.response.data.errors.length===2){
+  //         alert("Email is " +error.response.data.errors[0]['email']+".")
+  //       } else {
+  //         alert("Email and password are "+error.response.data.errors[0]['email']+".")  
+  //       }     
+  //     })
+  //   }
+  //   fetchData();
+  // }
 
   function handleGuestSubmit () {
     const guest_object = { name: "Guest", user_type: "guest" };
@@ -285,10 +289,14 @@ export default function SignIn() {
 
     localStorage.setItem("user", JSON.stringify(guest_object));
 
+    setAppBarValue("/home/map-portal");
+
     history.push("/home/mapportal");
   }
 
   function handlePasswordReset () {
+    setAppBarValue("/password-reset");
+
     history.push("/password-reset");
   }
 

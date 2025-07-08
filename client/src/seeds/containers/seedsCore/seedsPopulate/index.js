@@ -17,7 +17,7 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import CancelIcon from "@material-ui/icons/Cancel";
 
-import LoadingPage from '../../loadingPage'
+// import LoadingPage from '../../loadingPage'
 import ExternalDatabase from './externalDatabase'
 
 import { SEEDSContext } from '../../../context/SEEDSContext';
@@ -276,7 +276,7 @@ function getSteps() {
   return ['Mandatory Metadata', 'Location & Licenses', 'Optional Metadata'];
 }
 
-export default function SeedsPopulate() {
+export default function SEEDsPopulate() {
   const classes = useStyles();
 
   const [openDialog, setOpenDialog] = useState(false);
@@ -1030,7 +1030,7 @@ export default function SeedsPopulate() {
               </Grid>
           </Grid>
         </Grid>
-        <LoadingPage/>
+        {/* <LoadingPage/> */}
     </>
   );
 }

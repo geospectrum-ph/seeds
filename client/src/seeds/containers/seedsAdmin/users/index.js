@@ -11,7 +11,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import SearchIcon from '@material-ui/icons/Search'
 
-import LoadingPage from '../../loadingPage'
+// import LoadingPage from '../../loadingPage'
 
 import { SEEDSContext } from '../../../context/SEEDSContext'
 import { AdminContext } from '../../../context/AdminContext'
@@ -478,7 +478,7 @@ export default function Users() {
       <Dialog open={openUpdateUserDialog} onClose={handleCloseUpdateUserDialog} disableEnforceFocus>
         <UpdateUserDialog />
       </Dialog>
-      <LoadingPage/>
+      {/* <LoadingPage/> */}
 
       <TextField type ="text" style={{width:"100%", justifyContent: "center"}} value={searchTerm} 
         onChange={e => searchTermChanged(e)} onKeyPress={e => handleKeyPress(e)} size="medium" 

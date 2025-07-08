@@ -1,323 +1,317 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { Switch, Route, Redirect } from "react-router-dom";
-import clsx from 'clsx';
-import axios from 'axios';
-import { useHistory } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles'
+import * as React from "react";
+import { useHistory, Link, Switch, Route, Redirect } from "react-router-dom";
 
-import { Grid } from '@material-ui/core';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material'
+import axios from "axios";
 
-import 'leaflet/dist/leaflet.css';
+import { makeStyles, Grid } from "@material-ui/core";
+import MenuIcon from "@mui/icons-material/Menu";
+import UploadIcon from "@mui/icons-material/Upload";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import TravelExploreIcon from "@mui/icons-material/TravelExplore";
+import DatasetIcon from "@mui/icons-material/Dataset";
+import AnalyticsIcon from "@mui/icons-material/Analytics";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import LogoutIcon from "@mui/icons-material/Logout";
 
-import SeedsPopulate from '../containers/seedsCore/seedsPopulate';
-import SeedsCatalogue from '../containers/seedsCore/seedsCatalogue';
-import SeedsMapPortal from '../containers/seedsCore/seedsMapPortal';
-import SeedsFeatures from '../containers/seedsProfile';
-import SeedsAnalytics from '../containers/seedsAnalytics';
-import SeedsAdmin from '../containers/seedsAdmin'
-import LeftNav from '../containers/seedsCore';
-import MiniDrawer from '../containers/leftNavDraw'
+import "leaflet/dist/leaflet.css";
 
-import { AdminContext } from '../context/AdminContext';
-import { SEEDSContext } from '../context/SEEDSContext';
-import { FeaturesContext } from '../context/FeaturesContext';
+import SEEDsPopulate from '../containers/seedsCore/seedsPopulate';
+import SEEDsCatalogue from '../containers/seedsCore/seedsCatalogue';
+import SEEDsMapPortal from '../containers/seedsCore/seedsMapPortal';
+import SEEDsProfile from '../containers/seedsProfile';
+import SEEDsAnalytics from '../containers/seedsAnalytics';
+import SEEDsAdmin from '../containers/seedsAdmin'
 
-import Scroll from '../containers/scroll';
+import RootFooter from "../root/footer";
 
-const drawerWidth = 240;
+import { AdminContext } from "../context/AdminContext";
+import { SEEDSContext } from "../context/SEEDSContext";
 
-const useStyles = makeStyles((theme) => ({
-  appbar: {
-    backgroundColor: '#0d3c47',
-    fontFamily: "'Outfit', sans-serif",
-    textAlign: "center",
-    fontSize: "1.25rem"
-  }, appbarTitle:{
-    flexGrow: '1',
-    color: '#fffefe'
-  }, colorText: {
-    color: "#5aff3d"
-  }, appBar: {
-    marginLeft: 73,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    })
-  }, appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    })
-  }
-}))
+import logo from "../assets/logo.png";
+
+const useStyles = makeStyles(function () {
+  return ({
+    containerHome: {
+      width: "100vw",
+      height: "100vh",
+
+      display: "flex",
+      flexFlow: "row nowrap",
+
+      boxSizing: "border-box",
+      margin: "0",
+
+      "& > :nth-of-type(1)": {
+        width: "auto",
+        height: "100%",
+
+        display: "flex",
+        flex: "0 1 auto",
+        flexFlow: "column nowrap",
+
+        boxSizing: "border-box",
+        padding: "0",
+
+        background: "var(--color-red-dark)",
+
+        "& > *": {
+          width: "auto",
+
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+
+          display: "flex",
+          flexFlow: "row nowrap",
+          placeContent: "center flex-start",
+          placeItems: "center center",
+
+          boxSizing: "border-box",
+          padding: "12px",
+          gap: "12px",
+
+          font: "400 16px 'Outfit', sans-serif",
+          textDecoration: "none",
+          color: "var(--color-gray-light)",
+
+          "& > :nth-child(1)": {
+            display: "flex",
+            flexFlow: "row nowrap",
+            placeContent: "center center",
+            placeItems: "center center",
+          },
+
+          "&:first-child": {
+            minHeight: "72px",
+
+            cursor: "pointer",
+          },
+
+          "&:last-child": {
+            boxSizing: "border-box",
+            margin: "auto 0 0 0",
+          },
+
+          "&:hover, &.active": {
+            backgroundColor: "var(--color-black)",
+            
+            color: "var(--color-white)",
+          },
+        },
+      },
+
+      "& > :nth-of-type(2)": {
+        display: "flex",
+        flex: "1 1 auto",
+        flexFlow: "column nowrap",
+
+        "& > :nth-of-type(1)": {
+          width: "100%",
+          height: "auto",
+
+          minHeight: "72px",
+
+          display: "flex",
+          flex: "0 1 auto",
+          flexFlow: "row nowrap",
+          placeContent: "center center",
+          placeItems: "center center",
+
+          boxSizing: "border-box",
+          padding: "12px 48px",
+          gap: "12px",
+
+          background: "var(--color-white)",
+          cursor: "default",
+
+          "& img": {
+            height: "48px",
+          },
+
+          "& > *": {
+            font: "800 36px/1 'Outfit', sans-serif",
+            color: "var(--color-black)",
+
+            "& > :nth-of-type(1)": {
+              color: "var(--color-green-dark)",
+            },
+            
+            "&:hover": {
+              "& > :nth-of-type(1)": {
+                color: "var(--color-black)",
+              },
+            },
+          },
+        },
+
+        "& > :nth-of-type(2)": {
+          display: "flex",
+          flex: "1 1 auto",
+          flexFlow: "column nowrap",
+
+          overflow: "hidden auto",
+
+          background: "var(--color-gray-light)",
+        },
+      },
+    },
+  });
+});
 
 export default function Home() {
-  const { setDiseaseIncidenceAll, setCommercialAll, setLaborForceAll, setPoints, 
-          setLandUseAll, setBrgys, legendItems, setLegendItems } = React.useContext(FeaturesContext);
-  const {openLeftDrawer} = useContext(SEEDSContext)
-  const {loginDetails, setLoginDetails, setGroupPrivilege, sessionData, 
-          setSessionData, sessionFile, setSessionFile} = useContext(AdminContext)
-          
-  const [selected, setSelected] = useState();
-  const [sessionOpen, setSessionOpen] = useState(false)
-
+  const styles = useStyles();
   const history = useHistory();
-  const classes = useStyles();
 
-  useEffect (() => {
-    if(localStorage.getItem('user')){
-      const interval = setInterval(() => {
-        setLoginDetails(localStorage.removeItem('user'))
-        setSessionData()
-        history.push('/home')
-      }, 43200000)
-    // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
-    return () => clearInterval(interval); 
-    }
-  }, [])
+  const { loginDetails, setLoginDetails, setGroupPrivilege } = React.useContext(AdminContext);
+  const { selectedIndex, appBarValue, setAppBarValue } = React.useContext(SEEDSContext);
 
-  useEffect (() => {
-    setLoginDetails(localStorage.getItem('user')? JSON.parse(localStorage.getItem('user')) : loginDetails)
-    if(localStorage.getItem('user')){
-       setSessionOpen(true)
-      const fetchFiles = async() => {
-        const file = await axios.get("https://seeds.geospectrum.com.ph/session/file/"
-        // const file = await axios.get("http://localhost:5000/session/file/"
-          +JSON.parse(localStorage.getItem('user'))._id)
-        setSessionFile(file.data)
-      }
-      fetchFiles()
-    }
+  React.useEffect (function () {
+    setLoginDetails(localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")) : loginDetails);
     
-    const fetchData = async () => {
-      const res = await axios('https://seeds.geospectrum.com.ph/barangay/', ); 
-      const res3 = await axios('https://seeds.geospectrum.com.ph/healthmapper/brgy/all', );
-      const res5 = await axios('https://seeds.geospectrum.com.ph/healthmapper/allpoints',);
-      const res6 = await axios('https://seeds.geospectrum.com.ph/commercialmapper/brgy/all',);
-      const res7 = await axios('https://seeds.geospectrum.com.ph/jobmapper//brgy/all',);
-      const res8 = await axios('https://seeds.geospectrum.com.ph/landuse/brgy/all',);
+    async function fetchData () {
       const userGroupPrivileges = await axios.get("https://seeds.geospectrum.com.ph/groupprivilege"); 
-      //       const res = await axios('http://localhost:5000/barangay/', ); 
-      // const res3 = await axios('http://localhost:5000/healthmapper/brgy/all', );
-      // const res5 = await axios('http://localhost:5000/healthmapper/allpoints',);
-      // const res6 = await axios('http://localhost:5000/commercialmapper/brgy/all',);
-      // const res7 = await axios('http://localhost:5000/jobmapper//brgy/all',);
-      // const res8 = await axios('http://localhost:5000/landuse/brgy/all',);
-      // const userGroupPrivileges = await axios.get("http://localhost:5000/groupprivilege"); 
+      // const userGroupPrivileges = await axios.get("http://localhost:5000/groupprivilege");
+
       setGroupPrivilege(userGroupPrivileges.data);
-      setPoints(res5.data)
-     
-      // SOCIAL - healthmapper
-      setDiseaseIncidenceAll(res3.data.values.map((x)=>{return { 
-        barangay: x.properties.brgy_name,
-        id: x.properties.brgy_id,
-        active: x.properties.active,
-        recovered: x.properties.recovered,
-        death: x.properties.death
-      }}));
-
-      // ECONOMIC - commercialmapper
-      setCommercialAll(res6.data.values.map((x)=>{ 
-        x.properties['id'] = x.properties.brgy_id
-        return x.properties 
-      }));
-      
-      setLaborForceAll(res7.data.values.map((x)=>{ 
-        x.properties['id'] = x.properties.brgy_id
-        return x.properties 
-      }));
-      setLandUseAll(res8.data.values);
-      setSelected(res.data[0]);
     }
+
     fetchData();
-  }, [])
+  }, []);
 
-  const handleSessionClose = () => {
-    setSessionData({
-      userId: JSON.parse(localStorage.getItem('user'))._id,
-      populate: {
-        mapName: '',
-        file: '',
-        social: false,
-        economic: false,
-        environmental: false,
-        demographic: false,
-        type: '',
-        keywords: [],
-        description: '',
-        language: '',
-        license: '',
-        doi: '',
-        attribution: '',
-        regions: '',
-        dqs: '',
-        restrictions: '',
-        constraints: '',
-        details: ''
-      },
-      catalogue: {
-        Social: true,
-        Economic: true,
-        Environmental: true,
-        Demographic: true,
-        Vector: true,
-        Raster: true,
-        Table: true,
-        keywords: [],
-      },
-      map: '',
-      profile: '',
-      analytics: ''
-    })
-    setSessionOpen(false)
-  }
-  const handleSessionRestore = () => {
-    const fetchSession = async() =>{
-      const sessionData = await axios.get("https://seeds.geospectrum.com.ph/session/get?userId=" 
-      // const sessionData = await axios.get("http://localhost:5000/session/get?userId=" 
-
-      + JSON.parse(localStorage.getItem('user'))._id); 
-
-      if (sessionData !== null) {
-        setSessionData(sessionData.data)
-        if (sessionData.data.map.layers){
-          const fetchBrgys = async(i) => {
-            const res = await axios.get(`https://seeds.geospectrum.com.ph/getdata/`,
-                        // const res = await axios.get(`http://localhost:5000/getdata/`,
-              {params:{id: sessionData.data.map.layers[i]}})
-            const res2 = await axios.get(`https://seeds.geospectrum.com.ph/getdata/sld`,
-                          // const res2 = await axios.get(`http://localhost:5000/getdata/sld`,
-              {params:{metadataID: sessionData.data.map.layers[i]}})
+  const modules = [
+    {
+      name: "Populate",
+      path: "/home/populate",
+      module: <SEEDsPopulate/>,
+      icon: <UploadIcon/>,
+      level: 1,
+    },
+    {
+      name: "Catalogue",
+      path: "/home/catalogue",
+      module: <SEEDsCatalogue/>,
+      icon: <LibraryBooksIcon/>,
+      level: 0,
+    },
+    {
+      name: "Map Portal",
+      path: "/home/map-portal",
+      module: <SEEDsMapPortal/>,
+      icon: <TravelExploreIcon/>,
+      level: 0,
+    },
+    {
+      name: "Profile",
+      path: "/home/profile",
+      module: <SEEDsProfile/>,
+      icon: <DatasetIcon/>,
+      level: 1,
+    },
+    {
+      name: "Analytics",
+      path: "/home/analytics",
+      module: <SEEDsAnalytics/>,
+      icon: <AnalyticsIcon/>,
+      level: 1,
+    },
+    {
+      name: "Admin",
+      path: "/home/admin",
+      module: <SEEDsAdmin/>,
+      icon: <AdminPanelSettingsIcon/>,
+      level: 2,
+    },
+    {
+      name: null,
+      path: null,
+      module: <Redirect from = "*" to = "/sign-in"/>,
+      icon: <LogoutIcon/>,
+      level: 0,
+    },
+  ];
   
-            setBrgys(brgys => [...brgys, res.data])
-            var legendStyles = legendItems // weird na pag cinomment out ko to, nawawala yung ibang legend,
-            await legendStyles.push(res2.data) // eh di ko naman ginamit. dahil sa await?
-            setLegendItems([...legendItems])
-          }
-  
-          if (sessionData.data.map.layers.length > 1){
-            for (var i = 0; i < selected.length; i++){
-              fetchBrgys(i)
-            }
-          } else {
-            fetchBrgys(0)
-          }
-        }
-      } else {
-        const create = async() => {
-          const createSession = await axios.post("https://seeds.geospectrum.com.ph/session/create", {
-          // const createSession = await axios.post("http://localhost:5000/session/create", {
-            userId: JSON.parse(localStorage.getItem('user'))._id,
-            populate: '',
-            catalogue: '',
-            map: '',
-            profile: '',
-            analytics: ''
-          }).then(()=>{
-            // console.log("success")
-        })
-        }
-        create()
-        setSessionData({
-          userId: JSON.parse(localStorage.getItem('user'))._id,
-          populate: '',
-          catalogue: '',
-          map: '',
-          profile: '',
-          analytics: ''
-    
-        })
-      }
+  function handleHistory (path) {
+    if (history.location.pathname !== path) {
+      history.push(path);
     }
-    fetchSession();
-    setSessionOpen(false)
-  }
+    
+    setControl(false);
+
+    setAppBarValue(path);
+  };
+
+  const [control, setControl] = React.useState(false);
 
   return (
-    <Grid container direction="row" style={{overflowX:"clip"}}  justifyContent="center" alignItems="flex-end">
-      <Scroll showBelow={250}/> 
-
-      {loginDetails && loginDetails.user_type !== 'guest' ? <LeftNav/>: <MiniDrawer/>}
-      <Grid item xs={11} md={12} lg={12} style={{marginTop:64.5,backgroundColor:"#e6ebec"}}
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: openLeftDrawer,
-        })} >
-        {/* {loginDetails? loginDetails.user_type !== 'guest' ? sessionData ? 
-          <Dialog open={sessionOpen} onClose={handleSessionClose}>
-            <DialogTitle>
-              {"Session restore"}
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                Do you want to restore previous session?
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleSessionClose}>No</Button>
-              <Button onClick={handleSessionRestore} autoFocus>
-                Yes
-              </Button>
-            </DialogActions>
-          </Dialog>
-        : null : null : null} */}
-        <Switch>
-          {JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')).user_type.user_group_type ? (
-          <>
-            <Route path="/home/populate">
-              <SeedsPopulate/>
-            </Route>
-
-            <Route path="/home/catalogue">
-              <SeedsCatalogue/>
-            </Route>
-
-            <Route path="/home/mapportal">
-              <SeedsMapPortal/>
-            </Route>
-
-            <Route path="/home/profile">
-              <SeedsFeatures/>
-            </Route>
-
-            <Route path="/home/analytics">
-              <SeedsAnalytics/>
-            </Route>
-
-            <Route path="/home/admin">
-              <SeedsAdmin/>
-            </Route>
-          </>
-          ): JSON.parse(localStorage.getItem('user')).user_type === 'guest' ? (
-          <>
-            <Route path="/home/catalogue">
-              <SeedsCatalogue/>
-            </Route>
-
-            <Route path="/home/mapportal">
-              <SeedsMapPortal/>
-            </Route>
-
-            <Route path="/home/profile">
-              <SeedsFeatures/>
-            </Route>
-
-            <Route path="/home/analytics">
-              <SeedsAnalytics/>
-            </Route>
-          </>
-          ): null
-          : 
-          // null
-          (<>
-            <Route path="/home">
-              <Redirect to='/sign-in' />
-            </Route>
-          </>)}
-          <Redirect from="*" to='/' />
-        </Switch>
+    <Grid id = "container-home" className = { styles.containerHome } container>
+      <Grid item container>
+        <Grid item onClick = { function () { setControl(!control); }}>
+          <MenuIcon/>
+        </Grid>
+        {
+          modules.map(function (item, index) {
+            if (
+              (item.level < 1 && JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user")).user_type === "guest") ||
+              (item.level < 2 && JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user")).user_type.user_group_type) ||
+              (item.level < 3 && JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user")).user_type.user_group_type === "admin")
+            ) {
+              if (item.name) {
+                return (
+                  <Link to = { item.path } className = { appBarValue === item.path ? "active" : null } key = { index } onClick = { function () { handleHistory(item.path); } }>
+                    <span>{ item.icon }</span>
+                    { control ? <span>{ `SEEDs ${ item.name}` }</span> : null }
+                  </Link>
+                );
+              }
+              else {
+                return (
+                  <Link to = { "/sign-in" } key = { index } onClick = { function () { handleHistory("/sign-in"); } }>
+                    <span>{ item.icon }</span>
+                    { control ? <span>{ `Sign Out` }</span> : null }
+                  </Link>
+                );
+              }
+            }
+            else {
+              return (null);
+            }
+          })
+        }
+      </Grid>
+      <Grid item container>
+        <Grid item container>
+          <img src = { logo } style = {{ height: 45, marginTop: 0 }}/>
+          <span><span>{ "SEED" }</span><span>{ `s ${ selectedIndex ? modules[selectedIndex].name : "" }` }</span></span>
+        </Grid>
+        <Grid item container>
+          <Switch>
+            {
+              modules.map(function (item, index) {
+                if (
+                  (item.level < 1 && JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user")).user_type === "guest") ||
+                  (item.level < 2 && JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user")).user_type.user_group_type) ||
+                  (item.level < 3 && JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user")).user_type.user_group_type === "admin")
+                ) {
+                  if (item.path) {
+                    return (
+                      <Route key = { index } exact path = { item.path }>
+                        { item.module }
+                      </Route>
+                    );
+                  }
+                  else {
+                    return (null);
+                  }
+                }
+                else {
+                  return (null);
+                }
+              })
+            }
+          </Switch>
+        </Grid>
+        <Grid item container>
+          <RootFooter/>
+        </Grid>
       </Grid>
     </Grid>
   );

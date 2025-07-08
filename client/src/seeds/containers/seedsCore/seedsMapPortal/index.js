@@ -85,7 +85,7 @@ const searchControl = new GeoSearchControl({
 //   return SLDJson; // return the sld style as json
 // };
 
-function ReactMap() {
+export default function SEEDsMapPortal() {
   const [drawerWidth, setDrawerWidth] = React.useState("13vw")
 
   const useStyles = makeStyles((theme) => ({
@@ -598,5 +598,3 @@ function ReactMap() {
     </>
   )
 }
-
-export default ReactMap;

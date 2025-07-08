@@ -10,7 +10,7 @@ import { DataGrid } from '@material-ui/data-grid';
 
 import SeedsAnalyticsMap from './seedsAnalyticsMap/index'
 import AnalyticsDatePicker from './datePicker'
-import LoadingPage from '../loadingPage'
+// import LoadingPage from '../loadingPage'
 
 import { SEEDSContext } from '../../context/SEEDSContext';
 import {AnalyticsContext} from '../../context/AnalyticsContext';
@@ -474,7 +474,7 @@ export default function Analytics() {
 
   return (
     <div className={classes.root}>
-      <LoadingPage/>
+      {/* <LoadingPage/> */}
       <br/><br/>
       <Container maxWidth="xl">
         <Grid container spacing={3} justifyContent="flex-start">
