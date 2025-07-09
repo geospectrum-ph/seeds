@@ -150,6 +150,9 @@ const useStyles = makeStyles(function () {
 
           overflow: "hidden auto",
 
+          boxSizing: "border-box",
+          margin: "0",
+
           background: "var(--color-gray-light)",
         },
       },

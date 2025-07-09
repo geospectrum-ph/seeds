@@ -11,7 +11,7 @@ import { Button, Toolbar, Typography, Grid, FormControlLabel, FormControl, FormL
 
 import _without from "lodash/without";
 
-import './index.css'
+// import './index.css'
 
 import Check from '@material-ui/icons/Check';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -157,113 +157,6 @@ function ColorlibStepIcon(props) {
 
 const useStyles = makeStyles(function () {
   return ({
-  // root: {
-  //   width: '100%',
-  //   flexGrow: 1
-  // }, rootSecondSelect: {
-  //   paddingTop: 42,
-  //   paddingBottom: 15,
-  //   paddingLeft: 20
-  // }, deleteButton: {
-  //   border: 0,
-  //   borderRadius: 5,
-  //   backgroundColor: '#e6ebec',
-  //   color: '#33202A',
-  //   fontSize: '1rem',
-  //   height: '5vh',
-  //   top: '2vh',
-  //   padding: '9px 18px',
-  //   fontFamily: "'Outfit', sans-serif",
-  //   '&:hover': {
-  //     color: '#fffefe',
-  //     backgroundColor: '#A31621'
-  //   }
-  // }, login1: {
-  //   border: 0,
-  //   borderRadius: 5,
-  //   backgroundColor: '#1b798e',
-  //   color: '#ffffff',
-  //   fontSize: '1rem',
-  //   height: '5vh',
-  //   top: '2vh',
-  //   padding: '0 30px',
-  //   fontFamily: "'Outfit', sans-serif",
-  //   '&:hover': {
-  //     color: '#fffefe',
-  //     backgroundColor: '#229922'
-  //   }
-  // }, popbrowse: {
-  //   border: 0,
-  //   borderRadius: 5,
-  //   backgroundColor: '#1b798e',
-  //   color: '#ffffff',
-  //   fontSize: '1.4rem',
-  //   textAlign: "center",
-  //   justify:"center",
-  //   padding: '20px', //tb lr
-  //   fontFamily: "'Outfit', sans-serif",
-  //   '&:hover': {
-  //     color: '#fffefe',
-  //     backgroundColor: '#229922',
-  //   }
-  // }, popbrowse2: {
-  //   border: 0,
-  //   borderRadius: 5,
-  //   backgroundColor: '#1b798e',
-  //   color: '#ffffff',
-  //   fontSize: '1rem',
-  //   textAlign: "center",
-  //   justify:"center",
-  //   padding: '10px', //tb lr
-  //   fontFamily: "'Outfit', sans-serif",
-  //   '&:hover': {
-  //     color: '#fffefe',
-  //     backgroundColor: '#229922'
-  //   }
-  // }, appbarTitle:{
-  //   flexGrow: '1',
-  //   color: '#fffefe',
-  //   fontFamily: "'Outfit', sans-serif",
-  //   fontSize:20
-  // }, appbar: {
-  //   backgroundColor: '#0d3c47',
-  //   fontFamily: "'Outfit', sans-serif",
-  //   textAlign: "center",
-  // }, addtomap: {
-  //   border: 0,
-  //   borderRadius: 5,
-  //   backgroundColor: '#1b798e',
-  //   color: '#ffffff',
-  //   fontSize: '1.2rem',
-  //   textAlign: "center",
-  //   justify:"center",
-  //   fontFamily: "'Outfit', sans-serif",
-  //   '&:hover': {
-  //     color: '#fffefe',
-  //     backgroundColor: '#229922',
-  //   }
-  // }, '& .MuiTypography-h3': {
-  //   fontFamily: "GlacialIndifference",
-  //   fontSize: "0.9rem",
-  //   color: '#0c343d',
-  //   '&:hover': {
-  //     color: '#0c343d',
-  //   }
-  // }, backButton: {
-  //   borderRadius: 5,
-  //   backgroundColor: '#e6ebec',
-  //   borderColor:'#1b798e',
-  //   color: '#1b798e',
-  //   textAlign: "center",
-  //   padding: '9px 18px',
-  //   fontFamily: "'Outfit', sans-serif",
-  //   '&:hover': {
-  //     color: '#fffefe',
-  //     backgroundColor: '#229922',
-  //   }
-  // }, menuPaper: {
-  //   maxHeight: 200
-  // }
     pagePopulate: {
       width: "100%",
       height: "100%",
@@ -271,12 +164,9 @@ const useStyles = makeStyles(function () {
       display: "flex",
       flexFlow: "column nowrap",
 
-      "& > :nth-child(1) > *": {
-        boxSizing: "border-box",
-        padding: "12px",
+      "& > :nth-child(1)": {
+        flex: "0 1 auto",
 
-        background: "var(--color-gray-dark)",
-        
         "& *": {
           font: "400 16px/1 'Outfit', sans-serif",
           color: "var(--color-white)",
@@ -291,10 +181,18 @@ const useStyles = makeStyles(function () {
             padding: "6px",
           },
         },
+
+        "& > *": {
+          boxSizing: "border-box",
+          padding: "12px",
+
+          background: "var(--color-gray-dark)",
+        },
       },
 
       "& > :nth-child(2)": {
         display: "flex",
+        flex: "1 1 auto",
         flexFlow: "row nowrap",
 
         "& *": {
@@ -302,16 +200,35 @@ const useStyles = makeStyles(function () {
         },
 
         "& > :nth-child(1)": {
+          width: "auto",
+          height: "100%",
+
           display: "flex",
           flex: "0 1 auto",
           flexFlow: "column nowrap",
 
           boxSizing: "border-box",
           padding: "12px",
+          gap: "12px",
+
+          // "& > :nth-child(2), & > :nth-child(3)": {
+
+            "& .MuiButton-root": {
+              minHeight: "48px",
+
+              background: "var(--color-red-dark)",
+
+              font: "800 18px/1.25 'Outfit', sans-serif",
+              textAlign: "center",
+              color: "var(--color-white)",
+            },
+          // },
         },
         
         "& > :nth-child(2)": {
+          display: "flex",
           flex: "1 1 auto",
+          flexFlow: "column nowrap",
         },
       },
     },
@@ -1016,14 +933,12 @@ const VisuallyHiddenInput = styled('input')({
 
   return (
     <Grid id = "page-populate" className = { styles.pagePopulate } container>
-      {/* <Dialog open={openDialog} onClose={handleCloseDialog}>
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
         <TemplateDialog/>
       </Dialog>
       <Dialog open={openDBDialog}>
-        <Paper elevation={0} style={{height:600, width:500}}>
           <ExternalDatabase/>
-        </Paper>
-      </Dialog> */}
+      </Dialog>
       
       {/* <Grid item container> */}
       <Grid item>
@@ -1042,50 +957,48 @@ const VisuallyHiddenInput = styled('input')({
       <Grid item container>
         <Grid item container>
           <span>{ "Choose a method in populating data:" }</span>
-                <Button variant="outlined" onClick={handleOpenDBDialog} color="primary">
-                  <label style={{wordWrap:"break-word",width:"90%"}}>
-                    Connect to External Database
-                  </label>
-                </Button>
-          <Button component = "label" variant = "outlined" onClick = { handleOpenDialog }>
+          <Button component = "label" onClick = { handleOpenDBDialog }>
+            <span>{ "Connect to an External Database" }</span>
+          </Button>
+          {/* <Button component = "label" variant = "outlined" onClick = { handleOpenDialog }> */}
+          <Button component = "label">
             <span>{ "Browse a File" }</span>
-            <VisuallyHiddenInput type = "file"onChange = { handleFileChange } accept = ".zip, .tiff, .csv"/>
+            <VisuallyHiddenInput type = "file" onChange = { handleFileChange } accept = ".zip, .tiff, .csv"/>
           </Button>
         </Grid>
         <Grid item container>
-            <Grid container direction="row" justifyContent="flex-end">
-              {getStepContent(activeStep)} 
-              <Grid item xs={12} sm={9} md={9} lg={6} container justifyContent="space-around" 
-                alignItems="center" style={{padding:10}}>
+          <Grid>
+            {
+            getStepContent(activeStep)} 
+            <Grid>
+              <Grid item>
+                <Button variant="outlined" disabled={activeStep === 0} onClick={handleBack}>
+                  Back
+                </Button>
+              </Grid>
+              {activeStep === steps.length - 1 ?
                 <Grid item>
-                  <Button variant="outlined" disabled={activeStep === 0} onClick={handleBack} 
-                    className={styles.backButton}>
-                    Back
+                  <Button variant="outlined" disabled={disUp} onClick={handleReset}>
+                    Reset
+                  </Button>
+                </Grid> :
+                <Grid item>
+                  <Button variant="outlined" onClick={handleNext}  
+                    disabled={!state.file ||  state.keywords.length < 1 || error || !state.type || 
+                    disUp || !state.description}>
+                    Next
+                  </Button>
+                </Grid>}
+                <Grid item>
+                  <Button  variant="contained" onClick={handleUpload} c
+                    disabled={activeStep === 0|| !state.language|| !state.license || 
+                    error || !state.doi || !state.attribution || !state.regions || 
+                    !state.dqs || !state.restrictions || !state.constraints}>
+                    Upload
                   </Button>
                 </Grid>
-                {activeStep === steps.length - 1 ?
-                  <Grid item>
-                    <Button variant="outlined" disabled={disUp} onClick={handleReset} className={styles.backButton}>
-                      Reset
-                    </Button>
-                  </Grid> :
-                  <Grid item>
-                    <Button variant="outlined" onClick={handleNext} className={styles.backButton} 
-                      disabled={!state.file ||  state.keywords.length < 1 || error || !state.type || 
-                      disUp || !state.description}>
-                      Next
-                    </Button>
-                  </Grid>}
-                  <Grid item>
-                    <Button className={styles.addtomap} variant="contained" onClick={handleUpload} color="primary"
-                      disabled={activeStep === 0|| !state.language|| !state.license || 
-                      error || !state.doi || !state.attribution || !state.regions || 
-                      !state.dqs || !state.restrictions || !state.constraints}>
-                      Upload
-                    </Button>
-                  </Grid>
-                </Grid>
               </Grid>
+          </Grid>
         </Grid>
       </Grid>
 
