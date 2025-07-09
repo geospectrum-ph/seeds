@@ -51,7 +51,7 @@ const useStyles = makeStyles(function() {
           gap: "12px",
         },
 
-        "& > :nth-of-type(1)": {
+        "& > :nth-child(1)": {
           display: "flex",
           flexFlow: "row nowrap",
           placeContent: "center center",
@@ -68,16 +68,16 @@ const useStyles = makeStyles(function() {
 
             cursor: "default",
 
-            "& > :nth-of-type(2)": {
-              "& > :nth-of-type(1)": {
+            "& > :nth-child(2)": {
+              "& > :nth-child(1)": {
                 color: "var(--color-green-dark)",
               },
             },
           },
         },
 
-        "& > :nth-of-type(2)": {
-          "& > :nth-of-type(1)": {
+        "& > :nth-child(2)": {
+          "& > :nth-child(1)": {
             "& .MuiTextField-root": {
               "& > *": {
                 font: "400 18px/1.25 'Outfit', sans-serif",
@@ -90,7 +90,7 @@ const useStyles = makeStyles(function() {
             },
           },
           
-          "& > :nth-of-type(2)": {
+          "& > :nth-child(2)": {
 
             "& .MuiButton-root": {
               background: "var(--color-red-dark)",

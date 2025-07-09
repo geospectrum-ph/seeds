@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState}  from 'react';
 import axios from 'axios'
 import { Paper, Card, CardHeader, Grid, Radio, RadioGroup, FormControlLabel, FormControl, 
         FormLabel } from '@material-ui/core';
-import { DataGrid } from '@material-ui/data-grid';
+// import { DataGrid } from '@material-ui/data-grid';
 import { makeStyles, } from '@material-ui/core/styles';
 import { PieChart, Pie, Tooltip, Cell, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, 
         BarChart } from 'recharts';
@@ -241,12 +241,12 @@ export default function CommercialMapper() {
         <Grid item container>
           <Paper elevation={3} style={{height: '100%',  width:"100%"}}>
             <div style={{ height: '70vh', width: '100%' }}>
-              {commercialAll ? 
+              {/* {commercialAll ? 
                 <DataGrid rowHeight={30} pagination rowsPerPageOptions={[25, 50, 100]} rows={commercialAll} 
                   columns={commercialClassMap? columns.concat(commercialClassMap): columns} />
                 : <DataGrid stickyHeader rowHeight={30} rows={rows} pagination rowsPerPageOptions={[25, 50, 100]}
                   columns={commercialClassMap?columns.concat(commercialClassMap):columns} loading="true"/>
-              }  
+              }   */}
             </div>
           </Paper>   
         </Grid>

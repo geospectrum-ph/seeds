@@ -5,7 +5,7 @@ import { withStyles, makeStyles, createTheme } from '@material-ui/core/styles';
 import { Backdrop, Button, Grid, Paper, Card, CardHeader, Checkbox, FormGroup, FormLabel, FormControl, 
         FormControlLabel, TextField, InputAdornment, Select, MenuItem, Chip, Toolbar, Typography, Dialog, 
         DialogActions, DialogContent, InputLabel, CircularProgress }  from '@material-ui/core';
-import { DataGrid } from '@material-ui/data-grid';
+// import { DataGrid } from '@material-ui/data-grid';
 
 import _without from "lodash/without";
 import CsvDownloader from 'react-csv-downloader';
@@ -539,7 +539,7 @@ export default function SEEDsCatalogue() {
                 }/>
             </form>
             <div style={{minHeight: "96vh"}}  >
-              {dataShow ? 
+              {/* {dataShow ? 
                 <DataGrid rowHeight={30} pagination rowsPerPageOptions={[25, 50, 100]} className={classes.root} 
                   rows={dataShow} columns={columns} style={{ cursor: 'pointer', height: '60vh' }} 
                   onSelectionModelChange={(newSelectionModel) => {
@@ -550,7 +550,7 @@ export default function SEEDsCatalogue() {
                   }} isRowSelectable={false}/>
                 : <DataGrid pagination rows={rows} columns={columns} 
                   rowsPerPageOptions={[25, 50, 100]} checkboxSelection loading="true"/>
-              } 
+              }  */}
               <CsvDownloader style={{left:10, top: 590, width:210}} filename={"exportedData"} 
                 datas={dataShow} columns={columns2csv} wrapColumnChar={`"`}>
                 <Button className={classes.login1} variant="contained" disabled={!dataShow || !columns2csv} 

@@ -28,23 +28,23 @@ const useStyles = makeStyles(function () {
       display: "flex",
       flexFlow: "column nowrap",
 
-      "& > :nth-of-type(1)": {
+      "& > :nth-child(1)": {
         display: "flex",
         flex: "0 1 auto",
       },
       
-      "& > :nth-of-type(2)": {        
+      "& > :nth-child(2)": {        
         display: "flex",
         flex: "1 1 auto",
         flexFlow: "column nowrap",
 
         overflow: "hidden auto",
 
-        "& > :nth-of-type(1)": {
+        "& > :nth-child(1)": {
           flex: "1 1 auto",
         },
         
-        "& > :nth-of-type(2)": {
+        "& > :nth-child(2)": {
           flex: "0 1 auto",
         },
       },
@@ -61,7 +61,7 @@ const useStyles = makeStyles(function () {
       boxSizing: "border-box",
       margin: "0",
 
-      "& > :nth-of-type(1)": {
+      "& > :nth-child(1)": {
         width: "100%",
         height: "auto",
 
@@ -76,7 +76,7 @@ const useStyles = makeStyles(function () {
         color: "var(--color-white)",
       },
       
-      "& > :nth-of-type(2)": {
+      "& > :nth-child(2)": {
         width: "100%",
         height: "auto",
 
@@ -90,7 +90,7 @@ const useStyles = makeStyles(function () {
         font: "800 120px/1 'Outfit', sans-serif",
         color: "var(--color-white)",
 
-        "& > :nth-of-type(1)": {
+        "& > :nth-child(1)": {
           color: "var(--color-green-dark)",
         },
       },

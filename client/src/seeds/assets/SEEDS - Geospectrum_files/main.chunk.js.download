@@ -18510,7 +18510,7 @@ const StyledTableCell = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE
 }))(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_40__["default"]);
 const StyledTableRow = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["withStyles"])(theme => ({
   root: {
-    '&:nth-of-type(odd)': {
+    '&:nth-child(odd)': {
       backgroundColor: theme.palette.action.hover
     }
   }

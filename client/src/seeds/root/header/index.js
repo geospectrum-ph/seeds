@@ -33,7 +33,7 @@ const useStyles = makeStyles(function (theme) {
       font: "400 16px/1 'Outfit', sans-serif",
       color: "var(--color-gray-dark)",
 
-      "& > :nth-of-type(1) > *": {  
+      "& > :nth-child(1) > *": {  
         display: "flex",
         flexFlow: "row nowrap",
         placeContent: "center center",
@@ -52,19 +52,19 @@ const useStyles = makeStyles(function (theme) {
           font: "800 36px/1 'Outfit', sans-serif",
           color: "var(--color-black)",
 
-          "& > :nth-of-type(1)": {
+          "& > :nth-child(1)": {
             color: "var(--color-green-dark)",
           },
           
           "&:hover": {
-            "& > :nth-of-type(1)": {
+            "& > :nth-child(1)": {
               color: "var(--color-black)",
             },
           },
         },
       },
 
-      "& > :nth-of-type(2)": {  
+      "& > :nth-child(2)": {  
         width: "auto",
         height: "auto",
       },

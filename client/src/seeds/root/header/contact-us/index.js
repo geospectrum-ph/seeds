@@ -24,7 +24,7 @@ const useStyles = makeStyles(function () {
 
       background: "var(--color-white)",
 
-      "& > :nth-of-type(1) > *": {
+      "& > :nth-child(1) > *": {
         display: "flex",
         flex: "0 1 auto",
         flexFlow: "column nowrap",
@@ -32,7 +32,7 @@ const useStyles = makeStyles(function () {
         boxSizing: "border-box",
         gap: "48px",
 
-        "& > :nth-of-type(1)": {
+        "& > :nth-child(1)": {
           display: "flex",
           flex: "0 1 auto",
 
@@ -44,19 +44,19 @@ const useStyles = makeStyles(function () {
             flex: "0 1 auto",
             flexFlow: "column nowrap",
             
-            "& > :nth-of-type(1)": {
+            "& > :nth-child(1)": {
               font: "800 64px/1.25 'Outfit', sans-serif",
               color: "var(--color-black)",
             },
             
-            "& > :nth-of-type(2)": {
+            "& > :nth-child(2)": {
               font: "400 32px/1.25 'Outfit', sans-serif",
               color: "var(--color-black)",
             },
           },
         },
 
-        "& > :nth-of-type(2)": {
+        "& > :nth-child(2)": {
           display: "flex",
           flex: "1 1 auto",
           flexFlow: "column nowrap",
@@ -75,7 +75,7 @@ const useStyles = makeStyles(function () {
             },
           },
 
-          "& > :nth-of-type(1), & > :nth-of-type(2), & > :nth-of-type(3)": {
+          "& > :nth-child(1), & > :nth-child(2), & > :nth-child(3)": {
             display: "flex",
             flex: "0 1 auto",
             flexFlow: "row nowrap",
@@ -88,7 +88,7 @@ const useStyles = makeStyles(function () {
             },
           },
           
-          "& > :nth-of-type(4)": {
+          "& > :nth-child(4)": {
             display: "flex",
             flex: "1 1 auto",
             flexFlow: "column nowrap",
@@ -96,11 +96,11 @@ const useStyles = makeStyles(function () {
             boxSizing: "border-box",
             gap: "12px",
 
-            "& > :nth-of-type(1), & > :nth-of-type(3)": {
+            "& > :nth-child(1), & > :nth-child(3)": {
               flex: "0 1 auto",
             },
 
-            "& > :nth-of-type(2)": {
+            "& > :nth-child(2)": {
               flex: "1 1 auto",
             },
 
@@ -114,7 +114,7 @@ const useStyles = makeStyles(function () {
         },
       },
       
-      "& > :nth-of-type(2)": {
+      "& > :nth-child(2)": {
         display: "flex",
         flex: "1 1 auto",
         flexFlow: "column nowrap",
@@ -122,12 +122,12 @@ const useStyles = makeStyles(function () {
         boxSizing: "border-box",
         gap: "48px",
 
-        "& > :nth-of-type(1)": {
+        "& > :nth-child(1)": {
           display: "flex",
           flex: "1 1 auto",
         },
 
-        "& > :nth-of-type(2)": {
+        "& > :nth-child(2)": {
           display: "flex",
           flex: "0 1 auto",
           flexFlow: "column nowrap",
@@ -135,7 +135,7 @@ const useStyles = makeStyles(function () {
           boxSizing: "border-box",
           gap: "12px",
 
-          "& > * > :nth-of-type(1)": {
+          "& > * > :nth-child(1)": {
             display: "flex",
             flex: "0 1 auto",
             flexFlow: "column nowrap",
@@ -143,7 +143,7 @@ const useStyles = makeStyles(function () {
             font: "400 18px/1.25 'Outfit', sans-serif",
 
 
-            "& > :nth-of-type(1)": {
+            "& > :nth-child(1)": {
               font: "800 18px/1.25 'Outfit', sans-serif",
             },
 

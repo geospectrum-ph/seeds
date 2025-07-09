@@ -37,13 +37,13 @@ const useStyles = makeStyles(function () {
         gap: "12px",
 
         "&.active-terms-of-use": {
-          "& > :nth-of-type(1)": {
+          "& > :nth-child(1)": {
             color: "var(--color-white)",
           },
         },
         
         "&.active-privacy-policy": {
-          "& > :nth-of-type(3)": {
+          "& > :nth-child(3)": {
             color: "var(--color-white)",
           },
         },

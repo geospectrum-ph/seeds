@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState}  from 'react';
 import axios from 'axios';
 import { Card, CardHeader, Paper, Grid, Radio, RadioGroup, FormControlLabel, FormControl, 
         FormLabel } from '@material-ui/core';
-import { DataGrid } from '@material-ui/data-grid';
+// import { DataGrid } from '@material-ui/data-grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { ResponsiveContainer, ComposedChart, PieChart, Pie, Tooltip, Cell, Bar, Brush,  XAxis, YAxis, 
         CartesianGrid } from 'recharts';
@@ -283,11 +283,11 @@ export default function SocialHealth() {
         <Grid item container>
           <Paper elevation={3} style={{height: '100%', width:"100%"}}>
             <div style={{ height: '70vh', width:"100%"}}>
-              { diseaseIncidenceAll && diseaseClassMap ? 
+              {/* { diseaseIncidenceAll && diseaseClassMap ? 
                 <DataGrid rowHeight={30} pagination rowsPerPageOptions={[25, 50, 100]} 
                   rows={diseaseIncidenceAll.filter((x) => x.barangay !== null && x.id > 1000)} columns={columns} />
                 : <DataGrid rowHeight={30} pagination rowsPerPageOptions={[25, 50, 100]} rows={rows} columns={columns} 
-                  loading="true"/>}  
+                  loading="true"/>}   */}
             </div>
           </Paper>
         </Grid>

@@ -16,7 +16,7 @@ const useStyles = makeStyles(function () {
         placeContent: "center center",
         placeItems: "center center",
 
-        "& > :nth-of-type(1)": {
+        "& > :nth-child(1)": {
           width: "100%",
           height: "100%",
 
@@ -31,7 +31,7 @@ const useStyles = makeStyles(function () {
           },
         },
 
-        "& > :nth-of-type(4)": {
+        "& > :nth-child(4)": {
             display: "flex",
             flex: "0 1 auto",
             placeContent: "center center",
@@ -55,7 +55,7 @@ const useStyles = makeStyles(function () {
       placeContent: "center center",
       placeItems: "center center",
 
-      "& > :nth-of-type(1)": {
+      "& > :nth-child(1)": {
         width: "100%",
         height: "auto",
 
@@ -70,7 +70,7 @@ const useStyles = makeStyles(function () {
         color: "var(--color-white)",
       },
 
-      "& > :nth-of-type(2)": {
+      "& > :nth-child(2)": {
         width: "100%",
         height: "100%",
 

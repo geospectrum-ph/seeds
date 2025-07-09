@@ -1,7 +1,7 @@
 import React, {useContext, useEffect}  from 'react';
 import axios from 'axios';
 import { Card, CardHeader, Paper, Grid, Typography } from '@material-ui/core';
-import { DataGrid } from '@material-ui/data-grid';
+// import { DataGrid } from '@material-ui/data-grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { PieChart, Pie, Legend, Tooltip, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, 
         ResponsiveContainer } from 'recharts';
@@ -228,12 +228,12 @@ export default function ExistingLandUse() {
         <Grid item container>
           <Paper elevation={3} style={{height: '100%', width:"100%"}}>
             <div style={{ height: '70vh', width: '100%' }}>
-              { landUseAll ?
+              {/* { landUseAll ?
                 <DataGrid borderRadius={0} rowHeight={30} pagination rowsPerPageOptions={[25, 50, 100]} 
                   className={classes.root} rows={landUseAll.filter((x)=>{return x.id !== null})} columns={columns}/>
                 :<DataGrid borderRadius={0} rowHeight={30} pagination rowsPerPageOptions={[25, 50, 100]} 
                   rows={rows} columns={columns} loading="true"/>
-              }  
+              }   */}
             </div>
           </Paper>     
         </Grid>

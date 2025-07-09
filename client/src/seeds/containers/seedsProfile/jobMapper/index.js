@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState}  from 'react';
 import axios from 'axios'
 
 import { Paper, Card, CardHeader, Grid, Typography } from '@material-ui/core';
-import { DataGrid } from '@material-ui/data-grid';
+// import { DataGrid } from '@material-ui/data-grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { PieChart, Pie, Legend, Tooltip, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, 
         ResponsiveContainer } from 'recharts';
@@ -265,12 +265,12 @@ export default function DemLabor() {
         <Grid item container>
           <Paper elevation={3} style={{height: '100%', width:"100%"}}>
             <div style={{ height: '70vh', width: '100%' }}>
-              { laborForceAll && employmentClassMap ? 
+              {/* { laborForceAll && employmentClassMap ? 
                 <DataGrid borderRadius={0} rowHeight={30} pagination rowsPerPageOptions={[25, 50, 100]} 
                   className={classes.root} rows={laborForceAll} 
                   columns={employmentClassMap? columns.concat(employmentClassMap): columns} />
               : <DataGrid borderRadius={0} rowHeight={30} pagination rowsPerPageOptions={[25, 50, 100]} 
-                rows={rows} columns={employmentClassMap? columns.concat(employmentClassMap): columns} loading="true"/>}  
+                rows={rows} columns={employmentClassMap? columns.concat(employmentClassMap): columns} loading="true"/>}   */}
             </div>
           </Paper>     
         </Grid>

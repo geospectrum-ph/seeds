@@ -15,7 +15,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 
 import "leaflet/dist/leaflet.css";
 
-import SEEDsPopulate from '../containers/seedsCore/seedsPopulate';
+import SEEDsPopulate from './populate';
 import SEEDsCatalogue from './catalogue';
 import SEEDsMapPortal from './map-portal';
 import SEEDsProfile from '../containers/seedsProfile';
@@ -41,7 +41,7 @@ const useStyles = makeStyles(function () {
       boxSizing: "border-box",
       margin: "0",
 
-      "& > :nth-of-type(1)": {
+      "& > :nth-child(1)": {
         width: "auto",
         height: "100%",
 
@@ -99,12 +99,12 @@ const useStyles = makeStyles(function () {
         },
       },
 
-      "& > :nth-of-type(2)": {
+      "& > :nth-child(2)": {
         display: "flex",
         flex: "1 1 auto",
         flexFlow: "column nowrap",
 
-        "& > :nth-of-type(1)": {
+        "& > :nth-child(1)": {
           width: "100%",
           height: "auto",
 
@@ -131,19 +131,19 @@ const useStyles = makeStyles(function () {
             font: "800 36px/1 'Outfit', sans-serif",
             color: "var(--color-black)",
 
-            "& > :nth-of-type(1)": {
+            "& > :nth-child(1)": {
               color: "var(--color-green-dark)",
             },
             
             "&:hover": {
-              "& > :nth-of-type(1)": {
+              "& > :nth-child(1)": {
                 color: "var(--color-black)",
               },
             },
           },
         },
 
-        "& > :nth-of-type(2)": {
+        "& > :nth-child(2)": {
           display: "flex",
           flex: "1 1 auto",
           flexFlow: "column nowrap",

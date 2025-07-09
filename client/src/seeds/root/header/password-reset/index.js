@@ -47,7 +47,7 @@ const useStyles = makeStyles(function() {
           gap: "12px",
         },
 
-        "& > :nth-of-type(1)": {
+        "& > :nth-child(1)": {
           display: "flex",
           flexFlow: "row nowrap",
           placeContent: "center center",
@@ -61,19 +61,19 @@ const useStyles = makeStyles(function() {
 
             cursor: "default",
 
-            "& > :nth-of-type(1)": {
+            "& > :nth-child(1)": {
               font: "800 64px/1.25 'Outfit', sans-serif",
               color: "var(--color-black)",
             },
 
-            "& > :nth-of-type(2)": {
+            "& > :nth-child(2)": {
               font: "400 18px/1.25 'Outfit', sans-serif",
               color: "var(--color-black)",
             },
           },
         },
 
-        "& > :nth-of-type(2)": {
+        "& > :nth-child(2)": {
           display: "flex",
           flexFlow: "column nowrap",
 

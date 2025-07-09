@@ -17,7 +17,7 @@ const StyledTableCell = withStyles((theme) => ({
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
-    '&:nth-of-type(odd)': {
+    '&:nth-child(odd)': {
       backgroundColor: theme.palette.action.hover,
     }
   }
@@ -25,7 +25,7 @@ const StyledTableRow = withStyles((theme) => ({
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '&:nth-of-type(odd)': {
+    '&:nth-child(odd)': {
       backgroundColor: theme.palette.action.hover
     }
   }, edit: {

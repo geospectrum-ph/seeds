@@ -16,7 +16,7 @@ const useStyles = makeStyles(function () {
 
       background: "var(--color-white)",
 
-      "& > :nth-of-type(1)": {
+      "& > :nth-child(1)": {
         font: "800 72px/1 'Outfit', sans-serif",
         color: "var(--color-black)",
 
@@ -31,7 +31,7 @@ const useStyles = makeStyles(function () {
         },
       },
       
-      "& > :nth-of-type(2)": {
+      "& > :nth-child(2)": {
         overflow: "hidden auto",
 
         font: "400 18px/1.25 'Outfit', sans-serif",

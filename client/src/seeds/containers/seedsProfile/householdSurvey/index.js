@@ -1,6 +1,6 @@
 import React, {useContext}  from 'react';
 import { Card, CardHeader, Grid, Paper } from '@material-ui/core';
-import { DataGrid } from '@material-ui/data-grid';
+// import { DataGrid } from '@material-ui/data-grid';
 
 import CardHousehold from './1-cardHousehold';
 import SeedsMap from '../seedsProfileMap';
@@ -53,11 +53,11 @@ export default function DemLabor() {
         <Grid item container>
           <Paper elevation={3} style={{height: '100%', width:"100%"}}>
               <div style={{ height: 700, width: '100%' }}>
-                { householdBldgPopulation ?
+                {/* { householdBldgPopulation ?
                   <DataGrid borderRadius={0} rowHeight={30} pagination rowsPerPageOptions={[25, 50, 100]} 
                     rows={householdBldgPopulation} columns={columns} />
                 : <DataGrid borderRadius={0} rowHeight={30} pagination rowsPerPageOptions={[25, 50, 100]} 
-                    rows={rows} columns={columns} loading="true"/>}
+                    rows={rows} columns={columns} loading="true"/>} */}
               </div>
           </Paper> 
         </Grid>

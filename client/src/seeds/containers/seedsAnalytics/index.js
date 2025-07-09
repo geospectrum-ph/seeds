@@ -6,7 +6,7 @@ import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Label, CartesianGrid, Toolt
 import { Button, Typography, Grid, Container, Paper, Checkbox, Divider, FormControl, FormGroup,
           InputLabel, MenuItem, Select ,Radio, RadioGroup, FormControlLabel, ListSubheader, FormHelperText }from '@material-ui/core';
 import { createTheme, makeStyles } from '@material-ui/core/styles';
-import { DataGrid } from '@material-ui/data-grid';
+// import { DataGrid } from '@material-ui/data-grid';
 
 import SeedsAnalyticsMap from './seedsAnalyticsMap/index'
 import AnalyticsDatePicker from './datePicker'
@@ -728,9 +728,9 @@ export default function Analytics() {
           <Grid item xs={12} md={12} lg={6} >
             <Typography align="center" variant="h5">Table</Typography>
             <Paper style={{height:500}}>
-              {rows.length > 0 ?
+              {/* {rows.length > 0 ?
                 <DataGrid rows={rows} columns={cols} rowsPerPageOptions={[25, 50, 100]}/>
-              : null}
+              : null} */}
             </Paper>
           </Grid>
           <Grid item xs={12} md={12} lg={6} >
