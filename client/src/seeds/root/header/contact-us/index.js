@@ -5,7 +5,7 @@ import { Grid, Button, TextField, makeStyles } from "@material-ui/core";
 import { Formik } from "formik";
 import * as yup from "yup";
 
-import * as Leaflet from "leaflet";
+import * as leaflet from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 const useStyles = makeStyles(function () {
@@ -18,6 +18,7 @@ const useStyles = makeStyles(function () {
       flexFlow: "row nowrap",
 
       boxSizing: "border-box",
+      margin: "0",
       padding: "48px",
       gap: "48px",
 
@@ -265,19 +266,19 @@ function ContactUsMap({ styles }) {
   const mapContactUs = React.useRef(null);
 
   React.useEffect(() => {
-    mapContactUs.current = L.map("map-contact-us", {
+    mapContactUs.current = leaflet.map("map-contact-us", {
       center: [14.582, 121.059],
       zoom: 14,      
       zoomControl: false,
     });
 
-    Leaflet
+    leaflet
       .tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: `&copy; <a href = "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors`,
       })
       .addTo(mapContactUs.current);
 
-    Leaflet
+    leaflet
       .marker([14.582, 121.059])
       .addTo(mapContactUs.current)
       .bindPopup("<b>Geospectrum Main Office</b><br />is here!.")

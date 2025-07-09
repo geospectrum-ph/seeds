@@ -37,6 +37,8 @@ const useStyles = makeStyles(function () {
         flex: "1 1 auto",
         flexFlow: "column nowrap",
 
+        overflow: "hidden auto",
+
         "& > :nth-of-type(1)": {
           flex: "1 1 auto",
         },

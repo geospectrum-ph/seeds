@@ -1,5 +1,5 @@
 import React, {useEffect, useContext, useState} from 'react';
-import L from 'leaflet';
+import * as leaflet from 'leaflet';
 import { GeoSearchControl, EsriProvider } from 'leaflet-geosearch';
 import $ from 'jquery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -47,11 +47,11 @@ import _without from "lodash/without";
 import DataCatalogueForEdit2 from '../catalogue/index.js'
 import AddToMapIcon from '../../assets/icons/42 Add to Map.png'
 
-var MyCustomMarker = L.Icon.extend({
+var MyCustomMarker = leaflet.Icon.extend({
   options: {
       shadowUrl: null,
-      iconAnchor: new L.Point(12, 12),
-      iconSize: new L.Point(24, 36),
+      iconAnchor: new leaflet.Point(12, 12),
+      iconSize: new leaflet.Point(24, 36),
       // iconUrl: icon
   }
 });
@@ -113,7 +113,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function SeedsMapPortalLayer({ classes }) {
+function SeedsMapPortalLayer({ styles }) {
 
   const {brgys, setBrgys, legendItems, setLegendItems, lg, setLG, setLoadedMtd} = React.useContext(FeaturesContext)
   const {map, lControl} = useContext(MapContext)
@@ -277,7 +277,7 @@ function SeedsMapPortalLayer({ classes }) {
       <CssBaseline />
       <Grid container style={{overflowY: 'hidden'}}>
         <Grid item container direction='row' justifyContent='space-between' alignItems="center">
-          <Grid item className={classes.toolbar}>
+          <Grid item className={styles.toolbar}>
             <Typography style={{
                 fontWeight:1000, 
                 fontSize:"1.2rem", 
@@ -288,14 +288,14 @@ function SeedsMapPortalLayer({ classes }) {
           </Grid>
           <Grid item>
             <Tooltip title="Add Layer from SEEDs Catalogue">
-              <Button className={classes.login1} onClick={handleClickOpen}>
+              <Button className={styles.login1} onClick={handleClickOpen}>
                 <img src={AddToMapIcon} style={{width:35}}/>
               </Button>
             </Tooltip>
           </Grid>
         </Grid>
 
-        <Divider light={true} className={classes.divider}/>
+        <Divider light={true} className={styles.divider}/>
         <Grid item xs={12} style={{
             overflowY: 'auto', 
             height: window.innerHeight-200,
@@ -318,58 +318,10 @@ function SeedsMapPortalLayer({ classes }) {
   );
 }
 
-export default function SEEDsMapPortal() {
-  const [drawerWidth, setDrawerWidth] = React.useState("13vw")
 
-  const useStyles = makeStyles((theme) => ({
-    button: {
-      backgroundColor:"#0c343d", 
-      color: "#fffefe", 
-      '&:hover': {
-        color: '#fffefe',
-        backgroundColor: '#1b798e',
-      }
-    }, appBar: {
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
-      })
-    }, appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen
-      }), marginRight: drawerWidth
-    }, title: {
-      flexGrow: 1
-    }, hide: {
-      display: 'none'
-    }, drawer: {
-      width: drawerWidth
-    }, drawerPaper: {
-      width: drawerWidth,
-      backgroundColor:"#0c343d",
-      color:"white"
-    }, drawerHeader: {
-      display: 'flex',
-      alignItems: 'center',
-      padding: theme.spacing(0, 1),
-      ...theme.mixins.toolbar,
-      justify: 'flex-start'
-    }, content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }), marginRight: -drawerWidth
-    }, contentShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }), marginRight: 0,
-      marginTop: 64.5 // same marginTop with Main Window
-    },
+
+const useStyles = makeStyles(function () {
+  return ({
     root: {
       "& .title": {
   gridRow: "1",
@@ -447,11 +399,172 @@ export default function SEEDsMapPortal() {
   display: "block",
   borderStyle: "dotted",
 },
-    } 
-  }))
+    },
+    pageMapPortal: {
+      width: "100%",
+      height: "100%",
 
-  const classes = useStyles();
+      display: "flex",
+      flexFlow: "row nowrap",
+      placeContent: "center center",
+      placeItems: "center center",
+
+      "& > :nth-of-type(1)": {
+        width: "100%",
+        height: "100%",
+        
+        display: "flex",
+        flex: "1 1 auto",
+      },
+
+      "& > :nth-of-type(2)": {
+        width: "auto",
+        height: "100%",
+
+        display: "flex",
+        flex: "0 1 auto",
+      },
+    },
+    mapPortalMap: {
+      width: "100%",
+      height: "100%",
+    },
+  });
+});
+//   (theme) => ({
+//     button: {
+//       backgroundColor:"#0c343d", 
+//       color: "#fffefe", 
+//       '&:hover': {
+//         color: '#fffefe',
+//         backgroundColor: '#1b798e',
+//       }
+//     }, appBar: {
+//       transition: theme.transitions.create(['margin', 'width'], {
+//         easing: theme.transitions.easing.sharp,
+//         duration: theme.transitions.duration.leavingScreen
+//       })
+//     }, appBarShift: {
+//       width: `calc(100% - ${drawerWidth}px)`,
+//       transition: theme.transitions.create(['margin', 'width'], {
+//         easing: theme.transitions.easing.easeOut,
+//         duration: theme.transitions.duration.enteringScreen
+//       }), marginRight: drawerWidth
+//     }, title: {
+//       flexGrow: 1
+//     }, hide: {
+//       display: 'none'
+//     }, drawer: {
+//       width: drawerWidth
+//     }, drawerPaper: {
+//       width: drawerWidth,
+//       backgroundColor:"#0c343d",
+//       color:"white"
+//     }, drawerHeader: {
+//       display: 'flex',
+//       alignItems: 'center',
+//       padding: theme.spacing(0, 1),
+//       ...theme.mixins.toolbar,
+//       justify: 'flex-start'
+//     }, content: {
+//       flexGrow: 1,
+//       padding: theme.spacing(3),
+//       transition: theme.transitions.create('margin', {
+//         easing: theme.transitions.easing.sharp,
+//         duration: theme.transitions.duration.leavingScreen,
+//       }), marginRight: -drawerWidth
+//     }, contentShift: {
+//       transition: theme.transitions.create('margin', {
+//         easing: theme.transitions.easing.easeOut,
+//         duration: theme.transitions.duration.enteringScreen,
+//       }), marginRight: 0,
+//       marginTop: 64.5 // same marginTop with Main Window
+//     },
+//     root: {
+//       "& .title": {
+//   gridRow: "1",
+//   justifySelf: "center",
+//   textAlign: "center",
+//   color: "grey",
+//   boxSizing: "border-box",
+//   marginTop: "0",
+//   backgroundColor: "white",
+//   fontSize: "2em",
+//   paddingLeft: "15px",
+//   paddingRight: "15px",  
+// },
+
+// "& .sub-content": {
+//   gridRow: "5",
+//   paddingLeft: "10px",
+//   textAlign: "center",
+//   color: "grey",
+//   boxSizing: "border-box",
+// },
+
+// "& .box": {
+//   background: "#fff",
+//   padding: "5px",
+//   zIndex: "2",
+// },
+
+// "& .elevated": {
+//   zIndex: "999",
+// },
+
+// "& .output-title": {
+//   padding: "6px 10px",
+//   font: "20px/22px Arial, Helvetica, sans-serif",
+//   background: "white",
+//   boxShadow: "0 0 15px rgba(0,0,0,0.2)",
+//   borderRadius: "5px",
+// },
+
+// "& .leaflet-container output-crs": {
+//   backgroundColor: "rgba(255, 255, 255, 0.7)",
+//   boxShadow: "0 0 5px #bbb",
+//   padding: "0px 5px",
+//   color: "#333",
+//   font: "12px/1 .5 'Helvetica Neue', Arial, Helvetica, sans-serif",
+//   margin: "5px 5px",
+// },
+
+// "& .input-title": {
+//   padding: "6px 10px",
+//   font: "20px/22px Arial, Helvetica, sans-serif",
+//   background: "rgba(255,255,255,0.8)",
+//   boxShadow: "0 0 15px rgba(0,0,0,0.2)",
+//   borderRadius: "5px",
+//   border: "0",
+//   width: "150px",
+// },
+
+// "& table, th, td": {
+//   border: "1px solid black",
+//   padding: "5px",
+// },
+
+// "& th, td": {
+//   maxWidth: "150px",
+//   overflowWrap: "break-word",
+// },
+
+// "& tr:nth-child(odd)": {backgroundColor: "#f2f2f2",},
+
+// "& .header": { backgroundColor: "#ced8da" },
+
+// "& table": {
+//   display: "block",
+//   borderStyle: "dotted",
+// },
+//     } 
+// })
+
+export default function SEEDsMapPortal() {
+  const styles = useStyles();
   const theme = useTheme();
+
+  const [drawerWidth, setDrawerWidth] = React.useState("13vw")
   const {viewport,  map, lControl, setLC} = useContext(MapContext)
   const { brgys, selected, lg, setLG, setLGCurrent, loadedMtd, setLoadedMtd, lControlId, 
           setLControlId } = useContext(FeaturesContext)
@@ -481,7 +594,7 @@ export default function SEEDsMapPortal() {
     setSelectedIndex(2)
   }, [selectedIndex])
 
-  var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  var esri = leaflet.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     attribution:
       'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
     }
@@ -490,11 +603,11 @@ export default function SEEDsMapPortal() {
   var value = ["Map Title"]
 
   function createUserInputMapTitle() {
-    var userInputControl = L.control({position:'topleft'}); //positions
-    var btnControl = L.control({position:'topleft'});
+    var userInputControl = leaflet.control({position:'topleft'}); //positions
+    var btnControl = leaflet.control({position:'topleft'});
     
     userInputControl.onAdd = function () { // things to do under this control
-      var input = L.DomUtil.create("input", "input-title");
+      var input = leaflet.DomUtil.create("input", "input-title");
       $(input).val(value);
       
       $(input).on("click", function () {
@@ -509,7 +622,7 @@ export default function SEEDsMapPortal() {
     }
 
     btnControl.onAdd = function () { // things to do under this control
-      var btn = L.DomUtil.create("button", "submit");
+      var btn = leaflet.DomUtil.create("button", "submit");
       $(btn).text("Update Map Title");
       
       $(btn).on({click: function() {
@@ -521,9 +634,9 @@ export default function SEEDsMapPortal() {
   }
 
   function printUpdatedMapTitle(title,e) {
-    var userOutputControl = L.control({position:'topleft'});
+    var userOutputControl = leaflet.control({position:'topleft'});
     userOutputControl.onAdd = function () {
-      var output = L.DomUtil.create("output", "output-title");
+      var output = leaflet.DomUtil.create("output", "output-title");
       $(output).text(title);
       return output;
     }
@@ -531,9 +644,9 @@ export default function SEEDsMapPortal() {
   }
   
   function addCrsText(title, e) {
-    var userOutputControl = L.control({position:'bottomleft'});
+    var userOutputControl = leaflet.control({position:'bottomleft'});
     userOutputControl.onAdd = function () {
-      var output = L.DomUtil.create("output", "output-crs");
+      var output = leaflet.DomUtil.create("output", "output-crs");
       $(output).text(title);
       return output;
     }
@@ -541,52 +654,34 @@ export default function SEEDsMapPortal() {
   }
 
   var baseMaps = {
-    "OSM": L.tileLayer('https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png', {attribution:
+    "OSM": leaflet.tileLayer('https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png', {attribution:
       '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}),
-    "CartoDB": L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {attribution:
+    "CartoDB": leaflet.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'}),
-    "ESRI": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution:
+    "ESRI": leaflet.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution:
       'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'}),
-    "Planet": L.Geoserver.wms("https://seeds.geospectrum.com.ph/geoserver/wms", {
-    // "Planet": L.Geoserver.wms("http://localhost:5000/geoserver/wms", {
+    "Planet": leaflet.Geoserver.wms("https://seeds.geospectrum.com.ph/geoserver/wms", {
+    // "Planet": leaflet.Geoserver.wms("http://localhost:5000/geoserver/wms", {
       layers: "SEEDsdata:20180525_015612_100e_3B_AnalyticMS_SR"
     })
   };
 
-  useEffect(() => {
-    // if (map.current === undefined || map.current === null){
-    //   map.current = L.map('map', {
-    //     center: position,
-    //     zoom: 13,
-    //     layers: [esri],
-    //     zoomControl: false
-    //   });
-    //   setLC(L.control.layers(baseMaps).addTo(map.current))
-    // } else {
-    //   map.current = L.map('map', {
-    //     center: position,
-    //     zoom: 13,      
-    //     layers: [esri],
-    //     zoomControl: false
-
-    //   });
-    //   setLC(L.control.layers(baseMaps).addTo(map.current))
-    // }
-
-    map.current = L.map('map', {
+  React.useEffect(function () {
+    map.current = leaflet.map("map-map-portal", {
       center: position,
       zoom: 13,      
       layers: [esri],
       zoomControl: false
     });
-    setLC(L.control.layers(baseMaps).addTo(map.current))
+
+    setLC(leaflet.control.layers(baseMaps).addTo(map.current))
       
     createUserInputMapTitle()
     
     function addCrsText(title) {
-      var userOutputControl = L.control({position:'bottomleft'});
+      var userOutputControl = leaflet.control({position:'bottomleft'});
       userOutputControl.onAdd = function () {
-        var output = L.DomUtil.create("output", "output-crs");
+        var output = leaflet.DomUtil.create("output", "output-crs");
         $(output).text(title);
         
         return output;
@@ -596,17 +691,17 @@ export default function SEEDsMapPortal() {
 
     addCrsText('Coordinate System: GCS WGS 1984') // adds crs text
 
-    L.control.mousePosition({prefix:"Lat: ", separator: ", Lon: ", }).addTo(map.current);
-    L.control.scale({imperial: false,position:'bottomleft'}).addTo(map.current); //scale!
+    leaflet.control.mousePosition({prefix:"Lat: ", separator: ", Lon: ", }).addTo(map.current);
+    leaflet.control.scale({imperial: false,position:'bottomleft'}).addTo(map.current); //scale!
     map.current.addControl(searchControl); //search!
-    const northArrow = L.control.rose('leaflet-rose', {
+    const northArrow = leaflet.control.rose('leaflet-rose', {
       position:'bottomleft', 
       icon:'default', 
       iSize:'medium', 
       opacity:0.8
     });
     northArrow.addTo(map.current); //northarrow!
-    L.control.zoom({
+    leaflet.control.zoom({
         position: 'topright'
     }).addTo(map.current);
   }, []);
@@ -622,15 +717,15 @@ export default function SEEDsMapPortal() {
       //   }
       // }
 
-      // L.control.browserPrint({
+      // leaflet.control.browserPrint({
       //   position: "topright",
       //   title: 'Just print me!',
       //   documentTitle: 'Map printed using leaflet.browser.print plugin',
       //   printModes: [
       //       "Landscape",
       //       "Portrait",
-      //       // L.control.browserPrint.mode.auto("Automatico", "B4"),
-      //       // L.BrowserPrint.Mode.Custom("Custom")
+      //       // leaflet.control.browserPrint.mode.auto("Automatico", "B4"),
+      //       // leaflet.BrowserPrint.Mode.Custom("Custom")
       //   ]
       // }).addTo(map.current);
    
@@ -639,13 +734,13 @@ export default function SEEDsMapPortal() {
         add it to the print map to be able to print custom information */
         addCrsText('Coordinate System: GCS WGS 1984',e)
 
-        L.control.scale({position:'bottomleft', imperial: false}).addTo(e.printMap);
-        L.control.rose('leaflet-rose', {position:'bottomleft', icon:'default', iSize:'medium', opacity:0.8}).addTo(e.printMap); 
+        leaflet.control.scale({position:'bottomleft', imperial: false}).addTo(e.printMap);
+        leaflet.control.rose('leaflet-rose', {position:'bottomleft', icon:'default', iSize:'medium', opacity:0.8}).addTo(e.printMap); 
 
         printUpdatedMapTitle(value,e)
       });
       
-      var editableLayers = new L.FeatureGroup();
+      var editableLayers = new leaflet.FeatureGroup();
       map.current.addLayer(editableLayers);
       
       var options = {
@@ -701,21 +796,21 @@ export default function SEEDsMapPortal() {
       // - Returns HTML string, or null if unknown object
       var getPopupContent = function(layer) {
         // Marker - add lat/long
-        if (layer instanceof L.Marker) {
+        if (layer instanceof leaflet.Marker) {
           return strLatLng(layer.getLatLng());
         // Circle - lat/long, radius
-        } else if (layer instanceof L.CircleMarker) {
+        } else if (layer instanceof leaflet.CircleMarker) {
           var center = layer.getLatLng(),
               radius = layer.getRadius();
           return "Center: "+strLatLng(center)+"<br />"
                 + "Radius: "+_round(radius, 2)+" m";
         // Rectangle/Polygon - area
-        } else if (layer instanceof L.Polygon) {
+        } else if (layer instanceof leaflet.Polygon) {
           var latlngs = layer._defaultShape ? layer._defaultShape() : layer.getLatLngs(),
-              area = L.GeometryUtil.geodesicArea(latlngs);
-          return "Area: "+L.GeometryUtil.readableArea(area, true);
+              area = leaflet.GeometryUtil.geodesicArea(latlngs);
+          return "Area: "+leaflet.GeometryUtil.readableArea(area, true);
         // Polyline - distance
-        } else if (layer instanceof L.Polyline) {
+        } else if (layer instanceof leaflet.Polyline) {
           var latlngs = layer._defaultShape ? layer._defaultShape() : layer.getLatLngs(),
               distance = 0;
           if (latlngs.length < 2) {
@@ -731,7 +826,7 @@ export default function SEEDsMapPortal() {
       };
 
       // Object created - bind popup to layer, add to feature group
-      map.current.on(L.Draw.Event.CREATED, function(event) {
+      map.current.on(leaflet.Draw.Event.CREATED, function(event) {
         var layer = event.layer;
         var content = getPopupContent(layer);
         if (content !== null) {
@@ -740,7 +835,7 @@ export default function SEEDsMapPortal() {
         editableLayers.addLayer(layer);
       });
       // Object(s) edited - update popups
-      map.current.on(L.Draw.Event.EDITED, function(event) {
+      map.current.on(leaflet.Draw.Event.EDITED, function(event) {
         var layers = event.layers,
             content = null;
         layers.eachLayer(function(layer) {
@@ -751,7 +846,7 @@ export default function SEEDsMapPortal() {
         });
       });
 
-      var drawControl = new L.Control.Draw(options);
+      var drawControl = new leaflet.Control.Draw(options);
       map.current.addControl(drawControl);
     
       map.current.on('draw:created', function (e) {
@@ -794,7 +889,7 @@ export default function SEEDsMapPortal() {
       if (loadedMtd.length === brgys.length){
         // do nothing
       } else {
-        var layerGroup = new L.FeatureGroup()
+        var layerGroup = new leaflet.FeatureGroup()
 
         var mtdId = brgys[brgys.length-1][0].properties.mtd_id
 
@@ -809,7 +904,7 @@ export default function SEEDsMapPortal() {
             var myJSON = JSON.stringify(updated_json).replace(/,/g, '<br>\u2022   ')
                         .replace(/{/g,'').replace(/}/g,'').replace(/(['"])/g, '')
                         .replace(/:/g, ':   ')
-            var popup = L.popup().setContent("\u2022   " + myJSON)
+            var popup = leaflet.popup().setContent("\u2022   " + myJSON)
             const updated_json_len = Object.keys(updated_json).length
             var counter = 0
             const table = []
@@ -820,14 +915,14 @@ export default function SEEDsMapPortal() {
               counter += 1
               table.push(`<tr><th>${i}</th><td>${updated_json[i]}</td></tr>`)
               if (counter === updated_json_len) {
-                var popup = L.popup({maxHeight:300}).setContent(`<table>${table}</table>`.replace(/,/g, ''))
+                var popup = leaflet.popup({maxHeight:300}).setContent(`<table>${table}</table>`.replace(/,/g, ''))
               }
             }
           }
 
           // console.log(data);
 
-          var poly = new L.geoJSON(data, {
+          var poly = new leaflet.geoJSON(data, {
             style: {
     "color": "var(--color-black)",
     "stroke": true,
@@ -869,13 +964,11 @@ export default function SEEDsMapPortal() {
   },[brgys])
 
   return (
-    <>
-      <div className={clsx({
-          [classes.appBarShift]: openLayerGroups && !isMatch,
-        })}>
-        <div id="map" style={{height:"93.4vh", overflow: 'hidden'}}>
-          {openLayerGroups && !isMatch?
-            <Button onClick={handleDrawerClose} className={classes.button} style={{
+    <Grid id = "page-map-portal" className = { styles.pageMapPortal } container>
+      <Grid item container>
+        <div id = "map-map-portal" className = { styles.mapPortalMap }>
+          {/* {openLayerGroups && !isMatch?
+            <Button onClick={handleDrawerClose} className={styles.button} style={{
                 borderRadius:0, 
                 zIndex:1000, 
                 position:"absolute", 
@@ -884,7 +977,7 @@ export default function SEEDsMapPortal() {
               }}>
               {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </Button>
-            : <Button onClick={handleDrawerOpen} className={classes.button} style={{
+            : <Button onClick={handleDrawerOpen} className={styles.button} style={{
                 borderRadius:0,
                 zIndex:1000, 
                 position:"absolute", 
@@ -893,19 +986,21 @@ export default function SEEDsMapPortal() {
               }}>
               Layer Groups
             </Button>
-          }
+          } */}
         </div>
-      </div>
-      <Drawer className={classes.drawer} variant="persistent" anchor="right"
-        open={openLayerGroups && !isMatch} classes={{
-          paper: classes.drawerPaper,
-        }}>
-        <main className={clsx(classes.content, {
-            [classes.contentShift]: openLayerGroups && !isMatch,
-          })}>
-          <SeedsMapPortalLayer classes = {classes}/>
-        </main>
-      </Drawer>
-    </>
+      </Grid>
+      <Grid item container>
+        {/* <Drawer className={styles.drawer} variant="persistent" anchor="right"
+          open={openLayerGroups && !isMatch} classes={{
+            paper: styles.drawerPaper,
+          }}> */}
+          <main className={clsx(styles.content, {
+              [styles.contentShift]: openLayerGroups && !isMatch,
+            })}>
+            <SeedsMapPortalLayer styles = {styles}/>
+          </main>
+        {/* </Drawer> */}
+      </Grid>
+    </Grid>
   )
 }
