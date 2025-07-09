@@ -29,6 +29,7 @@ const useStyles = makeStyles(function () {
       flexFlow: "column nowrap",
 
       "& > :nth-of-type(1)": {
+        display: "flex",
         flex: "0 1 auto",
       },
       
