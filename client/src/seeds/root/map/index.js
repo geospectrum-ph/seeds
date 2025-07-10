@@ -8,15 +8,15 @@ import "leaflet/dist/leaflet.css";
 const useStyles = makeStyles(function () {
   return ({
     rootMap: {
-      position: "absolute",
-      top: "0",
-      left: "0",
-      zIndex: "-100",
-
       width: "100vw",
       height: "100vh",
 
       display: "block",
+
+      position: "absolute",
+      top: "0",
+      left: "0",
+      zIndex: "-500",
 
       filter: "grayscale(100%) brightness(100%)",
     },

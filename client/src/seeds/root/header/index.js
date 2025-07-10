@@ -21,8 +21,6 @@ const useStyles = makeStyles(function (theme) {
 
       display: "flex",
       flexFlow: "row nowrap",
-      placeContent: "center space-between",
-      placeItems: "center center",
 
       boxSizing: "border-box",
       padding: "12px 48px",
@@ -30,7 +28,7 @@ const useStyles = makeStyles(function (theme) {
       background: "var(--color-white)",
       cursor: "default",
 
-      font: "400 16px/1 'Outfit', sans-serif",
+      font: "400 16px/1.25 'Outfit', sans-serif",
       color: "var(--color-gray-dark)",
 
       "& > :nth-child(1) > *": {  
@@ -49,7 +47,7 @@ const useStyles = makeStyles(function (theme) {
         },
 
         "& > *": {
-          font: "800 36px/1 'Outfit', sans-serif",
+          font: "800 36px/1.00 'Outfit', sans-serif",
           color: "var(--color-black)",
 
           "& > :nth-child(1)": {
@@ -72,26 +70,25 @@ const useStyles = makeStyles(function (theme) {
       "& #root-menu-tabs": {
         display: "flex",
         flexFlow: "row nowrap",
-        placeContent: "center center",
-        placeItems: "center center",
 
         boxSizing: "border-box",
         gap: "12px",
 
         "& > *": {
-          width: "auto",
-
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-
+          display: "flex",
+          flex: "0 1 auto",
+          flexFlow: "row nowrap",
           placeItems: "center center",
           placeContent: "center center",
+          
+          whiteSpace: "nowrap",
+          overflow: "hidden",
 
           boxSizing: "border-box",
           padding: "12px",
           borderBottom: "2px solid var(--color-transparent)",
       
-          font: "800 16px 'Outfit', sans-serif",
+          font: "800 16px/1.25 'Outfit', sans-serif",
           textAlign: "center",
           textDecoration: "none",
           color: "var(--color-gray-dark)",
@@ -101,6 +98,7 @@ const useStyles = makeStyles(function (theme) {
           },
 
           "&.active": {
+            boxSizing: "border-box",
             borderBottom: "2px solid var(--color-black)",
 
             color: "var(--color-red-dark)",
@@ -113,16 +111,18 @@ const useStyles = makeStyles(function (theme) {
 
             backgroundColor: "var(--color-black)",
 
-            font: "600 16px 'Outfit', sans-serif",
+            font: "600 16px/1.00 'Outfit', sans-serif",
             color: "var(--color-gray-light)",
 
             "&:hover": {
+              boxSizing: "border-box",
               backgroundColor: "var(--color-red-dark)",
               
               color: "var(--color-white)", 
             },
 
             "&.active": {
+              boxSizing: "border-box",
               borderBottom: "2px solid var(--color-black)",
 
               backgroundColor: "var(--color-red-dark)",
@@ -159,7 +159,7 @@ function RootMenuDrawer ({ array, appBarValue, handleHistory }) {
       margin: "0 48px 0 0",
       padding: "12px",
 
-      font: "600 16px 'Outfit', sans-serif",
+      font: "600 16px/1.25 'Outfit', sans-serif",
       color: "var(--color-gray-dark)",
 
       "&.active": {

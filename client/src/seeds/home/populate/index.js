@@ -195,6 +195,10 @@ const useStyles = makeStyles(function () {
         flex: "1 1 auto",
         flexFlow: "row nowrap",
 
+        boxSizing: "border-box",
+        padding: "24px",
+        gap: "24px",
+
         "& *": {
           font: "400 16px/1 'Outfit', sans-serif",
         },
@@ -208,8 +212,10 @@ const useStyles = makeStyles(function () {
           flexFlow: "column nowrap",
 
           boxSizing: "border-box",
-          padding: "12px",
+          padding: "24px",
           gap: "12px",
+
+          background: "var(--color-white)",
 
           // "& > :nth-child(2), & > :nth-child(3)": {
 
@@ -229,6 +235,67 @@ const useStyles = makeStyles(function () {
           display: "flex",
           flex: "1 1 auto",
           flexFlow: "column nowrap",
+
+          boxSizing: "border-box",
+          gap: "12px",
+          
+          "& > :nth-child(1)": {
+            display: "flex",
+            flex: "1 1 auto",
+
+            "& > *": {
+              display: "flex",
+              flex: "1 1 auto",
+              flexFlow: "column nowrap",
+
+              boxSizing: "border-box",
+              gap: "24px",
+
+              "& *": {
+                font: "400 16px/1 'Outfit', sans-serif",
+              },
+
+              "& .MuiInputBase-root" : {
+                background: "var(--color-white)",
+              },
+
+              "& > :nth-child(1)": {
+                display: "flex",
+                flex: "0 1 auto",
+                flexFlow: "row nowrap",
+
+                boxSizing: "border-box",
+                gap: "24px",
+
+                "& > :nth-child(1)": {
+                  flex: "3 1 auto",
+                },
+
+                "& > :nth-child(2)": {
+                  flex: "1 1 auto",
+                },
+              },
+            },
+          },
+          
+          "& > :nth-child(2)": {
+            display: "flex",
+            flex: "0 1 auto",
+            flexFlow: "row nowrap",
+            placeContent: "center flex-end",
+            placeItems: "center center",
+
+            boxSizing: "border-box",
+            gap: "12px",
+
+            "& .MuiButton-root": {
+              background: "var(--color-red-dark)",
+
+              font: "800 18px/1.25 'Outfit', sans-serif",
+              textAlign: "center",
+              color: "var(--color-white)",
+            },
+          },
         },
       },
     },
@@ -344,39 +411,22 @@ export default function SEEDsPopulate() {
 
   var keywords = ["barangay", "points", "land use", "disease", "employment", "commercial", "household", "boundary", "other"]
 
-  function getStepContent(stepIndex) {
+  function getStepContent (stepIndex) {
     switch (stepIndex) {
       case 0:
         return (
-          <Grid container direction="row" spacing={3}>
-            <Grid item xs={12} lg={8}>
-              <TextField  InputProps={{style: {padding:10}}} required variant="filled" autoFocus
-                InputLabelProps={{style: {fontSize: "1.5rem"}, shrink: true}}
-                label="File name" fullWidth value={state.file.name} size="medium" />
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <FormControl required autoFocus fullWidth variant="filled" size ="medium">
-                <InputLabel style={{fontSize: "1rem"}} autoFocus>
-                  Data Type
-                </InputLabel>
-                <Select classes={{ root: styles.rootSecondSelect }} required inputProps={{style: {padding:10}}}
-                  value={state.type} onChange={handleTypeChange} label="Select Type" 
-                  MenuProps={{
-                    anchorOrigin: {
-                      vertical: "bottom",
-                      horizontal: "left"
-                    }, transformOrigin: {
-                      vertical: "top",
-                      horizontal: "left"
-                    }, getContentAnchorEl: null,
-                    classes: { paper: styles.menuPaper }
-                  }}>
+          <Grid item container>
+            <Grid item>
+              <TextField required variant = "outlined" autoFocus label = "Filename" value = { state.file.name } size="small"/>
+              <FormControl required autoFocus variant = "outlined" size="small">
+                <InputLabel autoFocus>{ "Data Type" }</InputLabel>
+                <Select required value = { state.type } onChange = { handleTypeChange } label = "Select Type">
                   <MenuItem value='shp'>Vector (.zip) </MenuItem>
                   <MenuItem value='csv'>Table (.csv)</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} lg={12}>
+            <Grid item>
               <FormControl required autoFocus variant="filled" fullWidth size="small">
                 <InputLabel autoFocus style={{fontSize: "1rem"}}>Keywords</InputLabel>
                 <Select required autoFocus fullWidth multiple value={state.keywords} onChange={handleKeyChange} 
@@ -406,16 +456,10 @@ export default function SEEDsPopulate() {
                 </Select>
               </FormControl>    
             </Grid>
-            <Grid item xs={12} lg={8}>
-              <TextField required autoFocus minRows={12} name="description" variant="filled" InputLabelProps={{
-                  style: {
-                    fontSize: "1.5rem"
-                  }, shrink: true,
-                }} InputProps={{style: {padding:40}}} label="Description" fullWidth multiline 
-                value={state.description} onChange={e => handleTextChange(e)}/>
+            <Grid item>
+              <TextField required autoFocus minRows = { 4 } name = "description" variant = "outlined" label="Description" fullWidth size="small" multiline value={state.description} onChange={e => handleTextChange(e)}/>
             </Grid>
-            <Grid item xs={12} lg={4}>
-              <Paper style={{height:"100%", padding:20}}>
+            <Grid item>
                 <FormControl required>
                   <FormLabel>Tag/s</FormLabel>
                   <FormGroup>
@@ -430,7 +474,6 @@ export default function SEEDsPopulate() {
                       onChange={handleChange} name="demographic"/>} label="Demographic"/>
                   </FormGroup>
                 </FormControl>
-              </Paper>
             </Grid>
           </Grid>
         )
@@ -491,15 +534,14 @@ export default function SEEDsPopulate() {
 
       case 2:
         return (
-          <Grid container>
+          <Grid item container>
             <TextField InputProps={{style: {padding:40}}} focused variant="filled" name="details" value={state.details}
               InputLabelProps={{style: {fontSize: "1.5rem"}, shrink: true}} label="Additional Details (if any)" 
               fullWidth multiline minRows={22} onChange={e => handleTextChange(e)}/>
           </Grid>
         );
-
       default:
-        return 'Unknown stepIndex';
+        return ("Unknown stepIndex");
     }
   }
 
@@ -966,13 +1008,13 @@ const VisuallyHiddenInput = styled('input')({
             <VisuallyHiddenInput type = "file" onChange = { handleFileChange } accept = ".zip, .tiff, .csv"/>
           </Button>
         </Grid>
-        <Grid item container>
-          <Grid>
-            {
-            getStepContent(activeStep)} 
-            <Grid>
+          <Grid item container>
+            <Grid item>
+              { getStepContent(activeStep) } 
+            </Grid>
+            <Grid item container>
               <Grid item>
-                <Button variant="outlined" disabled={activeStep === 0} onClick={handleBack}>
+                <Button variant = "outlined" disabled = { activeStep === 0 } onClick = { handleBack }>
                   Back
                 </Button>
               </Grid>
@@ -999,7 +1041,6 @@ const VisuallyHiddenInput = styled('input')({
                 </Grid>
               </Grid>
           </Grid>
-        </Grid>
       </Grid>
 
       {/* </Grid> */}

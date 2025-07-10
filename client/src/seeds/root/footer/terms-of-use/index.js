@@ -1,5 +1,7 @@
+import * as React from "react";
 import { makeStyles, Grid } from "@material-ui/core";
 
+import { SEEDSContext } from "../../../context/SEEDSContext";
 
 const useStyles = makeStyles(function () {
   return ({
@@ -18,7 +20,7 @@ const useStyles = makeStyles(function () {
       background: "var(--color-white)",
 
       "& > :nth-child(1)": {
-        font: "800 72px/1 'Outfit', sans-serif",
+        font: "800 72px/1.00 'Outfit', sans-serif",
         color: "var(--color-black)",
 
         "& > *": {
@@ -35,7 +37,7 @@ const useStyles = makeStyles(function () {
       "& > :nth-child(2)": {
         overflow: "hidden auto",
 
-        font: "400 18px/1.25 'Outfit', sans-serif",
+        font: "400 16px/1.25 'Outfit', sans-serif",
         color: "var(--color-black)",
 
         "& > *": {
@@ -43,7 +45,7 @@ const useStyles = makeStyles(function () {
           height: "0",
 
           "& a": {
-            font: "800 18px/1.25 'Outfit', sans-serif",
+            font: "800 16px/1.25 'Outfit', sans-serif",
             color: "var(--color-black)",
 
             "&:hover": {
@@ -68,7 +70,7 @@ const useStyles = makeStyles(function () {
           },
 
           "& .text-subtitle": {
-            font: "800 18px/1.25 'Outfit', sans-serif",
+            font: "800 16px/1.25 'Outfit', sans-serif",
             textTransform: "uppercase",
             color: "var(--color-black)",
           },
@@ -80,6 +82,12 @@ const useStyles = makeStyles(function () {
 
 export default function TermsOfUse() {
   const styles = useStyles();
+
+  const { setAppBarValue } = React.useContext(SEEDSContext);
+  
+  React.useEffect(function () {  
+    setAppBarValue("/terms-of-use");
+  }, []);
 
   return (
     <Grid id = "page-terms-of-use" className = { styles.pageTermsOfUse } container>

@@ -23,30 +23,26 @@ const useStyles = makeStyles(function () {
       width: "100vw",
       height: "100vh",
 
-      overflow: "hidden auto",
+      overflow: "hidden",
 
       display: "flex",
       flexFlow: "column nowrap",
 
+      // #container-root-header
       "& > :nth-child(1)": {
-        display: "flex",
         flex: "0 1 auto",
       },
       
-      "& > :nth-child(2)": {        
-        display: "flex",
+      // #container-root-body
+      "& > :nth-child(2)": {   
         flex: "1 1 auto",
-        flexFlow: "column nowrap",
 
         overflow: "hidden auto",
-
-        "& > :nth-child(1)": {
-          flex: "1 1 auto",
-        },
+      },
         
-        "& > :nth-child(2)": {
-          flex: "0 1 auto",
-        },
+      // #container-root-footer
+      "& > :nth-child(3)": {
+        flex: "0 1 auto",
       },
     },
     pageRoot: {
@@ -55,43 +51,38 @@ const useStyles = makeStyles(function () {
 
       display: "flex",
       flexFlow: "column nowrap",
-      placeContent: "center center",
+      placeContent: "center flex-end",
       placeItems: "center center",
 
-      boxSizing: "border-box",
-      margin: "0",
-
-      "& > :nth-child(1)": {
+      "& > *": {
         width: "100%",
         height: "auto",
-
+        
         display: "flex",
-        flexFlow: "row nowrap",
-        placeContent: "center center",
-        placeItems: "center center",
+        flexFlow: "column nowrap",
 
-        background: "var(--color-red-dark)",
+        boxSizing: "border-box",
+        padding: "48px",
 
-        font: "800 120px/1 'Outfit', sans-serif",
-        color: "var(--color-white)",
-      },
-      
-      "& > :nth-child(2)": {
-        width: "100%",
-        height: "auto",
+        background: "var(--color-white)",
 
-        display: "flex",
-        flexFlow: "row nowrap",
-        placeContent: "center center",
-        placeItems: "center center",
-
-        background: "var(--color-black)",
-
-        font: "800 120px/1 'Outfit', sans-serif",
-        color: "var(--color-white)",
+        textAlign: "left",
+        color: "var(--color-black)",
 
         "& > :nth-child(1)": {
-          color: "var(--color-green-dark)",
+          flex: "0 1 auto",
+
+          font: "800 72px/1.00 'Outfit', sans-serif",
+        },
+        
+        "& > :nth-child(2)": {
+          flex: "0 1 auto",
+
+          font: "800 180px/0.85 'Outfit', sans-serif",
+
+          "& > :nth-child(1)": {
+            color: "var(--color-green-dark)",
+          },
         },
       },
     },
@@ -107,46 +98,64 @@ export default function Root(){
   const modules = [
     {
       path: "/",
+      name: "Root",
       module:
         <Grid id = "page-root" className = { styles.pageRoot }>
-          <span>{ "Welcome to" }</span>
-          <span><span>{ "SEED" }</span><span>{ "s!" }</span></span>
+          <div>
+            <span>{ "Welcome to" }</span>
+            <span><span>{ "SEED" }</span><span>{ "s!" }</span></span>
+          </div>
         </Grid>,
+      icon: null,
       level: 0,
     },
     {
       path: "/sign-in",
+      name: "Sign In",
       module:<SignIn/>,
+      icon: null,
       level: 0,
     },
     {
       path: "/password-reset",
+      name: "Password Reset",
       module: <PasswordReset/>,
+      icon: null,
       level: 0,
     },
     {
       path: "/about",
+      name: "About",
       module: <About/>,
+      icon: null,
       level: 0,
     },
     {
       path: "/contact-us",
+      name: "Contact Us",
       module: <ContactUs/>,
+      icon: null,
       level: 0,
     },
     {
       path: "/privacy-policy",
+      name: "Privacy Policy",
       module: <PrivacyPolicy/>,
+      icon: null,
       level: 0,
     },
     {
       path: "/terms-of-use",
+      name: "Terms of Use",
       module: <TermsOfUse/>,
+      icon: null,
       level: 0,
     },
     {
       path: null,
+      name: null,
       module: <Redirect from = "*" to = "/"/>,
+      icon: null,
       level: 0,
     },
   ];
@@ -161,36 +170,34 @@ export default function Root(){
   
   return (
     <Grid id = "container-root" className = { styles.containerRoot } container>
-      <Grid id = "container-root-header" item>
+      <Grid id = "container-root-header" item container>
         <RootHeader/>
       </Grid>
       <Grid id = "container-root-body" item container>
-        <Grid item>
-          <Switch>
-            {
-              modules.map(function (item, index) {
-                if (item.path) {
-                  return (
-                    <Route key = { index } exact path = { item.path }>
-                      { item.module }
-                    </Route>
-                  );
-                }
-                else {
-                  return (
-                    <Route key = { index }>
-                      { item.module }
-                    </Route>
-                  );
-                }
-              })
-            }
-          </Switch>
-          <RootMap/>
-        </Grid>
-        <Grid id = "container-root-footer" item>
-          <RootFooter/>
-        </Grid>
+        <Switch>
+          {
+            modules.map(function (item, index) {
+              if (item.path) {
+                return (
+                  <Route key = { index } exact path = { item.path }>
+                    { item.module }
+                  </Route>
+                );
+              }
+              else {
+                return (
+                  <Route key = { index }>
+                    { item.module }
+                  </Route>
+                );
+              }
+            })
+          }
+        </Switch>
+        <RootMap/>
+      </Grid>
+      <Grid id = "container-root-footer" item container>
+        <RootFooter/>
       </Grid>
     </Grid>
   )

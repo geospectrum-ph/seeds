@@ -21,7 +21,7 @@ const useStyles = makeStyles(function () {
       background: "var(--color-black)",
       cursor: "default",
 
-      font: "400 16px/1 'Outfit', sans-serif",
+      font: "400 16px/1.25 'Outfit', sans-serif",
       color: "var(--color-gray-dark)",
 
       "& > *": {
@@ -51,7 +51,7 @@ const useStyles = makeStyles(function () {
     },
     rootFooterLink: {
       "& > a": {
-        font: "400 16px/1 'Outfit', sans-serif",
+        font: "400 16px/1.25 'Outfit', sans-serif",
         textDecoration: "none",
         color: "var(--color-gray-dark)",
       },
@@ -69,25 +69,23 @@ export default function RootFooter(){
   const styles = useStyles();
   const history = useHistory();
 
-  const { appBarValue, setAppBarValue } = React.useContext(SEEDSContext);
+  const { appBarValue } = React.useContext(SEEDSContext);
 
   const handleHistory = (path) => {
     if (history.location.pathname !== path) {
       history.push(path);
     }
-
-    setAppBarValue(path); 
   };
 
   return (
     <Grid id = "root-footer" className = { styles.rootFooter } container>
-      <Grid container>         
+      <Grid item container>         
         <Grid item className = { styles.rootFooterLink }><a href = "https://www.geospectrum.com.ph/" target = "_blank">{ "GEOSPECTRUM" }</a></Grid>
         <Grid item>{ "© " }</Grid>
         <Grid item>{ new Date().getFullYear() }</Grid>
         <Grid item>{ "All Rights Reserved" }</Grid>
       </Grid>
-      <Grid className = { appBarValue === "/terms-of-use" ? "active-terms-of-use" : appBarValue === "/privacy-policy" ? "active-privacy-policy" : null } container>         
+      <Grid className = { appBarValue === "/terms-of-use" ? "active-terms-of-use" : appBarValue === "/privacy-policy" ? "active-privacy-policy" : null } item container>         
         <Grid item className = { styles.rootFooterLink } onClick = { function () { handleHistory("/terms-of-use"); }}>{ "Terms of Use" }</Grid>
         <Grid item>{ "|" }</Grid>
         <Grid item className = { styles.rootFooterLink } onClick = { function () { handleHistory("/privacy-policy"); }}>{ "Privacy Policy" }</Grid>
