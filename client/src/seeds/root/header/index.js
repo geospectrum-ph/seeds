@@ -63,107 +63,105 @@ const useStyles = makeStyles(function () {
         width: "auto",
         height: "auto",
       },
+    },
+    rootMenuTabs: {
+      display: "flex",
+      flexFlow: "row nowrap",
 
-      "& #root-menu-tabs": {
+      boxSizing: "border-box",
+      gap: "12px",
+
+      "& > *": {
         display: "flex",
+        flex: "0 1 auto",
         flexFlow: "row nowrap",
+        placeItems: "center center",
+        placeContent: "center center",
+        
+        whiteSpace: "nowrap",
+        overflow: "hidden",
 
         boxSizing: "border-box",
-        gap: "12px",
+        padding: "12px",
+        borderBottom: "2px solid var(--color-transparent)",
+    
+        font: "800 16px/1.25 'Outfit', sans-serif",
+        textAlign: "center",
+        textDecoration: "none",
+        color: "var(--color-gray-dark)",
 
-        "& > *": {
-          display: "flex",
-          flex: "0 1 auto",
-          flexFlow: "row nowrap",
-          placeItems: "center center",
-          placeContent: "center center",
-          
-          whiteSpace: "nowrap",
-          overflow: "hidden",
+        "&:hover": {
+          color: "var(--color-black)", 
+        },
 
+        "&.active": {
           boxSizing: "border-box",
-          padding: "12px",
-          borderBottom: "2px solid var(--color-transparent)",
-      
-          font: "800 16px/1.25 'Outfit', sans-serif",
-          textAlign: "center",
-          textDecoration: "none",
-          color: "var(--color-gray-dark)",
+          borderBottom: "2px solid var(--color-black)",
+
+          color: "var(--color-red-dark)",
+        },
+        
+        "&:last-child": {
+          boxSizing: "border-box",
+          margin: "0 0 0 12px",
+          padding: "12px 24px",
+
+          backgroundColor: "var(--color-black)",
+
+          font: "600 16px/1.00 'Outfit', sans-serif",
+          color: "var(--color-gray-light)",
 
           "&:hover": {
-            color: "var(--color-black)", 
+            boxSizing: "border-box",
+            backgroundColor: "var(--color-red-dark)",
+            
+            color: "var(--color-white)", 
           },
 
           "&.active": {
             boxSizing: "border-box",
             borderBottom: "2px solid var(--color-black)",
 
-            color: "var(--color-red-dark)",
-          },
-          
-          "&:last-child": {
-            boxSizing: "border-box",
-            margin: "0 0 0 12px",
-            padding: "12px 24px",
-
-            backgroundColor: "var(--color-black)",
-
-            font: "600 16px/1.00 'Outfit', sans-serif",
-            color: "var(--color-gray-light)",
-
-            "&:hover": {
-              boxSizing: "border-box",
-              backgroundColor: "var(--color-red-dark)",
-              
-              color: "var(--color-white)", 
-            },
-
-            "&.active": {
-              boxSizing: "border-box",
-              borderBottom: "2px solid var(--color-black)",
-
-              backgroundColor: "var(--color-red-dark)",
-              
-              color: "var(--color-white)", 
-            },
+            backgroundColor: "var(--color-red-dark)",
+            
+            color: "var(--color-white)", 
           },
         },
       },
+    },
+    rootMenuDrawer: {
+      display: "flex",
+      flexFlow: "column nowrap",
+      
+      boxSizing: "border-box",
+      padding: "72px 0 0 0",
 
-      "& #root-menu-drawer": {
-        display: "flex",
-        flexFlow: "column nowrap",
-        
+      font: "600 16px/1.25 'Outfit', sans-serif",
+      color: "var(--color-gray-dark)",
+
+      "& > *": {
         boxSizing: "border-box",
-        padding: "72px 0 0 0",
+        padding: "12px 48px 12px 12px",
 
-        font: "600 16px/1.25 'Outfit', sans-serif",
-        color: "var(--color-gray-dark)",
+        "&.active": {
+          backgroundColor: "var(--color-red-dark)",
+          
+          color: "var(--color-white)",
+        },
 
-        "& > *": {
-          boxSizing: "border-box",
-          padding: "12px 48px 12px 12px",
-
-          "&.active": {
-            backgroundColor: "var(--color-red-dark)",
-            
-            color: "var(--color-white)",
-          },
-
-          "&:hover": {
-            backgroundColor: "var(--color-black)",
-            
-            color: "var(--color-white)",
-          },
+        "&:hover": {
+          backgroundColor: "var(--color-black)",
+          
+          color: "var(--color-white)",
         },
       },
     },
   });
 });
 
-function RootMenuTabs ({ array, appBarValue, handleHistory }) {
+function RootMenuTabs ({ array, appBarValue, handleHistory, styles }) {
   return (
-    <div id = "root-menu-tabs">
+    <div id = "root-menu-tabs" className = { styles.rootMenuTabs }>
       {
         array.map(function (item, index) {
           return (
@@ -175,13 +173,13 @@ function RootMenuTabs ({ array, appBarValue, handleHistory }) {
   );
 }
 
-function RootMenuDrawer ({ array, appBarValue, handleHistory }) {
+function RootMenuDrawer ({ array, appBarValue, handleHistory, styles }) {
   const [control, setControl] = React.useState(false);
 
   return (
     <div id = "root-menu-drawer-buffer">
       <Drawer anchor = "right" open = { control } onClick = { function () { setControl(false); }}>
-        <Grid id = "root-menu-drawer" container>
+        <Grid id = "root-menu-drawer" className = { styles.rootMenuDrawer } container>
           {
             array.map(function (item, index) {
               return (
@@ -241,9 +239,9 @@ export default function RootHeader () {
       <Grid item container>
         {
           useMediaQuery(theme.breakpoints.down("sm")) ?
-            <RootMenuDrawer array = { array } appBarValue = { appBarValue } handleHistory = { handleHistory }/>
+            <RootMenuDrawer array = { array } appBarValue = { appBarValue } handleHistory = { handleHistory } styles = { styles }/>
             :
-            <RootMenuTabs array = { array } appBarValue = { appBarValue } handleHistory = { handleHistory }/>
+            <RootMenuTabs array = { array } appBarValue = { appBarValue } handleHistory = { handleHistory } styles = { styles }/>
         }
       </Grid>
     </Grid>
