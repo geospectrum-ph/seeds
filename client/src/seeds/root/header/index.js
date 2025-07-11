@@ -1,17 +1,14 @@
 import * as React from "react";
 import { useHistory, Link } from "react-router-dom";
 
-import { createTheme, makeStyles, withStyles, Drawer, Grid, IconButton, List, ListItemText, useMediaQuery } from "@material-ui/core";
-import MuiListItem from "@material-ui/core/ListItem";
+import { createTheme, makeStyles, Drawer, Grid, IconButton, useMediaQuery } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 
 import { SEEDSContext } from "../../context/SEEDSContext";
 
 import logo from "../../assets/logo.png";
 
-const theme = createTheme({});
-
-const useStyles = makeStyles(function (theme) {
+const useStyles = makeStyles(function () {
   return ({
     rootHeader: {
       width: "100%",
@@ -132,6 +129,34 @@ const useStyles = makeStyles(function (theme) {
           },
         },
       },
+
+      "& #root-menu-drawer": {
+        display: "flex",
+        flexFlow: "column nowrap",
+        
+        boxSizing: "border-box",
+        padding: "72px 0 0 0",
+
+        font: "600 16px/1.25 'Outfit', sans-serif",
+        color: "var(--color-gray-dark)",
+
+        "& > *": {
+          boxSizing: "border-box",
+          padding: "12px 48px 12px 12px",
+
+          "&.active": {
+            backgroundColor: "var(--color-red-dark)",
+            
+            color: "var(--color-white)",
+          },
+
+          "&:hover": {
+            backgroundColor: "var(--color-black)",
+            
+            color: "var(--color-white)",
+          },
+        },
+      },
     },
   });
 });
@@ -153,44 +178,20 @@ function RootMenuTabs ({ array, appBarValue, handleHistory }) {
 function RootMenuDrawer ({ array, appBarValue, handleHistory }) {
   const [control, setControl] = React.useState(false);
 
-  const ListItem = withStyles({
-    root: {
-      boxSizing: "border-box",
-      margin: "0 48px 0 0",
-      padding: "12px",
-
-      font: "600 16px/1.25 'Outfit', sans-serif",
-      color: "var(--color-gray-dark)",
-
-      "&.active": {
-        backgroundColor: "var(--color-red-dark)",
-        
-        color: "var(--color-white)",
-      },
-
-      "&:hover": {
-        backgroundColor: "var(--color-black)",
-        
-        color: "var(--color-white)",
-      },
-    },
-
-  })(MuiListItem);
-
   return (
-    <div id = "root-menu-drawer">
+    <div id = "root-menu-drawer-buffer">
       <Drawer anchor = "right" open = { control } onClick = { function () { setControl(false); }}>
-        <List>
+        <Grid id = "root-menu-drawer" container>
           {
             array.map(function (item, index) {
               return (
-                <ListItem className = { appBarValue === item.path ? "active" : null } key = { index } divider button onClick = { function () { handleHistory(item.path); } }>
-                  <ListItemText primary = { item.name } disableTypography/>
-                </ListItem>
+                <Grid key = { index } className = { appBarValue === item.path ? "active" : null } item onClick = { function () { handleHistory(item.path); }}>
+                  <span>{ item.name }</span>
+                </Grid>
               );
             })
           }
-        </List>
+        </Grid>
       </Drawer>
       <IconButton onClick = { function () { setControl(!control); }} disableRipple><MenuIcon/></IconButton>
     </div>
@@ -198,12 +199,13 @@ function RootMenuDrawer ({ array, appBarValue, handleHistory }) {
 };
 
 export default function RootHeader () {
+  const theme = createTheme({});
   const styles = useStyles();
   const history = useHistory();
 
-  const { appBarValue, setAppBarValue } = React.useContext(SEEDSContext);
+  const { appBarValue } = React.useContext(SEEDSContext);
 
-  const [array] = React.useState([
+  const array = [
     {
       name: "HOME",
       path: "/",
@@ -220,14 +222,12 @@ export default function RootHeader () {
       name: "SIGN IN",
       path: "/sign-in",
     },
-  ]);
+  ];
 
   function handleHistory (path) {
     if (history.location.pathname !== path) {
       history.push(path);
     }
-
-    setAppBarValue(path);
   };
 
   return (

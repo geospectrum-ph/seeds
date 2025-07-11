@@ -53,7 +53,7 @@ const useStyles = makeStyles(function () {
             },
           },
 
-          "& .text-subtitle": {
+          "& .page-privacy-policy-title": {
             font: "800 16px/1.25 'Outfit', sans-serif",
             textTransform: "uppercase",
             color: "var(--color-black)",
@@ -83,7 +83,7 @@ export default function PrivacyPolicy() {
       </Grid>
       <Grid item>
         <div>
-          <span className = "text-subtitle">{ `Version 1.0 | Effective Date: 04 July 2025` }</span>
+          <span className = "page-privacy-policy-title">{ `Version 1.0 | Effective Date: 04 July 2025` }</span>
           <br/>
           <br/>
           <span>{ `This Privacy Policy outlines how Geospectrum Analytics Services, Inc. (“GASI”, “we”, “us”, or “our”) collects, uses, discloses, and protects the personal and usage information of individuals (“users”, “you”, or “your”) who access or use the SEEDs web-based GIS application (the “application” or “SEEDs”).` }</span>  
@@ -92,7 +92,7 @@ export default function PrivacyPolicy() {
           <span>{ `Your use of the application constitutes your consent to the practices described herein. This policy forms an integral part of the SEEDs `}<a href = "/terms-of-use">{ "Terms of Use" }</a></span>         
           <br/>
           <br/>
-          <span className = "text-subtitle">{ `Personal Data` }</span>
+          <span className = "page-privacy-policy-title">{ `Personal Data` }</span>
           <br/>
           <br/>
           <span>{ `“Personal Data” refers to any information that identifies or can be used to identify an individual, either directly or indirectly. GASI may collect the following categories of personal data:`}</span>
@@ -106,7 +106,7 @@ export default function PrivacyPolicy() {
           <span>{ `This data may be collected directly from the user or automatically through interactions with the application.`}</span> 
           <br/>
           <br/>
-          <span className = "text-subtitle">{ `Purpose of Data Collection` }</span>       
+          <span className = "page-privacy-policy-title">{ `Purpose of Data Collection` }</span>       
           <br/>
           <br/>
           <span>{ `We collect and process personal data for the following purposes:` }</span>
@@ -123,7 +123,7 @@ export default function PrivacyPolicy() {
           <span>{ `Where required by law, GASI will seek your consent prior to collecting or processing certain data.` }</span>
           <br/>
           <br/>
-          <span className = "text-subtitle">{ `Sharing and Disclosure` }</span>
+          <span className = "page-privacy-policy-title">{ `Sharing and Disclosure` }</span>
           <br/>
           <br/>
           <span>{ `GASI may disclose your personal data to third parties under the following circumstances:` }</span>
@@ -137,25 +137,25 @@ export default function PrivacyPolicy() {
           <span>{ `We do not sell or lease your personal data for marketing purposes.` }</span>        
           <br/>
           <br/>
-          <span className = "text-subtitle">{ `Data Transfers` }</span>
+          <span className = "page-privacy-policy-title">{ `Data Transfers` }</span>
           <br/>
           <br/>
           <span>{ `Your personal data may be stored or processed on servers located outside your jurisdiction. By using SEEDs, you acknowledge and consent to such cross-border data transfers, subject to appropriate safeguards in compliance with data protection regulations.` }</span>     
           <br/>    
           <br/>
-          <span className = "text-subtitle">{ `Retention of Data` }</span>
+          <span className = "page-privacy-policy-title">{ `Retention of Data` }</span>
           <br/>
           <br/>
           <span>{ `We retain personal and usage data only for as long as necessary to fulfill the purposes outlined in this Policy or as required by law. The Company will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies. The company will also retain Usage Data for internal analysis purposes. Usage data is generally retained for a shorter period, except when this data is used to strengthen the security or to improve the functionality of our application, or we are legally obligated to retain this data for longer time periods. Once data is no longer needed, it is securely deleted or anonymized.` }</span>     
           <br/>    
           <br/>
-          <span className = "text-subtitle">{ `Security Measures` }</span>
+          <span className = "page-privacy-policy-title">{ `Security Measures` }</span>
           <br/>
           <br/>
           <span>{ `GASI implements reasonable administrative, technical, and physical safeguards to protect your data from unauthorized access, alteration, or disclosure. However, no system is completely secure, and users are urged to protect their credentials and report any suspicious activity.` }</span>     
           <br/>
           <br/>
-          <span className = "text-subtitle">{ `Data Subject Rights` }</span>    
+          <span className = "page-privacy-policy-title">{ `Data Subject Rights` }</span>    
           <br/>    
           <br/>
           <span>{ `In accordance with applicable data protection laws, users may:` }</span>
@@ -169,13 +169,13 @@ export default function PrivacyPolicy() {
           <span>{ `To exercise these rights, contact: ` }<a href = "mailto:info@geospectrum.com.ph">{ "info@geospectrum.com.ph" }</a></span>     
           <br/>
           <br/>
-          <span className = "text-subtitle">{ `Data Collected from Persons Under the Age of Eligibility for Consent` }</span>    
+          <span className = "page-privacy-policy-title">{ `Data Collected from Persons Under the Age of Eligibility for Consent` }</span>    
           <br/>    
           <br/>
           <span>{ `The SEEDs application is not intended for individuals under the age of 13. We do not knowingly collect personal information from minors. If such data is inadvertently collected, it will be promptly removed upon discovery or notification.` }</span>
           <br/>    
           <br/>
-          <span className = "text-subtitle">{ `Changes to the Privacy Policy` }</span>    
+          <span className = "page-privacy-policy-title">{ `Changes to the Privacy Policy` }</span>    
           <br/>    
           <br/>
           <span>{ `GASI reserves the right to amend this Privacy Policy at any time. Significant changes will be communicated via the application or email notification. Continued use of SEEDs after such changes constitutes acceptance of the updated Policy.` }</span>
@@ -186,7 +186,7 @@ export default function PrivacyPolicy() {
           <span>{ `For questions, clarifications, or support regarding the Privacy Policy, contact us at:` }</span>
           <br/>
           <br/>
-          <span className = "text-subtitle">{ `Geospectrum Analytics Services, Inc.` }</span>
+          <span className = "page-privacy-policy-title">{ `Geospectrum Analytics Services, Inc.` }</span>
           <br/>
           <span>{ `Unit 804, Linden Suites Tower 1, 37 San Miguel Avenue, Ortigas Center, Pasig City, Philippines` }</span>
           <ul>

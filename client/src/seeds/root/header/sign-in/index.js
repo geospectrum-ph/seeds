@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import axios from "axios";
 
-import { makeStyles, Grid, Button, TextField } from "@material-ui/core";
+import { makeStyles, Grid, Button, TextField, Dialog, DialogTitle, DialogContent, DialogContentText } from "@material-ui/core";
 
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -80,7 +80,7 @@ const useStyles = makeStyles(function() {
           "& > :nth-child(1)": {
             "& .MuiTextField-root": {
               "& > *": {
-                font: "400 18px/1.25 'Outfit', sans-serif",
+                font: "400 16px/1.25 'Outfit', sans-serif",
               },
               
               "& .MuiTextFieldBase-input": {
@@ -91,11 +91,10 @@ const useStyles = makeStyles(function() {
           },
           
           "& > :nth-child(2)": {
-
             "& .MuiButton-root": {
               background: "var(--color-red-dark)",
 
-              font: "800 18px/1.25 'Outfit', sans-serif",
+              font: "600 16px/1.25 'Outfit', sans-serif",
               color: "var(--color-white)",
             },
 
@@ -111,11 +110,40 @@ const useStyles = makeStyles(function() {
               "& > a": {
                 cursor: "pointer",
 
-                font: "400 18px/1.25 'Outfit', sans-serif",
+                font: "400 16px/1.25 'Outfit', sans-serif",
                 textAlign: "center",
               },
             },
           },
+        },
+      },
+    },
+    dialog: {
+      background: "hsla(0, 0%, 100%, 0.85)",
+
+      "& .MuiDialogTitle-root": {
+        boxSizing: "border-box",
+        padding: "12px 48px",
+
+        background: "var(--color-black)",
+        
+        textAlign: "center",
+
+        "& .alert-modal-title": {
+          font: "800 32px/1.25 'Outfit', sans-serif",
+          color: "var(--color-white)",
+        },
+      },
+
+      "& .MuiDialogContent-root": {
+        boxSizing: "border-box",
+        padding: "48px",
+
+        textAlign: "center",
+      
+        "& .alert-modal-message": {
+          font: "400 16px/1.25 'Outfit', sans-serif",
+          color: "var(--color-black)",
         },
       },
     },
@@ -128,6 +156,28 @@ export default function SignIn() {
 
   const { setLoginDetails, setSessionData, setSessionFile } = React.useContext(AdminContext);
   const { setAppBarValue } = React.useContext(SEEDSContext);
+
+  const [control, setControl] = React.useState(false);
+
+  const [alert, setAlert] = React.useState({
+    title: "",
+    message: "",
+    path: "",
+  });
+
+  function handleOpen () {
+    setControl(true);
+  };
+
+  function handleClose () {
+    setControl(false);
+
+    if (alert.path && alert.path.length > 0) {
+      setAppBarValue(alert.path);
+
+      history.push(alert.path);
+    }
+  };
 
   const form_schema = yup.object().shape({
     email_address: yup.string().email("Invalid email address.").required("Email address required"),
@@ -153,11 +203,13 @@ export default function SignIn() {
 
             localStorage.setItem("user", JSON.stringify(response.data.message));
 
-            alert("Login Success", response.data);
-
-            setAppBarValue("/home/map-portal");
-
-            history.push("/home/map-portal");
+            setAlert({
+              title: "SIGN IN SUCCESSFUL",
+              message: "You have successfully signed in.",
+              path: "/home/map-portal",
+            });
+            
+            handleOpen();
           }
         })
         .catch(function (error) {
@@ -165,15 +217,33 @@ export default function SignIn() {
             if (error.response.data.errors.length === 1) {
               error.response.data.errors.forEach(function (error) {
                 for (var key in error) {
-                  alert(`${ key.charAt(0).toUpperCase() }${ key.slice(1) } is ${ error[key] }.`);
+                  setAlert({
+                    title: "SIGN IN ERROR",
+                    message: `${ key.charAt(0).toUpperCase() }${ key.slice(1) } is ${ error[key] }.`,
+                    path: "",
+                  });
+
+                  handleOpen();
                 }
               });
             }
             else if (error.response.data.errors.length === 2) {
-              alert(`Email is ${ error.response.data.errors[0]["email"] }.`);
+              setAlert({
+                title: "SIGN IN ERROR",
+                message: `Email is ${ error.response.data.errors[0]["email"] }.`,
+                path: "",
+              });
+
+              handleOpen();
             }
             else {
-              alert(`Email and password are ${ error.response.data.errors[0]["email"] }.`); 
+              setAlert({
+                title: "SIGN IN ERROR",
+                message: `Email and password are ${ error.response.data.errors[0]["email"] }.`,
+                path: "",
+              });
+
+              handleOpen();
             }
           }
 
@@ -284,14 +354,18 @@ export default function SignIn() {
 
   function handleGuestSubmit () {
     const guest_object = { name: "Guest", user_type: "guest" };
+    
+    setAlert({
+      title: "SIGN IN SUCCESSFUL",
+      message: "Signed in as a guest.",
+      path: "/home/map-portal",
+    });
+
+    handleOpen();
 
     setLoginDetails(guest_object);
 
     localStorage.setItem("user", JSON.stringify(guest_object));
-
-    setAppBarValue("/home/map-portal");
-
-    history.push("/home/mapportal");
   }
 
   function handlePasswordReset () {
@@ -336,6 +410,16 @@ export default function SignIn() {
                     <Button disabled = { isSubmitting } onClick = { handleGuestSubmit } title = "Submit">{ "Guest" }</Button>
                     <span className = "special-button"><a disabled = { isSubmitting } onClick = { handlePasswordReset }>{ "Forgot password?" }</a></span>
                   </Grid>
+                  <Dialog className = { styles.dialog } open = { control } onClick = { handleClose } onClose = { handleClose }>
+                    <DialogTitle disableTypography>
+                      <span className = "alert-modal-title">{ alert.title }</span>
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText>
+                        <span className = "alert-modal-message">{ alert.message }</span>
+                      </DialogContentText>
+                    </DialogContent>
+                  </Dialog>
                 </Grid>
               );
             }

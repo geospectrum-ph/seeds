@@ -48,18 +48,19 @@ const useStyles = makeStyles(function () {
           },
         },
       },
-    },
-    rootFooterLink: {
-      "& > a": {
-        font: "400 16px/1.25 'Outfit', sans-serif",
-        textDecoration: "none",
-        color: "var(--color-gray-dark)",
-      },
 
-      "&:hover, & > a:hover": {
-        cursor: "pointer",
+      "& .root-footer-link": {
+        "& > a": {
+          font: "400 16px/1.25 'Outfit', sans-serif",
+          textDecoration: "none",
+          color: "var(--color-gray-dark)",
+        },
 
-        color: "var(--color-white)",
+        "&:hover, & > a:hover": {
+          cursor: "pointer",
+
+          color: "var(--color-white)",
+        },
       },
     },
   });
@@ -71,7 +72,7 @@ export default function RootFooter(){
 
   const { appBarValue } = React.useContext(SEEDSContext);
 
-  const handleHistory = (path) => {
+  function handleHistory (path) {
     if (history.location.pathname !== path) {
       history.push(path);
     }
@@ -80,15 +81,15 @@ export default function RootFooter(){
   return (
     <Grid id = "root-footer" className = { styles.rootFooter } container>
       <Grid item container>         
-        <Grid item className = { styles.rootFooterLink }><a href = "https://www.geospectrum.com.ph/" target = "_blank">{ "GEOSPECTRUM" }</a></Grid>
+        <Grid item className = { "root-footer-link" }><a href = "https://www.geospectrum.com.ph/" target = "_blank">{ "GEOSPECTRUM" }</a></Grid>
         <Grid item>{ "© " }</Grid>
         <Grid item>{ new Date().getFullYear() }</Grid>
         <Grid item>{ "All Rights Reserved" }</Grid>
       </Grid>
       <Grid className = { appBarValue === "/terms-of-use" ? "active-terms-of-use" : appBarValue === "/privacy-policy" ? "active-privacy-policy" : null } item container>         
-        <Grid item className = { styles.rootFooterLink } onClick = { function () { handleHistory("/terms-of-use"); }}>{ "Terms of Use" }</Grid>
+        <Grid item className = { "root-footer-link" } onClick = { function () { handleHistory("/terms-of-use"); }}>{ "Terms of Use" }</Grid>
         <Grid item>{ "|" }</Grid>
-        <Grid item className = { styles.rootFooterLink } onClick = { function () { handleHistory("/privacy-policy"); }}>{ "Privacy Policy" }</Grid>
+        <Grid item className = { "root-footer-link" } onClick = { function () { handleHistory("/privacy-policy"); }}>{ "Privacy Policy" }</Grid>
       </Grid>
     </Grid>
   );

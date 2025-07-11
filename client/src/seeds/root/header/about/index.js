@@ -1,5 +1,9 @@
+import * as React from "react";
+
 import { makeStyles, Grid, } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
+
+import { SEEDSContext } from "../../../context/SEEDSContext";
 
 const useStyles = makeStyles(function () {
   return ({
@@ -45,44 +49,47 @@ const useStyles = makeStyles(function () {
             background: "var(--color-white)",
         },
       },
-    },
-    aboutItem: {
-      width: "100%",
-      height: "100%",
-      
-      display: "flex",
-      flexFlow: "column nowrap",
-      placeContent: "center center",
-      placeItems: "center center",
 
-      "& > :nth-child(1)": {
-        width: "100%",
-        height: "auto",
-
-        flex: "0 1 auto",        
-
-        boxSizing: "border-box",
-        padding: "48px",
-
-        background: "var(--color-red-dark)",
-
-        font: "800 72px/1 'Outfit', sans-serif",
-        color: "var(--color-white)",
-      },
-
-      "& > :nth-child(2)": {
+      "& .page-about-item": {
         width: "100%",
         height: "100%",
+        
+        display: "flex",
+        flexFlow: "column nowrap",
+        placeContent: "center center",
+        placeItems: "center center",
 
-        flex: "1 1 auto",
+        "& > :nth-child(1)": {
+          width: "100%",
+          height: "auto",
 
-        boxSizing: "border-box",
-        padding: "48px",
+          flex: "0 1 auto",        
 
-        background: "var(--color-white)",
+          boxSizing: "border-box",
+          padding: "48px",
 
-        font: "400 18px/1.25 'Outfit', sans-serif",
-        color: "var(--color-black)",
+          background: "var(--color-red-dark)",
+
+          font: "800 72px/1 'Outfit', sans-serif",
+          color: "var(--color-white)",
+        },
+
+        "& > :nth-child(2)": {
+          width: "100%",
+          height: "100%",
+
+          flex: "1 1 auto",
+
+          overflow: "hidden auto",
+
+          boxSizing: "border-box",
+          padding: "48px",
+
+          background: "var(--color-white)",
+
+          font: "400 16px/1.25 'Outfit', sans-serif",
+          color: "var(--color-black)",
+        },
       },
     },
   });
@@ -90,6 +97,8 @@ const useStyles = makeStyles(function () {
 
 export default function About () {
   const styles = useStyles();
+  
+  const { setAppBarValue } = React.useContext(SEEDSContext);
 
   const items = [
     {
@@ -138,26 +147,24 @@ export default function About () {
     },
   ];
 
-  function Item (props) {
-    return (
-      <Grid item container className = { styles.aboutItem }>
-        <Grid item>
-          <span>{ props.item.title }</span>
-        </Grid>
-        <Grid item>
-          <span>{ props.item.content }</span>
-        </Grid>
-      </Grid>
-    );
-  }
-
+  React.useEffect(function () {  
+    setAppBarValue("/about");
+  }, []);
+  
   return (
     <Grid id = "page-about" className = { styles.pageAbout } container>
       <Carousel interval = { "8000" }>
         {
           items.map(function (item, index) {
             return (
-              <Item key = { index } item = { item }/>
+              <Grid key = { index } className = { "page-about-item" } item container>
+                <Grid item>
+                  <span>{ item.title }</span>
+                </Grid>
+                <Grid item>
+                  <span>{ item.content }</span>
+                </Grid>
+              </Grid>
             );
           })
         }

@@ -1,8 +1,9 @@
+import * as React from "react";
 import { useHistory } from "react-router-dom";
 
 import axios from "axios";
 
-import { makeStyles, Grid, Button, TextField } from "@material-ui/core";
+import { makeStyles, Grid, Button, TextField, Dialog, DialogTitle, DialogContent, DialogContentText } from "@material-ui/core";
 
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -67,7 +68,7 @@ const useStyles = makeStyles(function() {
             },
 
             "& > :nth-child(2)": {
-              font: "400 18px/1.25 'Outfit', sans-serif",
+              font: "400 16px/1.25 'Outfit', sans-serif",
               color: "var(--color-black)",
             },
           },
@@ -82,7 +83,7 @@ const useStyles = makeStyles(function() {
 
           "& .MuiTextField-root": {
             "& > *": {
-              font: "400 18px/1.25 'Outfit', sans-serif",
+              font: "400 16px/1.25 'Outfit', sans-serif",
             },
             
             "& .MuiTextFieldBase-input": {
@@ -94,7 +95,7 @@ const useStyles = makeStyles(function() {
           "& .MuiButton-root": {
             background: "var(--color-red-dark)",
 
-            font: "800 18px/1.25 'Outfit', sans-serif",
+            font: "600 16px/1.25 'Outfit', sans-serif",
             color: "var(--color-white)",
           },
 
@@ -110,10 +111,39 @@ const useStyles = makeStyles(function() {
             "& > a": {
               cursor: "pointer",
 
-              font: "400 18px/1.25 'Outfit', sans-serif",
+              font: "400 16px/1.25 'Outfit', sans-serif",
               textAlign: "center",
             },
           },
+        },
+      },
+    },
+    dialog: {
+      background: "hsla(0, 0%, 100%, 0.85)",
+
+      "& .MuiDialogTitle-root": {
+        boxSizing: "border-box",
+        padding: "12px 48px",
+
+        background: "var(--color-black)",
+        
+        textAlign: "center",
+
+        "& .alert-modal-title": {
+          font: "800 32px/1.25 'Outfit', sans-serif",
+          color: "var(--color-white)",
+        },
+      },
+
+      "& .MuiDialogContent-root": {
+        boxSizing: "border-box",
+        padding: "48px",
+
+        textAlign: "center",
+      
+        "& .alert-modal-message": {
+          font: "400 16px/1.25 'Outfit', sans-serif",
+          color: "var(--color-black)",
         },
       },
     },
@@ -123,6 +153,28 @@ const useStyles = makeStyles(function() {
 export default function PasswordReset () {
   const styles = useStyles();
   const history = useHistory();
+  
+  const [control, setControl] = React.useState(false);
+
+  const [alert, setAlert] = React.useState({
+    title: "",
+    message: "",
+    path: "",
+  });
+
+  function handleOpen () {
+    setControl(true);
+  };
+
+  function handleClose () {
+    setControl(false);
+
+    if (alert.path && alert.path.length > 0) {
+      setAppBarValue(alert.path);
+
+      history.push(alert.path);
+    }
+  };
 
   const form_schema = yup.object().shape({
     email_address: yup.string().email("Invalid email address.").required("Email address required"),
@@ -140,12 +192,22 @@ export default function PasswordReset () {
           "email": values.email_address
         })
         .then(function () {
-          alert("Password reset link sent to your email account!");
+          setAlert({
+            title: "PASSWORD RESET SUCCESSFUL",
+            message: "Password reset link sent to your email account!",
+            path: "/sign-in",
+          });
 
-          history.push("/sign-in");
+          handleOpen();
         })
-        .catch(function () {
-          alert("Email not found.");
+        .catch(function () {          
+          setAlert({
+            title: "SIGN IN ERROR",
+            message: "Email not found.",
+            path: "",
+          });
+
+          handleOpen();
 
           setSubmitting(false);
         });
@@ -188,6 +250,16 @@ export default function PasswordReset () {
                     <Button disabled = { isSubmitting } onClick = { handleSubmit } title = "Submit">{ "Send a link" }</Button>
                     <span className = "special-button"><a disabled = { isSubmitting } onClick = { handleSignIn }>{ "Sign in instead" }</a></span>
                   </Grid>
+                  <Dialog className = { styles.dialog } open = { control } onClick = { handleClose } onClose = { handleClose }>
+                    <DialogTitle>
+                      <span className = "alert-modal-title">{ alert.title }</span>
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText>
+                        <span className = "alert-modal-message">{ alert.message }</span>
+                      </DialogContentText>
+                    </DialogContent>
+                  </Dialog>
                 </Grid>
               );
             }

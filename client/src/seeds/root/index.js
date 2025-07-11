@@ -89,6 +89,21 @@ const useStyles = makeStyles(function () {
   });
 });
 
+function Index ({ setAppBarValue, styles }) {  
+  React.useEffect(function () {  
+    setAppBarValue("/");
+  }, []);
+
+  return (
+    <Grid id = "page-root" className = { styles.pageRoot }>
+      <div>
+        <span>{ "Welcome to" }</span>
+        <span><span>{ "SEED" }</span><span>{ "s!" }</span></span>
+      </div>
+    </Grid>
+  );
+}
+
 export default function Root(){
   const styles = useStyles();
   const history = useHistory();
@@ -99,20 +114,14 @@ export default function Root(){
     {
       path: "/",
       name: "Root",
-      module:
-        <Grid id = "page-root" className = { styles.pageRoot }>
-          <div>
-            <span>{ "Welcome to" }</span>
-            <span><span>{ "SEED" }</span><span>{ "s!" }</span></span>
-          </div>
-        </Grid>,
+      module: <Index setAppBarValue = { setAppBarValue } styles = { styles }/>,
       icon: null,
       level: 0,
     },
     {
       path: "/sign-in",
       name: "Sign In",
-      module:<SignIn/>,
+      module: <SignIn/>,
       icon: null,
       level: 0,
     },
@@ -200,5 +209,5 @@ export default function Root(){
         <RootFooter/>
       </Grid>
     </Grid>
-  )
+  );
 }

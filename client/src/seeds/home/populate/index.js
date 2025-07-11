@@ -224,7 +224,7 @@ const useStyles = makeStyles(function () {
 
               background: "var(--color-red-dark)",
 
-              font: "800 18px/1.25 'Outfit', sans-serif",
+              font: "800 16px/1.25 'Outfit', sans-serif",
               textAlign: "center",
               color: "var(--color-white)",
             },
@@ -291,7 +291,7 @@ const useStyles = makeStyles(function () {
             "& .MuiButton-root": {
               background: "var(--color-red-dark)",
 
-              font: "800 18px/1.25 'Outfit', sans-serif",
+              font: "800 16px/1.25 'Outfit', sans-serif",
               textAlign: "center",
               color: "var(--color-white)",
             },
