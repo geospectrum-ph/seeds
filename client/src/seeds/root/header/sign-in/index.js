@@ -374,6 +374,10 @@ export default function SignIn() {
     history.push("/password-reset");
   }
 
+  React.useEffect(function () {  
+    setAppBarValue("/sign-in");
+  }, []);
+
   return (
     <Grid id = "page-sign-in" className = { styles.pageSignIn } container>
       <Grid item container>

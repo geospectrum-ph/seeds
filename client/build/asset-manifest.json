@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.4ca5ff42.css",
-    "main.js": "/static/js/main.91c721d2.js",
+    "main.js": "/static/js/main.ee9beb06.js",
     "static/media/demographic_16-9_lr.jpg": "/static/media/demographic_16-9_lr.2899aa43da6e88747b6f.jpg",
     "static/media/social_16-9.jpg": "/static/media/social_16-9.6358ae4f46307d946112.jpg",
     "static/media/economic_16-9.jpg": "/static/media/economic_16-9.9c9c765088626191dd54.jpg",
@@ -57,10 +57,10 @@
     "index.html": "/index.html",
     "static/media/default.svg": "/static/media/default.7b7baf362112d9afb7c843890000bd98.svg",
     "main.4ca5ff42.css.map": "/static/css/main.4ca5ff42.css.map",
-    "main.91c721d2.js.map": "/static/js/main.91c721d2.js.map"
+    "main.ee9beb06.js.map": "/static/js/main.ee9beb06.js.map"
   },
   "entrypoints": [
     "static/css/main.4ca5ff42.css",
-    "static/js/main.91c721d2.js"
+    "static/js/main.ee9beb06.js"
   ]
 }

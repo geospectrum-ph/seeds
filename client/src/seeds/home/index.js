@@ -165,7 +165,7 @@ export default function Home() {
   const history = useHistory();
 
   const { loginDetails, setLoginDetails, setGroupPrivilege } = React.useContext(AdminContext);
-  const { selectedIndex, appBarValue, setAppBarValue } = React.useContext(SEEDSContext);
+  const { appBarValue, setAppBarValue } = React.useContext(SEEDSContext);
 
   React.useEffect (function () {
     setLoginDetails(localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")) : loginDetails);
@@ -283,7 +283,7 @@ export default function Home() {
       <Grid item container>
         <Grid item container>
           <img src = { logo } style = {{ height: 45, marginTop: 0 }}/>
-          <span><span>{ "SEED" }</span><span>{ `s ${ selectedIndex ? modules[selectedIndex].name : "" }` }</span></span>
+          <span><span>{ "SEED" }</span><span>{ `s ${ appBarValue ? modules.find(function (element) { if (element.path === appBarValue) { return (element); }}).name : "" }` }</span></span>
         </Grid>
         <Grid item container>
           <Switch>

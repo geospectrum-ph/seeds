@@ -8,6 +8,8 @@ import { makeStyles, Grid, Button, TextField, Dialog, DialogTitle, DialogContent
 import { Formik } from "formik";
 import * as yup from "yup";
 
+import { SEEDSContext } from "../../../context/SEEDSContext";
+
 const useStyles = makeStyles(function() {
   return ({
     pagePasswordReset: {
@@ -153,6 +155,8 @@ const useStyles = makeStyles(function() {
 export default function PasswordReset () {
   const styles = useStyles();
   const history = useHistory();
+
+  const { setAppBarValue } = React.useContext(SEEDSContext);
   
   const [control, setControl] = React.useState(false);
 
@@ -170,8 +174,6 @@ export default function PasswordReset () {
     setControl(false);
 
     if (alert.path && alert.path.length > 0) {
-      setAppBarValue(alert.path);
-
       history.push(alert.path);
     }
   };
@@ -219,6 +221,10 @@ export default function PasswordReset () {
   function handleSignIn () {
     history.push("/sign-in");
   }
+  
+  React.useEffect(function () {  
+    setAppBarValue("/password-reset");
+  }, []);
 
   return (
     <Grid id = "page-password-reset" className = { styles.pagePasswordReset } container>

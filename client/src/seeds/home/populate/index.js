@@ -954,9 +954,9 @@ export default function SEEDsPopulate() {
   const { social, economic, environmental, demographic, type } = state;
   const error = [social, economic, environmental, demographic]
     .filter((v) => v).length < 1;
-  const { setSelectedIndex, disUp, setDisUp } = useContext(SEEDSContext);
+  const { selectedIndex, setSelectedIndex, disUp, setDisUp } = useContext(SEEDSContext);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setSelectedIndex(0)
   }, [])
 
